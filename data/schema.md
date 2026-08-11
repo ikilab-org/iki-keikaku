@@ -31,7 +31,7 @@ categories: { ... }        # 小分類の定義（大分類にぶら下がる）
 | `adopted` | | string | 策定年月（`2024-03`） |
 | `laws` | | string[] \| object[] | 根拠法。条項まで書く。`{ law, obligation }` で義務の別も持てる（[下記](#laws-と-statutory)） |
 | `department` | | string | 所管課・班。根拠は行政組織規則（[下記](#department)） |
-| `statutory` | | enum | 法定性。`mandatory` / `effort` / `request` / `voluntary`（[下記](#laws-と-statutory)） |
+| `statutory` | | enum | 法定性。`mandatory` / `effort` / `request` / `permissive` / `voluntary`（[下記](#laws-と-statutory)） |
 | `tier` | △ | enum | 計画の階層。`sougou` / `bumon` / `kobetsu` / `jisshi` / `shisetsu`（[下記](#tier)） |
 | `agency` | | enum | 実施機関。省略時は `mayor`（[下記](#agency)） |
 | `parent` | | id | 上位計画のID（[下記](#関係のフィールド)） |
@@ -91,13 +91,14 @@ categories:
 | `mandatory` | 法定義務 | 「定めるものとする」「策定しなければならない」 |
 | `effort` | 努力義務 | 「定めるよう努めるものとする」 |
 | `request` | 国の要請・通知 | 法律ではなく通知・指針で策定を求められる |
+| `permissive` | 許容規定 | 「策定することができる」。根拠規定はあるが義務ではない |
 | `voluntary` | 任意 | 法令上の根拠なし |
 
 **判定は条文の文言を確認してから書きます。** 確認前は書かず、`todo:` に残します。
 
 一体策定された計画は、根拠法ごとに義務の強さが違うことがあります。その場合は
 `laws` に義務の別を持たせ、`statutory` には**最も強い義務**を書きます
-（`mandatory` > `effort` > `request` > `voluntary`）。
+（`mandatory` > `effort` > `request` > `permissive` > `voluntary`）。
 
 ```yaml
 laws:

@@ -197,3 +197,34 @@ test('pdf か sources があれば url を求めない', () => {
                    url: undefined, sources: [{ label: '議案書', url: 'https://example.jp/g.pdf' }] }])
   assert.deepEqual(validate(d, TODAY), [])
 })
+
+// --- permissive（許容規定） -------------------------------------------------
+// 次世代育成支援対策推進法8条1項「策定することができる」の型。Task 9 で追加。
+
+test('statutory: permissive を enum として受け入れる', () => {
+  // 未定義の値を指定したときのメッセージに、許容される値の一覧が並ぶ。
+  // permissive がその一覧に含まれていることを確認する（順序も含めて具体的な値を見る）。
+  const invalid = errorsOf(doc([{ id: 'a', statutory: 'kyoyou' }]))
+  assert.match(invalid[0].message, /statutory: kyoyou は未定義の値です（mandatory \/ effort \/ request \/ permissive \/ voluntary）/)
+
+  // permissive 自体を指定した場合はこのエラーが出ない
+  const valid = errorsOf(doc([{ id: 'a', statutory: 'permissive' }]))
+  assert.equal(valid.length, 0)
+})
+
+test('laws に request と permissive が混在すると集約値は request になる', () => {
+  // statutory をわざと voluntary にして、集約結果が何であるかをエラーメッセージで確認する
+  const d = doc([{ id: 'a', statutory: 'voluntary', laws: [
+    { law: '介護保険法117条', obligation: 'request' },
+    { law: '次世代育成支援対策推進法8条1項', obligation: 'permissive' },
+  ] }])
+  assert.match(errorsOf(d)[0].message, /voluntary は laws の最も強い義務（request）と一致しません/)
+})
+
+test('laws に permissive と voluntary が混在すると集約値は permissive になる', () => {
+  const d = doc([{ id: 'a', statutory: 'voluntary', laws: [
+    { law: '次世代育成支援対策推進法8条1項', obligation: 'permissive' },
+    { law: 'X法', obligation: 'voluntary' },
+  ] }])
+  assert.match(errorsOf(d)[0].message, /voluntary は laws の最も強い義務（permissive）と一致しません/)
+})

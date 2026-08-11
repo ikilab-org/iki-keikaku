@@ -17,13 +17,13 @@ export const ENUM = {
   level: ['national', 'prefectural', 'municipal', 'council'],
   status: ['current', 'expiring', 'expired', 'planned', 'unknown'],
   tier: ['sougou', 'bumon', 'kobetsu', 'jisshi', 'shisetsu'],
-  statutory: ['mandatory', 'effort', 'request', 'voluntary'],
+  statutory: ['mandatory', 'effort', 'request', 'permissive', 'voluntary'],
   agency: ['mayor', 'education', 'fire', 'agri', 'assembly', 'election', 'audit'],
 }
 
 const ARRAY_REFS = ['includes', 'conforms_to', 'related', 'predecessors']
 const SCALAR_REFS = ['parent', 'embedded_in']
-const RANK = { mandatory: 4, effort: 3, request: 2, voluntary: 1 }
+const RANK = { mandatory: 5, effort: 4, request: 3, permissive: 2, voluntary: 1 }
 const YYYY_MM = /^\d{4}-(0[1-9]|1[0-2])$/
 /** 日本の年度末 = 翌年3月31日 */
 const fyEnd = (y) => new Date(`${y + 1}-03-31`)
