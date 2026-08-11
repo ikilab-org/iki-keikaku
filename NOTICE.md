@@ -8,7 +8,7 @@
 | 文章・図表・データ | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.ja) | [`LICENSE`](LICENSE) |
 | コード | [MIT](https://opensource.org/licenses/MIT) | [`LICENSE-CODE`](LICENSE-CODE) |
 
-© 2026 ikilab
+© 2026 IKILAB
 
 ## どのファイルがどちらか
 
@@ -50,7 +50,7 @@
 資料・スライドに図表を使う場合:
 
 ```
-出典：壱岐市 計画マップ（ikilab）CC BY 4.0
+出典：壱岐市 計画マップ（IKILAB）CC BY 4.0
 https://keikaku.ikilab.org/plans/fukushi/
 ```
 
@@ -68,6 +68,6 @@ curl -sL -o LICENSE https://creativecommons.org/licenses/by/4.0/legalcode.txt
 
 日本語の公式訳（参考）: https://creativecommons.org/licenses/by/4.0/legalcode.ja
 
-著作者名を `ikilab` 以外にする場合は、`LICENSE-CODE`、`NOTICE.md`、
+著作者名を `IKILAB` 以外にする場合は、`LICENSE-CODE`、`NOTICE.md`、
 `about/license/index.html`、各ページのフッタを書き換えてください
 （`LICENSE` は CC の条文そのものなので、著作者名は含まれません）。

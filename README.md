@@ -4,7 +4,7 @@
 公開情報だけを使い、出典をすべて明示しています。
 
 - 公開URL: https://keikaku.ikilab.org
-- 運営: [ikilab](https://ikilab.org) ／ リポジトリ: [github.com/ikilab-org/iki-plans](https://github.com/ikilab-org/iki-plans)
+- 運営: [IKILAB](https://ikilab.org) ／ リポジトリ: [github.com/ikilab-org/iki-plans](https://github.com/ikilab-org/iki-plans)
 - 調査基準日: `data/plans.yml` の `meta.survey_date` を参照
 
 > **この資料は壱岐市の公式資料ではありません。** 公表資料をもとに独立して整理したものです。

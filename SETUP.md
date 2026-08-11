@@ -35,7 +35,7 @@ git commit -m "壱岐市 計画マップ 初版
 | 確認すること | ファイル | 既定値 |
 |---|---|---|
 | 公開するドメイン | `CNAME` | `keikaku.ikilab.org` |
-| 著作者名 | `LICENSE-CODE`、`NOTICE.md`、`about/license/index.html`、各ページのフッタ | `ikilab` |
+| 著作者名 | `LICENSE-CODE`、`NOTICE.md`、`about/license/index.html`、各ページのフッタ | `IKILAB` |
 | 各ページのURL（`canonical` と `og:url`） | `index.html`、`plans/*/index.html`、`about/license/index.html` | `https://keikaku.ikilab.org/…` |
 
 ドメインを変える場合は、`CNAME` の1行に加えて、上記HTMLの `canonical` / `og:url` も置換してください。
@@ -60,14 +60,14 @@ GitHub で見つけた人が「何者が作っているのか」を辿れるよ�
 
 | 項目 | 値 |
 |---|---|
-| Name | `ikilab` |
+| Name | `IKILAB` |
 | Description | `長崎県壱岐市のシビックテックラボ` |
 | URL | `https://ikilab.org` |
 | Location | `長崎県壱岐市` |
 | Email | 公開してよい連絡先（誤りの指摘を受ける窓口になります） |
 
 あわせて、Organization の **People** タブで自分の表示を **Public** に切り替えてください。
-個人プロフィールに ikilab のバッジが出て、個人の実績としても見えるようになります。
+個人プロフィールに IKILAB のバッジが出て、個人の実績としても見えるようになります。
 
 ### 2-2. リポジトリを作る
 
