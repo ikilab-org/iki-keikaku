@@ -47,6 +47,7 @@ plans:
       - 社会福祉法107条
       - 成年後見制度利用促進法14条1項
       - 再犯防止推進法8条1項
+    statutory: effort
     department: 市民福祉課 地域福祉班
     parent: sougou-4
     includes: [seinen-kouken, saihan-boushi]
@@ -140,6 +141,7 @@ plans:
     period: { start: 2024, end: 2026 }
     adopted: 2024-03
     laws: [老人福祉法20条の8, 介護保険法117条]
+    statutory: mandatory
     department: 保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）
     url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/13262.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/38/keikakukeikaku.pdf
@@ -198,13 +200,25 @@ plans:
     status: current
     period: { start: 2025, end: 2029 }
     adopted: 2025-03
-    laws: [こども基本法10条2項ほか5法]
+    laws:
+      - { law: 子ども・子育て支援法61条1項, obligation: mandatory }
+      - { law: こども基本法10条2項, obligation: effort }
+      - { law: 子ども・若者育成支援推進法9条2項, obligation: effort }
+      - { law: こどもの貧困の解消に向けた対策の推進に関する法律10条2項, obligation: effort }
+      - 次世代育成支援対策推進法8条1項
+    statutory: mandatory
     department: 子育て支援課
     related: [pref-kosodate-jourei]
     url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html
     notes: >-
       子ども・子育て支援事業計画／次世代育成支援／こどもの貧困対策／子ども・若者計画を一体化。
       令和9年度に中間見直し。
+    todo: >-
+      次世代育成支援対策推進法8条1項（市町村行動計画）は現行条文で「策定することができる」に改正されており
+      （努力義務の「努めるものとする」ではない）、obligation の mandatory/effort/request/voluntary
+      いずれにも該当しない。扱いを要確認。
+      なお子どもの貧困対策の根拠法は令和6年改正で題名が「こどもの貧困の解消に向けた対策の推進に関する法律」に、
+      条項が旧9条1項から10条2項に変更されている（本データは現行条項に修正済み）。
 
   - id: data-health-3
     name: 第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画
@@ -215,9 +229,16 @@ plans:
     status: current
     period: { start: 2024, end: 2029 }
     adopted: 2024-03
-    laws: [国民健康保険法82条, 高齢者医療確保法]
+    laws:
+      - { law: 高齢者医療確保法19条1項, obligation: mandatory }
+      - 国民健康保険法82条
+    statutory: mandatory
     department: 保険課 国保・後期・年金班
     url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kenko_hoken/datahealth3.html
+    todo: >-
+      データヘルス計画（国民健康保険法82条）の obligation は未判定。同条にはデータヘルス計画を
+      定める旨の規定が見当たらず、実際の根拠は「国民健康保険法に基づく保健事業の実施等に関する指針」
+      （平成16年厚生労働省告示第307号）である可能性が高い。obligation の扱いを要確認。
 
   - id: kenkou-iki21
     name: 壱岐市健康づくり計画「健康いき21」
@@ -229,6 +250,7 @@ plans:
     period: { start: 2024, end: 2029 }
     adopted: 2024-03
     laws: [健康増進法8条2項, 食育基本法18条, 長崎県歯・口腔の健康づくり推進条例9条]
+    statutory: effort
     department: 健康増進課
     related: [pref-kenkou-21-3]
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/kenkoufukushi/12683.html
