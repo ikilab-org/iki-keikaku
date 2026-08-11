@@ -1218,7 +1218,7 @@ categories:
 node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格の検査
 node tools/linkcheck.mjs                  # URLが生きているか
 node tools/expiring.mjs                   # 期間の入力ミスで変な年度が出ていないか
-node --test tools/                        # ツール自身の単体テスト
+node --test                               # ツール自身の単体テスト（リポジトリ直下で実行）
 ```
 
 `validate.mjs` は次の2段階で報告します。
@@ -1387,7 +1387,7 @@ echo "exit code = $?"
 
 ```bash
 node tools/expiring.mjs --today 2026-08-12
-node --test tools/
+node --test
 ```
 
 期待: `expiring.mjs` はこれまでと同じ出力（`domain`/`tier` の追加は無関係）。テストは緑
@@ -2137,7 +2137,7 @@ git commit -m "実在する計画から domains を確定し、配色を検証
 node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格の検査
 node tools/linkcheck.mjs                  # 追加・変更したURLが生きているか
 node tools/expiring.mjs                   # 期間の入力ミスがないか（変な年度が出ないか）
-node --test tools/                        # ツール自身の単体テスト
+node --test                               # ツール自身の単体テスト（リポジトリ直下で実行）
 ```
 
 `validate.mjs` の **error は必ず 0 にしてください。** 未調査の項目は `todo:` を書けば warn になります。
@@ -2197,7 +2197,7 @@ node tools/validate.mjs --fail-on-error --today 2026-08-12
 echo "validate exit code = $?"
 node tools/linkcheck.mjs --fail-on-dead 2>&1 | tail -5
 node tools/expiring.mjs --today 2026-08-12
-node --test tools/
+node --test
 ```
 
 期待: `validate` exit 0、`linkcheck` に失効なし、`expiring` に異常な年度なし、テスト緑
