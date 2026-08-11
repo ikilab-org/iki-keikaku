@@ -1383,7 +1383,12 @@ node tools/validate.mjs --fail-on-error --today 2026-08-12
 echo "exit code = $?"
 ```
 
-期待: `## error（0件）` と `exit code = 0`。warn は15件前後残る（`todo:` 付きの未調査エントリ）
+期待: `## error（0件）` と `exit code = 0`。**warn は1件（`danjo-3` の `url` 欠落）だけ残ります。**
+
+移行前の warn 15件は、`todo:` 付きの7件が `domain` と `tier` を欠いていたことによるものでした。
+Step 3 の対応表は**この7件を含む `municipal` / `council` の全23件**に `domain` と `tier` を割り当てるため、
+6件は他の必須項目が揃っていて warn が解消します。`todo:` は消さないので、
+`tools/expiring.mjs` の「未調査の項目」には7件とも残ります。
 
 ```bash
 node tools/expiring.mjs --today 2026-08-12
