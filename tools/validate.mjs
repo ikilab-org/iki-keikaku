@@ -17,6 +17,9 @@ export const ENUM = {
   agency: ['mayor', 'education', 'fire', 'agri', 'assembly', 'election', 'audit'],
 }
 
+const ARRAY_REFS = ['includes', 'conforms_to', 'related', 'predecessors']
+const SCALAR_REFS = ['parent', 'embedded_in']
+
 export function validate(doc, today = new Date()) {
   const found = []
   const add = (severity, id, message) => found.push({ severity, id, message })
@@ -53,6 +56,40 @@ export function validate(doc, today = new Date()) {
         if (owner && p.domain !== undefined && owner !== p.domain) {
           add('error', id, `domain: ${p.domain} は category: ${p.category} の domain（${owner}）と一致しません`)
         }
+      }
+    }
+
+    for (const f of SCALAR_REFS) {
+      if (p[f] !== undefined && !byId.has(p[f])) add('error', id, `${f}: ${p[f]} という計画がありません`)
+    }
+    for (const f of ARRAY_REFS) {
+      for (const ref of p[f] ?? []) {
+        if (!byId.has(ref)) add('error', id, `${f}: ${ref} という計画がありません`)
+      }
+    }
+
+    for (const child of p.includes ?? []) {
+      if (byId.get(child)?.embedded_in !== id) {
+        add('error', id, `includes に ${child} があるのに、${child}.embedded_in が ${id} を指していません`)
+      }
+    }
+    if (p.embedded_in && !(byId.get(p.embedded_in)?.includes ?? []).includes(id)) {
+      add('error', id, `embedded_in が ${p.embedded_in} を指すのに、${p.embedded_in}.includes に ${id} がありません`)
+    }
+    if (p.parent !== undefined && p.parent === p.embedded_in) {
+      add('error', id, `parent と embedded_in が同じ ${p.parent} を指しています（包含は embedded_in に一本化）`)
+    }
+
+    for (const ref of p.conforms_to ?? []) {
+      if (byId.get(ref)?.level === 'municipal') {
+        add('error', id, `conforms_to: ${ref} は市の計画です（国・県の計画を指します）`)
+      }
+    }
+
+    // 無向辺なので片側でよい。両側にあるときは id の小さい側から1件だけ報告する
+    for (const other of p.related ?? []) {
+      if ((byId.get(other)?.related ?? []).includes(id) && id < other) {
+        add('warn', id, `related: ${other} と相互に書かれています（無向なので片側でよい）`)
       }
     }
   }

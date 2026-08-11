@@ -60,3 +60,51 @@ test('categories が未定義の domain を指す場合を error にする', () 
   d.categories.kourei.domain = 'nai'
   assert.ok(messages(d).some((m) => m.startsWith('error:categories.kourei:')))
 })
+
+test('参照切れを error にする', () => {
+  assert.match(errorsOf(doc([{ id: 'a', parent: 'nai' }]))[0].message, /parent: nai という計画がありません/)
+  assert.match(errorsOf(doc([{ id: 'a', conforms_to: ['nai'] }]))[0].message, /conforms_to: nai/)
+  assert.match(errorsOf(doc([{ id: 'a', predecessors: ['nai'] }]))[0].message, /predecessors: nai/)
+})
+
+test('includes と embedded_in が対応していない場合を error にする', () => {
+  const found = errorsOf(doc([{ id: 'oya', includes: ['ko'] }, { id: 'ko' }]))
+  assert.equal(found.length, 1)
+  assert.match(found[0].message, /ko.embedded_in が oya を指していません/)
+})
+
+test('embedded_in の片方向を error にする', () => {
+  const found = errorsOf(doc([{ id: 'oya' }, { id: 'ko', embedded_in: 'oya' }]))
+  assert.match(found[0].message, /oya.includes に ko がありません/)
+})
+
+test('包含が両方向に書かれていれば通る', () => {
+  assert.deepEqual(validate(doc([{ id: 'oya', includes: ['ko'] }, { id: 'ko', embedded_in: 'oya' }]), TODAY), [])
+})
+
+test('parent と embedded_in が同じ計画を指す場合を error にする', () => {
+  const d = doc([{ id: 'oya', includes: ['ko'] }, { id: 'ko', embedded_in: 'oya', parent: 'oya' }])
+  assert.ok(errorsOf(d).some((f) => /包含は embedded_in に一本化/.test(f.message)))
+})
+
+test('conforms_to が市の計画を指す場合を error にする', () => {
+  const d = doc([{ id: 'shi', conforms_to: ['hoka'] }, { id: 'hoka' }])
+  assert.match(errorsOf(d)[0].message, /conforms_to: hoka は市の計画です/)
+})
+
+test('conforms_to が県の計画を指す場合は通る', () => {
+  const d = doc([{ id: 'shi', conforms_to: ['ken'] },
+                 { id: 'ken', level: 'prefectural', domain: undefined, category: undefined, tier: undefined }])
+  assert.deepEqual(validate(d, TODAY), [])
+})
+
+test('related の両側記載は warn で、1件だけ報告する', () => {
+  const found = validate(doc([{ id: 'a', related: ['b'] }, { id: 'b', related: ['a'] }]), TODAY)
+  assert.equal(found.length, 1)
+  assert.equal(found[0].severity, 'warn')
+  assert.equal(found[0].id, 'a')
+})
+
+test('related の片側記載は何も報告しない', () => {
+  assert.deepEqual(validate(doc([{ id: 'a', related: ['b'] }, { id: 'b' }]), TODAY), [])
+})
