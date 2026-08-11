@@ -19,6 +19,10 @@ export const ENUM = {
 
 const ARRAY_REFS = ['includes', 'conforms_to', 'related', 'predecessors']
 const SCALAR_REFS = ['parent', 'embedded_in']
+const RANK = { mandatory: 4, effort: 3, request: 2, voluntary: 1 }
+const YYYY_MM = /^\d{4}-(0[1-9]|1[0-2])$/
+/** 日本の年度末 = 翌年3月31日 */
+const fyEnd = (y) => new Date(`${y + 1}-03-31`)
 
 export function validate(doc, today = new Date()) {
   const found = []
@@ -90,6 +94,40 @@ export function validate(doc, today = new Date()) {
     for (const other of p.related ?? []) {
       if ((byId.get(other)?.related ?? []).includes(id) && id < other) {
         add('warn', id, `related: ${other} と相互に書かれています（無向なので片側でよい）`)
+      }
+    }
+
+    const obligations = (p.laws ?? []).filter((l) => l && typeof l === 'object' && l.obligation)
+    for (const l of obligations) {
+      if (!(l.obligation in RANK)) add('error', id, `laws の obligation: ${l.obligation} は未定義の値です`)
+    }
+    if (obligations.length && p.statutory !== undefined) {
+      const strongest = obligations.reduce((a, l) => (RANK[l.obligation] > RANK[a] ? l.obligation : a), 'voluntary')
+      if (strongest !== p.statutory) {
+        add('error', id, `statutory: ${p.statutory} は laws の最も強い義務（${strongest}）と一致しません`)
+      }
+    }
+
+    const { start, end } = p.period ?? {}
+    if (typeof start === 'number' && typeof end === 'number' && start > end) {
+      add('error', id, `period の start（${start}）が end（${end}）より後です`)
+    }
+    if (p.adopted !== undefined && !YYYY_MM.test(String(p.adopted))) {
+      add('error', id, `adopted: ${p.adopted} は YYYY-MM ではありません`)
+    }
+    for (const key of ['start', 'end']) {
+      const v = p.successor?.public_comment?.[key]
+      if (v !== undefined && !YYYY_MM.test(String(v))) {
+        add('error', id, `successor.public_comment.${key}: ${v} は YYYY-MM ではありません`)
+      }
+    }
+    if (typeof end === 'number') {
+      const over = fyEnd(end) < today
+      if (p.status === 'expired' && !over) {
+        add('error', id, `status: expired ですが、${end}年度末はまだ到来していません`)
+      }
+      if ((p.status === 'current' || p.status === 'expiring') && over) {
+        add('error', id, `status: ${p.status} ですが、${end}年度末を過ぎています`)
       }
     }
   }

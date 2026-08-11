@@ -108,3 +108,51 @@ test('related の両側記載は warn で、1件だけ報告する', () => {
 test('related の片側記載は何も報告しない', () => {
   assert.deepEqual(validate(doc([{ id: 'a', related: ['b'] }, { id: 'b' }]), TODAY), [])
 })
+
+test('laws の最も強い義務と statutory が食い違う場合を error にする', () => {
+  const d = doc([{ id: 'a', statutory: 'effort', laws: [
+    { law: '子ども・子育て支援法61条1項', obligation: 'mandatory' },
+    { law: 'こども基本法10条2項', obligation: 'effort' },
+  ] }])
+  assert.match(errorsOf(d)[0].message, /最も強い義務（mandatory）と一致しません/)
+})
+
+test('集約規則どおりなら通る', () => {
+  const d = doc([{ id: 'a', statutory: 'mandatory', laws: [
+    { law: '子ども・子育て支援法61条1項', obligation: 'mandatory' },
+    { law: 'こども基本法10条2項', obligation: 'effort' },
+  ] }])
+  assert.deepEqual(validate(d, TODAY), [])
+})
+
+test('laws が文字列だけなら集約検査をしない', () => {
+  const d = doc([{ id: 'a', statutory: 'effort', laws: ['介護保険法117条'] }])
+  assert.deepEqual(validate(d, TODAY), [])
+})
+
+test('obligation の未定義値を error にする', () => {
+  const d = doc([{ id: 'a', laws: [{ law: 'X', obligation: 'must' }] }])
+  assert.match(errorsOf(d)[0].message, /obligation: must/)
+})
+
+test('期間の逆転を error にする', () => {
+  assert.match(errorsOf(doc([{ id: 'a', period: { start: 2029, end: 2024 } }]))[0].message, /より後です/)
+})
+
+test('日付の書式違反を error にする', () => {
+  assert.match(errorsOf(doc([{ id: 'a', adopted: '2024/03' }]))[0].message, /YYYY-MM ではありません/)
+  const d = doc([{ id: 'a', successor: { public_comment: { start: '2026-13', end: '2027-01' } } }])
+  assert.match(errorsOf(d)[0].message, /public_comment.start: 2026-13/)
+})
+
+test('status と期間の矛盾を error にする', () => {
+  const past = doc([{ id: 'a', status: 'current', period: { start: 2018, end: 2020 } }])
+  assert.match(errorsOf(past)[0].message, /2020年度末を過ぎています/)
+  const future = doc([{ id: 'a', status: 'expired', period: { start: 2024, end: 2029 } }])
+  assert.match(errorsOf(future)[0].message, /まだ到来していません/)
+})
+
+test('年度末は翌年3月31日として扱う', () => {
+  // 2026年度末 = 2027-03-31。基準日 2026-08-12 では未到来
+  assert.deepEqual(validate(doc([{ id: 'a', status: 'expiring', period: { start: 2024, end: 2026 } }]), TODAY), [])
+})
