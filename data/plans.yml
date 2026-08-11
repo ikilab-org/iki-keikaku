@@ -1,0 +1,415 @@
+# 壱岐市および関連する計画の構造化データ
+#
+# このファイルがサイト全体の「単一の真実」です。
+# 図表・タイムライン・一覧表は、将来的にすべてこのファイルから生成します（README「フェーズ2」参照）。
+# 現時点では tools/linkcheck.mjs と tools/expiring.mjs がこのファイルを読みます。
+#
+# スキーマは data/schema.md を参照。年度は西暦（2022 = 令和4年度）。
+
+meta:
+  updated: 2026-08-11
+  survey_date: 2026-08-10          # 記載内容の調査基準日
+  era_base: 2018                   # 令和元年 = 2019年。令和n年 = era_base + n
+
+# ---------------------------------------------------------------------------
+# 壱岐市
+# ---------------------------------------------------------------------------
+plans:
+  - id: sougou-4
+    name: 第4次壱岐市総合計画
+    short: 総合計画
+    level: municipal
+    category: jyoui
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    laws: []
+    department: 政策企画課
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/tougoukeikaku/14357.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/46/dai4jiikishisougoukeikaku_main.pdf
+    notes: >-
+      市の最上位計画。地方版総合戦略を取り込んだ一体型。合言葉「一緒に前へ、壱岐新時代へ。」
+      福祉は基本目標2、子育ては基本目標3。
+
+  - id: chiiki-fukushi-3
+    name: 第3次壱岐市地域福祉計画
+    short: 地域福祉計画
+    level: municipal
+    category: fukushi
+    status: expiring
+    period: { start: 2022, end: 2026 }
+    adopted: 2022-03
+    laws:
+      - 社会福祉法107条
+      - 成年後見制度利用促進法14条1項
+      - 再犯防止推進法8条1項
+    department: 市民福祉課 地域福祉班
+    parent: sougou-4
+    includes: [seinen-kouken, saihan-boushi]
+    related: [kourei-9, shougai-keikaku-3, kodomo-1, csw-katsudou-2]
+    url: https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html
+    successor:
+      name: 第4次壱岐市地域福祉計画
+      status: planned
+      public_comment: { start: 2027-01, end: 2027-02 }
+    notes: >-
+      福祉分野の分野横断的な上位計画。基本理念「誰一人取り残されることがないよう、支え合い、
+      尊重し合い、安心して、自分らしく、いきいきと暮らせるまちづくり」。
+      掲載ページ本文の基本理念は第2次のまま更新されていない（計画本文 第3章が正）。
+
+  - id: seinen-kouken
+    name: 壱岐市成年後見制度利用促進基本計画
+    level: municipal
+    category: fukushi
+    status: expiring
+    period: { start: 2022, end: 2026 }
+    parent: chiiki-fukushi-3
+    embedded_in: chiiki-fukushi-3
+    laws: [成年後見制度利用促進法14条1項]
+    department: 市民福祉課 地域福祉班
+    notes: 地域福祉計画に包含。中核機関「後見センター壱岐」は令和3年7月に社協内へ開設。
+
+  - id: saihan-boushi
+    name: 壱岐市再犯防止推進計画
+    level: municipal
+    category: fukushi
+    status: expiring
+    period: { start: 2022, end: 2026 }
+    parent: chiiki-fukushi-3
+    embedded_in: chiiki-fukushi-3
+    laws: [再犯防止推進法8条1項]
+    department: 市民福祉課 地域福祉班
+    notes: 地域福祉計画に包含。
+
+  - id: shougai-keikaku-3
+    name: 第3次壱岐市障がい者計画
+    level: municipal
+    category: shougai
+    status: expiring
+    period: { start: 2022, end: 2026 }
+    adopted: 2022-03
+    laws: [障害者基本法11条3項]
+    department: 市民福祉課 地域福祉班
+    url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/10383.html
+    successor:
+      name: 第4次壱岐市障がい者計画
+      status: planned
+      public_comment: { start: 2027-01, end: 2027-02 }
+
+  - id: shougai-fukushi-7
+    name: 第7期壱岐市障がい福祉計画・第3期障がい児福祉計画
+    level: municipal
+    category: shougai
+    status: expiring
+    period: { start: 2024, end: 2026 }
+    adopted: 2024-03
+    laws: [障害者総合支援法88条1項, 児童福祉法33条の20]
+    department: 市民福祉課 地域福祉班
+    url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/12605.html
+    successor:
+      name: 第8期障がい福祉計画・第4期障がい児福祉計画
+      status: planned
+      public_comment: { start: 2027-01, end: 2027-02 }
+
+  - id: kourei-9
+    name: 壱岐市高齢者福祉計画・第9期介護保険事業計画
+    short: 高齢者福祉・介護保険事業計画
+    level: municipal
+    category: kourei
+    status: expiring
+    period: { start: 2024, end: 2026 }
+    adopted: 2024-03
+    laws: [老人福祉法20条の8, 介護保険法117条]
+    department: 保険課 介護保険班
+    url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/13262.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/38/keikakukeikaku.pdf
+    sources:
+      - label: 議案書収録版（令和6年2月第2回会議 議案第15号）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/3/6nen2gatu2gian5_15.pdf
+    predecessors: [kourei-8, kourei-7]
+    successor:
+      name: 壱岐市高齢者福祉計画・第10期介護保険事業計画
+      status: planned
+      period: { start: 2027, end: 2029 }
+      public_comment: { start: 2026-12, end: 2027-01 }
+    notes: >-
+      保険料基準額 月6,490円で第8期から据置き、9段階から13段階へ多段階化。
+      令和8年度に小規模多機能型居宅介護を公募整備し令和9年度サービス開始を掲げるが、
+      2026年8月時点で公募の実施は公開資料で確認できない。
+
+  - id: kourei-8
+    name: 壱岐市高齢者福祉計画・第8期介護保険事業計画
+    level: municipal
+    category: kourei
+    status: expired
+    period: { start: 2021, end: 2023 }
+    adopted: 2021-03
+    department: 保険課 介護保険班
+    sources:
+      - label: 議案書収録版（令和3年3月会議 議案第16号）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/3/3gatugian-2.pdf
+    notes: 計画ページ側の単独PDFは削除済み。議案書PDF内に全文が現存。
+
+  - id: kourei-7
+    name: 壱岐市高齢者福祉計画・第7期介護保険事業計画
+    level: municipal
+    category: kourei
+    status: expired
+    period: { start: 2018, end: 2020 }
+    adopted: 2018-03
+    department: 保険課 介護保険班
+    sources:
+      - label: 議案書収録版（平成30年3月会議 議案第22号／179ページ）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/3/3gatugikai.pdf
+        note: 認定者数推計は PDF 107ページ・144ページ（計画本体 p.12・p.49）
+    notes: 計画ページ側の単独PDFは削除済み。議案書PDF内に全文が現存。
+
+  - id: kodomo-1
+    name: 壱岐市こども計画
+    level: municipal
+    category: kodomo
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    laws: [こども基本法10条2項ほか5法]
+    department: いきいろ子ども未来課
+    url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html
+    notes: >-
+      子ども・子育て支援事業計画／次世代育成支援／こどもの貧困対策／子ども・若者計画を一体化。
+      令和9年度に中間見直し。
+
+  - id: data-health-3
+    name: 第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画
+    level: municipal
+    category: iryou
+    status: current
+    period: { start: 2024, end: 2029 }
+    adopted: 2024-03
+    laws: [国民健康保険法82条, 高齢者医療確保法]
+    department: 保険課 国保後期年金班
+    url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kenko_hoken/datahealth3.html
+
+  - id: kenkou-iki21
+    name: 壱岐市健康づくり計画「健康いき21」
+    level: municipal
+    category: kenkou
+    status: current
+    period: { start: 2024, end: 2029 }
+    adopted: 2024-03
+    laws: [健康増進法8条2項, 食育基本法18条, 長崎県歯・口腔の健康づくり推進条例9条]
+    department: 健康増進課
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/kenkoufukushi/12683.html
+    notes: 健康増進計画・歯科口腔保健推進計画・食育推進計画を一体化。
+
+  - id: jisatsu-2
+    name: 第2次壱岐市いのち支える自殺対策計画
+    level: municipal
+    category: kenkou
+    status: current
+    period: { start: 2023, end: 2027 }
+    adopted: 2023-04
+    laws: [自殺対策基本法13条2項]
+    department: 健康増進課
+    url: https://www.city.iki.nagasaki.jp/kenkou/kenkoujigyou/6001.html
+
+  - id: kaso-r8
+    name: 壱岐市過疎地域持続的発展計画
+    level: municipal
+    category: jyoui
+    status: current
+    period: { start: 2026, end: 2030 }
+    adopted: 2026-03
+    laws: [過疎地域の持続的発展の支援に関する特別措置法]
+    department: 政策企画課
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3980.html
+    notes: 第7章 子育て環境の確保・高齢者等の保健福祉の向上／第8章 医療の確保。
+
+  - id: koutsuu
+    name: 壱岐市地域公共交通計画
+    level: municipal
+    category: jyoui
+    status: current
+    period: { start: 2026, end: 2031 }
+    adopted: 2026-03
+    laws: [地域公共交通活性化再生法]
+    department: 政策企画課
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/15734.html
+    notes: 高齢者の通院・買物支援、免許返納、デマンド型交通の検討。
+
+  - id: bousai
+    name: 壱岐市地域防災計画
+    level: municipal
+    category: jyoui
+    status: current
+    period: { start: null, end: null }   # 随時修正
+    laws: [災害対策基本法]
+    department: 総務課 危機管理班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/bosai/bousaikaigi/chiiki/13851.html
+    notes: 避難行動要支援者名簿・個別避難計画・福祉避難所を規定。
+
+  - id: danjo-3
+    name: 第3次壱岐市男女共同参画基本計画
+    level: municipal
+    category: jyoui
+    status: planned
+    period: { start: 2027, end: null }
+    department: 地域共創課
+    successor:
+      public_comment: { start: 2027-01, end: 2027-02 }
+    todo: 計画期間・根拠法・現行計画の所在を確認する
+
+  # --- 未調査（将来の拡張枠。todo が立っているものは内容未検証） -------------
+  - id: keikan
+    name: 壱岐市景観計画
+    level: municipal
+    category: other
+    status: unknown
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/keikan/index.html
+    todo: 計画期間・根拠法・所管課を確認する
+
+  - id: kokyoshisetsu-sougou
+    name: 壱岐市公共施設等総合管理計画
+    level: municipal
+    category: other
+    status: unknown
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html
+    todo: 計画期間・所管課を確認する
+
+  - id: kokyoshisetsu-kobetsu
+    name: 壱岐市公共施設個別施設計画
+    level: municipal
+    category: other
+    status: unknown
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html
+    todo: 計画期間・所管課を確認する
+
+  - id: kodomo-dokusho-2
+    name: 第2次壱岐市子ども読書活動推進計画
+    level: municipal
+    category: kodomo
+    status: unknown
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/6869.html
+    todo: 計画期間・所管課を確認する
+
+  - id: influenza
+    name: 壱岐市新型インフルエンザ等対策行動計画
+    level: municipal
+    category: kenkou
+    status: unknown
+    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/16148.html
+    todo: 策定時期・所管課を確認する（令和8年にパブコメ実施結果あり）
+
+  # ---------------------------------------------------------------------------
+  # 壱岐市社会福祉協議会
+  # ---------------------------------------------------------------------------
+  - id: csw-katsudou-2
+    name: 壱岐市社会福祉協議会 第2期地域福祉活動計画
+    level: council
+    category: fukushi
+    status: planned
+    period: { start: null, end: null }
+    url: https://ikicity-csw.jp/
+    notes: >-
+      令和6年度事業計画で策定を掲げたが、令和7年度事業計画では「調査・研究」「策定の検討」
+      段階の記載にとどまり、2026年8月時点で未公表。市計画とは一体的策定ではなく「連携」の関係。
+    todo: 第1期の計画期間と、第2期の策定スケジュールを確認する
+
+  # ---------------------------------------------------------------------------
+  # 長崎県（市計画が整合を求められる先）
+  # ---------------------------------------------------------------------------
+  - id: pref-fukushi-hoken-6
+    name: 第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」
+    level: prefectural
+    category: fukushi
+    status: current
+    period: { start: 2026, end: 2030 }
+    adopted: 2026-03
+    laws: [社会福祉法108条（都道府県地域福祉支援計画）]
+    url: https://www.pref.nagasaki.jp/doc/46393.html
+    notes: 県には「地域福祉支援計画」という単独名称の計画はなく、本計画がその役割を兼ねる。
+
+  - id: pref-saihan-2
+    name: 第二次長崎県再犯防止推進計画
+    level: prefectural
+    category: fukushi
+    status: current
+    period: { start: 2026, end: 2030 }
+    adopted: 2026-03
+    url: https://www.pref.nagasaki.jp/bunrui/anzen-anshin/anzen-anshinmachidukuri/anshin-anzenmachidukurijigyo/saihan/preventionplan/
+
+  - id: pref-shougai-kihon-5
+    name: 長崎県障害者基本計画（第5次）
+    level: prefectural
+    category: shougai
+    status: current
+    period: { start: 2024, end: 2028 }
+    adopted: 2024-03
+    url: https://www.pref.nagasaki.jp/doc/page-658128.html
+
+  - id: pref-shougai-fukushi-7
+    name: 第7期長崎県障害福祉計画・第3期長崎県障害児福祉計画
+    level: prefectural
+    category: shougai
+    status: expiring
+    period: { start: 2024, end: 2026 }
+    adopted: 2024-03
+    url: https://www.pref.nagasaki.jp/doc/page-659919.html
+
+  - id: pref-chouju-9
+    name: ながさき長寿いきいきプラン（第9期）
+    level: prefectural
+    category: kourei
+    status: expiring
+    period: { start: 2024, end: 2026 }
+    adopted: 2024-03
+    url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/fukushi/korei-kaigohoken/keikaku-koreisha/fukushikeikaku/
+    notes: 県老人福祉計画・介護保険事業支援計画・介護給付適正化計画。第6章に「離島地域の対策」。
+
+  - id: pref-kosodate-jourei
+    name: 長崎県子育て条例行動計画
+    level: prefectural
+    category: kodomo
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kekkon-nishin-shusan-kosodate/jorei-keikaku-gaiyo/jorei-keikaku/kosodatekeikaku27-31/
+    notes: 都道府県こども計画ほか7つの法定計画を一体策定。
+
+  - id: pref-kenkou-21-3
+    name: 健康ながさき21（第3次）
+    level: prefectural
+    category: kenkou
+    status: current
+    period: { start: 2024, end: 2035 }
+    adopted: 2024-03
+    url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/index.html
+    pdf: https://www.pref.nagasaki.jp/uploads/2024/08/1722827687.pdf
+    sources:
+      - label: 第3次の個別ページ
+        url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html
+        note: >-
+          2026-08-11 の自動チェックで 404。検索エンジンには残存しているため、
+          移設か bot 遮断かの切り分けが必要（sources/POLICY.md「誤検知の扱い」）。
+          一覧ページと本文PDFを主出典に切り替え済み。
+
+  - id: pref-jisatsu-4
+    name: 第4期長崎県自殺総合対策5カ年計画
+    level: prefectural
+    category: kenkou
+    status: expiring
+    period: { start: 2022, end: 2026 }
+    adopted: 2023-03
+    url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/
+
+# ---------------------------------------------------------------------------
+# 分野の定義（図表の色分けとグルーピングに使う）
+# ---------------------------------------------------------------------------
+categories:
+  fukushi: { label: 地域福祉（総論・横断）, slot: 1 }
+  shougai: { label: 障がい福祉, slot: 2 }
+  kourei:  { label: 高齢者・介護, slot: 3 }
+  kodomo:  { label: こども・子育て, slot: 4 }
+  iryou:   { label: 医療保険・保健事業, slot: 5 }
+  kenkou:  { label: 健康づくり・自殺対策, slot: 6 }
+  jyoui:   { label: 上位・関連行政計画, slot: 7 }
+  other:   { label: その他（未整理）, slot: 0 }

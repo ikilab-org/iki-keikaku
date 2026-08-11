@@ -1,0 +1,77 @@
+name: 改定期・パブコメが近い計画の通知
+
+on:
+  schedule:
+    - cron: '0 21 1 * *'   # 毎月1日 6:00 JST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  expiring:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 検出を実行
+        run: |
+          node tools/expiring.mjs --months 12 > report.txt
+          node tools/expiring.mjs --months 12 --json > report.json
+          cat report.txt
+
+      - name: Issue を作成・更新
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const r = JSON.parse(fs.readFileSync('report.json', 'utf8'))
+            const txt = fs.readFileSync('report.txt', 'utf8')
+
+            // 直近3か月以内にパブコメが始まる計画があるときだけ通知する
+            const urgent = r.pubcom.filter(p => p.monthsToPc <= 3)
+            const expiringSoon = r.soon.filter(p => p.monthsLeft <= 12)
+            if (urgent.length === 0 && expiringSoon.length === 0) {
+              core.info('通知対象なし')
+              return
+            }
+
+            const today = new Date().toISOString().slice(0, 10)
+            const body = [
+              '計画の改定期が近づいています。パブリックコメントは実施期間が短いため、',
+              '意見を出す予定があるなら、この時点で内容の確認を始めてください。',
+              '',
+              '```',
+              txt.trim(),
+              '```',
+              '',
+              '## 確認すること',
+              '',
+              '- [ ] 市のパブリックコメント実施予定／実施中のページを確認する',
+              '- [ ] 対象計画の素案が公表されていれば `data/plans.yml` に反映する',
+              '- [ ] 該当分野のマップページの記述が古くなっていないか確認する',
+              '- [ ] 意見を提出する場合、提出内容を `docs/` に残す',
+              '',
+              `_自動生成: ${today}_`,
+            ].join('\n')
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'schedule',
+            })
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body,
+              })
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: `[自動] 改定期・パブコメが近い計画（${today}）`,
+                body, labels: ['schedule', '計画'],
+              })
+            }

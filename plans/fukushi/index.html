@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>壱岐市 地域福祉計画と関連計画の体系整理 | 壱岐市 計画マップ</title>
+<meta name="description" content="長崎県壱岐市の地域福祉計画（社会福祉法107条）を軸に、高齢者・介護、障がい、こども、健康の個別計画、第4次総合計画、社会福祉協議会・長崎県の計画までを、階層体系図と計画期間タイムラインで整理。根拠法・所管課・改定時期つき。">
+<link rel="canonical" href="https://keikaku.ikilab.org/plans/fukushi/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="壱岐市 計画マップ">
+<meta property="og:title" content="壱岐市 地域福祉計画と関連計画の体系整理">
+<meta property="og:description" content="地域福祉計画を軸に、市の分野別個別計画・上位計画、社協・長崎県の計画までを体系と時系列の両面から整理。">
+<meta property="og:url" content="https://keikaku.ikilab.org/plans/fukushi/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://keikaku.ikilab.org/assets/og-fukushi.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="国・長崎県・第4次総合計画・第3次地域福祉計画・分野別個別計画の階層体系図">
+<meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og-fukushi.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+  --wash:rgba(11,11,11,0.035);
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100;
+  --c5:#e87ba4; --c6:#008300; --c7:#4a3aa7;
+  --warn:#fab219; --crit:#d03b3b; --good:#0ca30c;
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+  --wash:rgba(255,255,255,0.05);
+  --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500;
+  --c5:#d55181; --c6:#008300; --c7:#9085e9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+    --wash:rgba(255,255,255,0.05);
+    --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500;
+    --c5:#d55181; --c6:#008300; --c7:#9085e9;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--page); color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;
+  font-size:15px; line-height:1.75; letter-spacing:.01em;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;line-height:1.4;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-size:15px;margin:22px 0 8px;color:var(--ink2)}
+p{margin:.5em 0}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--axis)}
+a:hover{border-bottom-color:currentColor}
+.sub{color:var(--ink2);font-size:13.5px}
+.mut{color:var(--muted);font-size:12.5px}
+
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:26px}
+a.badge.home{text-decoration:none;margin-right:8px}
+a.badge.home:hover{background:var(--wash);border-color:var(--axis)}
+.badge{display:inline-block;font-size:11.5px;letter-spacing:.06em;padding:3px 9px;border:1px solid var(--ring);
+  border-radius:999px;color:var(--ink2);background:var(--surface)}
+button.tg{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--ring);border-radius:8px;
+  background:var(--surface);color:var(--ink2);cursor:pointer}
+button.tg:hover{background:var(--wash)}
+
+section{background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:22px 22px 24px;margin:0 0 22px}
+section > .hd{margin-bottom:16px}
+
+/* stat tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.tile{border:1px solid var(--ring);border-radius:11px;padding:13px 14px;background:var(--page)}
+.tile .v{font-size:30px;line-height:1.15;font-weight:650;letter-spacing:-.02em}
+.tile .v small{font-size:14px;font-weight:500;color:var(--ink2);margin-left:2px}
+.tile .k{font-size:12px;color:var(--ink2);margin-top:3px}
+.tile.alert{border-color:var(--warn);box-shadow:inset 3px 0 0 var(--warn)}
+
+/* hierarchy */
+.tier{border:1px solid var(--ring);border-radius:12px;padding:12px 14px;background:var(--page);position:relative}
+.tier + .arrow{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:11.5px;padding:7px 0}
+.arrow::before,.arrow::after{content:"";height:1px;width:34px;background:var(--axis)}
+.tier .tl{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.tier .tt{font-size:15px;font-weight:600}
+.tier .td{font-size:12.5px;color:var(--ink2);margin-top:3px}
+.tier.hub{border-width:2px;border-color:var(--c1);background:color-mix(in srgb,var(--c1) 7%,var(--page))}
+.tier.top2{border-color:var(--c7);border-left:5px solid var(--c7)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.chip{font-size:12px;padding:4px 10px;border-radius:8px;border:1px solid var(--ring);background:var(--surface);
+  display:inline-flex;align-items:center;gap:6px}
+.dot{width:9px;height:9px;border-radius:3px;flex:none}
+.hubrow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+.link-lbl{display:flex;align-items:center;font-size:11.5px;color:var(--muted);white-space:nowrap;padding:0 2px}
+.tier.coop{border-style:dashed}
+@media (max-width:760px){.hubrow{grid-template-columns:1fr}.link-lbl{justify-content:center;padding:4px 0}}
+
+/* timeline */
+.tlwrap{overflow-x:auto}
+.gantt{min-width:840px}
+.grow{display:grid;grid-template-columns:300px 1fr;gap:12px;align-items:center}
+.gaxis{display:grid;grid-template-columns:repeat(10,1fr);border-bottom:1px solid var(--axis)}
+.gaxis div{font-size:11px;color:var(--muted);text-align:center;padding:0 0 5px;font-variant-numeric:tabular-nums}
+.gaxis div.now{color:var(--ink);font-weight:650}
+.gtrack{position:relative;display:grid;grid-template-columns:repeat(10,1fr);height:30px;align-items:center}
+.gtrack::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(to right,var(--grid) 0 1px,transparent 1px calc(10% ));}
+.nowline{position:absolute;top:0;bottom:0;left:45%;width:2px;background:var(--crit);opacity:.45;z-index:3;pointer-events:none}
+.gaxis div.now{position:relative}
+.gaxis div.now::after{content:"▲ 現在";position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);
+  font-size:10px;color:var(--crit);white-space:nowrap;letter-spacing:.04em;font-weight:500}
+.gaxis{margin-bottom:16px}
+.gaxis.btm{margin-bottom:0;margin-top:6px}
+.gaxis.btm div.now::after{content:none}
+.bar{position:relative;z-index:2;height:17px;border-radius:4px;display:flex;align-items:center;
+  padding:0 8px;font-size:11.5px;color:#fff;white-space:nowrap;overflow:visible;cursor:default;
+  box-shadow:0 0 0 2px var(--surface)}
+.bar.open{border-radius:4px 0 0 4px;
+  -webkit-mask-image:linear-gradient(to right,#000 84%,transparent 100%);
+  mask-image:linear-gradient(to right,#000 84%,transparent 100%)}
+.bar span.blbl{position:absolute;left:calc(100% + 8px);color:var(--ink2);font-size:11.5px}
+.bar.dash{background:transparent!important;border:1.5px dashed var(--muted);color:var(--ink2);box-shadow:none}
+.glabel{font-size:12.5px;display:flex;align-items:center;gap:8px;line-height:1.35}
+.glabel .nm{flex:1}
+.end{font-size:10px;letter-spacing:.04em;padding:1px 6px;border-radius:5px;border:1px solid var(--warn);
+  color:var(--ink2);background:color-mix(in srgb,var(--warn) 16%,transparent);white-space:nowrap;flex:none}
+.grp{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;padding-top:10px;border-top:1px solid var(--grid)}
+.grp:first-of-type{border-top:none;padding-top:0;margin-top:8px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--grid)}
+.legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2)}
+
+/* tables */
+.tblwrap{overflow-x:auto;margin-top:6px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--grid)}
+thead th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--axis);white-space:nowrap}
+tbody tr:hover{background:var(--wash)}
+td.per{white-space:nowrap;font-variant-numeric:tabular-nums}
+.cbar{display:inline-block;width:4px;height:15px;border-radius:2px;vertical-align:-3px;margin-right:8px;flex:none}
+.nm2{font-weight:550}
+.pill{display:inline-block;font-size:10.5px;padding:1px 6px;border-radius:5px;border:1px solid var(--ring);
+  color:var(--ink2);margin-left:6px;white-space:nowrap}
+.pill.w{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,transparent)}
+.pill.g{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,transparent)}
+
+/* matrix */
+.mx{border-collapse:collapse;width:100%;font-size:13px;min-width:820px}
+.mx th{border-bottom:1px solid var(--axis)}
+.mx td{border-bottom:1px solid var(--grid);vertical-align:top}
+.mx td.goal{font-weight:600;width:190px;border-left:4px solid var(--c1)}
+
+/* notes */
+ol.notes{margin:8px 0 0;padding-left:0;list-style:none;counter-reset:n}
+ol.notes li{counter-increment:n;position:relative;padding:11px 0 11px 40px;border-bottom:1px solid var(--grid)}
+ol.notes li:last-child{border-bottom:none}
+ol.notes li::before{content:counter(n);position:absolute;left:0;top:11px;width:24px;height:24px;border-radius:7px;
+  background:var(--wash);border:1px solid var(--ring);display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--ink2)}
+ol.notes li b{font-weight:650}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.04em;padding:1px 7px;border-radius:5px;margin-right:8px;
+  border:1px solid var(--ring);color:var(--ink2)}
+.tag.a{border-color:var(--crit);color:var(--crit)}
+.tag.b{border-color:var(--warn)}
+
+footer{color:var(--muted);font-size:12px;padding:8px 4px 0;line-height:1.9}
+footer a{border-bottom-color:var(--grid)}
+@media print{
+  body{background:#fff}
+  section{break-inside:avoid;border-color:#ccc}
+  button.tg{display:none}
+  .gantt{min-width:0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <a href="../../" class="badge home">← 壱岐市 計画マップ</a><span class="badge">長崎県壱岐市 ／ 計画体系マップ</span>
+    <h1>壱岐市の地域福祉計画と<br>関連計画の体系整理</h1>
+    <p class="sub">社会福祉法第107条に基づく地域福祉計画を軸に、市の分野別個別計画・上位計画、社会福祉協議会・長崎県の計画までを体系と時系列の両面から整理</p>
+    <p class="mut">調査基準日 2026年8月10日／出典はすべて壱岐市・長崎県・壱岐市社会福祉協議会の公表資料</p>
+  </div>
+  <button class="tg" id="tg">◐ 表示切替</button>
+</header>
+
+<!-- ============ 1. サマリー ============ -->
+<section>
+  <div class="hd">
+    <h2>要点</h2>
+    <p class="sub">壱岐市は人口約2.3万人の小規模自治体で、<b>法定計画を積極的に一体策定</b>している点が最大の特徴。単独計画を探しても見つからないものが多い。</p>
+  </div>
+  <div class="tiles">
+    <div class="tile"><div class="v">3<small>法</small></div><div class="k">地域福祉計画が1冊で兼ねる法定計画<br>（社会福祉法・成年後見促進法・再犯防止推進法）</div></div>
+    <div class="tile"><div class="v">5<small>法</small></div><div class="k">こども計画が1冊で兼ねる法定計画<br>（こども基本法ほか）</div></div>
+    <div class="tile"><div class="v">10<small>本</small></div><div class="k">現行の市の福祉・保健関連計画<br>（防災計画等の関連計画を除く）</div></div>
+    <div class="tile alert"><div class="v">4<small>本</small></div><div class="k">令和8年度末で同時に期間満了<br>＝2026年度に改定作業が集中</div></div>
+    <div class="tile"><div class="v">40.5<small>%</small></div><div class="k">高齢化率（令和8年推計・計画掲載値）<br>2050年推計は50.4%</div></div>
+  </div>
+</section>
+
+<!-- ============ 2. 体系図 ============ -->
+<section>
+  <div class="hd">
+    <h2>計画の階層体系</h2>
+    <p class="sub">地域福祉計画は「総合計画の個別計画」であると同時に「福祉分野の分野横断的な上位計画」という二重の位置づけを持つ。計画本文にこの旨が明記され、高齢者福祉計画・こども計画の側からも相互参照されている。</p>
+  </div>
+
+  <div class="tier">
+    <div class="tl">根拠法令（国）</div>
+    <div class="tt">社会福祉法 第107条 ほか分野別根拠法</div>
+    <div class="td">老人福祉法・介護保険法／障害者基本法・障害者総合支援法・児童福祉法／こども基本法ほか5法／健康増進法・食育基本法／自殺対策基本法／成年後見制度利用促進法／再犯防止推進法／国民健康保険法・高齢者医療確保法</div>
+  </div>
+  <div class="arrow">整合</div>
+
+  <div class="tier">
+    <div class="tl">長崎県（社会福祉法 第108条＝都道府県地域福祉支援計画）</div>
+    <div class="tt">第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」<span class="pill">令和8〜12年度</span></div>
+    <div class="td">県には「地域福祉支援計画」という単独名称の計画はなく、本計画がその役割を兼ねる。ほかに ながさき長寿いきいきプラン／長崎県障害者基本計画（第5次）／長崎県子育て条例行動計画／健康ながさき21（第3次）などが分野別に並ぶ。</div>
+  </div>
+  <div class="arrow">整合</div>
+
+  <div class="tier top2">
+    <div class="tl">壱岐市 最上位計画</div>
+    <div class="tt">第4次壱岐市総合計画<span class="pill">令和7〜11年度／2025〜2029</span></div>
+    <div class="td">合言葉「一緒に前へ、壱岐新時代へ。」／長期目標＝2050年人口2万人の維持。デジタル田園都市国家構想総合戦略を勘案した地方版総合戦略を取り込んだ一体型。福祉は<b>基本目標2「すべての市民が自分らしく安心して健康に暮らせる島」</b>（2-1 持続可能なコミュニティ／2-2 健康・医療／2-3 地域共生社会／2-4 高齢者福祉／2-5 障がい者福祉／2-6 人権・男女共同参画）、子育ては基本目標3に置かれる。</div>
+  </div>
+  <div class="arrow">個別計画として位置づけ</div>
+
+  <div class="hubrow">
+    <div class="tier hub">
+      <div class="tl">福祉分野の上位・横断計画</div>
+      <div class="tt">第3次壱岐市地域福祉計画<span class="pill w">令和4〜8年度／満了間近</span></div>
+      <div class="td">基本理念「誰一人取り残されることがないよう、支え合い、尊重し合い、安心して、自分らしく、いきいきと暮らせるまちづくり」／基本目標＝①安全・安心を確保する ②自立した暮らしを支える ③支え合いの環境を育む／所管：市民福祉課 地域福祉班</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>包含：壱岐市成年後見制度利用促進基本計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>包含：壱岐市再犯防止推進計画</span>
+      </div>
+    </div>
+    <div class="link-lbl">◀ 連携 ▶</div>
+    <div class="tier coop">
+      <div class="tl">壱岐市社会福祉協議会</div>
+      <div class="tt">地域福祉活動計画<span class="pill w">第2期は策定検討中</span></div>
+      <div class="td">市計画とは<b>一体的策定ではなく「連携」</b>の関係（計画本文の関係図に明記）。第2期は令和6年度事業計画で策定を掲げたが、令和7年度事業計画では「調査・研究」「策定の検討」段階の記載にとどまり、2026年8月時点で未公表。<br>関連事業：後見センター壱岐（令和3年7月開設）／日常生活自立支援事業／ボランティアセンター／ふれあいサロン／福祉有償運送 ほか</div>
+    </div>
+  </div>
+  <div class="arrow">整合（分野別の個別計画）</div>
+
+  <div class="tier">
+    <div class="tl">分野別 個別計画</div>
+    <div class="chips">
+      <span class="chip"><span class="dot" style="background:var(--c2)"></span>第3次壱岐市障がい者計画</span>
+      <span class="chip"><span class="dot" style="background:var(--c2)"></span>第7期障がい福祉計画・第3期障がい児福祉計画</span>
+      <span class="chip"><span class="dot" style="background:var(--c3)"></span>高齢者福祉計画・第9期介護保険事業計画</span>
+      <span class="chip"><span class="dot" style="background:var(--c4)"></span>壱岐市こども計画</span>
+      <span class="chip"><span class="dot" style="background:var(--c5)"></span>第3期データヘルス計画・第4期特定健診等実施計画</span>
+      <span class="chip"><span class="dot" style="background:var(--c6)"></span>健康づくり計画「健康いき21」</span>
+      <span class="chip"><span class="dot" style="background:var(--c6)"></span>第2次いのち支える自殺対策計画</span>
+    </div>
+    <div class="td" style="margin-top:10px">周辺の関連計画：<span class="pill">過疎地域持続的発展計画（第7章 子育て・高齢者保健福祉／第8章 医療の確保）</span><span class="pill">地域公共交通計画（高齢者の通院・買物支援、免許返納）</span><span class="pill">地域防災計画（避難行動要支援者名簿・個別避難計画・福祉避難所）</span></div>
+  </div>
+</section>
+
+<!-- ============ 3. タイムライン ============ -->
+<section>
+  <div class="hd">
+    <h2>計画期間タイムライン</h2>
+    <p class="sub">年度は元号（西暦）。<b>令和8年度末（2027年3月）で4本が同時に満了</b>するため、2026年度は改定作業が重なる。県計画も同時期に3本が満了する。</p>
+  </div>
+  <div class="tlwrap"><div class="gantt" id="gantt"></div></div>
+  <div class="legend" id="legend"></div>
+</section>
+
+<!-- ============ 4. 市の計画一覧 ============ -->
+<section>
+  <div class="hd">
+    <h2>壱岐市の計画 一覧</h2>
+    <p class="sub">正式名称・期間・根拠法・所管課。名称をクリックすると市の掲載ページへ。</p>
+  </div>
+  <div class="tblwrap"><table>
+    <thead><tr><th style="min-width:250px">計画名</th><th>期間</th><th>策定</th><th style="min-width:180px">根拠法</th><th>所管課</th></tr></thead>
+    <tbody id="tbody-city"></tbody>
+  </table></div>
+  <p class="mut" style="margin-top:12px">※ 壱岐市地域防災計画（避難行動要支援者・福祉避難所を規定）は随時修正のため一覧外。総務課 危機管理班所管。<a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/bosai/bousaikaigi/chiiki/13851.html" target="_blank" rel="noopener">掲載ページ</a><br>※ 壱岐市次世代育成支援行動計画（後期計画・平成22〜26年度）は期間終了済み。機能は壱岐市こども計画に統合されているが、市サイトに旧ページが残置されている。</p>
+</section>
+
+<!-- ============ 5. 対応マトリクス ============ -->
+<section>
+  <div class="hd">
+    <h2>地域福祉計画の基本目標と、関連計画・総合計画の対応</h2>
+    <p class="sub">地域福祉計画の各施策には「自助（自分・家族）／互助（隣近所）／共助（地域・組織）／公助（市）」の4区分による行動指針が付され、市の欄には担当課名が明記されている。</p>
+  </div>
+  <div class="tblwrap"><table class="mx">
+    <thead><tr><th>地域福祉計画の基本目標</th><th style="min-width:270px">主な施策の柱</th><th style="min-width:230px">受け皿となる個別計画</th><th style="min-width:170px">第4次総合計画の対応</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="goal">1. 安全・安心を確保する</td>
+        <td>分野横断的な支援体制の構築（<b>重層的支援体制整備事業</b>／まちづくり協議会）／地域の相談体制／アウトリーチ支援（虐待防止ネットワーク、生活困窮者支援＝壱岐市生活相談支援センター）／人にやさしい地域づくり（<b>避難行動要支援者・個別避難計画</b>、防犯＝再犯防止推進計画、バリアフリー、交通弱者の移動支援）</td>
+        <td>地域防災計画／地域公共交通計画／障がい者計画（安全・安心な生活環境）／高齢者福祉計画（虐待防止・権利擁護）</td>
+        <td>2-3 地域共生社会の実現<br>2-1 持続可能なコミュニティの形成</td>
+      </tr>
+      <tr>
+        <td class="goal">2. 自立した暮らしを支える</td>
+        <td>多様な福祉サービス提供主体の育成（社協との連携強化、NPO・事業者育成、人材育成）／良質なサービス供給の仕組みづくり（在宅福祉、<b>地域包括ケアシステム</b>、苦情解決）／<b>権利擁護の推進</b>（日常生活自立支援事業、成年後見制度の普及）／情報提供体制</td>
+        <td>高齢者福祉計画・第9期介護保険事業計画／第7期障がい福祉計画・第3期障がい児福祉計画／成年後見制度利用促進基本計画（本計画に包含）</td>
+        <td>2-4 高齢者福祉の充実<br>2-5 障がい者福祉の充実</td>
+      </tr>
+      <tr>
+        <td class="goal">3. 支え合いの環境を育む</td>
+        <td>福祉人材の育成（ボランティアセンター、民生委員・児童委員研修）／地域全体で支え合う体制（社協の機能強化、<b>地域福祉活動計画の実施促進</b>、住民自治組織、活動拠点）／心のバリアフリー化（学校での福祉教育）／人権・男女共同参画意識の啓発</td>
+        <td>社協 地域福祉活動計画／こども計画（こどもの権利・参加）／健康いき21（地域の健康づくり）</td>
+        <td>2-1 持続可能なコミュニティの形成<br>2-6 人権・男女共同参画社会の形成</td>
+      </tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ 6. 県計画 ============ -->
+<section>
+  <div class="hd">
+    <h2>長崎県の関連計画（市計画が整合を求められる先）</h2>
+  </div>
+  <div class="tblwrap"><table>
+    <thead><tr><th style="min-width:260px">計画名</th><th>期間</th><th>策定</th><th style="min-width:210px">位置づけ・メモ</th></tr></thead>
+    <tbody id="tbody-pref"></tbody>
+  </table></div>
+</section>
+
+<!-- ============ 7. 留意点 ============ -->
+<section>
+  <div class="hd">
+    <h2>整理して見えた論点</h2>
+  </div>
+  <ol class="notes">
+    <li><span class="tag a">最重要</span><b>令和8年度に改定作業が4本重なる。</b>地域福祉計画（＋成年後見・再犯防止）・障がい者計画・障がい福祉計画／障がい児福祉計画・高齢者福祉計画／介護保険事業計画がいずれも令和8年度末で満了する。地域福祉計画本文は「計画期間の4年目に次期計画策定に向けた点検・評価を行う」と定めており、令和7年度に評価、令和8年度に策定というスケジュールが想定される（<b>※推定</b>／2026年8月時点でパブリックコメント等の公表は確認できず）。</li>
+    <li><span class="tag b">要更新</span><b>上位計画の参照が旧版のまま。</b>第3次地域福祉計画は「第3次壱岐市総合計画の個別計画」と位置づけられ、その基本理念「誰一人取り残さない。協働のまちづくり。」を引いているが、市はすでに第4次総合計画（合言葉「一緒に前へ、壱岐新時代へ。」）へ移行済み。次期改定では位置づけ・理念の接続の更新が必要になる。</li>
+    <li><span class="tag b">要確認</span><b>市ホームページの記載が計画本文と食い違っている。</b>地域福祉計画の掲載ページ本文は基本理念を第2次のまま「みんなで支え合い、尊重し合い、安心していきいきと暮らせるまちづくり」と記載している。計画本文（第3章）の理念が正。</li>
+    <li><b>社協の地域福祉活動計画が空白になっている。</b>市計画は社協の活動計画と「連携」する前提で、基本目標3に「地域福祉活動計画の実施促進」を施策として掲げている。しかし第2期は令和7年度時点でなお策定検討段階で、市計画の次期改定と足並みを揃えて<b>一体的策定に切り替えるか、連携型を維持するか</b>が論点になる。</li>
+    <li><b>重層的支援体制整備事業の実施状況が公表情報から読み取れない。</b>地域福祉計画には「属性を問わない相談支援・参加支援・地域づくりに向けた支援の3つを一体的に実施する」と明記されているが、令和8年3月の施政方針では「包括的支援体制を整え、切れ目のない支援を進める」との表現にとどまり、事業名としての実施表明は確認できない。</li>
+    <li><b>認知症基本法に基づく市町村計画が未策定。</b>現行の高齢者福祉計画は令和6年3月策定で、認知症基本法（令和6年1月施行）や国の認知症施策推進基本計画（令和6年12月閣議決定）より前。認知症施策は高齢者福祉計画の基本目標3に包含されている状態で、次期（第10期）での位置づけ整理が課題。</li>
+    <li><b>県計画も同時期に改定期を迎える。</b>ながさき長寿いきいきプラン（第9期）、第7期県障害福祉計画・第3期障害児福祉計画、第4期県自殺総合対策5カ年計画がいずれも令和8年度で満了。一方で県の福祉保健総合計画（＝県地域福祉支援計画）と第二次再犯防止推進計画は令和8年度に<b>始まった</b>ばかりで、市の次期計画はこの新しい県計画との整合を取ることになる。</li>
+    <li><b>統計値が出典によって異なる。</b>高齢化率（国勢調査38.7% / 計画推計40.5%）、要介護認定率（22.3〜23.2%）、合計特殊出生率（1.44 / 1.59 / 1.99）などは基準時点と出典が資料ごとに違う。計画本文や資料に採用する際は、基準時点と出典の明示・統一が必要。</li>
+    <li><span class="tag">参考</span><b>未策定・未確認のもの。</b>単独の認知症施策推進計画、母子保健計画（健やか親子21の市町村計画）、バリアフリー基本構想、ユニバーサルデザイン推進計画、手話言語条例はいずれも確認できなかった。手話については第4次総合計画の分野別詳細版に「手話奉仕員などの人材育成」の記載があり、長崎県は令和6年に県手話言語条例を制定済み。</li>
+  </ol>
+</section>
+
+<footer>
+  <b>主な出典</b>（すべて2026年8月10日確認）<br>
+  壱岐市：<a href="https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html" target="_blank" rel="noopener">第3次地域福祉計画</a>／<a href="https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/10383.html" target="_blank" rel="noopener">第3次障がい者計画</a>／<a href="https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/12605.html" target="_blank" rel="noopener">第7期障がい福祉計画・第3期障がい児福祉計画</a>／<a href="https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/13262.html" target="_blank" rel="noopener">高齢者福祉計画・第9期介護保険事業計画</a>／<a href="https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html" target="_blank" rel="noopener">こども計画</a>／<a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/kenkoufukushi/12683.html" target="_blank" rel="noopener">健康いき21</a>／<a href="https://www.city.iki.nagasaki.jp/kenkou/kenkoujigyou/6001.html" target="_blank" rel="noopener">第2次いのち支える自殺対策計画</a>／<a href="https://www.city.iki.nagasaki.jp/soshiki/hokenka/kenko_hoken/datahealth3.html" target="_blank" rel="noopener">第3期データヘルス計画</a>／<a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/tougoukeikaku/14357.html" target="_blank" rel="noopener">第4次総合計画</a>／<a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3980.html" target="_blank" rel="noopener">過疎地域持続的発展計画</a>／<a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/15734.html" target="_blank" rel="noopener">地域公共交通計画</a><br>
+  壱岐市社会福祉協議会：<a href="https://ikicity-csw.jp/" target="_blank" rel="noopener">公式サイト</a>（令和6年度・令和7年度 事業計画書）<br>
+  長崎県：<a href="https://www.pref.nagasaki.jp/doc/46393.html" target="_blank" rel="noopener">第6期福祉保健総合計画</a>／<a href="https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/fukushi/korei-kaigohoken/keikaku-koreisha/fukushikeikaku/" target="_blank" rel="noopener">ながさき長寿いきいきプラン</a>／<a href="https://www.pref.nagasaki.jp/doc/page-658128.html" target="_blank" rel="noopener">障害者基本計画（第5次）</a>／<a href="https://www.pref.nagasaki.jp/doc/page-659919.html" target="_blank" rel="noopener">第7期障害福祉計画・第3期障害児福祉計画</a>／<a href="https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kekkon-nishin-shusan-kosodate/jorei-keikaku-gaiyo/jorei-keikaku/kosodatekeikaku27-31/" target="_blank" rel="noopener">子育て条例行動計画</a>／<a href="https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html" target="_blank" rel="noopener">健康ながさき21（第3次）</a>／<a href="https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/" target="_blank" rel="noopener">第4期自殺総合対策5カ年計画</a>／<a href="https://www.pref.nagasaki.jp/bunrui/anzen-anshin/anzen-anshinmachidukuri/anshin-anzenmachidukurijigyo/saihan/preventionplan/" target="_blank" rel="noopener">第二次再犯防止推進計画</a>
+<br><br>本ページの文章・図表・データは <a href="../../about/license/">CC BY 4.0</a>、コードは MIT。引用元の公表資料の権利は各機関に帰属します。 © 2026 ikilab
+</footer>
+
+</div>
+
+<script>
+/* ---------- theme ---------- */
+const tg=document.getElementById('tg');
+tg.addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const sysDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const now = cur ? cur : (sysDark?'dark':'light');
+  document.documentElement.setAttribute('data-theme', now==='dark'?'light':'dark');
+});
+
+/* ---------- data ---------- */
+const Y0=4, Y1=13;               // 令和4年度 〜 令和13年度
+const NOW=8;                     // 令和8年度
+const CAT={
+  chiiki:{c:'var(--c1)',n:'地域福祉（総論・横断）'},
+  shogai:{c:'var(--c2)',n:'障がい福祉'},
+  korei :{c:'var(--c3)',n:'高齢者・介護'},
+  kodomo:{c:'var(--c4)',n:'こども・子育て'},
+  iryo  :{c:'var(--c5)',n:'医療保険・保健事業'},
+  kenko :{c:'var(--c6)',n:'健康づくり・自殺対策'},
+  other :{c:'var(--c7)',n:'上位・関連行政計画'}
+};
+
+const CITY=[
+ {cat:'chiiki',nm:'第3次壱岐市地域福祉計画',sub:'成年後見制度利用促進基本計画・再犯防止推進計画を包含',s:4,e:8,made:'令和4年3月',
+  law:'社会福祉法107条／成年後見制度利用促進法14条1項／再犯防止推進法8条1項',dept:'市民福祉課 地域福祉班',
+  url:'https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html'},
+ {cat:'shogai',nm:'第3次壱岐市障がい者計画',sub:'施策の基本方針を定める基本計画',s:4,e:8,made:'令和4年3月',
+  law:'障害者基本法11条3項',dept:'市民福祉課 地域福祉班',
+  url:'https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/10383.html'},
+ {cat:'shogai',nm:'第7期障がい福祉計画・第3期障がい児福祉計画',sub:'サービス提供体制の確保方策を定める実施計画',s:6,e:8,made:'令和6年3月',
+  law:'障害者総合支援法88条1項／児童福祉法33条の20',dept:'市民福祉課 地域福祉班',
+  url:'https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/12605.html'},
+ {cat:'korei',nm:'壱岐市高齢者福祉計画・第9期介護保険事業計画',sub:'認知症施策・保健事業と介護予防の一体的実施を包含',s:6,e:8,made:'令和6年3月',
+  law:'老人福祉法20条の8／介護保険法117条',dept:'保険課 介護保険班',
+  url:'https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/13262.html'},
+ {cat:'kodomo',nm:'壱岐市こども計画',sub:'子ども・子育て支援事業計画／次世代育成支援／こどもの貧困対策／子ども・若者計画を一体化。令和9年度に中間見直し',s:7,e:11,made:'令和7年3月',
+  law:'こども基本法10条2項ほか5法',dept:'いきいろ子ども未来課',
+  url:'https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html'},
+ {cat:'iryo',nm:'第3期データヘルス計画・第4期特定健康診査等実施計画',sub:'国保。重症化予防／高齢者保健事業と介護予防の一体的実施ほか4本柱',s:6,e:11,made:'令和6年3月',
+  law:'国民健康保険法82条／高齢者医療確保法',dept:'保険課 国保後期年金班',
+  url:'https://www.city.iki.nagasaki.jp/soshiki/hokenka/kenko_hoken/datahealth3.html'},
+ {cat:'kenko',nm:'壱岐市健康づくり計画「健康いき21」',sub:'健康増進計画・歯科口腔保健推進計画・食育推進計画を一体化',s:6,e:11,made:'令和6年3月',
+  law:'健康増進法8条2項／食育基本法18条／県歯・口腔条例9条',dept:'健康増進課',
+  url:'https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/kenkoufukushi/12683.html'},
+ {cat:'kenko',nm:'第2次壱岐市いのち支える自殺対策計画',sub:'令和9年の自殺死亡率19.6以下を目標',s:5,e:9,made:'令和5年4月',
+  law:'自殺対策基本法13条2項',dept:'健康増進課',
+  url:'https://www.city.iki.nagasaki.jp/kenkou/kenkoujigyou/6001.html'},
+ {cat:'other',nm:'第4次壱岐市総合計画',sub:'市の最上位計画。地方版総合戦略を一体化',s:7,e:11,made:'令和7年3月',
+  law:'—（自治基本条例等に基づく最上位計画）',dept:'政策企画課',
+  url:'https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/tougoukeikaku/14357.html'},
+ {cat:'other',nm:'壱岐市過疎地域持続的発展計画',sub:'第7章 子育て環境・高齢者等の保健福祉／第8章 医療の確保',s:8,e:12,made:'令和8年3月',
+  law:'過疎地域持続的発展支援特別措置法',dept:'政策企画課',
+  url:'https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3980.html'},
+ {cat:'other',nm:'壱岐市地域公共交通計画',sub:'高齢者の通院・買物支援、免許返納、デマンド型交通の検討',s:8,e:13,made:'令和8年3月',
+  law:'地域公共交通活性化再生法',dept:'政策企画課',
+  url:'https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/15734.html'}
+];
+
+const PREF=[
+ {cat:'chiiki',nm:'第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」',s:8,e:12,made:'令和8年3月',
+  memo:'社会福祉法108条＝<b>都道府県地域福祉支援計画</b>を兼ねる。福祉分野の県の上位計画',
+  url:'https://www.pref.nagasaki.jp/doc/46393.html'},
+ {cat:'chiiki',nm:'第二次長崎県再犯防止推進計画',s:8,e:12,made:'令和8年3月',
+  memo:'理念「だれ一人取り残さないやさしい社会の実現」／再犯者率40%以下',
+  url:'https://www.pref.nagasaki.jp/bunrui/anzen-anshin/anzen-anshinmachidukuri/anshin-anzenmachidukurijigyo/saihan/preventionplan/'},
+ {cat:'shogai',nm:'長崎県障害者基本計画（第5次）',s:6,e:10,made:'令和6年3月',
+  memo:'障害者文化芸術活動推進計画を一体策定',
+  url:'https://www.pref.nagasaki.jp/doc/page-658128.html'},
+ {cat:'shogai',nm:'第7期長崎県障害福祉計画・第3期長崎県障害児福祉計画',s:6,e:8,made:'令和6年3月',
+  memo:'市の第7期・第3期計画と同一期間',
+  url:'https://www.pref.nagasaki.jp/doc/page-659919.html'},
+ {cat:'korei',nm:'ながさき長寿いきいきプラン（第9期）',s:6,e:8,made:'令和6年3月',
+  memo:'県老人福祉計画・介護保険事業支援計画・介護給付適正化計画。<b>第6章に「離島地域の対策」</b>',
+  url:'https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/fukushi/korei-kaigohoken/keikaku-koreisha/fukushikeikaku/'},
+ {cat:'kodomo',nm:'長崎県子育て条例行動計画',s:7,e:11,made:'令和7年3月',
+  memo:'都道府県こども計画ほか7つの法定計画を一体策定',
+  url:'https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kekkon-nishin-shusan-kosodate/jorei-keikaku-gaiyo/jorei-keikaku/kosodatekeikaku27-31/'},
+ {cat:'kenko',nm:'健康ながさき21（第3次）',s:6,e:17,made:'令和6年3月',
+  memo:'令和17年度までの12年計画（国「健康日本21（第三次）」と整合）',
+  url:'https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html'},
+ {cat:'kenko',nm:'第4期長崎県自殺総合対策5カ年計画',s:4,e:8,made:'令和5年3月',
+  memo:'市の自殺対策計画が踏まえる県計画',
+  url:'https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/'}
+];
+
+/* ---------- render: timeline ---------- */
+const R2W = r => r + 2018;                      // 令和n年 → 西暦
+const nowPct = ((NOW - Y0 + 0.5) / (Y1 - Y0 + 1)) * 100;
+
+function axis(btm){
+  let h=`<div class="grow"><div></div><div class="gaxis${btm?' btm':''}">`;
+  for(let y=Y0;y<=Y1;y++){
+    h+=`<div class="${y===NOW?'now':''}">R${y}<br><span style="font-size:9.5px">${R2W(y)}</span></div>`;
+  }
+  return h+'</div></div>';
+}
+function bar(d){
+  const s=Math.max(d.s,Y0), e=Math.min(d.e,Y1);
+  const open = d.e>Y1;
+  const col=CAT[d.cat].c;
+  const expiring = d.e===NOW;
+  return `<div class="grow">
+    <div class="glabel"><span class="cbar" style="background:${col}"></span>
+      <span class="nm">${d.nm}</span>
+      ${expiring?'<span class="end">R8末 満了</span>':''}
+    </div>
+    <div class="gtrack">
+      <div class="nowline" style="left:${nowPct}%"></div>
+      <div class="bar ${open?'open':''}" style="grid-column:${s-Y0+1} / ${e-Y0+2};background:${col}"
+           title="${d.nm}｜令和${d.s}年度〜${d.e>Y1?'令和'+d.e+'年度':'令和'+d.e+'年度'}（${R2W(d.s)}〜${R2W(d.e)}年度）">
+        R${d.s}〜R${d.e}${open?'':''}
+      </div>
+    </div>
+  </div>`;
+}
+const g=document.getElementById('gantt');
+let html = axis();
+html += '<div class="grp">壱岐市</div>';
+CITY.forEach(d=>html+=bar(d));
+html += `<div class="grow"><div class="glabel"><span class="cbar" style="background:var(--muted)"></span><span class="nm">壱岐市社協 第2期地域福祉活動計画</span></div>
+  <div class="gtrack"><div class="nowline" style="left:${nowPct}%"></div>
+  <div class="bar dash" style="grid-column:1 / 11;justify-content:center">策定検討中・期間未定（令和7年度事業計画時点）</div></div></div>`;
+html += '<div class="grp">長崎県</div>';
+PREF.forEach(d=>html+=bar(d));
+html += axis(true);
+g.innerHTML = html;
+
+/* legend */
+const lg=document.getElementById('legend');
+lg.innerHTML = Object.values(CAT).map(c=>`<span><i class="dot" style="display:inline-block;width:10px;height:10px;border-radius:3px;background:${c.c}"></i>${c.n}</span>`).join('')
+  + '<span style="color:var(--muted)">｜ 右端が薄い帯＝図の先まで継続（健康ながさき21は令和17年度まで）</span>';
+
+/* ---------- render: tables ---------- */
+document.getElementById('tbody-city').innerHTML = CITY.map(d=>`
+  <tr>
+    <td><span class="cbar" style="background:${CAT[d.cat].c}"></span><a class="nm2" href="${d.url}" target="_blank" rel="noopener">${d.nm}</a>
+        ${d.e===NOW?'<span class="pill w">R8末 満了</span>':''}
+        <div class="mut" style="margin-left:12px">${d.sub}</div></td>
+    <td class="per">令和${d.s}〜${d.e}年度<br><span class="mut">${R2W(d.s)}〜${R2W(d.e)}</span></td>
+    <td class="per">${d.made}</td>
+    <td>${d.law}</td>
+    <td>${d.dept}</td>
+  </tr>`).join('');
+
+document.getElementById('tbody-pref').innerHTML = PREF.map(d=>`
+  <tr>
+    <td><span class="cbar" style="background:${CAT[d.cat].c}"></span><a class="nm2" href="${d.url}" target="_blank" rel="noopener">${d.nm}</a>
+        ${d.e===NOW?'<span class="pill w">R8末 満了</span>':''}${d.s===NOW?'<span class="pill g">R8 開始</span>':''}</td>
+    <td class="per">令和${d.s}〜${d.e}年度<br><span class="mut">${R2W(d.s)}〜${R2W(d.e)}</span></td>
+    <td class="per">${d.made}</td>
+    <td>${d.memo}</td>
+  </tr>`).join('');
+</script>
+</body>
+</html>

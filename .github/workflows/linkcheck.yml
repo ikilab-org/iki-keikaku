@@ -1,0 +1,87 @@
+name: 出典URLの死活チェック
+
+on:
+  schedule:
+    - cron: '0 21 * * 0'   # 毎週月曜 6:00 JST（UTC 日曜 21:00）
+  workflow_dispatch:
+  push:
+    paths:
+      - 'data/plans.yml'
+      - 'tools/linkcheck.mjs'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: リンクチェックを実行
+        id: check
+        run: |
+          set +e
+          node tools/linkcheck.mjs > result.txt 2>&1
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          node tools/linkcheck.mjs --json > result.json 2>/dev/null
+          cat result.txt
+
+      - name: 失効の有無を判定
+        id: dead
+        run: |
+          DEAD=$(node -e "const r=require('./result.json');console.log(r.dead)")
+          echo "count=$DEAD" >> "$GITHUB_OUTPUT"
+
+      - name: 失効があれば Issue を作成
+        if: steps.dead.outputs.count != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const r = JSON.parse(fs.readFileSync('result.json', 'utf8'))
+            const dead = r.results.filter(x => !x.ok)
+            const today = new Date().toISOString().slice(0, 10)
+
+            const body = [
+              `出典URLの定期チェックで **${dead.length}件** の失効候補を検知しました。（確認 ${r.checked} 件）`,
+              '',
+              '| 計画ID | URL | 状態 |',
+              '|---|---|---|',
+              ...dead.map(d => `| \`${d.plan}\` | ${d.url} | ${d.status || d.error} |`),
+              '',
+              '## 対応手順',
+              '',
+              '1. **まずブラウザで手動確認してください。** HEADリクエストやbotの遮断による誤検知の可能性があります',
+              '   - ブラウザで開ける → 誤検知。`data/plans.yml` の該当エントリに `note:` を追記して、この Issue を閉じる',
+              '2. 本当に消えている場合は [`sources/POLICY.md`](../blob/main/sources/POLICY.md) の「失効したときの手順」に従う',
+              '   - 議案書PDF・会議録・施政方針など、残存性の高い資料に同じ内容がないか探す',
+              '   - `data/plans.yml` の URL を差し替え、旧URLと失効日を `note:` に残す',
+              '   - `CHANGELOG.md` に記録する',
+              '',
+              `_自動生成: ${today}_`,
+            ].join('\n')
+
+            const title = `[自動] 出典URLの失効を検知（${dead.length}件 / ${today}）`
+
+            // 同種の未クローズIssueがあれば追記、なければ新規作成
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'linkcheck',
+            })
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body,
+              })
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['linkcheck', '出典'],
+              })
+            }

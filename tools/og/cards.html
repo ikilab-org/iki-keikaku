@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>OGP カード（生成用）</title>
+<style>
+/* 1200×630 の OGP 画像を生成するためのテンプレート。
+   tools/og/build.mjs が各 .card を個別にスクリーンショットして assets/ に出力します。
+   ブラウザで直接開いて見た目を確認することもできます。 */
+:root{
+  --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8b8983;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.12);
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4; --c6:#008300; --c7:#4a3aa7;
+  --crit:#d03b3b; --warn:#fab219;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#555;padding:24px;display:flex;flex-direction:column;gap:24px;align-items:flex-start;
+  font-family:"Noto Sans CJK JP",system-ui,-apple-system,sans-serif}
+.card{width:1200px;height:630px;background:var(--page);color:var(--ink);position:relative;
+  display:flex;overflow:hidden;letter-spacing:.01em}
+.card::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;
+  background:linear-gradient(90deg,var(--c1) 0 16.6%,var(--c2) 16.6% 33.3%,var(--c3) 33.3% 50%,
+    var(--c4) 50% 66.6%,var(--c6) 66.6% 83.3%,var(--c7) 83.3% 100%)}
+
+/* 左：テキスト */
+.L{flex:0 0 500px;padding:64px 0 56px 64px;display:flex;flex-direction:column;justify-content:space-between}
+.eyebrow{font-size:21px;color:var(--ink2);letter-spacing:.09em;font-weight:600}
+.ttl{font-size:56px;line-height:1.28;font-weight:800;letter-spacing:-.025em;margin-top:20px}
+.ttl.sm{font-size:48px}
+.lead{font-size:23px;line-height:1.65;color:var(--ink2);margin-top:22px;font-weight:500}
+.foot{display:flex;align-items:center;gap:14px}
+.dom{font-size:24px;font-weight:700;color:var(--ink)}
+.by{font-size:19px;color:var(--muted);font-weight:500}
+
+/* 右：図 */
+.R{flex:1;padding:64px 56px 56px 40px;display:flex;flex-direction:column;justify-content:center;gap:0}
+.node{background:var(--surface);border:2px solid var(--ring);border-radius:12px;padding:12px 18px}
+.node .k{font-size:16px;color:var(--muted);letter-spacing:.07em;font-weight:600}
+.node .v{font-size:24px;font-weight:700;margin-top:2px;line-height:1.3}
+.node.top{border-color:var(--c7);border-left:8px solid var(--c7)}
+.node.hub{border-color:var(--c1);border-width:3px;background:#eaf2fc;padding:14px 18px}
+.node.hub .v{font-size:29px;color:#12457f}
+.arw{height:26px;display:flex;align-items:center;justify-content:center;position:relative}
+.arw::before{content:"";width:3px;height:100%;background:var(--axis)}
+.arw::after{content:"";position:absolute;bottom:0;width:0;height:0;
+  border-left:7px solid transparent;border-right:7px solid transparent;border-top:9px solid var(--axis)}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.chip{font-size:19px;font-weight:650;padding:7px 14px;border-radius:9px;background:var(--surface);
+  border:2px solid var(--ring);display:flex;align-items:center;gap:9px;color:var(--ink)}
+.dot{width:13px;height:13px;border-radius:4px;flex:none}
+
+/* 介護保険カード用のミニチャート */
+.mini{background:var(--surface);border:2px solid var(--ring);border-radius:14px;padding:22px 24px 18px}
+.mini .cap{font-size:18px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+.bars{display:flex;align-items:flex-end;gap:16px;height:190px;margin-top:16px;position:relative}
+.zero{position:absolute;left:-6px;right:-6px;bottom:76px;height:3px;background:var(--axis);z-index:1}
+.bcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+.bar{border-radius:6px;position:relative;z-index:2}
+.bar.pos{background:var(--c1);margin-bottom:76px}
+.bar.neg{background:var(--crit);margin-top:auto;position:absolute;top:calc(100% - 76px);left:0;right:0}
+.blab{font-size:17px;color:var(--ink2);text-align:center;margin-top:10px;font-weight:600}
+.mini .lg{display:flex;gap:18px;margin-top:14px;font-size:17px;color:var(--ink2);font-weight:600}
+.mini .lg span{display:flex;align-items:center;gap:8px}
+.sq{width:14px;height:14px;border-radius:4px}
+.yrs{display:flex;gap:16px;margin-top:2px}
+.yrs div{flex:1;text-align:center;font-size:17px;color:var(--ink2);font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- =============== ハブ =============== -->
+<div class="card" id="og">
+  <div class="L">
+    <div>
+      <div class="eyebrow">ikilab ／ 長崎県壱岐市</div>
+      <div class="ttl">壱岐市<br>計画マップ</div>
+      <div class="lead">行政計画どうしの関係を図にして、<br>個別の計画を深掘りできる資料集。<br>出典はすべて明示。</div>
+    </div>
+    <div class="foot"><span class="dom">keikaku.ikilab.org</span><span class="by">CC BY 4.0</span></div>
+  </div>
+  <div class="R">
+    <div class="node"><div class="k">国</div><div class="v">社会福祉法 第107条 ほか</div></div>
+    <div class="arw"></div>
+    <div class="node"><div class="k">長崎県</div><div class="v">ながさき“ほっと”プラン</div></div>
+    <div class="arw"></div>
+    <div class="node top"><div class="k">壱岐市 最上位</div><div class="v">第4次壱岐市総合計画</div></div>
+    <div class="arw"></div>
+    <div class="node hub"><div class="k">福祉分野の上位・横断</div><div class="v">地域福祉計画</div></div>
+    <div class="chips">
+      <span class="chip"><i class="dot" style="background:var(--c3)"></i>高齢者・介護</span>
+      <span class="chip"><i class="dot" style="background:var(--c2)"></i>障がい</span>
+      <span class="chip"><i class="dot" style="background:var(--c4)"></i>こども</span>
+      <span class="chip"><i class="dot" style="background:var(--c6)"></i>健康</span>
+    </div>
+  </div>
+</div>
+
+<!-- =============== 福祉分野マップ =============== -->
+<div class="card" id="og-fukushi">
+  <div class="L">
+    <div>
+      <div class="eyebrow">壱岐市 計画マップ ／ 福祉分野</div>
+      <div class="ttl sm">地域福祉計画と<br>関連計画の<br>体系整理</div>
+      <div class="lead">国・県・市の階層／計画期間／<br>根拠法・所管課・改定時期</div>
+    </div>
+    <div class="foot"><span class="dom">keikaku.ikilab.org</span><span class="by">CC BY 4.0</span></div>
+  </div>
+  <div class="R">
+    <div class="node"><div class="k">国</div><div class="v">社会福祉法 第107条 ほか</div></div>
+    <div class="arw"></div>
+    <div class="node"><div class="k">長崎県（法108条）</div><div class="v">第6期 福祉保健総合計画</div></div>
+    <div class="arw"></div>
+    <div class="node top"><div class="k">壱岐市 最上位</div><div class="v">第4次壱岐市総合計画</div></div>
+    <div class="arw"></div>
+    <div class="node hub"><div class="k">福祉分野の上位・横断</div><div class="v">第3次 地域福祉計画</div></div>
+    <div class="chips">
+      <span class="chip"><i class="dot" style="background:var(--c3)"></i>高齢者・介護</span>
+      <span class="chip"><i class="dot" style="background:var(--c2)"></i>障がい福祉</span>
+      <span class="chip"><i class="dot" style="background:var(--c4)"></i>こども</span>
+      <span class="chip"><i class="dot" style="background:var(--c5)"></i>医療保険</span>
+      <span class="chip"><i class="dot" style="background:var(--c6)"></i>健康づくり</span>
+    </div>
+  </div>
+</div>
+
+<!-- =============== 介護保険の検証 =============== -->
+<div class="card" id="og-kaigo">
+  <div class="L">
+    <div>
+      <div class="eyebrow">壱岐市 計画マップ ／ 介護保険</div>
+      <div class="ttl sm">介護保険事業計画<br>第7〜9期の検証</div>
+      <div class="lead">前提 → 計画 → 実施 → 成果。<br>計画値と、決算・統計に表れた<br>実績の突合。</div>
+    </div>
+    <div class="foot"><span class="dom">keikaku.ikilab.org</span><span class="by">CC BY 4.0</span></div>
+  </div>
+  <div class="R">
+    <div class="mini">
+      <div class="cap">給付費が計画をどれだけ上回った／下回ったか（百万円）</div>
+      <div class="bars">
+        <div class="zero"></div>
+        <div class="bcol"><div class="bar pos" style="height:32px"></div></div>
+        <div class="bcol"><div class="bar pos" style="height:88px"></div></div>
+        <div class="bcol"><div class="bar pos" style="height:78px"></div></div>
+        <div class="bcol"><div class="bar neg" style="height:16px"></div></div>
+        <div class="bcol"><div class="bar neg" style="height:70px"></div></div>
+      </div>
+      <div class="yrs"><div>H30</div><div>R元</div><div>R2</div><div>R3</div><div>R4</div></div>
+      <div class="lg">
+        <span><i class="sq" style="background:var(--c1)"></i>計画超過</span>
+        <span><i class="sq" style="background:var(--crit)"></i>計画未達</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>壱岐市 介護保険事業計画 第7・8期の検証 | 壱岐市 計画マップ</title>
+<meta name="description" content="長崎県壱岐市の介護保険事業計画 第7期（H30〜R2）・第8期（R3〜R5）について、計画の前提条件と立案内容を、後継計画・決算・厚生労働省統計に表れた実績と突き合わせて検証。認定者数の推計精度、給付費の計画差、施設整備の実現状況、事業目標の達成率、保険料と準備基金の動き。">
+<link rel="canonical" href="https://keikaku.ikilab.org/plans/kaigo-7-9/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="壱岐市 計画マップ">
+<meta property="og:title" content="壱岐市 介護保険事業計画 第7期・第8期の検証">
+<meta property="og:description" content="前提 → 計画 → 実施 → 成果。計画書の見込値と、決算・統計に表れた実績の突合。">
+<meta property="og:url" content="https://keikaku.ikilab.org/plans/kaigo-7-9/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://keikaku.ikilab.org/assets/og-kaigo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="介護保険の給付費が計画をどれだけ上回った・下回ったかを示す棒グラフ（H30〜R4年度）">
+<meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og-kaigo.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+  --wash:rgba(11,11,11,0.035);
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a;
+  --dpos:#2a78d6; --dneg:#e34948; --dmid:#f0efec;
+  --warn:#fab219; --crit:#d03b3b; --good:#0ca30c; --goodtx:#006300;
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+  --wash:rgba(255,255,255,0.05);
+  --c1:#3987e5; --c2:#d95926; --c3:#199e70;
+  --dpos:#3987e5; --dneg:#e66767; --dmid:#383835;
+  --goodtx:#0ca30c;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+    --wash:rgba(255,255,255,0.05);
+    --c1:#3987e5; --c2:#d95926; --c3:#199e70;
+    --dpos:#3987e5; --dneg:#e66767; --dmid:#383835;
+    --goodtx:#0ca30c;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--page);color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;
+  font-size:15px;line-height:1.75;letter-spacing:.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;line-height:1.4;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-size:15px;margin:26px 0 8px;padding-left:10px;border-left:3px solid var(--axis)}
+p{margin:.5em 0}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--axis)}
+a:hover{border-bottom-color:currentColor}
+.sub{color:var(--ink2);font-size:13.5px}
+.mut{color:var(--muted);font-size:12.5px}
+b{font-weight:650}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:26px}
+a.badge.home{text-decoration:none;margin-right:8px}
+a.badge.home:hover{background:var(--wash);border-color:var(--axis)}
+.badge{display:inline-block;font-size:11.5px;letter-spacing:.06em;padding:3px 9px;border:1px solid var(--ring);
+  border-radius:999px;color:var(--ink2);background:var(--surface)}
+button.tg{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--ring);border-radius:8px;
+  background:var(--surface);color:var(--ink2);cursor:pointer}
+button.tg:hover{background:var(--wash)}
+section{background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:22px 22px 24px;margin:0 0 22px}
+section > .hd{margin-bottom:16px}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.tile{border:1px solid var(--ring);border-radius:11px;padding:13px 14px;background:var(--page)}
+.tile .v{font-size:27px;line-height:1.15;font-weight:650;letter-spacing:-.02em}
+.tile .v small{font-size:13px;font-weight:500;color:var(--ink2);margin-left:2px}
+.tile .k{font-size:12px;color:var(--ink2);margin-top:3px}
+.tile.a{box-shadow:inset 3px 0 0 var(--c2)}
+.tile.b{box-shadow:inset 3px 0 0 var(--c3)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.card{border:1px solid var(--ring);border-radius:11px;padding:14px 16px;background:var(--page)}
+.card .tl{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.card h4{margin:0 0 8px;font-size:15.5px}
+.card ul{margin:6px 0 0;padding-left:1.15em;font-size:13px;color:var(--ink2)}
+.card ul li{margin:4px 0}
+.card.p7{border-top:3px solid var(--c2)}
+.card.p8{border-top:3px solid var(--c3)}
+
+.tblwrap{overflow-x:auto;margin-top:6px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--grid)}
+thead th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--axis);white-space:nowrap}
+tbody tr:hover{background:var(--wash)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.k{font-weight:600;width:190px;white-space:nowrap}
+td.nw{white-space:nowrap}
+.hi{color:var(--crit);font-weight:650}
+.lo{color:var(--goodtx);font-weight:650}
+.pill{display:inline-block;font-size:10.5px;padding:1px 6px;border-radius:5px;border:1px solid var(--ring);color:var(--ink2);white-space:nowrap}
+.pill.w{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 18%,transparent)}
+.pill.g{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,transparent)}
+.pill.c{border-color:var(--crit);background:color-mix(in srgb,var(--crit) 12%,transparent)}
+
+/* charts */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12px;color:var(--ink2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.legend i.sq{width:11px;height:11px;border-radius:3px}
+.tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .1s;background:var(--surface);
+  border:1px solid var(--ring);border-radius:8px;padding:7px 10px;font-size:12px;line-height:1.6;
+  box-shadow:0 4px 16px rgba(0,0,0,.14);z-index:9;white-space:nowrap}
+.tip b{font-variant-numeric:tabular-nums}
+.cap{font-size:12px;color:var(--muted);margin-top:10px}
+
+/* achievement bars */
+.ach{display:grid;grid-template-columns:230px 1fr 74px;gap:10px;align-items:center;font-size:12.5px;padding:3px 0}
+.ach .lb{color:var(--ink2);line-height:1.35}
+.ach .tr{position:relative;height:15px;background:var(--wash);border-radius:4px;overflow:visible}
+.ach .fl{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--c1)}
+.ach .ref{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--axis)}
+.ach .vv{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.achhd{display:grid;grid-template-columns:230px 1fr 74px;gap:10px;font-size:11px;color:var(--muted);
+  padding-bottom:6px;border-bottom:1px solid var(--grid);margin-bottom:8px}
+@media (max-width:700px){.ach,.achhd{grid-template-columns:150px 1fr 62px}}
+
+ol.notes{margin:8px 0 0;padding-left:0;list-style:none;counter-reset:n}
+ol.notes li{counter-increment:n;position:relative;padding:12px 0 12px 40px;border-bottom:1px solid var(--grid)}
+ol.notes li:last-child{border-bottom:none}
+ol.notes li::before{content:counter(n);position:absolute;left:0;top:12px;width:24px;height:24px;border-radius:7px;
+  background:var(--wash);border:1px solid var(--ring);display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--ink2)}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.04em;padding:1px 7px;border-radius:5px;margin-right:8px;
+  border:1px solid var(--ring);color:var(--ink2)}
+.tag.a{border-color:var(--crit);color:var(--crit)}
+footer{color:var(--muted);font-size:12px;padding:8px 4px 0;line-height:1.9}
+footer a{border-bottom-color:var(--grid)}
+@media print{body{background:#fff}section{break-inside:avoid}button.tg{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <a href="../../" class="badge home">← 壱岐市 計画マップ</a><span class="badge">長崎県壱岐市 ／ 介護保険事業計画の検証</span>
+    <h1>第7期・第8期 介護保険事業計画<br>― 前提 → 計画 → 実施 → 成果</h1>
+    <p class="sub">第7期＝平成30〜令和2年度／第8期＝令和3〜5年度。計画書の見込値と、後継計画・決算・厚労省統計に表れた実績を突き合わせて検証。</p>
+    <p class="mut">調査基準日 2026年8月10日。金額は特記なき限り千円。認定者数は第1号被保険者・年度末。</p>
+  </div>
+  <button class="tg" id="tg">◐ 表示切替</button>
+</header>
+
+<!-- 1. 結論 -->
+<section>
+  <div class="hd"><h2>先に結論</h2></div>
+  <div class="tiles">
+    <div class="tile a"><div class="v">104<small>%</small></div><div class="k">第7期の給付費 対計画比（R2年度）<br>3年とも計画を<b>超過</b></div></div>
+    <div class="tile b"><div class="v">95<small>%</small></div><div class="k">第8期の給付費 対計画比（R4年度）<br>コロナの利用控えで<b>計画割れ</b></div></div>
+    <div class="tile"><div class="v">+16.8<small>%</small></div><div class="k">第7期の保険料引上げ幅<br>5,262円 → 6,145円</div></div>
+    <div class="tile"><div class="v">±0<small>円</small></div><div class="k">第9期の保険料<br>6,490円で<b>据置き</b>（第8期と同額）</div></div>
+    <div class="tile"><div class="v">0<small>円</small></div><div class="k">認知症対応型通所介護の給付実績<br>第7期に整備を計画したが<b>6年間ゼロ</b></div></div>
+  </div>
+  <p class="sub" style="margin-top:16px">両期を通じて見えるのは、<b>①認定者数の見通しが両期とも外れた（第7期は減ると見て増え、第8期は増えると見て減った）</b>、<b>②総額の給付費は±5%に収まるがサービス別の乖離は大きい</b>、<b>③離島ゆえに立ち上がらないサービスが固定化している</b>、<b>④財政は保守的に設計され結果的に基金が積み上がり第9期の据置きにつながった</b>、<b>⑤体制整備系の目標は達成できても住民への浸透系の目標は計画倒れになりやすい</b>、の5点です。</p>
+</section>
+
+<!-- 2. 前提条件 -->
+<section>
+  <div class="hd">
+    <h2>Ⅰ. どんな前提の上に立てられたか</h2>
+    <p class="sub">両期とも日常生活圏域は<b>市内全域1圏域</b>。ニーズ調査と将来推計を土台にしている点は共通だが、推計手法と長期の視野が異なる。</p>
+  </div>
+  <div class="tblwrap"><table>
+    <thead><tr><th>前提</th><th style="min-width:290px">第7期（平成30年3月策定）</th><th style="min-width:290px">第8期（令和3年3月策定）</th></tr></thead>
+    <tbody>
+      <tr><td class="k">基準時点の人口</td><td>平成29年度末 26,857人／高齢化率 36.3%</td><td>令和元年度末 26,070人／高齢化率 37.4%<br><span class="mut">平成27年3月末から5年で2,116人減</span></td></tr>
+      <tr><td class="k">推計手法</td><td>コーホート要因法</td><td>コーホート変化率法</td></tr>
+      <tr><td class="k">長期の視野</td><td><b>2025年まで</b>（2040年推計なし）<br>2025年＝総人口24,039人・高齢化率38.8%</td><td><b>2025年＋2040年</b><br>2025年＝23,792人・39.5%／2040年＝17,140人・<b>42.2%</b></td></tr>
+      <tr><td class="k">認定者の見通し<br>（第1号）</td><td><b>減少</b>を見込む<br>H30 2,149人 → R2 2,069人</td><td><b>増加</b>を見込む<br>R3 2,213人 → R5 2,243人／認定率 22.8%→<b>23.4%</b></td></tr>
+      <tr><td class="k">ニーズ調査</td><td>介護予防・日常生活圏域ニーズ調査（H29.8、郵送1,500件／回収797件・<b>53.0%</b>）＋在宅介護実態調査（H28.12〜H29.3、347件・100%）</td><td>同ニーズ調査（R2.8〜9、郵送1,498件／回収762件・<b>50.9%</b>）＋在宅介護実態調査（R元.10〜R2.3、386件・100%）</td></tr>
+      <tr><td class="k">調査で見えた課題</td><td>近隣への相談は15%前後にとどまる／地域活動への参加意向47.9%に対し世話役意向27.5%／介護しながら就労33.5%</td><td>認知症の相談窓口を知っている <b>27.6%</b>／地域包括ケアシステムを「言葉も内容も知っている」<b>22.2%</b>／ほとんど外出しない16.5%</td></tr>
+      <tr><td class="k">コロナの織り込み</td><td>―</td><td>計画本文に「新型コロナ」の語は<b>一度も登場しない</b>。議会説明で「コロナと令和2年7月豪雨を受け、平時からの災害・感染症対策を追加」と説明され、施策として新設された。給付費推計への織り込みは確認できず</td></tr>
+      <tr><td class="k">積み残しの課題</td><td>養護老人ホーム（定員110）の入所待機 <b>208人</b>（H28年度末）／認知症対策・在宅医療連携・介護離職</td><td>同待機 <b>223人</b>（R元年度末、悪化）／介護人材不足／二次離島 三島地区（高齢化率<b>46.9%</b>）への事業者参入困難</td></tr>
+      <tr><td class="k">保険料算定の諸元</td><td>総給付費見込 9,983百万円／第1号負担割合 23%／<b>基金取崩し 60百万円</b>／予定収納率 <b>98.55%</b>／補正被保険者数 23,577人</td><td>事業費見込 10,804百万円／23%／<b>基金取崩し 23百万円（残高全額）</b>／予定収納率 <b>99.07%</b>／補正被保険者数 24,772人</td></tr>
+      <tr><td class="k">保険料基準額</td><td><b>月6,145円</b>（年73,700円）・9段階<br><span class="mut">第6期5,262円から +883円 / +16.8%</span></td><td><b>月6,490円</b>（年77,800円）・9段階<br><span class="mut">第7期から +345円 / +5.6%</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 3. 計画内容 -->
+<section>
+  <div class="hd">
+    <h2>Ⅱ. 何を立案したか</h2>
+    <p class="sub">第7期は「基盤を作る」計画、第8期は「作った基盤を回す」計画。議会でも第8期は「これまでの事業をさらに充実させることを柱に、サービス整備を含む大きな見直しは行っていない」と明言されている。</p>
+  </div>
+  <div class="two">
+    <div class="card p7">
+      <div class="tl">第7期 ／ 平成30〜令和2年度</div>
+      <h4>「高齢期になっても 健康で 安心して暮らせる まちの実現」</h4>
+      <p class="mut" style="margin:0">基本目標4本（①地域のつながり ②生きがい ③やさしさ ④安心感）。第6期の理念を踏襲。</p>
+      <ul>
+        <li><b>地域包括ケアシステムの深化・推進とPDCA</b>を計画の性格として明示。保険者機能強化推進交付金の創設を受け「自立支援・重度化防止に向けた取組を推進することを目標とする」と記載</li>
+        <li><b>介護予防・日常生活支援総合事業の本格実施</b>（訪問型＝現行相当、通所型＝現行相当＋サービスA「ゆうゆうお達者クラブ」）</li>
+        <li><b>生活支援コーディネーターを平成30年4月から第1層・第2層に各2名配置</b></li>
+        <li>認知症初期集中支援チーム（地域包括支援センター設置）、認知症地域支援推進員、サポーター養成</li>
+        <li>在宅医療・介護連携を<b>壱岐医師会に委託</b>（H28〜）。ICT連携・24時間365日体制</li>
+        <li><b>施設整備：グループホーム2ユニット18人（R2開設目標）、認知症対応型通所介護 定員12名（H30開始）、通所介護 定員12名増、短期入所生活介護 14床増</b>。議会答弁で「この在宅系サービスの充実が保険料上昇の主因」と説明</li>
+        <li>介護医療院・共生型サービスは制度解説のみ。<b>介護医療院の見込量は3年とも0円</b></li>
+      </ul>
+    </div>
+    <div class="card p8">
+      <div class="tl">第8期 ／ 令和3〜5年度</div>
+      <h4>「高齢期になっても その人らしく 自立した日常生活を続けていけるよう 地域で支え合い 健康で安心して暮らせる まちづくりの実現」</h4>
+      <p class="mut" style="margin:0">基本目標4本の骨格は第7期を継承。理念に「その人らしく」「自立した日常生活」「地域で支え合い」を追加。第9期もこの体系をそのまま踏襲。</p>
+      <ul>
+        <li><b>新設①：災害や感染症から高齢者を守る体制づくり</b>（基本目標2に追加）。福祉避難所運営、事業所の防災計画・感染対応マニュアルを実地指導で確認</li>
+        <li><b>新設②：二次離島（三島地区）のサービス確保</b>を基本目標4に明記。訪問系事業者へのヘルパー派遣費用補助、まちづくり協議会との連携</li>
+        <li><b>高齢者保健事業と介護予防の一体的実施</b>を令和2年度から開始（通いの場でのフレイル予防、訪問栄養相談）</li>
+        <li>認知症施策推進大綱を踏まえた「共生」と「予防」。令和元年7月に<b>壱岐医師会・エーザイ・市の三者連携協定</b>を締結（第7期期間中の成果）</li>
+        <li>SDGs未来都市の選定を踏まえ、ゴール1・3・4・10・11・16に施策を紐付け。まちづくり協議会との連携を追加</li>
+        <li>介護人材確保：介護福祉士養成校の設置、留学生受入れ、<b>地域包括ケア人材確保支援事業補助金</b>（H30.4開始、奨学金返済 最大60万円・家賃 最大48万円）</li>
+        <li><b>施設整備：新規なし。</b>唯一、壱岐市立老人ホーム（養護老人ホーム 定員110）の<b>一般型特定施設入居者生活介護への移行（R5.4開始目標）</b>を掲げる</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 成果 -->
+<section>
+  <div class="hd">
+    <h2>Ⅲ. 結果どうなったか</h2>
+  </div>
+
+  <h3>① 認定者数 ― 両期とも見通しを外している</h3>
+  <p class="sub">第7期は「減少」を見込んだが実績は横ばい〜微増。第8期は「増加・認定率23.4%へ」を見込んだが実績は22%台で横ばい〜微減。人口推計はおおむね当たっているのに、<b>認定率の見通しが両方向にぶれている</b>。</p>
+  <div class="chart" id="ch1"></div>
+  <div class="legend">
+    <span><i style="background:var(--c1)"></i>実績（介護保険事業状況報告）</span>
+    <span><i style="background:var(--c2)"></i>第7期計画の推計</span>
+    <span><i style="background:var(--c3)"></i>第8期計画の推計</span>
+  </div>
+  <p class="cap">第1号被保険者の要支援・要介護認定者数（各年度末）。実績は第9期計画掲載値および e-Stat 介護保険事業状況報告年報。※第9期計画のグラフは暦年（各年3月末）表記のため、第7期計画の年度末実績と突合して年度に読み替えている。</p>
+
+  <div class="tblwrap" style="margin-top:14px"><table>
+    <thead><tr><th>年度末</th><th class="n">H29</th><th class="n">H30</th><th class="n">R元</th><th class="n">R2</th><th class="n">R3</th><th class="n">R4</th><th class="n">R5</th></tr></thead>
+    <tbody>
+      <tr><td class="k">第1号被保険者数</td><td class="n">9,767</td><td class="n">9,793</td><td class="n">9,800</td><td class="n">9,817</td><td class="n">9,768</td><td class="n">9,651</td><td class="n">9,554</td></tr>
+      <tr><td class="k">認定者数（実績）</td><td class="n">2,162</td><td class="n">2,213</td><td class="n">2,188</td><td class="n">2,189</td><td class="n">2,196</td><td class="n">2,163</td><td class="n">2,179</td></tr>
+      <tr><td class="k">認定率（実績）</td><td class="n">22.1%</td><td class="n">22.6%</td><td class="n">22.3%</td><td class="n">22.3%</td><td class="n">22.5%</td><td class="n">22.4%</td><td class="n">22.8%</td></tr>
+      <tr><td class="k">計画の推計</td><td class="n">―</td><td class="n">2,149</td><td class="n">2,119</td><td class="n">2,069</td><td class="n">2,213</td><td class="n">2,231</td><td class="n">2,243</td></tr>
+      <tr><td class="k">対計画比</td><td class="n">―</td><td class="n hi">103.0%</td><td class="n hi">103.3%</td><td class="n hi">105.8%</td><td class="n">99.2%</td><td class="n">97.0%</td><td class="n">97.1%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">認定率は県内でも高位。令和4年時点の性・年齢調整済み認定率は軽度13.4%（長崎県12.8%）、重度6.6%（同6.2%）。令和5年度末の実認定率は壱岐市22.8%に対し長崎県19.9%・全国19.4%。</p>
+
+  <h3>② 給付費 ― 第7期は超過、第8期はコロナで計画割れ</h3>
+  <p class="sub">実績が計画をどれだけ上回った／下回ったかの差額。第7期は3年連続で計画超過、第8期はコロナの利用控えで一転して計画割れという、はっきり分かれた軌跡になっている。</p>
+  <div class="chart" id="ch2"></div>
+  <div class="legend">
+    <span><i class="sq" style="background:var(--dpos)"></i>実績が計画を上回った</span>
+    <span><i class="sq" style="background:var(--dneg)"></i>実績が計画を下回った</span>
+  </div>
+  <p class="cap">介護給付費＋介護予防給付費の「実績 − 計画」（百万円）。第7期分は第8期計画掲載の実績、第8期分は第9期計画掲載の実績。令和5年度のサービス別実績は第9期計画に未掲載のため対象外。絶対額は下表を参照。</p>
+
+  <div class="tblwrap" style="margin-top:14px"><table>
+    <thead><tr><th>年度</th><th class="n">計画（介護＋予防）</th><th class="n">実績</th><th class="n">対計画比</th><th>特徴的な乖離</th></tr></thead>
+    <tbody>
+      <tr><td class="k">H30（第7期1年目）</td><td class="n">2,800,852</td><td class="n">2,850,077</td><td class="n hi">101.8%</td><td>訪問リハ 221.9%／訪問介護 119.5%／地域密着型通所介護 139.4%　⇔　介護療養型 32.2%、認知症デイ <b>0%</b></td></tr>
+      <tr><td class="k">R元（第7期2年目）</td><td class="n">2,800,239</td><td class="n">2,935,686</td><td class="n hi">104.8%</td><td>地域密着型通所介護 <b>297.8%</b>／訪問リハ 259.0%　⇔　通所介護 83.0%、認知症デイ 0%</td></tr>
+      <tr><td class="k">R2（第7期3年目）</td><td class="n">2,839,587</td><td class="n">2,958,599</td><td class="n hi">104.2%</td><td>短期入所生活 204.3%／地域密着型通所介護 244.1%　⇔　通所介護 <b>72.8%</b>（コロナで一部休止）、GH 69.4%（年度途中開設）</td></tr>
+      <tr><td class="k">R3（第8期1年目）</td><td class="n">3,006,919</td><td class="n">2,983,352</td><td class="n">99.2%</td><td>特定福祉用具購入 144.1%／居宅介護支援 113.5%　⇔　住宅改修 74.2%、特定施設 80.5%</td></tr>
+      <tr><td class="k">R4（第8期2年目）</td><td class="n">3,029,926</td><td class="n">2,888,268</td><td class="n lo">95.3%</td><td>訪問リハ 123.6%　⇔　住宅改修 <b>64.9%</b>、特定施設 75.7%、短期入所療養 79.7%、地域密着型通所介護 80.6%</td></tr>
+      <tr><td class="k">R5（第8期3年目）</td><td class="n">3,067,113</td><td class="n">―</td><td class="n">―</td><td>第9期計画に実績欄なし。決算ベースでは前年度比 <b>＋1億8,555万円</b>（5類移行による利用回復）</td></tr>
+    </tbody>
+  </table></div>
+
+  <p class="sub" style="margin-top:14px"><b>決算ベースの介護給付費（2款）の推移</b>は次のとおり。第8期の落ち込みと反動増がはっきり出る。</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th>年度</th><th class="n">H30</th><th class="n">R元</th><th class="n">R2</th><th class="n">R3</th><th class="n">R4</th><th class="n">R5</th></tr></thead>
+    <tbody>
+      <tr><td class="k">介護給付費（百万円）</td><td class="n">3,102</td><td class="n">3,208</td><td class="n">3,220</td><td class="n">3,247</td><td class="n lo">3,145</td><td class="n hi">3,330</td></tr>
+      <tr><td class="k">前年度差</td><td class="n">+46</td><td class="n">+106</td><td class="n">+12</td><td class="n">+27</td><td class="n lo">▲102</td><td class="n hi">+186</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">市議会での公式説明 ── 令和4年度「新型コロナにおける2回にわたる感染の大きな波により訪問通所サービス及びショートステイの利用控えや受入れ自粛が大きく影響」／令和5年度「感染症法上の5類に移行して行動制限等がなくなったことから利用者が増え増額」。</p>
+
+  <h3>③ 施設整備 ― 「作ったもの」と「作れなかったもの」</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th style="min-width:220px">計画された整備</th><th>期</th><th style="min-width:290px">結果</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td class="k">グループホーム 2ユニット18人</td><td class="nw">第7期</td><td>平成30年に公募、<b>令和2年6月に開設</b>。給付費は R2 69.4%（年度途中開設）だが R3 108.4%・R4 105.9%と計画超え</td><td><span class="pill g">実現</span></td></tr>
+      <tr><td class="k">認知症対応型通所介護 定員12名<br>（H30年度開始予定）</td><td class="nw">第7期</td><td>H30〜R4の<b>5年間すべて給付費 0円</b>。第8期・第9期の見込量も0で、事業自体が立ち上がっていない</td><td><span class="pill c">未実現</span></td></tr>
+      <tr><td class="k">短期入所生活介護 14床増</td><td class="nw">第7期</td><td>R元 122.1%、R2 204.3%と給付費が大きく伸び、増床は反映されたとみられる（※実績からの推定）</td><td><span class="pill g">実現</span></td></tr>
+      <tr><td class="k">通所介護 定員12名増</td><td class="nw">第7期</td><td>給付費は3年とも計画割れ（93.6%→83.0%→72.8%）。定員増の効果は給付費に表れていない</td><td><span class="pill w">効果不明</span></td></tr>
+      <tr><td class="k">介護医療院（見込量0で計上）</td><td class="nw">第7期</td><td>計画0円に対し H30 3,162／R元 10,924／R2 15,542千円の実績。裏側で介護療養型医療施設が計画比16〜32%に急減。<b>計画に織り込んでいない転換が起きた</b></td><td><span class="pill w">計画外</span></td></tr>
+      <tr><td class="k">新規整備なし（既存事業の充実）</td><td class="nw">第8期</td><td>方針どおり新規整備なし</td><td><span class="pill g">計画どおり</span></td></tr>
+      <tr><td class="k">壱岐市立老人ホームの<br>一般型特定施設への移行（R5.4）</td><td class="nw">第8期</td><td>実現の有無を公表資料から確認できず。特定施設入居者生活介護の給付費は R3 80.5%・R4 75.7%と低調</td><td><span class="pill w">確認できず</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">給付費実績が一貫して0円＝市内に事業所がないサービス：認知症対応型通所介護、小規模多機能型居宅介護、看護小規模多機能型居宅介護、地域密着型介護老人福祉施設、地域密着型特定施設。第9期でようやく<b>令和8年度に小規模多機能型居宅介護を公募整備し令和9年度サービス開始</b>を掲げた。</p>
+
+  <h3>④ 事業目標の達成状況 ― 体制は整うが、住民への浸透は届かない</h3>
+  <p class="sub">第8期計画が令和5年度に置いた目標値と、第9期計画に載った令和5年度実績見込の比較。</p>
+  <div id="ach"></div>
+  <p class="cap">縦線＝目標値（100%）。年12枚→6枚に縮小した入湯優待券など、制度自体を変更した指標は比較対象から除外。</p>
+  <p class="sub" style="margin-top:12px">傾向は明快で、<b>認知症カフェの設置・介護予防教室の開催・ケアマネ支援といった「行政が直接やること」は目標を超え、サポーター養成・認知機能チェック・医療連携の連絡票といった「市民や関係機関を巻き込むこと」は大幅未達</b>。実際、ニーズ調査の「認知症の相談窓口を知っている」は第8期策定時の27.6%から<b>25.8%へ低下</b>しています（地域包括ケアシステムの認知度は22.2%→27.8%と改善）。</p>
+
+  <h3>⑤ 財政 ― 保守的な設計が第9期の据置きを生んだ</h3>
+  <div class="tblwrap"><table>
+    <thead><tr><th>項目</th><th>第7期</th><th>第8期</th><th>第9期（参考）</th></tr></thead>
+    <tbody>
+      <tr><td class="k">保険料基準額（月）</td><td>6,145円 <span class="mut">（+16.8%）</span></td><td>6,490円 <span class="mut">（+5.6%）</span></td><td>6,490円 <span class="pill g">据置き</span></td></tr>
+      <tr><td class="k">所得段階</td><td>9段階</td><td>9段階</td><td><b>13段階</b>に多段階化。65歳以上の約半数が引下げ</td></tr>
+      <tr><td class="k">予定収納率</td><td>98.55%</td><td>99.07%</td><td>99.05%</td></tr>
+      <tr><td class="k">実際の収納率（現年度）</td><td class="lo">98.91 → 99.07 → 99.11%</td><td class="lo">99.19 → 99.43 → 99.68%</td><td>―</td></tr>
+      <tr><td class="k">介護給付費準備基金</td><td>取崩し 60百万円を前提<br>期末残高 <b>23百万円</b></td><td>残高<b>全額23百万円を取崩し</b>てスタート<br>→ R4に40百万円、R5に10百万円を<b>積立</b></td><td>取崩し <b>60百万円</b>を前提にできるまで回復</td></tr>
+    </tbody>
+  </table></div>
+  <p class="sub" style="margin-top:12px">第8期は基金残高を使い切ってスタートしたにもかかわらず、<b>給付費の計画割れ（コロナ）＋想定を上回る収納率</b>により期中に基金が積み上がりました。その結果、第9期は6,000万円を取り崩せるだけの残高が確保でき、保険料を第8期と同額に据え置くことができています。<span class="mut">県内19保険者中で壱岐市の第9期保険料は5番目に高い（県平均6,222円・全国平均6,225円）。</span></p>
+</section>
+
+<!-- 5. 論点 -->
+<section>
+  <div class="hd"><h2>Ⅳ. 第10期に向けて引き継ぐべき論点</h2>
+    <p class="sub">第9期は令和8年度末で満了。令和8年度中の改定作業で扱うことになる論点。</p>
+  </div>
+  <ol class="notes">
+    <li><span class="tag a">再発</span><b>認定者数の推計精度。</b>第7期は減少を見込んで実績が上回り（対計画103〜106%）、第8期は増加を見込んで実績が下回った（97〜99%）。人口推計自体は実績に近いので、ぶれているのは<b>認定率の見通し</b>です。第9期がどう置いたかを検証したうえで、直近の22%台前半での横ばいという実績をどう反映するかが焦点になります。</li>
+    <li><b>「整備を計画したが立ち上がらないサービス」の扱い。</b>認知症対応型通所介護は第7期で定員12名の開始を計画しながら6年間ゼロ。小規模多機能・看多機・地域密着型特養も一貫してゼロで、離島ゆえに事業者が参入しない構造が固定化しています。第9期が令和8年度に小規模多機能の公募整備を掲げているので、<b>その公募が成立するかどうか</b>が次期計画の前提を左右します。</li>
+    <li><b>コロナ期の給付費実績をどう扱うか。</b>第8期の実績はR3・R4がコロナで押し下げられ、R5に反動増しています。この3年を素直にトレンドとして使うと次期の見込量を過小に見積もるおそれがあり、<b>どの年度を基準線に置くかの判断</b>が必要です。</li>
+    <li><b>啓発・普及型の目標設定の見直し。</b>認知症サポーター養成400人に対し実績150人、医療予防連携の連絡票15件に対し1件など、住民・関係機関を巻き込む目標が大幅未達です。目標値の置き方（そもそも過大でなかったか）と、達成手段の設計の両面を見直す余地があります。認知症の相談窓口の認知度が27.6%→25.8%へ低下している点は、周知手法そのものが機能していないことを示唆します。</li>
+    <li><b>養護老人ホームの待機者対策。</b>定員110に対し待機208人（H28年度末）→223人（R元年度末）と悪化し、第8期が掲げた一般型特定施設への移行（R5.4開始目標）の実現も公表資料では確認できません。第10期に持ち越すなら、まず現状の到達点を確認する必要があります。</li>
+    <li><b>認定率が県平均より約3ポイント高い理由の分析。</b>調整済み認定率でも軽度＋0.6pt・重度＋0.4ptと県を上回っています。第7期が「自立支援・重度化防止に向けた取組を推進することを目標とする」と明記して以降、この構造が変わっていないことをどう評価するかが問われます。</li>
+    <li><span class="tag">記録</span><b>過去の計画書が市サイトから消えている。</b>第7期・第8期の計画本体は市の計画ページから削除されており、第8期は令和3年3月市議会の<a href="https://www.city.iki.nagasaki.jp/material/files/group/3/3gatugian-2.pdf" target="_blank" rel="noopener">議案第16号添付資料</a>としてのみ全文が残っている状態です（第7期は国立国会図書館WARPの魚拓）。計画のPDCAを外部から検証しづらい状態になっており、過去計画のアーカイブ公開は改善余地があります。</li>
+  </ol>
+</section>
+
+<footer>
+  <b>主な出典</b>（2026年8月10日確認）<br>
+  壱岐市：<a href="https://www.city.iki.nagasaki.jp/material/files/group/38/keikakukeikaku.pdf" target="_blank" rel="noopener">高齢者福祉計画・第9期介護保険事業計画（令和6年3月）</a>／<a href="https://www.city.iki.nagasaki.jp/material/files/group/3/3gatugian-2.pdf" target="_blank" rel="noopener">同 第8期計画（令和3年3月・議案第16号添付）</a>／第7期計画（平成30年3月、市サイトからは削除済／国立国会図書館WARP保存版）／<a href="https://www.city.iki.nagasaki.jp/soshiki/gikai_jimukyoku/shigikai/kaigiroku/index.html" target="_blank" rel="noopener">市議会 本会議会議録（各年9月会議の決算説明、令和3年3月・令和6年2月の計画提案理由）</a>／<a href="https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/520.html" target="_blank" rel="noopener">介護保険制度（保険料）</a>／<a href="https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/toukeizyouhou/3207.html" target="_blank" rel="noopener">統計データ集</a><br>
+  国：<a href="https://www.e-stat.go.jp/stat-search?iroha=6&toukei=00450351" target="_blank" rel="noopener">e-Stat 介護保険事業状況報告（年報）</a>／<a href="https://www.mhlw.go.jp/stf/newpage_40211.html" target="_blank" rel="noopener">厚労省 第9期 各保険者保険料基準額一覧</a>／<a href="https://www.mhlw.go.jp/file/04-Houdouhappyou-12303500-Roukenkyoku-Kaigohokenkeikakuka/7ki-syuukeikekka.pdf" target="_blank" rel="noopener">同 第7期計画期間における第1号保険料について</a>
+<br><br>本ページの文章・図表・データは <a href="../../about/license/">CC BY 4.0</a>、コードは MIT。引用元の公表資料の権利は各機関に帰属します。 © 2026 ikilab
+</footer>
+
+</div>
+<script>
+const tg=document.getElementById('tg');
+tg.addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const sysDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const now = cur ? cur : (sysDark?'dark':'light');
+  document.documentElement.setAttribute('data-theme', now==='dark'?'light':'dark');
+});
+const CS=getComputedStyle(document.documentElement);
+const NS='http://www.w3.org/2000/svg';
+function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e}
+function tipFor(host){const t=document.createElement('div');t.className='tip';host.appendChild(t);return t}
+function showTip(t,host,x,y,html){t.innerHTML=html;t.style.opacity=1;
+  const w=t.offsetWidth,hh=t.offsetHeight,W=host.clientWidth;
+  t.style.left=Math.max(2,Math.min(W-w-2,x-w/2))+'px';t.style.top=Math.max(0,y-hh-10)+'px';}
+
+/* ===== chart 1 : 認定者数 line ===== */
+(function(){
+  const host=document.getElementById('ch1');
+  const YR=['H29','H30','R元','R2','R3','R4','R5'];
+  const actual=[2162,2213,2188,2189,2196,2163,2179];
+  const p7=[null,2149,2119,2069,null,null,null];
+  const p8=[null,null,null,null,2213,2231,2243];
+  const W=1040,H=300,ml=54,mr=18,mt=18,mb=34;
+  const y0=2020,y1=2280;
+  const X=i=>ml+i*(W-ml-mr)/(YR.length-1);
+  const Y=v=>mt+(y1-v)/(y1-y0)*(H-mt-mb);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'要介護認定者数の計画値と実績の推移'});
+  for(let v=2050;v<=2250;v+=50){
+    svg.appendChild(el('line',{x1:ml,x2:W-mr,y1:Y(v),y2:Y(v),stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:ml-9,y:Y(v)+4,'text-anchor':'end',fill:'var(--muted)','font-size':11});t.textContent=v.toLocaleString();svg.appendChild(t);
+  }
+  svg.appendChild(el('line',{x1:ml,x2:W-mr,y1:H-mb,y2:H-mb,stroke:'var(--axis)','stroke-width':1}));
+  YR.forEach((y,i)=>{const t=el('text',{x:X(i),y:H-mb+20,'text-anchor':'middle',fill:'var(--muted)','font-size':12});t.textContent=y;svg.appendChild(t)});
+  // 期の区切り
+  const div=el('line',{x1:X(3.5),x2:X(3.5),y1:mt,y2:H-mb,stroke:'var(--axis)','stroke-width':1,'stroke-dasharray':'4 4'});svg.appendChild(div);
+  const dl=el('text',{x:X(1.6),y:mt+12,'text-anchor':'middle',fill:'var(--muted)','font-size':11});dl.textContent='第7期';svg.appendChild(dl);
+  const dr=el('text',{x:X(5),y:mt+12,'text-anchor':'middle',fill:'var(--muted)','font-size':11});dr.textContent='第8期';svg.appendChild(dr);
+  function line(data,color,dash){
+    const pts=data.map((v,i)=>v==null?null:[X(i),Y(v)]).filter(Boolean);
+    if(pts.length<2)return;
+    svg.appendChild(el('polyline',{points:pts.map(p=>p.join(',')).join(' '),fill:'none',stroke:color,'stroke-width':2.5,
+      'stroke-linejoin':'round','stroke-linecap':'round','stroke-dasharray':dash||''}));
+  }
+  line(p7,'var(--c2)','6 5');line(p8,'var(--c3)','6 5');line(actual,'var(--c1)');
+  const tip=tipFor(host);
+  function dots(data,color,name){
+    data.forEach((v,i)=>{ if(v==null)return;
+      svg.appendChild(el('circle',{cx:X(i),cy:Y(v),r:4.5,fill:color,stroke:'var(--surface)','stroke-width':2}));
+      const hit=el('circle',{cx:X(i),cy:Y(v),r:14,fill:'transparent'});
+      hit.addEventListener('mouseenter',e=>{const r=host.getBoundingClientRect();
+        showTip(tip,host,e.clientX-r.left,e.clientY-r.top,`<b>${YR[i]}年度末</b> ／ ${name}<br><b>${v.toLocaleString()}</b> 人`)});
+      hit.addEventListener('mouseleave',()=>tip.style.opacity=0);
+      svg.appendChild(hit);
+    });
+  }
+  dots(p7,'var(--c2)','第7期計画');dots(p8,'var(--c3)','第8期計画');dots(actual,'var(--c1)','実績');
+  // 直接ラベル
+  const lb=(i,v,txt,col,dy)=>{const t=el('text',{x:X(i)+10,y:Y(v)+(dy||4),fill:col,'font-size':11.5,'font-weight':600});t.textContent=txt;svg.appendChild(t)};
+  lb(0,2162,'実績','var(--c1)',-12);
+  lb(3,2069,'第7期計画','var(--c2)',16);
+  lb(6,2243,'第8期計画','var(--c3)',-10);
+  host.appendChild(svg);
+})();
+
+/* ===== chart 2 : 給付費の計画との差（diverging bar） ===== */
+(function(){
+  const host=document.getElementById('ch2');
+  const YR=['H30','R元','R2','R3','R4'];
+  const plan=[2800852,2800239,2839587,3006919,3029926];
+  const act =[2850077,2935686,2958599,2983352,2888268];
+  const dif = plan.map((p,i)=>(act[i]-p)/1000);      // 百万円
+  const W=1040,H=300,ml=64,mr=18,mt=30,mb=34;
+  const M=170;                                       // ±百万円のレンジ
+  const Y=v=>mt+(M-v)/(2*M)*(H-mt-mb);
+  const bw=(W-ml-mr)/YR.length;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'給付費が計画をどれだけ上回った・下回ったか'});
+  for(let v=-150;v<=150;v+=50){
+    svg.appendChild(el('line',{x1:ml,x2:W-mr,y1:Y(v),y2:Y(v),stroke: v===0?'var(--dmid)':'var(--grid)','stroke-width':v===0?2:1}));
+    const t=el('text',{x:ml-9,y:Y(v)+4,'text-anchor':'end',fill:'var(--muted)','font-size':11});
+    t.textContent=(v>0?'+':'')+v;svg.appendChild(t);
+  }
+  const yl=el('text',{x:ml-9,y:mt-12,'text-anchor':'end',fill:'var(--muted)','font-size':10.5});yl.textContent='百万円';svg.appendChild(yl);
+  const tip=tipFor(host);
+  YR.forEach((y,i)=>{
+    const cx=ml+bw*i+bw/2, v=dif[i], pos=v>=0;
+    const t=el('text',{x:cx,y:H-mb+20,'text-anchor':'middle',fill:'var(--muted)','font-size':12});t.textContent=y+'年度';svg.appendChild(t);
+    const bwid=Math.min(58,bw*0.42);
+    const h=Math.abs(Y(v)-Y(0));
+    svg.appendChild(el('rect',{x:cx-bwid/2,y:pos?Y(v):Y(0),width:bwid,height:h,rx:4,ry:4,
+      fill:pos?'var(--dpos)':'var(--dneg)'}));
+    // ゼロ側の角を潰して基準線に接地させる
+    svg.appendChild(el('rect',{x:cx-bwid/2,y:pos?Y(0)-4:Y(0),width:bwid,height:4,fill:pos?'var(--dpos)':'var(--dneg)'}));
+    const lt=el('text',{x:cx,y:pos?Y(v)-10:Y(v)+18,'text-anchor':'middle','font-size':12,'font-weight':650,fill:'var(--ink)'});
+    lt.textContent=(pos?'+':'')+Math.round(v)+' ／ '+(act[i]/plan[i]*100).toFixed(1)+'%';
+    svg.appendChild(lt);
+    const hit=el('rect',{x:cx-bw/2,y:mt,width:bw,height:H-mt-mb,fill:'transparent'});
+    hit.addEventListener('mouseenter',e=>{const rr=host.getBoundingClientRect();
+      showTip(tip,host,e.clientX-rr.left,e.clientY-rr.top,
+        `<b>${y}年度</b><br>計画 <b>${plan[i].toLocaleString()}</b> 千円<br>実績 <b>${act[i].toLocaleString()}</b> 千円<br>差 <b>${(v>0?'+':'')+Math.round(v)}</b> 百万円（${(act[i]/plan[i]*100).toFixed(1)}%）`)});
+    hit.addEventListener('mouseleave',()=>tip.style.opacity=0);
+    svg.appendChild(hit);
+  });
+  const dv=el('line',{x1:ml+bw*3,x2:ml+bw*3,y1:mt-4,y2:H-mb,stroke:'var(--axis)','stroke-width':1,'stroke-dasharray':'4 4'});svg.appendChild(dv);
+  const a=el('text',{x:ml+bw*1.5,y:mt-12,'text-anchor':'middle',fill:'var(--muted)','font-size':11});a.textContent='第7期';svg.appendChild(a);
+  const b=el('text',{x:ml+bw*4,y:mt-12,'text-anchor':'middle',fill:'var(--muted)','font-size':11});b.textContent='第8期';svg.appendChild(b);
+  host.appendChild(svg);
+})();
+
+/* ===== achievement bars ===== */
+(function(){
+  const host=document.getElementById('ach');
+  const D=[
+    ['介護予防教室 開催回数',500,360,'回'],
+    ['ケアマネジャー支援 対応件数',18,10,'件'],
+    ['認知症カフェ 設置数',4,3,'箇所'],
+    ['介護予防教室 参加者数',5900,5300,'人'],
+    ['地域安心見守り 協定事業所',37,40,'件'],
+    ['個別相談 参加者数',3700,4400,'人'],
+    ['いきいきあんしんネットワーク 登録者',31,38,'人'],
+    ['認知症キャラバンメイト数',24,30,'人'],
+    ['認知症初期集中支援チーム 訪問対象者',3,5,'人'],
+    ['認知症サポーター養成数',150,400,'人'],
+    ['講演会 参加者数',250,700,'人'],
+    ['認知機能チェック 実施人数',70,200,'人'],
+    ['認知症サポーター養成講座 回数',5,20,'回'],
+    ['認知症高齢者見守り支援 実施者',2,8,'人'],
+    ['認知症医療予防連携 連絡票',1,15,'件']
+  ];
+  const MAX=190; // 100%の位置を100/MAXで表現
+  let h='<div class="achhd"><div>指標（令和5年度）</div><div>実績 ÷ 目標</div><div style="text-align:right">達成率</div></div>';
+  D.forEach(([nm,a,t,u])=>{
+    const r=a/t*100, w=Math.min(r,MAX)/MAX*100;
+    h+=`<div class="ach" title="${nm}：実績 ${a.toLocaleString()}${u} ／ 目標 ${t.toLocaleString()}${u}">
+      <div class="lb">${nm}</div>
+      <div class="tr"><div class="fl" style="width:${w}%"></div><div class="ref" style="left:${100/MAX*100}%"></div></div>
+      <div class="vv">${r.toFixed(0)}%</div></div>`;
+  });
+  host.innerHTML=h;
+})();
+</script>
+</body>
+</html>
