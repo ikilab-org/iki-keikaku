@@ -27,7 +27,7 @@ categories: { ... }        # 小分類の定義（大分類にぶら下がる）
 | `category` | △ | string | `categories` のキー |
 | `domain` | △ | string | `domains` のキー。大分類（[下記](#domain-と-category)） |
 | `status` | ○ | enum | `current` 現行 / `expiring` 期間中だが満了が近い / `expired` 満了済み（履歴として保持） / `planned` 策定予定 / `unknown` 未調査 |
-| `period` | | object | `{ start: 年度, end: 年度 }`。随時修正の計画は `null` |
+| `period` | △ | object | `{ start: 年度, end: 年度 }`。随時修正の計画は `null` |
 | `adopted` | | string | 策定年月（`2024-03`） |
 | `laws` | | string[] \| object[] | 根拠法。条項まで書く。`{ law, obligation }` で義務の別も持てる（[下記](#laws-と-statutory)） |
 | `department` | | string | 所管課・班。根拠は行政組織規則（[下記](#department)） |
@@ -41,11 +41,13 @@ categories: { ... }        # 小分類の定義（大分類にぶら下がる）
 | `related` | | id[] | 連携する計画のID。**無向**なので片側にだけ書く（[下記](#関係のフィールド)） |
 | `predecessors` | | id[] | 前期計画のID（新しい順） |
 | `successor` | | object | 次期計画。`name` / `status` / `period` / `public_comment` |
-| `url` | | string | 主となる掲載ページ |
+| `url` | △ | string | 主となる掲載ページ |
 | `pdf` | | string | 計画本体のPDF |
 | `sources` | | object[] | 補助的な出典。`{ label, url, note }` |
 | `notes` | | string | 内容の要点、注意事項 |
 | `todo` | | string | 未調査の内容。書いてあるものは `tools/expiring.mjs` が一覧に出す |
+
+`△` は条件付き必須です。条件は[必須と条件付き必須](#必須と条件付き必須)を参照してください。
 
 ### 必須と条件付き必須
 
@@ -65,7 +67,7 @@ categories: { ... }        # 小分類の定義（大分類にぶら下がる）
 
 ### domain と category
 
-分野は2階層です。`domain` が大分類（配色の単位）、`category` が小分類。
+分野は2階層です。`domain` が大分類（配色の単位）、`category` が小分類です。
 
 ```yaml
 domains:
@@ -236,6 +238,9 @@ categories:
 
 `slot` は `domains` にだけ持たせます。`categories` は20前後になる見込みで、
 識別可能な色を割り当てられないためです。
+
+`categories` の各エントリが指す `domain` が `domains` に無い場合も、`validate` が error にします。
+小分類を追加するときは、先に `domains` 側があることを確かめてください。
 
 ## バリデーション
 
