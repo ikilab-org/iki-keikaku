@@ -156,3 +156,44 @@ test('年度末は翌年3月31日として扱う', () => {
   // 2026年度末 = 2027-03-31。基準日 2026-08-12 では未到来
   assert.deepEqual(validate(doc([{ id: 'a', status: 'expiring', period: { start: 2024, end: 2026 } }]), TODAY), [])
 })
+
+test('骨格の欠落は todo が無ければ error', () => {
+  const d = { domains: {}, categories: {}, plans: [{ id: 'a', level: 'municipal', status: 'current' }] }
+  const found = validate(d, TODAY).filter((f) => f.severity === 'error').map((f) => f.message)
+  assert.ok(found.some((m) => m.startsWith('name がありません')))
+  assert.ok(found.some((m) => m.startsWith('domain がありません')))
+  assert.ok(found.some((m) => m.startsWith('tier がありません')))
+  assert.ok(found.some((m) => m.startsWith('period がありません')))
+  assert.ok(found.some((m) => m.startsWith('url がありません')))
+})
+
+test('骨格の欠落は todo があれば warn', () => {
+  const d = { domains: {}, categories: {}, plans: [{ id: 'a', level: 'municipal', status: 'current', todo: '期間を確認する' }] }
+  assert.equal(validate(d, TODAY).every((f) => f.severity === 'warn'), true)
+})
+
+test('県・国の計画には domain / category / tier を求めない', () => {
+  const d = { domains: {}, categories: {}, plans: [{ id: 'ken', name: '県計画', level: 'prefectural', status: 'current' }] }
+  assert.deepEqual(validate(d, TODAY), [])
+})
+
+test('status が planned / unknown なら period を求めない', () => {
+  const base = { id: 'a', level: 'municipal', domain: 'fukushi', category: 'kourei', tier: 'kobetsu',
+                 name: '計画', url: 'https://example.jp/a' }
+  const d = doc([])
+  d.plans = [{ ...base, status: 'planned' }]
+  assert.deepEqual(validate(d, TODAY), [])
+})
+
+test('embedded_in があれば url を求めない', () => {
+  const d = doc([{ id: 'oya', includes: ['ko'] },
+                 { id: 'ko', embedded_in: 'oya', url: undefined }])
+  assert.deepEqual(validate(d, TODAY), [])
+})
+
+test('pdf か sources があれば url を求めない', () => {
+  // kourei-7 / kourei-8 の型。計画ページ側の単独PDFが削除され、議案書PDFが唯一の出典
+  const d = doc([{ id: 'a', status: 'expired', period: { start: 2018, end: 2020 },
+                   url: undefined, sources: [{ label: '議案書', url: 'https://example.jp/g.pdf' }] }])
+  assert.deepEqual(validate(d, TODAY), [])
+})

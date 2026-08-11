@@ -9,6 +9,10 @@
  * 判定の根拠は docs/design/2026-08-12-zenkeikaku-bunrui.md の 7.2 / 7.3。
  */
 
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { parseYaml } from './yaml.mjs'
+
 export const ENUM = {
   level: ['national', 'prefectural', 'municipal', 'council'],
   status: ['current', 'expiring', 'expired', 'planned', 'unknown'],
@@ -130,6 +134,18 @@ export function validate(doc, today = new Date()) {
         add('error', id, `status: ${p.status} ですが、${end}年度末を過ぎています`)
       }
     }
+
+    const required = ['name', 'level', 'status']
+    if (p.level === 'municipal' || p.level === 'council') {
+      required.push('domain', 'category', 'tier')
+      if (p.status !== 'planned' && p.status !== 'unknown') required.push('period')
+      if (!p.embedded_in && !p.pdf && !p.sources) required.push('url')
+    }
+    for (const f of required) {
+      if (p[f] === undefined) {
+        add(p.todo ? 'warn' : 'error', id, `${f} がありません${p.todo ? '（todo あり）' : ''}`)
+      }
+    }
   }
 
   for (const [key, def] of Object.entries(categories)) {
@@ -139,4 +155,27 @@ export function validate(doc, today = new Date()) {
   }
 
   return found
+}
+
+// --- CLI --------------------------------------------------------------------
+// テストから import されたときに走らないよう、直接実行のときだけ動かす
+if (fileURLToPath(import.meta.url) === process.argv[1]) {
+  const args = process.argv.slice(2)
+  const getArg = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] ? args[i + 1] : d }
+  const doc = parseYaml(readFileSync(new URL('../data/plans.yml', import.meta.url), 'utf8'))
+  const findings = validate(doc, new Date(getArg('--today', new Date().toISOString().slice(0, 10))))
+  const errors = findings.filter((f) => f.severity === 'error')
+  const warns = findings.filter((f) => f.severity === 'warn')
+
+  if (args.includes('--json')) {
+    console.log(JSON.stringify({ plans: doc.plans?.length ?? 0, errors: errors.length, warns: warns.length, findings }, null, 2))
+  } else {
+    console.log(`計画 ${doc.plans?.length ?? 0} 件を検査しました\n`)
+    console.log(`## error（${errors.length}件）`)
+    for (const f of errors) console.log(`- ${f.id}: ${f.message}`)
+    console.log(`\n## warn（${warns.length}件）`)
+    for (const f of warns) console.log(`- ${f.id}: ${f.message}`)
+  }
+
+  if (args.includes('--fail-on-error') && errors.length > 0) process.exit(1)
 }
