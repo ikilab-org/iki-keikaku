@@ -50,10 +50,12 @@ categories: { ... }        # 小分類の定義（大分類にぶら下がる）
 ### 必須と条件付き必須
 
 `tools/validate.mjs` が検査する必須の条件です。**欠けていて `todo:` が無ければ error、`todo:` があれば warn**（未調査の宣言として扱う）になります。
+ただし `id` だけは例外で、他の計画から参照されるキーなので `todo:` があっても error です。
 
 | フィールド | 必須になる条件 |
 |---|---|
-| `id` `name` `level` `status` | 常に |
+| `id` | 常に。**`todo:` があっても error**（未調査の宣言では緩和されない） |
+| `name` `level` `status` | 常に |
 | `domain` `category` `tier` | `level` が `municipal` / `council` のとき。国・県の計画は文脈として持つだけなので任意 |
 | `period` | 上に同じ。ただし `status` が `planned` / `unknown` のものは免除 |
 | `url` | 上に同じ。ただし `embedded_in` があるもの、`pdf` か `sources` があるものは免除 |
