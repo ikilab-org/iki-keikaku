@@ -9,7 +9,7 @@ README「フェーズ2」の第1段階、**「`data/plans.yml` にすべての�
 
 ## 1. なぜ今これをやるか
 
-現在の `data/plans.yml` は33件（市21・社協1・県11）で、うち市の6件は名称とURLだけの枠です。
+現在の `data/plans.yml` は31件（市22・社協1・県8）で、うち5件は `status: unknown` の枠だけです。
 福祉分野は深く入っている一方、産業・教育・環境・インフラ・行財政は事実上ゼロです。
 
 このまま分野を足していくと、次の2点で行き詰まります。
@@ -17,7 +17,7 @@ README「フェーズ2」の第1段階、**「`data/plans.yml` にすべての�
 1. **分類が破綻する。** `category` は福祉を5つに割っている（`fukushi` `shougai` `kourei` `kodomo` `iryou` `kenkou`）
    のに対し、それ以外は `jyoui` と `other` の2つしかありません。全市に広げると新しい分野がすべて
    `other` に入ります
-2. **関係がデータに載っていない。** 県計画が11件入っているのに、**市計画から県計画へ張られた参照が1本もありません。**
+2. **関係がデータに載っていない。** 県計画が8件入っているのに、**市計画から県計画へ張られた参照が1本もありません。**
    「県計画との整合」は現在HTMLの本文にしか存在せず、機械的に辿れません
 
 ## 2. 決めたこと
@@ -309,7 +309,7 @@ conforms_to: [pref-chouju-9]
 2. `tier: sougou` と `tier: bumon`（体系図の骨格になる）
 3. その他
 
-### 6.4 既存33件の扱い
+### 6.4 既存31件の扱い
 
 新フィールド（`domain` / `statutory` / `tier` / `agency`）を遡って付与し、4.1 の `parent` 重複を解消し、
 市計画から県計画への `conforms_to` を張ります。**既存の記述内容は変更しません。**
@@ -377,12 +377,16 @@ URLの抽出と単純なスカラーの読み取りには足りますが、**参
 | `id` `name` `level` `status` | 常に |
 | `domain` `category` `tier` | `level` が `municipal` または `council`（県・国の計画は文脈として持つだけなので任意） |
 | `period` | 上記に同じ。ただし `status` が `planned` / `unknown` のものは免除 |
-| `url` | 上記に同じ。ただし **`embedded_in` があるものは免除**（一体策定の構成計画は親のページを共有し、単独のURLを持たない） |
+| `url` | 上記に同じ。ただし **`embedded_in` があるもの**（一体策定の構成計画は親のページを共有する）、および **`pdf` か `sources` で出典が確保されているもの**は免除 |
 | `agency` | 必須にしない（既定 `mayor`。書かれていれば enum を検査するのみ） |
 | `statutory` `laws` `department` | 第1段階では必須にしない（第2段階の項目） |
 
-`url` の免除は既存データで実際に効きます。`seinen-kouken` と `saihan-boushi` は
-`chiiki-fukushi-3` の計画書に包含されており、単独の掲載ページがありません。
+`url` の免除は既存データで実際に効きます。2つとも実在の型です。
+
+- `seinen-kouken` と `saihan-boushi` は `chiiki-fukushi-3` の計画書に包含されており、単独の掲載ページがない
+- `kourei-7` と `kourei-8` は**計画ページ側の単独PDFが削除済み**で、議案書PDF（`sources`）が唯一の出典。
+  `sources/POLICY.md` が中心事例として扱っている状態そのもの。ここに `todo:` を付けるのは
+  「未調査」という誤った宣言になる
 
 `--json` で機械可読に出します（既存2ツールと同じ流儀）。
 
@@ -396,7 +400,7 @@ URLの抽出と単純なスカラーの読み取りには足りますが、**参
 | ファイル | 変更 |
 |---|---|
 | `data/schema.md` | `domains` の新設、`statutory` / `tier` / `agency` / `conforms_to` の追加、`laws` の対応表への拡張、`parent` の意味の限定、`related` を無向と定義、`slot` の移動、未調査の表し方（6.1） |
-| `data/plans.yml` | 全計画の骨格投入、既存33件への新フィールド付与、`parent` 重複の解消、`conforms_to` の追加 |
+| `data/plans.yml` | 全計画の骨格投入、既存31件への新フィールド付与、`parent` 重複の解消、`conforms_to` の追加 |
 | `sources/POLICY.md` | 「計画を洗い出す手順」の節を追加（5章の内容と、巡回の記録）。組織一覧ページと例規集の食い違いの実例を追記 |
 | `tools/yaml.mjs` | 新規。依存なしの最小YAMLパーサ |
 | `tools/validate.mjs` | 新規。7.3 の検査 |
