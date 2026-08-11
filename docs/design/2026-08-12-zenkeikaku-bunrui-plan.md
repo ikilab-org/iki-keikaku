@@ -1442,10 +1442,10 @@ validate の error が 0 になった。"
 
 - [ ] **Step 2: 確認できたものに `conforms_to` を書く**
 
-書き方（`kourei-9` の例。`predecessors` の直前に置く）:
+書き方（`shougai-keikaku-3` の例。`related` の直前に置く）:
 
 ```yaml
-    conforms_to: [pref-chouju-9]
+    conforms_to: [pref-shougai-kihon-5]
 ```
 
 条文の根拠は `notes:` に1文で残します。例:
@@ -1453,7 +1453,7 @@ validate の error が 0 になった。"
 ```yaml
     notes: >-
       （既存の記述）
-      介護保険法117条により、都道府県介護保険事業支援計画との整合を求められる。
+      障害者基本法11条3項により、都道府県障害者計画を基本として策定することが求められる。
 ```
 
 - [ ] **Step 3: 条文の根拠が無かったものを `related` に入れる**
