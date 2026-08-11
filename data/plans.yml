@@ -19,7 +19,9 @@ plans:
     name: 第4次壱岐市総合計画
     short: 総合計画
     level: municipal
+    domain: sougou
     category: jyoui
+    tier: sougou
     status: current
     period: { start: 2025, end: 2029 }
     adopted: 2025-03
@@ -35,7 +37,9 @@ plans:
     name: 第3次壱岐市地域福祉計画
     short: 地域福祉計画
     level: municipal
+    domain: fukushi
     category: fukushi
+    tier: bumon
     status: expiring
     period: { start: 2022, end: 2026 }
     adopted: 2022-03
@@ -60,10 +64,11 @@ plans:
   - id: seinen-kouken
     name: 壱岐市成年後見制度利用促進基本計画
     level: municipal
+    domain: fukushi
     category: fukushi
+    tier: kobetsu
     status: expiring
     period: { start: 2022, end: 2026 }
-    parent: chiiki-fukushi-3
     embedded_in: chiiki-fukushi-3
     laws: [成年後見制度利用促進法14条1項]
     department: 市民福祉課 地域福祉班
@@ -74,10 +79,11 @@ plans:
   - id: saihan-boushi
     name: 壱岐市再犯防止推進計画
     level: municipal
+    domain: fukushi
     category: fukushi
+    tier: kobetsu
     status: expiring
     period: { start: 2022, end: 2026 }
-    parent: chiiki-fukushi-3
     embedded_in: chiiki-fukushi-3
     laws: [再犯防止推進法8条1項]
     department: 市民福祉課 地域福祉班
@@ -86,7 +92,9 @@ plans:
   - id: shougai-keikaku-3
     name: 第3次壱岐市障がい者計画
     level: municipal
+    domain: fukushi
     category: shougai
+    tier: bumon
     status: expiring
     period: { start: 2022, end: 2026 }
     adopted: 2022-03
@@ -101,7 +109,9 @@ plans:
   - id: shougai-fukushi-7
     name: 第7期壱岐市障がい福祉計画・第3期障がい児福祉計画
     level: municipal
+    domain: fukushi
     category: shougai
+    tier: kobetsu
     status: expiring
     period: { start: 2024, end: 2026 }
     adopted: 2024-03
@@ -117,7 +127,9 @@ plans:
     name: 壱岐市高齢者福祉計画・第9期介護保険事業計画
     short: 高齢者福祉・介護保険事業計画
     level: municipal
+    domain: fukushi
     category: kourei
+    tier: kobetsu
     status: expiring
     period: { start: 2024, end: 2026 }
     adopted: 2024-03
@@ -142,7 +154,9 @@ plans:
   - id: kourei-8
     name: 壱岐市高齢者福祉計画・第8期介護保険事業計画
     level: municipal
+    domain: fukushi
     category: kourei
+    tier: kobetsu
     status: expired
     period: { start: 2021, end: 2023 }
     adopted: 2021-03
@@ -155,7 +169,9 @@ plans:
   - id: kourei-7
     name: 壱岐市高齢者福祉計画・第7期介護保険事業計画
     level: municipal
+    domain: fukushi
     category: kourei
+    tier: kobetsu
     status: expired
     period: { start: 2018, end: 2020 }
     adopted: 2018-03
@@ -169,7 +185,9 @@ plans:
   - id: kodomo-1
     name: 壱岐市こども計画
     level: municipal
+    domain: fukushi
     category: kodomo
+    tier: bumon
     status: current
     period: { start: 2025, end: 2029 }
     adopted: 2025-03
@@ -183,7 +201,9 @@ plans:
   - id: data-health-3
     name: 第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画
     level: municipal
+    domain: fukushi
     category: iryou
+    tier: kobetsu
     status: current
     period: { start: 2024, end: 2029 }
     adopted: 2024-03
@@ -194,7 +214,9 @@ plans:
   - id: kenkou-iki21
     name: 壱岐市健康づくり計画「健康いき21」
     level: municipal
+    domain: fukushi
     category: kenkou
+    tier: bumon
     status: current
     period: { start: 2024, end: 2029 }
     adopted: 2024-03
@@ -206,7 +228,9 @@ plans:
   - id: jisatsu-2
     name: 第2次壱岐市いのち支える自殺対策計画
     level: municipal
+    domain: fukushi
     category: kenkou
+    tier: bumon
     status: current
     period: { start: 2023, end: 2027 }
     adopted: 2023-04
@@ -217,7 +241,9 @@ plans:
   - id: kaso-r8
     name: 壱岐市過疎地域持続的発展計画
     level: municipal
+    domain: sougou
     category: jyoui
+    tier: sougou
     status: current
     period: { start: 2026, end: 2030 }
     adopted: 2026-03
@@ -229,7 +255,9 @@ plans:
   - id: koutsuu
     name: 壱岐市地域公共交通計画
     level: municipal
-    category: jyoui
+    domain: kiban
+    category: koutsuu
+    tier: bumon
     status: current
     period: { start: 2026, end: 2031 }
     adopted: 2026-03
@@ -241,7 +269,9 @@ plans:
   - id: bousai
     name: 壱岐市地域防災計画
     level: municipal
-    category: jyoui
+    domain: bousai
+    category: bousai
+    tier: jisshi
     status: current
     period: { start: null, end: null }   # 随時修正
     laws: [災害対策基本法]
@@ -252,7 +282,9 @@ plans:
   - id: danjo-3
     name: 第3次壱岐市男女共同参画基本計画
     level: municipal
+    domain: sougou
     category: jyoui
+    tier: bumon
     status: planned
     period: { start: 2027, end: null }
     department: 地域共創課 企画市民協働班
@@ -264,7 +296,9 @@ plans:
   - id: keikan
     name: 壱岐市景観計画
     level: municipal
-    category: other
+    domain: kurashi
+    category: keikan
+    tier: bumon
     status: unknown
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/keikan/index.html
     todo: 計画期間・根拠法・所管課を確認する
@@ -272,7 +306,9 @@ plans:
   - id: kokyoshisetsu-sougou
     name: 壱岐市公共施設等総合管理計画
     level: municipal
+    domain: gyouzaisei
     category: other
+    tier: shisetsu
     status: unknown
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html
     department: 財政課
@@ -281,7 +317,9 @@ plans:
   - id: kokyoshisetsu-kobetsu
     name: 壱岐市公共施設個別施設計画
     level: municipal
+    domain: gyouzaisei
     category: other
+    tier: shisetsu
     status: unknown
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html
     department: 財政課
@@ -290,15 +328,20 @@ plans:
   - id: kodomo-dokusho-2
     name: 第2次壱岐市子ども読書活動推進計画
     level: municipal
-    category: kodomo
+    domain: kyouiku
+    category: dokusho
+    tier: bumon
     status: unknown
+    agency: education
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/6869.html
     todo: 計画期間・所管課を確認する
 
   - id: influenza
     name: 壱岐市新型インフルエンザ等対策行動計画
     level: municipal
+    domain: fukushi
     category: kenkou
+    tier: jisshi
     status: unknown
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/16148.html
     department: 健康増進課
@@ -310,7 +353,9 @@ plans:
   - id: csw-katsudou-2
     name: 壱岐市社会福祉協議会 第2期地域福祉活動計画
     level: council
+    domain: fukushi
     category: fukushi
+    tier: bumon
     status: planned
     period: { start: null, end: null }
     url: https://ikicity-csw.jp/
@@ -411,13 +456,30 @@ plans:
 
 # ---------------------------------------------------------------------------
 # 分野の定義（図表の色分けとグルーピングに使う）
+#
+# domain = 大分類（配色の単位）。category = 小分類。
+# 顔ぶれは骨格収集の完了時に確定させる（設計 3.2）。現時点は暫定。
 # ---------------------------------------------------------------------------
+domains:
+  fukushi:    { label: 健康・福祉, slot: 1 }
+  sougou:     { label: 市政総論, slot: 2 }
+  kyouiku:    { label: 教育・文化, slot: 3 }
+  sangyou:    { label: 産業・雇用, slot: 4 }
+  kurashi:    { label: 生活環境, slot: 5 }
+  bousai:     { label: 防災・安全, slot: 6 }
+  kiban:      { label: 都市基盤・交通, slot: 7 }
+  gyouzaisei: { label: 行財政運営, slot: 8 }
+
 categories:
-  fukushi: { label: 地域福祉（総論・横断）, slot: 1 }
-  shougai: { label: 障がい福祉, slot: 2 }
-  kourei:  { label: 高齢者・介護, slot: 3 }
-  kodomo:  { label: こども・子育て, slot: 4 }
-  iryou:   { label: 医療保険・保健事業, slot: 5 }
-  kenkou:  { label: 健康づくり・自殺対策, slot: 6 }
-  jyoui:   { label: 上位・関連行政計画, slot: 7 }
-  other:   { label: その他（未整理）, slot: 0 }
+  fukushi: { label: 地域福祉（総論・横断）, domain: fukushi }
+  shougai: { label: 障がい福祉, domain: fukushi }
+  kourei:  { label: 高齢者・介護, domain: fukushi }
+  kodomo:  { label: こども・子育て, domain: fukushi }
+  iryou:   { label: 医療保険・保健事業, domain: fukushi }
+  kenkou:  { label: 健康づくり・自殺対策, domain: fukushi }
+  jyoui:   { label: 上位・関連行政計画, domain: sougou }
+  other:   { label: その他（未整理）, domain: gyouzaisei }
+  koutsuu: { label: 公共交通, domain: kiban }
+  bousai:  { label: 防災・危機管理, domain: bousai }
+  keikan:  { label: 景観・都市計画, domain: kurashi }
+  dokusho: { label: 読書・生涯学習, domain: kyouiku }
