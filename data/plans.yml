@@ -382,15 +382,18 @@ plans:
     status: current
     period: { start: 2024, end: 2035 }
     adopted: 2024-03
-    url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/index.html
+    url: https://www.pref.nagasaki.jp/doc/page-661413.html
     pdf: https://www.pref.nagasaki.jp/uploads/2024/08/1722827687.pdf
     sources:
-      - label: 第3次の個別ページ
-        url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html
+      - label: 健康ながさき21（一覧）
+        url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kekodukuri/kekodukuri/kenkonagasaki21/
         note: >-
-          2026-08-11 の自動チェックで 404。検索エンジンには残存しているため、
-          移設か bot 遮断かの切り分けが必要（sources/POLICY.md「誤検知の扱い」）。
-          一覧ページと本文PDFを主出典に切り替え済み。
+          2026-08-11 移設を確認。県サイトの分野別カテゴリが kenkodukuri →
+          kekodukuri/kekodukuri に変わり、記事は /doc/page-661413.html へ移った。
+          旧一覧 /bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/index.html は
+          200 を返すが中身が空（削除と同じ扱い）、旧個別ページ
+          /bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html は 404。
+          bot 遮断による誤検知ではなく、ブラウザ相当の UA でも同じ結果。
 
   - id: pref-jisatsu-4
     name: 第4期長崎県自殺総合対策5カ年計画

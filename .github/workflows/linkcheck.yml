@@ -53,7 +53,7 @@ jobs:
               '',
               '| 計画ID | URL | 状態 |',
               '|---|---|---|',
-              ...dead.map(d => `| \`${d.plan}\` | ${d.url} | ${d.status || d.error} |`),
+              ...dead.map(d => `| \`${d.plan}\` | ${d.url} | ${d.error || d.status} |`),
               '',
               '## 対応手順',
               '',

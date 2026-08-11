@@ -43,7 +43,8 @@
 | 障害者基本計画（第5次） | `/doc/page-658128.html` | 中 | 2026-08-11 |
 | 第7期障害福祉計画・第3期障害児福祉計画 | `/doc/page-659919.html` | 中 | 2026-08-11 |
 | 子育て条例行動計画 | `/bunrui/hukushi-hoken/kekkon-nishin-shusan-kosodate/jorei-keikaku-gaiyo/jorei-keikaku/kosodatekeikaku27-31/` | 中 | 2026-08-11 |
-| 健康ながさき21（一覧） | `/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/index.html` | 中 | 2026-08-11 |
+| 健康ながさき21（第3次）個別ページ | `/doc/page-661413.html` | 中 | 2026-08-11 |
+| 健康ながさき21（一覧） | `/bunrui/hukushi-hoken/kekodukuri/kekodukuri/kenkonagasaki21/` | 中 | 2026-08-11 |
 | 第4期自殺総合対策5カ年計画 | `/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/` | 中 | 2026-08-11 |
 | 第二次再犯防止推進計画 | `/bunrui/anzen-anshin/anzen-anshinmachidukuri/anshin-anzenmachidukurijigyo/saihan/preventionplan/` | 中 | 2026-08-11 |
 | 老人保健福祉関係基礎資料（令和7年6月版） | `/uploads/2025/06/1749604344.pdf` | 高 | 2026-08-10 |
@@ -67,4 +68,5 @@
 | 第10期介護保険事業計画 策定業務 入札公告 | `/jigyousha/nyuusatubosyuitiran/15871.html` | 2026-08-11 | 同上 |
 | 第7期介護保険事業計画（単独PDF） | `/material/files/group/38/ikisi_dai7kizigyoukeikaku.pdf` | 2026-08-10 | 議案書PDF（平成30年3月会議） |
 | 第8期介護保険事業計画（単独PDF） | `/material/files/group/38/5030421-1.pdf` | 2026-08-10 | 議案書PDF（令和3年3月会議） |
-| 健康ながさき21（第3次）個別ページ | `/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html` | 2026-08-11 | 一覧ページ、本文PDF。**要手動確認**（bot遮断の可能性） |
+| 健康ながさき21（第3次）個別ページ | `/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html` | 2026-08-11 | 移設先 `/doc/page-661413.html`（記事IDは同じ） |
+| 健康ながさき21（一覧・旧カテゴリ） | `/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/index.html` | 2026-08-11 | 移設先 `/bunrui/hukushi-hoken/kekodukuri/kekodukuri/kenkonagasaki21/`。旧URLは200を返すが本文が空 |

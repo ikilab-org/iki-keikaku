@@ -4,6 +4,8 @@
  *
  * 行政サイトの募集告示・入札公告は掲載期間終了後に削除される。
  * このスクリプトを週次で回し、失効したURLを検知して Issue を立てる。
+ * 404 だけでなく、「200 を返すが本文が空」のページも失効として扱う
+ * （カテゴリ移設後の旧URLがこの型になる）。
  * （sources/POLICY.md「出典URLの寿命管理」の自動化部分）
  *
  * 使い方:
@@ -49,11 +51,22 @@ async function check({ plan, url }) {
     if (res.status === 405 || res.status === 403 || res.status === 501) {
       res = await fetch(url, { method: 'GET', redirect: 'follow', signal: ctl.signal })
     }
+
+    // ステータスコードだけでは足りない。長崎県サイトではカテゴリの移設後、
+    // 旧URLが 200 を返しながら中身が空のフラグメントになる（2026-08-11、Issue #1）。
+    // HTML なら本文を取得して、ページとして成立しているかを見る。
+    let empty
+    if (res.ok && (res.headers.get('content-type') || '').includes('html')) {
+      const body = await (await fetch(url, { method: 'GET', redirect: 'follow', signal: ctl.signal })).text()
+      if (!/<title/i.test(body)) empty = `${body.length}バイトの空ページ（200だが本文なし。移設・削除の可能性）`
+    }
+
     clearTimeout(timer)
     return {
       plan, url,
       status: res.status,
-      ok: res.ok,
+      ok: res.ok && !empty,
+      error: empty,
       finalUrl: res.url !== url ? res.url : undefined,
       ms: Date.now() - started,
     }
@@ -82,7 +95,7 @@ async function run() {
   } else {
     console.log(`確認 ${results.length} 件 / 失効 ${dead.length} 件\n`)
     for (const r of results) {
-      const mark = r.ok ? 'OK  ' : 'DEAD'
+      const mark = r.ok ? 'OK  ' : r.status === 200 ? '空   ' : 'DEAD'
       const extra = r.error ? `  (${r.error})` : r.finalUrl ? `  -> ${r.finalUrl}` : ''
       console.log(`${mark} ${String(r.status).padStart(3)} [${r.plan}] ${r.url}${extra}`)
     }
