@@ -50,7 +50,7 @@ plans:
     department: 市民福祉課 地域福祉班
     parent: sougou-4
     includes: [seinen-kouken, saihan-boushi]
-    related: [kourei-9, shougai-keikaku-3, kodomo-1, csw-katsudou-2]
+    related: [kourei-9, shougai-keikaku-3, kodomo-1, csw-katsudou-2, pref-fukushi-hoken-6]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html
     successor:
       name: 第4次壱岐市地域福祉計画
@@ -87,6 +87,7 @@ plans:
     embedded_in: chiiki-fukushi-3
     laws: [再犯防止推進法8条1項]
     department: 市民福祉課 地域福祉班
+    related: [pref-saihan-2]
     notes: 地域福祉計画に包含。
 
   - id: shougai-keikaku-3
@@ -100,11 +101,15 @@ plans:
     adopted: 2022-03
     laws: [障害者基本法11条3項]
     department: 市民福祉課 地域福祉班
+    conforms_to: [pref-shougai-kihon-5]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/10383.html
     successor:
       name: 第4次壱岐市障がい者計画
       status: planned
       public_comment: { start: 2027-01, end: 2027-02 }
+    notes: >-
+      障害者基本法11条3項により、市町村障害者計画は障害者基本計画及び都道府県障害者計画を
+      基本として策定しなければならない。
 
   - id: shougai-fukushi-7
     name: 第7期壱岐市障がい福祉計画・第3期障がい児福祉計画
@@ -117,6 +122,7 @@ plans:
     adopted: 2024-03
     laws: [障害者総合支援法88条1項, 児童福祉法33条の20]
     department: 市民福祉課 地域福祉班
+    related: [pref-shougai-fukushi-7]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/12605.html
     successor:
       name: 第8期障がい福祉計画・第4期障がい児福祉計画
@@ -140,6 +146,7 @@ plans:
     sources:
       - label: 議案書収録版（令和6年2月第2回会議 議案第15号）
         url: https://www.city.iki.nagasaki.jp/material/files/group/3/6nen2gatu2gian5_15.pdf
+    related: [pref-chouju-9]
     predecessors: [kourei-8, kourei-7]
     successor:
       name: 壱岐市高齢者福祉計画・第10期介護保険事業計画
@@ -193,6 +200,7 @@ plans:
     adopted: 2025-03
     laws: [こども基本法10条2項ほか5法]
     department: 子育て支援課
+    related: [pref-kosodate-jourei]
     url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html
     notes: >-
       子ども・子育て支援事業計画／次世代育成支援／こどもの貧困対策／子ども・若者計画を一体化。
@@ -222,6 +230,7 @@ plans:
     adopted: 2024-03
     laws: [健康増進法8条2項, 食育基本法18条, 長崎県歯・口腔の健康づくり推進条例9条]
     department: 健康増進課
+    related: [pref-kenkou-21-3]
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/kenkoufukushi/12683.html
     notes: 健康増進計画・歯科口腔保健推進計画・食育推進計画を一体化。
 
@@ -236,6 +245,7 @@ plans:
     adopted: 2023-04
     laws: [自殺対策基本法13条2項]
     department: 健康増進課
+    related: [pref-jisatsu-4]
     url: https://www.city.iki.nagasaki.jp/kenkou/kenkoujigyou/6001.html
 
   - id: kaso-r8
