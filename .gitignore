@@ -1,0 +1,8 @@
+# OGP画像の生成（tools/og/build.mjs）にだけ playwright を使う。
+# 必要になったときにローカルで入れるものなので、リポジトリでは追跡しない。
+#   npm i -D playwright && npx playwright install chromium
+node_modules/
+package.json
+package-lock.json
+
+.DS_Store
