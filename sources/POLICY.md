@@ -66,7 +66,7 @@
 | 対象機関 | 起点となる規程 |
 |---|---|
 | 市長部局 | [行政組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000018.html) 第3条。総務部・地域振興部・市民部・保健環境部・農林水産部・産業推進部・建設部（**上下水道課は建設部**） |
-| 教育委員会 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/reiki/reiki_honbun/r014RG00000190.html) |
+| 教育委員会 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000190.html) |
 | 消防・農業委員会・議会・選挙管理委員会・監査委員 | 各事務局の組織規程 |
 
 **病院事業は対象外です。** 壱岐市民病院は2015年に長崎県病院企業団へ移管され、

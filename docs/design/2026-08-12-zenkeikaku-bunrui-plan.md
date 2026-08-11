@@ -1586,7 +1586,7 @@ effort で混在する。statutory は最も強い義務を採る集約値。"
 | 対象機関 | 起点となる規程 |
 |---|---|
 | 市長部局 | [行政組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000018.html) 第3条。総務部・地域振興部・市民部・保健環境部・農林水産部・産業推進部・建設部（**上下水道課は建設部**） |
-| 教育委員会 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/reiki/reiki_honbun/r014RG00000190.html) |
+| 教育委員会 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000190.html) |
 | 消防・農業委員会・議会・選挙管理委員会・監査委員 | 各事務局の組織規程 |
 
 **病院事業は対象外です。** 壱岐市民病院は2015年に長崎県病院企業団へ移管され、
@@ -1837,7 +1837,7 @@ git commit -m "<各タスクが指定するメッセージ>"
 |---|---|
 | 対象組織 | 教育委員会事務局 |
 | 課 | 教育総務課・学校教育課・社会教育課 |
-| 起点となる規程 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/reiki/reiki_honbun/r014RG00000190.html) |
+| 起点となる規程 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000190.html) |
 | 想定される計画 | 教育振興基本計画（教育総務課）、学校施設長寿命化計画・学校再編の計画（学校教育課）、子ども読書活動推進計画・文化財保存活用地域計画・生涯学習推進計画（社会教育課） |
 | 既存エントリとの関係 | `kodomo-dokusho-2` は投入済み（Task 7 で `agency: education` を付与済み） |
 | コミットメッセージ | `教育委員会を巡回し、所管の計画を追加` |

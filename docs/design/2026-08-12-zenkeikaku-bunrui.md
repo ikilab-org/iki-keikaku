@@ -208,7 +208,8 @@ Task 8 で8件の条文を実際に確認したところ、次が分かってい
 `conforms_to` を書くときは、必ず条文の文言を確認してください。
 
 ```yaml
-conforms_to: [pref-chouju-9]
+# shougai-keikaku-3（第3次壱岐市障がい者計画）の例
+conforms_to: [pref-shougai-kihon-5]
 ```
 
 ### 4.3 関係の一覧（確定形）
@@ -263,7 +264,7 @@ conforms_to: [pref-chouju-9]
 | 対象機関 | 起点となる規程 | 備考 |
 |---|---|---|
 | 市長部局 | [行政組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000018.html) 第3条 | 総務部・地域振興部・市民部・保健環境部・農林水産部・産業推進部・建設部。**上下水道課は建設部に含まれる** |
-| 教育委員会 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/reiki/reiki_honbun/r014RG00000190.html) | 教育総務課・学校教育課・社会教育課 |
+| 教育委員会 | [教育委員会事務局組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000190.html) | 教育総務課・学校教育課・社会教育課 |
 | 消防 | 消防本部の組織規程 | 例規集で規程名を確定させてから巡回する |
 | 農業委員会 | 農業委員会の組織規程 | 同上 |
 | 議会 | 議会事務局の組織規程 | 同上 |
