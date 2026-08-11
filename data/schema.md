@@ -12,7 +12,8 @@ meta:
   era_base: 2018
 
 plans: [ ... ]             # 計画の配列
-categories: { ... }        # 分野の定義（色分け・グルーピング用）
+domains: { ... }           # 大分類の定義（配色の単位）
+categories: { ... }        # 小分類の定義（大分類にぶら下がる）
 ```
 
 ## plans[] の各フィールド
@@ -23,21 +24,21 @@ categories: { ... }        # 分野の定義（色分け・グルーピング用
 | `name` | ○ | string | 正式名称 |
 | `short` | | string | 図表用の短縮名 |
 | `level` | ○ | enum | `national` / `prefectural` / `municipal` / `council`（社協） |
-| `category` | ○ | string | `categories` のキー |
-| `domain` | ○ | string | `domains` のキー。大分類（[下記](#domain-と-category)） |
+| `category` | △ | string | `categories` のキー |
+| `domain` | △ | string | `domains` のキー。大分類（[下記](#domain-と-category)） |
 | `status` | ○ | enum | `current` 現行 / `expiring` 期間中だが満了が近い / `expired` 満了済み（履歴として保持） / `planned` 策定予定 / `unknown` 未調査 |
 | `period` | | object | `{ start: 年度, end: 年度 }`。随時修正の計画は `null` |
 | `adopted` | | string | 策定年月（`2024-03`） |
 | `laws` | | string[] \| object[] | 根拠法。条項まで書く。`{ law, obligation }` で義務の別も持てる（[下記](#laws-と-statutory)） |
 | `department` | | string | 所管課・班。根拠は行政組織規則（[下記](#department)） |
 | `statutory` | | enum | 法定性。`mandatory` / `effort` / `request` / `voluntary`（[下記](#laws-と-statutory)） |
-| `tier` | ○ | enum | 計画の階層。`sougou` / `bumon` / `kobetsu` / `jisshi` / `shisetsu`（[下記](#tier)） |
+| `tier` | △ | enum | 計画の階層。`sougou` / `bumon` / `kobetsu` / `jisshi` / `shisetsu`（[下記](#tier)） |
 | `agency` | | enum | 実施機関。省略時は `mayor`（[下記](#agency)） |
-| `parent` | | id | 上位計画のID |
-| `includes` | | id[] | この計画に包含されている法定計画のID |
-| `embedded_in` | | id | 自身が包含されている親計画のID（`includes` の逆） |
-| `conforms_to` | | id[] | 法令上、整合・調和が求められる国・県計画のID |
-| `related` | | id[] | 連携する計画のID。**無向**なので片側にだけ書く |
+| `parent` | | id | 上位計画のID（[下記](#関係のフィールド)） |
+| `includes` | | id[] | この計画に包含されている法定計画のID（[下記](#関係のフィールド)） |
+| `embedded_in` | | id | 自身が包含されている親計画のID（`includes` の逆）（[下記](#関係のフィールド)） |
+| `conforms_to` | | id[] | 法令上、整合・調和が求められる国・県計画のID（[下記](#関係のフィールド)） |
+| `related` | | id[] | 連携する計画のID。**無向**なので片側にだけ書く（[下記](#関係のフィールド)） |
 | `predecessors` | | id[] | 前期計画のID（新しい順） |
 | `successor` | | object | 次期計画。`name` / `status` / `period` / `public_comment` |
 | `url` | | string | 主となる掲載ページ |
@@ -45,6 +46,20 @@ categories: { ... }        # 分野の定義（色分け・グルーピング用
 | `sources` | | object[] | 補助的な出典。`{ label, url, note }` |
 | `notes` | | string | 内容の要点、注意事項 |
 | `todo` | | string | 未調査の内容。書いてあるものは `tools/expiring.mjs` が一覧に出す |
+
+### 必須と条件付き必須
+
+`tools/validate.mjs` が検査する必須の条件です。**欠けていて `todo:` が無ければ error、`todo:` があれば warn**（未調査の宣言として扱う）になります。
+
+| フィールド | 必須になる条件 |
+|---|---|
+| `id` `name` `level` `status` | 常に |
+| `domain` `category` `tier` | `level` が `municipal` / `council` のとき。国・県の計画は文脈として持つだけなので任意 |
+| `period` | 上に同じ。ただし `status` が `planned` / `unknown` のものは免除 |
+| `url` | 上に同じ。ただし `embedded_in` があるもの、`pdf` か `sources` があるものは免除 |
+| `agency` | 必須にしない（省略時は `mayor`） |
+
+`url` の免除には理由があります。`embedded_in` があるものは一体策定の構成計画で、親の計画書に含まれるため単独の掲載ページを持ちません。`pdf` か `sources` があるものは、**計画ページ側の単独PDFが削除され、議会の議案書PDFだけが出典として残っている**状態です。どちらも「未調査」ではないので、`todo:` を付けるのは誤りです。
 
 ### domain と category
 
@@ -88,7 +103,15 @@ statutory: mandatory
 ```
 
 `laws` は文字列のままでも書けます（`- 介護保険法117条`）。その場合 `obligation` は未判定として扱い、
-集約の検査対象外になります。
+集約の検査対象外になります。文字列とオブジェクトを同じ配列内に混在させることもできます。
+
+一体策定された計画の書き方は2通りあります。
+
+- **構成計画が独自のページや前身計画を持つ場合** … `includes` / `embedded_in` で個別のエントリを立て、
+  それぞれに `statutory` を持たせる
+- **個別エントリを立てるほどでない場合** … 上の `laws` の対応表で受ける
+
+両方を書いた場合、**個別エントリ側の `statutory` が詳細、親の `statutory` が集約値**になります。
 
 ### tier
 
