@@ -24,15 +24,20 @@ categories: { ... }        # 分野の定義（色分け・グルーピング用
 | `short` | | string | 図表用の短縮名 |
 | `level` | ○ | enum | `national` / `prefectural` / `municipal` / `council`（社協） |
 | `category` | ○ | string | `categories` のキー |
+| `domain` | ○ | string | `domains` のキー。大分類（[下記](#domain-と-category)） |
 | `status` | ○ | enum | `current` 現行 / `expiring` 期間中だが満了が近い / `expired` 満了済み（履歴として保持） / `planned` 策定予定 / `unknown` 未調査 |
 | `period` | | object | `{ start: 年度, end: 年度 }`。随時修正の計画は `null` |
 | `adopted` | | string | 策定年月（`2024-03`） |
-| `laws` | | string[] | 根拠法。条項まで書く |
+| `laws` | | string[] \| object[] | 根拠法。条項まで書く。`{ law, obligation }` で義務の別も持てる（[下記](#laws-と-statutory)） |
 | `department` | | string | 所管課・班。根拠は行政組織規則（[下記](#department)） |
+| `statutory` | | enum | 法定性。`mandatory` / `effort` / `request` / `voluntary`（[下記](#laws-と-statutory)） |
+| `tier` | ○ | enum | 計画の階層。`sougou` / `bumon` / `kobetsu` / `jisshi` / `shisetsu`（[下記](#tier)） |
+| `agency` | | enum | 実施機関。省略時は `mayor`（[下記](#agency)） |
 | `parent` | | id | 上位計画のID |
 | `includes` | | id[] | この計画に包含されている法定計画のID |
 | `embedded_in` | | id | 自身が包含されている親計画のID（`includes` の逆） |
-| `related` | | id[] | 整合・連携する計画のID |
+| `conforms_to` | | id[] | 法令上、整合・調和が求められる国・県計画のID |
+| `related` | | id[] | 連携する計画のID。**無向**なので片側にだけ書く |
 | `predecessors` | | id[] | 前期計画のID（新しい順） |
 | `successor` | | object | 次期計画。`name` / `status` / `period` / `public_comment` |
 | `url` | | string | 主となる掲載ページ |
@@ -40,6 +45,106 @@ categories: { ... }        # 分野の定義（色分け・グルーピング用
 | `sources` | | object[] | 補助的な出典。`{ label, url, note }` |
 | `notes` | | string | 内容の要点、注意事項 |
 | `todo` | | string | 未調査の内容。書いてあるものは `tools/expiring.mjs` が一覧に出す |
+
+### domain と category
+
+分野は2階層です。`domain` が大分類（配色の単位）、`category` が小分類。
+
+```yaml
+domains:
+  fukushi: { label: 健康・福祉, slot: 1 }
+
+categories:
+  kourei: { label: 高齢者・介護, domain: fukushi }
+```
+
+`slot`（配色の割り当て番号）は `domains` が持ちます。`categories` には持たせません。
+小分類は20前後になる見込みで、識別可能な色を割り当てられないためです。
+
+計画の `domain` は、その `category` が属する `domain` と一致させます。食い違うと `validate` が error にします。
+
+### laws と statutory
+
+`statutory` は「市がこの計画を省略できるか」を表します。
+
+| 値 | 意味 | 条文の型 |
+|---|---|---|
+| `mandatory` | 法定義務 | 「定めるものとする」「策定しなければならない」 |
+| `effort` | 努力義務 | 「定めるよう努めるものとする」 |
+| `request` | 国の要請・通知 | 法律ではなく通知・指針で策定を求められる |
+| `voluntary` | 任意 | 法令上の根拠なし |
+
+**判定は条文の文言を確認してから書きます。** 確認前は書かず、`todo:` に残します。
+
+一体策定された計画は、根拠法ごとに義務の強さが違うことがあります。その場合は
+`laws` に義務の別を持たせ、`statutory` には**最も強い義務**を書きます
+（`mandatory` > `effort` > `request` > `voluntary`）。
+
+```yaml
+laws:
+  - { law: 子ども・子育て支援法61条1項, obligation: mandatory }
+  - { law: こども基本法10条2項, obligation: effort }
+statutory: mandatory
+```
+
+`laws` は文字列のままでも書けます（`- 介護保険法117条`）。その場合 `obligation` は未判定として扱い、
+集約の検査対象外になります。
+
+### tier
+
+体系図の縦軸です。
+
+| 値 | 意味 | 例 |
+|---|---|---|
+| `sougou` | 市全体を対象とする総合的な計画 | 総合計画、過疎地域持続的発展計画 |
+| `bumon` | 部門別の基本計画 | 地域福祉計画、障がい者計画、健康いき21 |
+| `kobetsu` | 個別計画（法定の事業計画） | 介護保険事業計画、障がい福祉計画 |
+| `jisshi` | 実施計画・行動計画 | 新型インフルエンザ等対策行動計画、国民保護計画 |
+| `shisetsu` | 施設・財産の管理計画 | 公共施設等総合管理計画、個別施設計画 |
+
+### agency
+
+`level: municipal` の計画にのみ付けます。社会福祉協議会は `level: council` で区別します。
+
+| 値 | 意味 | 組織の根拠 |
+|---|---|---|
+| `mayor` | 市長部局（**省略時の既定**） | 行政組織規則 |
+| `education` | 教育委員会 | 教育委員会事務局組織規則 |
+| `fire` | 消防本部 | 消防本部の組織規程 |
+| `agri` | 農業委員会 | 農業委員会の組織規程 |
+| `assembly` | 議会 | 議会事務局の組織規程 |
+| `election` | 選挙管理委員会 | 選挙管理委員会事務局の組織規程 |
+| `audit` | 監査委員 | 監査委員事務局の組織規程 |
+
+**省略は常に「市長部局である」という主張です。**「実施機関が未確定」の意味では使いません。
+市長部局以外が見つかったら、必ずこの表に値を追加してから使います。
+
+### 関係のフィールド
+
+| フィールド | 向き | 意味 |
+|---|---|---|
+| `parent` | 下→上 | 位置づけ上の上位計画。原則 `sougou-4`。**包含には使わない** |
+| `includes` | 親→子 | 一体策定により包含している法定計画 |
+| `embedded_in` | 子→親 | `includes` の逆。**両方に書く** |
+| `conforms_to` | 市→県・国 | 法令上、整合・調和が求められる計画 |
+| `related` | 無向 | 上記以外の連携。**片側にだけ書く** |
+| `predecessors` | 現→過去 | 前期計画（新しい順） |
+| `successor` | 現→次期 | 次期計画（オブジェクト。idではない） |
+
+`related` を無向と決めているのは、片側記載が相互関係か一方向参照かを機械的に区別できなくなるのを
+避けるためです。向きのある関係は `parent` / `includes` / `conforms_to` が担当します。
+
+### 未調査の表し方
+
+| 表すもの | 書き方 |
+|---|---|
+| フィールドが未調査 | **そのフィールドを書かない（欠落）＋ `todo:` に内容を書く** |
+| 計画全体が未調査 | `status: unknown`（`todo:` も併記） |
+
+**空文字や `null` で未調査を表しません。** `null` は「調査した結果、値が存在しない」の意味です
+（随時修正の計画の `period: { start: null, end: null }` など）。
+
+`agency` だけは既定値を持つため、欠落が未調査を表せません（欠落＝`mayor`）。
 
 ### department
 
@@ -90,25 +195,38 @@ sources:
     note: 認定者数推計は PDF 107ページ・144ページ（計画本体 p.12・p.49）
 ```
 
-## categories
+## domains と categories
 
 ```yaml
+domains:
+  fukushi: { label: 健康・福祉, slot: 1 }
+
 categories:
-  fukushi: { label: 地域福祉（総論・横断）, slot: 1 }
+  fukushi: { label: 地域福祉（総論・横断）, domain: fukushi }
 ```
 
 `slot` は色の割り当て番号です。データ可視化の配色は、色覚特性を考慮して検証した並び順に依存するため、
-**slot の番号は勝手に入れ替えないでください**（1→2→3… の隣接ペアで検証済みの並びになっています）。
-分野を増やす場合は、既存の slot を動かさずに末尾へ足すか、配色の再検証を行ってください。
+**slot の番号は勝手に入れ替えないでください**。分野を増やす場合は、既存の slot を動かさずに末尾へ足すか、
+配色の再検証を行ってください。
+
+`slot` は `domains` にだけ持たせます。`categories` は20前後になる見込みで、
+識別可能な色を割り当てられないためです。
 
 ## バリデーション
 
-現時点で厳密なスキーマ検証はしていません。追加・変更したら次を流してください。
+追加・変更したら次を流してください。
 
 ```bash
-node tools/linkcheck.mjs   # URLが生きているか
-node tools/expiring.mjs    # 期間の入力ミスで変な年度が出ていないか
+node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格の検査
+node tools/linkcheck.mjs                  # URLが生きているか
+node tools/expiring.mjs                   # 期間の入力ミスで変な年度が出ていないか
+node --test                               # ツール自身の単体テスト（リポジトリ直下で実行）
 ```
+
+`validate.mjs` は次の2段階で報告します。
+
+- **error** … 整合性の破れ、または骨格の必須項目が `todo:` なしで欠落。`--fail-on-error` で exit 1
+- **warn** … 必須項目が欠落しているが `todo:` がある（明示的な猶予）、または冗長な記述
 
 ## フェーズ2に向けて
 
