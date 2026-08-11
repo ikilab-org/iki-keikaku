@@ -33,6 +33,24 @@ plans:
       市の最上位計画。地方版総合戦略を取り込んだ一体型。合言葉「一緒に前へ、壱岐新時代へ。」
       福祉は基本目標2、子育ては基本目標3。
 
+  - id: sdgs-mirai-toshi
+    name: 第3期壱岐市SDGs未来都市計画
+    short: SDGs未来都市計画
+    level: municipal
+    domain: sougou
+    category: jyoui
+    tier: sougou
+    status: expiring
+    period: { start: 2024, end: 2026 }
+    adopted: 2024-03
+    statutory: voluntary
+    department: 一緒に推進課 共創推進班
+    url: https://www.city.iki.nagasaki.jp/soshiki/eng/kyousou/sdgs/SDGs/7558.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/40/ikicitySDGsplan3rd.pdf
+    notes: >-
+      平成30(2018)年6月にSDGs未来都市に選定。第1期(2018～2020)・第2期(2021～2023)に続く第3期。
+      内閣府の選定制度に基づく計画で、個別法の根拠なし。
+
   - id: chiiki-fukushi-3
     name: 第3次壱岐市地域福祉計画
     short: 地域福祉計画
@@ -307,6 +325,44 @@ plans:
     url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/bosai/bousaikaigi/chiiki/13851.html
     notes: 避難行動要支援者名簿・個別避難計画・福祉避難所を規定。
 
+  - id: kokumin-hogo
+    name: 壱岐市国民保護計画
+    level: municipal
+    domain: bousai
+    category: bousai
+    tier: jisshi
+    status: current
+    department: 総務課 危機管理班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/hoka_keikaku/1021.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/2/zenpen.pdf
+    notes: 国民保護避難実施（マニュアル）もあわせて策定。
+    todo: 計画期間・根拠条文・法定性を確認する
+
+  - id: kokudo-kyoujinka
+    name: 壱岐市国土強靭化地域計画
+    level: municipal
+    domain: bousai
+    category: bousai
+    tier: bumon
+    status: current
+    laws: [国土強靭化基本法13条]
+    department: 総務課 危機管理班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/hoka_keikaku/14317.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/kokudokyoujinnkachiikikeikaku.pdf
+    todo: 計画期間・法定性（13条の文言）を確認する
+
+  - id: koutsuu-anzen-11
+    name: 第11次壱岐市交通安全計画
+    level: municipal
+    domain: bousai
+    category: bousai
+    tier: jisshi
+    status: unknown
+    laws: [交通安全対策基本法26条1項]
+    department: 総務課 危機管理班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/kotsu/3151.html
+    todo: 計画期間・法定性・最新版か（第12次の有無）を確認する
+
   - id: danjo-3
     name: 第3次壱岐市男女共同参画基本計画
     level: municipal
@@ -337,10 +393,13 @@ plans:
     domain: gyouzaisei
     category: other
     tier: shisetsu
-    status: unknown
+    status: current
+    adopted: 2022-03
+    statutory: request
+    department: 財政課 契約管財班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html
-    department: 財政課
-    todo: 計画期間・所管課を確認する
+    notes: 平成26年4月の総務省要請に基づき策定。令和4年3月に改訂。
+    todo: 計画期間を確認する
 
   - id: kokyoshisetsu-kobetsu
     name: 壱岐市公共施設個別施設計画
@@ -348,10 +407,48 @@ plans:
     domain: gyouzaisei
     category: other
     tier: shisetsu
-    status: unknown
+    status: current
+    adopted: 2022-03
+    statutory: request
+    department: 財政課 契約管財班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html
+    notes: 平成29年3月策定、令和4年3月に内容を改訂。公共施設等総合管理計画の基本方針に基づき、施設ごとの方向性・実施事項を定める。
+    todo: 計画期間を確認する
+
+  - id: zaisei-kiban
+    name: 壱岐市財政基盤確立計画
+    level: municipal
+    domain: gyouzaisei
+    category: gyoukaku
+    tier: bumon
+    status: expired
+    period: { start: 2022, end: 2024 }
+    statutory: voluntary
+    department: 財政課 財政班
+    url: https://www.city.iki.nagasaki.jp/soshiki/zaiseika/zaisei_jokyo/10021.html
+    notes: >-
+      令和3年度を「財政基盤確立推進元年」と位置づけ、令和4～6年度の3年間を計画期間として策定。
+      以後は毎年度改定の「壱岐市中期財政見通し」に内容を反映する運用に移行しており、後継の同名計画は確認できず。
+
+  - id: gyozaisei-kaikaku
+    name: 壱岐市行財政改革大綱・実施計画
+    short: 行財政改革大綱
+    level: municipal
+    domain: gyouzaisei
+    category: gyoukaku
+    tier: bumon
+    status: current
+    statutory: voluntary
     department: 財政課
-    todo: 計画期間・所管課を確認する
+    url: https://www.city.iki.nagasaki.jp/soshiki/zaiseika/gyosei/taikoujisikeikaku/6920.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/46/sin_siyakusyokakeikaku_taikou7.pdf
+    notes: >-
+      現行は「シン市役所化計画（第4次壱岐市行財政改革大綱）」（令和7年策定）。第4次は実施計画に相当する
+      内容を計画書本体に統合し、別冊の実施計画は作成していない。過去に第1次（平成16年策定）・
+      第2次（平成28年策定）・第3次（令和2年策定）を策定。
+    todo: >-
+      計画期間・所管班を確認する（掲載ページの問い合わせ先は「財政課 経営戦略班」だが、行政組織規則
+      （令和7年6月1日施行）の財政課には財政班・契約管財班のみで同名の班が無い。財政班との関係を要確認）
 
   - id: kodomo-dokusho-2
     name: 第2次壱岐市子ども読書活動推進計画
@@ -517,3 +614,4 @@ categories:
   bousai:  { label: 防災・危機管理, domain: bousai }
   keikan:  { label: 景観・都市計画, domain: kurashi }
   dokusho: { label: 読書・生涯学習, domain: kyouiku }
+  gyoukaku: { label: 行財政改革・財政運営, domain: gyouzaisei }
