@@ -7,7 +7,7 @@
 # スキーマは data/schema.md を参照。年度は西暦（2022 = 令和4年度）。
 
 meta:
-  updated: 2026-08-11
+  updated: 2026-08-12
   survey_date: 2026-08-10          # 記載内容の調査基準日
   era_base: 2018                   # 令和元年 = 2019年。令和n年 = era_base + n
 
@@ -24,7 +24,7 @@ plans:
     period: { start: 2025, end: 2029 }
     adopted: 2025-03
     laws: []
-    department: 政策企画課
+    department: 一緒に推進課 共創推進班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/tougoukeikaku/14357.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/46/dai4jiikishisougoukeikaku_main.pdf
     notes: >-
@@ -67,7 +67,9 @@ plans:
     embedded_in: chiiki-fukushi-3
     laws: [成年後見制度利用促進法14条1項]
     department: 市民福祉課 地域福祉班
-    notes: 地域福祉計画に包含。中核機関「後見センター壱岐」は令和3年7月に社協内へ開設。
+    notes: >-
+      地域福祉計画に包含。中核機関「後見センター壱岐」は令和3年7月に社協内へ開設。
+      高齢者の権利擁護（成年後見制度の利用支援）の実務は長寿支援課 地域包括支援センターが担う。
 
   - id: saihan-boushi
     name: 壱岐市再犯防止推進計画
@@ -120,7 +122,7 @@ plans:
     period: { start: 2024, end: 2026 }
     adopted: 2024-03
     laws: [老人福祉法20条の8, 介護保険法117条]
-    department: 保険課 介護保険班
+    department: 保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）
     url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/13262.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/38/keikakukeikaku.pdf
     sources:
@@ -144,7 +146,7 @@ plans:
     status: expired
     period: { start: 2021, end: 2023 }
     adopted: 2021-03
-    department: 保険課 介護保険班
+    department: 保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）
     sources:
       - label: 議案書収録版（令和3年3月会議 議案第16号）
         url: https://www.city.iki.nagasaki.jp/material/files/group/3/3gatugian-2.pdf
@@ -157,7 +159,7 @@ plans:
     status: expired
     period: { start: 2018, end: 2020 }
     adopted: 2018-03
-    department: 保険課 介護保険班
+    department: 保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）
     sources:
       - label: 議案書収録版（平成30年3月会議 議案第22号／179ページ）
         url: https://www.city.iki.nagasaki.jp/material/files/group/3/3gatugikai.pdf
@@ -172,7 +174,7 @@ plans:
     period: { start: 2025, end: 2029 }
     adopted: 2025-03
     laws: [こども基本法10条2項ほか5法]
-    department: いきいろ子ども未来課
+    department: 子育て支援課
     url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html
     notes: >-
       子ども・子育て支援事業計画／次世代育成支援／こどもの貧困対策／子ども・若者計画を一体化。
@@ -186,7 +188,7 @@ plans:
     period: { start: 2024, end: 2029 }
     adopted: 2024-03
     laws: [国民健康保険法82条, 高齢者医療確保法]
-    department: 保険課 国保後期年金班
+    department: 保険課 国保・後期・年金班
     url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kenko_hoken/datahealth3.html
 
   - id: kenkou-iki21
@@ -220,7 +222,7 @@ plans:
     period: { start: 2026, end: 2030 }
     adopted: 2026-03
     laws: [過疎地域の持続的発展の支援に関する特別措置法]
-    department: 政策企画課
+    department: 地域共創課 企画市民協働班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3980.html
     notes: 第7章 子育て環境の確保・高齢者等の保健福祉の向上／第8章 医療の確保。
 
@@ -232,7 +234,7 @@ plans:
     period: { start: 2026, end: 2031 }
     adopted: 2026-03
     laws: [地域公共交通活性化再生法]
-    department: 政策企画課
+    department: 総務課 総務班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/15734.html
     notes: 高齢者の通院・買物支援、免許返納、デマンド型交通の検討。
 
@@ -253,7 +255,7 @@ plans:
     category: jyoui
     status: planned
     period: { start: 2027, end: null }
-    department: 地域共創課
+    department: 地域共創課 企画市民協働班
     successor:
       public_comment: { start: 2027-01, end: 2027-02 }
     todo: 計画期間・根拠法・現行計画の所在を確認する
@@ -273,6 +275,7 @@ plans:
     category: other
     status: unknown
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html
+    department: 財政課
     todo: 計画期間・所管課を確認する
 
   - id: kokyoshisetsu-kobetsu
@@ -281,6 +284,7 @@ plans:
     category: other
     status: unknown
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html
+    department: 財政課
     todo: 計画期間・所管課を確認する
 
   - id: kodomo-dokusho-2
@@ -297,6 +301,7 @@ plans:
     category: kenkou
     status: unknown
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/16148.html
+    department: 健康増進課
     todo: 策定時期・所管課を確認する（令和8年にパブコメ実施結果あり）
 
   # ---------------------------------------------------------------------------
