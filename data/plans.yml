@@ -398,17 +398,112 @@ plans:
     todo: 計画期間・根拠条文・法定性を確認する
 
   - id: danjo-3
-    name: 第3次壱岐市男女共同参画基本計画
+    name: 第3次壱岐市男女共同参画計画
     level: municipal
     domain: sougou
     category: jyoui
     tier: bumon
     status: planned
-    period: { start: 2027, end: null }
+    period: { start: 2027, end: 2031 }
+    laws:
+      - { law: 男女共同参画社会基本法14条3項, obligation: effort }
+      - { law: 配偶者からの暴力の防止及び被害者の保護等に関する法律（DV防止法）2条の3第3項, obligation: effort }
+      - { law: 女性の職業生活における活躍の推進に関する法律（女性活躍推進法）6条2項, obligation: effort }
+      - { law: 困難な問題を抱える女性への支援に関する法律（女性支援新法）8条3項, obligation: effort }
+    statutory: effort
     department: 地域共創課 企画市民協働班
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/index.html
+    sources:
+      - label: 第2次壱岐市男女共同参画基本計画の策定について（現行計画）
+        url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/3784.html
+        note: 平成29年3月策定、計画期間は平成29～38年度（2017～2026年度）の10年間。
+      - label: 第3次壱岐市男女共同参画計画策定支援業務仕様書
+        url: https://www.city.iki.nagasaki.jp/material/files/group/49/R8-19siyousyo.pdf
+        note: 計画期間（令和9～13年度）と根拠4法を明記。プロポーザル関連資料のため残存性は低い。
     successor:
       public_comment: { start: 2027-01, end: 2027-02 }
-    todo: 計画期間・根拠法・現行計画の所在を確認する
+    notes: >-
+      仕様書上の名称は「基本」を含まない「第３次壱岐市男女共同参画計画」（次期計画）。2026年8月時点では
+      策定支援業務の公募型プロポーザルで優先交渉権者が決定した段階（契約締結は令和8年7月下旬見込み）で、
+      計画本体は未策定。名称・内容は策定後に変更される可能性がある。
+
+  - id: tokutei-kyoju
+    name: 壱岐市特定居住促進計画
+    level: municipal
+    domain: sougou
+    category: teiju
+    tier: kobetsu
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2026-03
+    laws: [{ law: 広域的地域活性化のための基盤整備に関する法律22条1項, obligation: permissive }]
+    statutory: permissive
+    department: 地域共創課 人口対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/teiju/15486.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/49/sokushinkeikaku_01.pdf
+    notes: >-
+      対象区域（特定居住促進区域）は芦辺町芦辺浦地区・瀬戸地区。二地域居住者の年10名獲得、
+      その他移住者の年100名獲得を目標に掲げる。第4次総合計画の人口目標（2050年人口2万人の維持）の
+      実現手段として位置づけられる。都道府県知事への意見聴取は令和8年2月13日、地元まちづくり協議会への
+      説明・意見聴取は令和8年1月20日・2月19日。
+
+  - id: ondanka-kuiki
+    name: 壱岐市地球温暖化対策実行計画（区域施策編）
+    level: municipal
+    domain: kurashi
+    category: kankyo
+    tier: jisshi
+    status: current
+    period: { start: 2025, end: 2030 }
+    adopted: 2025-03
+    laws:
+      - { law: 地球温暖化対策の推進に関する法律21条4項, obligation: effort }
+      - { law: 気候変動適応法12条, obligation: effort }
+    statutory: effort
+    department: 地域共創課 企画市民協働班
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/energy/CN/14448.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/7/ActionPlan_area_iki_202503.pdf
+    notes: >-
+      地球温暖化対策推進法上の「地方公共団体実行計画（区域施策編）」と、気候変動適応法上の
+      「地域気候変動適応計画」を一体的に策定。基準年度2013年度、目標年度2030年度。事務局は地域共創課
+      （計画内の推進体制表では旧課名「政策企画課」表記）、事務局補佐は環境衛生課。上位計画の第4次総合計画や
+      壱岐市観光振興計画・壱岐市景観計画等と連携する位置づけ。
+
+  - id: kanko-senryaku
+    name: 壱岐市観光戦略2025～2027
+    level: municipal
+    domain: sangyou
+    category: kanko
+    tier: bumon
+    status: current
+    period: { start: 2025, end: 2027 }
+    adopted: 2025-04
+    statutory: voluntary
+    department: 観光課 観光しまづくり班
+    url: https://www.city.iki.nagasaki.jp/soshiki/kankouka/ikisikannkousennryaku/14530.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/41/sennryaku.pdf
+    notes: >-
+      第4次総合計画の観光分野の施策を具体的に実施するための個別戦略。従来策定してきた「観光振興計画」
+      （第3期は平成30年3月策定）を継承し、よりシンプルな形式に改めたもの。根拠法の記載はなく任意策定。
+
+  - id: rekishi-bunka-kousou
+    name: 壱岐市歴史文化基本構想
+    level: municipal
+    domain: kyouiku
+    category: bunkazai
+    tier: bumon
+    status: current
+    adopted: 2019-03
+    statutory: voluntary
+    department: 文化スポーツ振興課 文化財班
+    url: https://www.city.iki.nagasaki.jp/soshiki/bunkasportssinkou/bunkazai/5776.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/27/kihonkousou01.pdf
+    notes: >-
+      文化庁文化芸術振興費補助金（文化遺産を活かした地域活性化事業・文化遺産総合活用推進事業）を活用し、
+      平成28～30年度の3か年で策定。策定時の所管は教育委員会（事務局：文化課）だったが、現在は文化財班が
+      文化スポーツ振興課（市長部局）に属するため当課の所管として扱う。策定時点の上位計画は第2次総合計画で、
+      壱岐市景観計画・第3期壱岐市観光振興計画と連携する構想として位置づけられていた。
+    todo: 計画期間の定めの有無を確認する（構想書に期間の明記が見当たらず、策定から2026年8月時点まで改定の実績も確認できていない）
 
   # --- 未調査（将来の拡張枠。todo が立っているものは内容未検証） -------------
   - id: keikan
@@ -650,3 +745,7 @@ categories:
   dokusho: { label: 読書・生涯学習, domain: kyouiku }
   gyoukaku: { label: 行財政改革・財政運営, domain: gyouzaisei }
   jinji:    { label: 人事・雇用（事業主としての計画）, domain: gyouzaisei }
+  teiju:    { label: 移住・定住促進, domain: sougou }
+  kankyo:   { label: 環境・地球温暖化対策, domain: kurashi }
+  kanko:    { label: 観光, domain: sangyou }
+  bunkazai: { label: 文化財保護・歴史文化, domain: kyouiku }
