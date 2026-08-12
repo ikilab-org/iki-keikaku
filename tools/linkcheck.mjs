@@ -15,6 +15,11 @@
  */
 import { readFileSync } from 'node:fs'
 
+// User-Agent を送らないと、bot 対策で 403 を返すサーバがあります。
+// 実際、中小企業庁のページが Node 既定の UA で 403 になり、失効と誤検知していました。
+const UA = 'Mozilla/5.0 (compatible; iki-keikaku-linkcheck/1.0; +https://keikaku.ikilab.org)'
+const HEADERS = { 'user-agent': UA }
+
 const TIMEOUT_MS = 20000
 const CONCURRENCY = 4
 const args = process.argv.slice(2)
@@ -47,9 +52,9 @@ async function check({ plan, url }) {
   const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS)
   try {
     // HEAD を拒否するサーバがあるため、失敗したら GET でリトライ
-    let res = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: ctl.signal })
+    let res = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: ctl.signal, headers: HEADERS })
     if (res.status === 405 || res.status === 403 || res.status === 501) {
-      res = await fetch(url, { method: 'GET', redirect: 'follow', signal: ctl.signal })
+      res = await fetch(url, { method: 'GET', redirect: 'follow', signal: ctl.signal, headers: HEADERS })
     }
 
     // ステータスコードだけでは足りない。長崎県サイトではカテゴリの移設後、
@@ -57,7 +62,7 @@ async function check({ plan, url }) {
     // HTML なら本文を取得して、ページとして成立しているかを見る。
     let empty
     if (res.ok && (res.headers.get('content-type') || '').includes('html')) {
-      const body = await (await fetch(url, { method: 'GET', redirect: 'follow', signal: ctl.signal })).text()
+      const body = await (await fetch(url, { method: 'GET', redirect: 'follow', signal: ctl.signal, headers: HEADERS })).text()
       if (!/<title/i.test(body)) empty = `${body.length}バイトの空ページ（200だが本文なし。移設・削除の可能性）`
     }
 
