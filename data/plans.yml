@@ -760,16 +760,98 @@ plans:
       計画期間・所管班を確認する（掲載ページの問い合わせ先は「財政課 経営戦略班」だが、行政組織規則
       （令和7年6月1日施行）の財政課には財政班・契約管財班のみで同名の班が無い。財政班との関係を要確認）
 
+  - id: kyouiku-shinkou
+    name: 壱岐市教育振興基本計画（令和7～11年度）
+    level: municipal
+    agency: education
+    domain: kyouiku
+    category: kyouiku
+    tier: bumon
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    parent: sougou-4
+    laws:
+      - { law: 教育基本法17条2項, obligation: effort }
+      - { law: 地方教育行政の組織及び運営に関する法律1条の3, obligation: mandatory }
+    statutory: mandatory
+    url: https://www.city.iki.nagasaki.jp/soshiki/kyoiku_somuka/ikisikyouikusinnkoukihonnkeikaku/index.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/24/kyouikusinnkoukeikaku.pdf
+    notes: >-
+      壱岐市が初めて策定した教育振興基本計画（PDF「１．経緯」に「あえて新しく計画をつくりません
+      でした」とあり、従来は「壱岐市教育方針」「壱岐市教育努力目標」で運用してきたと明記）。
+      計画書「４．位置づけ」（PDF4ページ）に「本計画は、教育基本法第１７条第２項の規定に基づき
+      壱岐市が定める、教育の振興のための施策に関する基本的な計画です」「さらに、「地方教育行政の
+      組織及び運営に関する法律」第１条の３の規定…に基づき、壱岐市が定める教育、学術及び文化の
+      振興に関する総合的な施策の「大綱」として、これまでの大綱に替えて本計画を位置づけます」と
+      明記されており、教育振興基本計画と教育大綱を一体策定したもの。同ページには「第４次壱岐市
+      総合計画」（令和７～１１年度）に対応した教育分野の個別計画に位置づけられる、との記載もある。
+      「３．協議経過」（PDF23ページ）によれば、令和6年12月20日に教育委員会が計画を決定、
+      令和7年2月21日の総合教育会議で教育大綱として決定している。
+    todo: >-
+      所管班を分掌事務で確認する（掲載ページは教育総務課のフォルダに置かれているが、教育委員会
+      事務局組織規則第3条の学校教育課学校教育班の分掌事務(1)は「教育の基本計画に関すること。」
+      であり、教育総務課総務班の分掌事務にはこれに相当する項目がない。また、本計画は地方教育行政
+      の組織及び運営に関する法律1条の3に基づく「大綱」を兼ねており、大綱は本来市長が総合教育
+      会議の協議を経て定めるものであるため、agencyをeducationのままとしてよいかも含め、Task 22
+      あたりで方針を確認したい。※department推定は学校教育課 学校教育班）
+
+  - id: ijime-boushi
+    name: 壱岐市いじめ防止基本方針
+    level: municipal
+    agency: education
+    domain: kyouiku
+    category: kyouiku
+    tier: bumon
+    status: current
+    period: { start: null, end: null }   # 随時見直し（改定の記録は確認できず）
+    adopted: 2014-02
+    laws: [いじめ防止対策推進法12条]
+    statutory: effort
+    department: 学校教育課 学校教育班
+    url: https://www.city.iki.nagasaki.jp/soshiki/gakko_kyoikuka/kyouikuzyoho/ijime/150.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/2/ikishiijimeboushikihonhousin.pdf
+    notes: >-
+      PDF表紙に「壱岐市いじめ防止基本方針」「平成２６年２月」「壱岐市教育委員会」と明記。PDFは
+      文字レイヤーのないスキャン画像のため pdftotext では抽出できず、ページ画像を目視で確認した。
+      「はじめに」（PDF1ページ）に「本基本方針は、平成25年10月11日に策定された国の「いじめ防止
+      基本方針」、平成25年12月17日に策定された県の「いじめ防止基本方針」を参酌し、いじめの早期
+      発見及び対処のための方策を、総合的かつ効果的に推進するために策定するものである」とあり、
+      「２　壱岐市の基本方針」（PDF2ページ）には「市、学校はそれぞれ「壱岐市いじめ防止基本方針」
+      （以下「市の基本方針」という）「学校いじめ防止基本方針」を策定する。」「（「いじめ防止対策
+      推進法12・13条」以下法律名は省略する。）」との記載がある。掲載ページの更新日は
+      2017年02月11日で、平成26年2月の策定以降の改定は確認できていない。
+    todo: 改定の有無・直近の見直し年月を確認する
+
   - id: kodomo-dokusho-2
     name: 第2次壱岐市子ども読書活動推進計画
     level: municipal
     domain: kyouiku
     category: dokusho
     tier: bumon
-    status: unknown
+    status: current
+    period: { start: 2024, end: 2028 }
+    adopted: 2024-07
+    laws: [子どもの読書活動の推進に関する法律9条2項]
+    statutory: effort
     agency: education
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/6869.html
-    todo: 計画期間・所管課を確認する
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/26/usyfubsfysdfidfu.pdf
+    notes: >-
+      計画書表紙（PDF1ページ）に「第２次壱岐市子ども読書活動推進計画」「（令和 6～１０年度）」
+      「令和６年７月策定」「壱岐市教育委員会」と明記。計画期間は社会教育課 図書館ページ
+      （soshiki/shakai_kyoikuka/toshokan/5616.html）に「2024年度から2028年度までの5年間」
+      と明記されており一致する。同ページの問い合わせ先は「文化スポーツ振興課 文化振興班」だが、
+      行政組織規則（令和7年6月1日施行）第3条・第4条の文化振興班の分掌事務(1)～(7)に図書館・
+      読書活動に関する項目はなく、教育委員会事務局組織規則第3条・第4条の社会教育課生涯学習班
+      分掌事務(9)「図書館に関すること。」と一致する。前計画はPDF「はじめに」に「壱岐市も令和元年
+      に「壱岐市子ども読書計画推進計画」をつくり」との言及があるが（原文ママ、通常の名称「子ども
+      読書活動推進計画」と語順が異なる）、掲載ページ・正式名称を確認できていないため predecessors
+      には追加していない。
+    todo: >-
+      所管班を分掌事務で確認する（掲載ページの問い合わせ先「文化スポーツ振興課 文化振興班」と、
+      教育委員会事務局組織規則の社会教育課 生涯学習班分掌事務(9)「図書館に関すること」が食い違う。
+      ※department推定は社会教育課 生涯学習班）
 
   - id: influenza
     name: 壱岐市新型インフルエンザ等対策行動計画
@@ -1395,6 +1477,7 @@ categories:
   bousai:  { label: 防災・危機管理, domain: bousai }
   keikan:  { label: 景観・都市計画, domain: kurashi }
   dokusho: { label: 読書・生涯学習, domain: kyouiku }
+  kyouiku:  { label: 教育行政総論・学校教育, domain: kyouiku }
   gyoukaku: { label: 行財政改革・財政運営, domain: gyouzaisei }
   jinji:    { label: 人事・雇用（事業主としての計画）, domain: gyouzaisei }
   teiju:    { label: 移住・定住促進, domain: sougou }
