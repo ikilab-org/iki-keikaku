@@ -425,7 +425,9 @@ plans:
     notes: >-
       仕様書上の名称は「基本」を含まない「第３次壱岐市男女共同参画計画」（次期計画）。2026年8月時点では
       策定支援業務の公募型プロポーザルで優先交渉権者が決定した段階（契約締結は令和8年7月下旬見込み）で、
-      計画本体は未策定。名称・内容は策定後に変更される可能性がある。
+      計画本体は未策定。名称・内容は策定後に変更される可能性がある。計画期間と正式名称の根拠は策定支援業務の
+      仕様書とプロポーザル結果のみであり、いずれも掲載期間終了後に削除されやすい（残存性「低」、
+      sources/MANIFEST.md参照）。失効時は議案書・施政方針での再確認が必要。
 
   - id: tokutei-kyoju
     name: 壱岐市特定居住促進計画
@@ -447,7 +449,7 @@ plans:
       実現手段として位置づけられる。都道府県知事への意見聴取は令和8年2月13日、地元まちづくり協議会への
       説明・意見聴取は令和8年1月20日・2月19日。
 
-  - id: shougai-katsuyaku-machi
+  - id: ccrc-machi
     name: 壱岐市生涯活躍のまち推進プロジェクト
     level: municipal
     domain: sougou
@@ -489,7 +491,7 @@ plans:
       - { law: 地球温暖化対策の推進に関する法律21条4項, obligation: effort }
       - { law: 気候変動適応法12条, obligation: effort }
     statutory: effort
-    department: 地域共創課 企画市民協働班
+    department: 地域共創課 企画市民協働班（再エネ部門）／環境衛生課 環境衛生班（家庭部門・廃棄物部門）
     url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/energy/CN/14448.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/7/ActionPlan_area_iki_202503.pdf
     notes: >-
@@ -506,7 +508,7 @@ plans:
     tier: bumon
     status: current
     period: { start: 2025, end: 2027 }
-    adopted: 2025-04
+    adopted: 2025-03
     statutory: voluntary
     department: 観光課 観光しまづくり班
     url: https://www.city.iki.nagasaki.jp/soshiki/kankouka/ikisikannkousennryaku/14530.html

@@ -30,6 +30,8 @@
 | 市議会 会議録一覧 | `/soshiki/gikai_jimukyoku/shigikai/kaigiroku/index.html` | 高 | 2026-08-10 | ― | 各年9月会議＝決算説明 |
 | パブリックコメント実施予定 | `/shisei/koho_kocho/comment/15343.html` | 中 | 2026-08-11 | ― | 5計画の実施予定 |
 | 統計データ集 | `/soshiki/seisaku_kikakuka/toukeizyouhou/3207.html` | 中 | 2026-08-10 | ― | 住基人口・世帯数 |
+| 第3次壱岐市男女共同参画計画策定支援業務仕様書 | `/material/files/group/49/R8-19siyousyo.pdf` | 低 | 2026-08-12 | ― | 計画期間（令和9～13年度）、根拠4法（男女共同参画社会基本法14条3項、DV防止法2条の3第3項、女性活躍推進法6条2項、女性支援新法8条3項） |
+| 第3次壱岐市男女共同参画計画策定支援業務プロポーザル結果 | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/16014.html` | 低 | 2026-08-12 | ― | 正式名称「第３次壱岐市男女共同参画計画」（「基本」を含まない）の確認 |
 | 著作権・免責事項 | `/3313.html` | 中 | 2026-08-11 | ― | 二次利用の記載なし |
 
 ベースURL: `https://www.city.iki.nagasaki.jp`
