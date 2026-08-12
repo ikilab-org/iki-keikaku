@@ -6,11 +6,15 @@ import { findUnregistered, extractSources, extractRegisteredUrls, buildAppendedM
  * sources/MANIFEST.md の構造を模した最小フィクスチャ。
  * 実物と同じ見出し・列構成・「ベースURL:」行を持たせ、テストごとに行だけ差し替える。
  */
-function buildManifestText({ iki = [], nagasaki = [], national = [], expired = [] } = {}) {
+function buildManifestText({ iki = [], nagasaki = [], national = [], expired = [], expiredRaw = [] } = {}) {
   const ikiRows = iki.map((u) => `| 資料 | \`${u}\` | 高 | 2026-08-01 | ― | ― |`).join('\n')
   const nagasakiRows = nagasaki.map((u) => `| 資料 | \`${u}\` | 高 | 2026-08-01 |`).join('\n')
   const nationalRows = national.map((u) => `| 資料 | \`${u}\` | 高 | 2026-08-01 |`).join('\n')
-  const expiredRows = expired.map((u) => `| 資料 | \`${u}\` | 2026-08-01 | 代替なし |`).join('\n')
+  // expired: 旧URL列だけを機械的に埋める簡易版。expiredRaw: 代替欄の中身まで自分で書く行（そのまま挿入）。
+  const expiredRows = [
+    ...expired.map((u) => `| 資料 | \`${u}\` | 2026-08-01 | 代替なし |`),
+    ...expiredRaw,
+  ].join('\n')
   return `# 出典台帳
 
 方針は [\`POLICY.md\`](POLICY.md) を参照。
@@ -95,6 +99,34 @@ test('level によってセクションを振り分ける（municipal/council �
   assert.equal(found.find((f) => f.id === 'kuni').path, 'https://www.mhlw.go.jp/kuni.pdf')
 })
 
+test('ベースURLの前方一致だけでなくホスト境界を見る（別ホストを配下と誤認しない）', () => {
+  // https://www.city.iki.nagasaki.jp.example.com/... は文字列としては
+  // ベースURL https://www.city.iki.nagasaki.jp で始まるが、別ホストである。
+  // ベースURL配下として相対パス化してはいけない（フルURLのまま扱われるべき）。
+  const doc = { plans: [{
+    id: 'a', name: '計画A', level: 'municipal',
+    url: 'https://www.city.iki.nagasaki.jp.example.com/soshiki/a/1.html',
+  }] }
+
+  const found = findUnregistered(doc, EMPTY_MANIFEST)
+
+  assert.equal(found.length, 1)
+  assert.equal(found[0].path, 'https://www.city.iki.nagasaki.jp.example.com/soshiki/a/1.html')
+
+  // 同じパスが正規のベースURL配下に MANIFEST.md 登録されていても、別ホストなので未登録のまま
+  const manifestText = buildManifestText({ iki: ['/soshiki/a/1.html'] })
+  assert.equal(findUnregistered(doc, manifestText).length, 1)
+})
+
+test('ベースURL自体と完全一致するURLは空パスとして扱う', () => {
+  const doc = { plans: [{
+    id: 'a', name: '計画A', level: 'municipal',
+    url: 'https://www.city.iki.nagasaki.jp',
+  }] }
+  const sources = extractSources(doc)
+  assert.equal(sources[0].path, '')
+})
+
 test('MANIFEST.md のパス表記にベースURLを補って登録済みと判定する', () => {
   const doc = { plans: [{
     id: 'a', name: '計画A', level: 'municipal',
@@ -144,6 +176,44 @@ test('失効した出典の表は、県のパスであっても未登録とし�
   const manifestText = buildManifestText({ expired: ['/bunrui/old/index.html'] })
 
   assert.deepEqual(findUnregistered(doc, manifestText), [])
+})
+
+test('失効した出典の表の「代替」欄（4列目）にだけ現れるURLは、登録済みとして扱わない', () => {
+  // レビューで指摘された再現手順:
+  // 代替欄に「移設先候補は `/new-plan-page.html`（未確認）」のようにURLを書くと、
+  // plans.yml に同じURLを持つ「本当に未登録」の計画があっても報告されなくなってはいけない。
+  const doc = { plans: [{
+    id: 'shinki', name: '新計画', level: 'municipal',
+    url: 'https://www.city.iki.nagasaki.jp/new-plan-page.html',
+  }] }
+  const manifestText = buildManifestText({
+    expiredRaw: [
+      '| 旧ページ | `/old/1.html` | 2026-08-11 | 移設先候補は `/new-plan-page.html`（未確認） |',
+    ],
+  })
+
+  const found = findUnregistered(doc, manifestText)
+
+  assert.equal(found.length, 1)
+  assert.equal(found[0].id, 'shinki')
+  assert.equal(found[0].url, 'https://www.city.iki.nagasaki.jp/new-plan-page.html')
+})
+
+test('失効した出典の表は、旧URL（2列目）は登録済みとして拾い、代替欄（4列目）は拾わない（両立の確認）', () => {
+  const doc = { plans: [
+    { id: 'old', name: '旧計画', level: 'municipal', url: 'https://www.city.iki.nagasaki.jp/old/1.html' },
+    { id: 'shinki', name: '新計画', level: 'municipal', url: 'https://www.city.iki.nagasaki.jp/new-plan-page.html' },
+  ] }
+  const manifestText = buildManifestText({
+    expiredRaw: [
+      '| 旧ページ | `/old/1.html` | 2026-08-11 | 移設先候補は `/new-plan-page.html`（未確認） |',
+    ],
+  })
+
+  const found = findUnregistered(doc, manifestText)
+
+  // 旧計画（2列目に一致）は登録済み扱いで報告されない。新計画（4列目にしか現れない）は報告される。
+  assert.deepEqual(found.map((f) => f.id), ['shinki'])
 })
 
 test('同じURLが複数の計画から参照されていても重複して報告しない', () => {
@@ -204,7 +274,7 @@ test('--append は該当セクションの表の末尾、ベースURL行より�
     { id: 'a', section: '壱岐市', label: '新計画（掲載ページ）', path: '/new.html', url: 'https://www.city.iki.nagasaki.jp/new.html' },
   ]
 
-  const updated = buildAppendedManifest(manifestText, missing, '2026-08-12')
+  const { text: updated, skipped } = buildAppendedManifest(manifestText, missing, '2026-08-12')
 
   assert.match(updated, /\| 新計画（掲載ページ） \|\s*`\/new\.html`\s*\|\s*要判定\s*\|\s*2026-08-12\s*\|\s*―\s*\|\s*―\s*\|/)
   const existingIdx = updated.indexOf('/existing.html')
@@ -212,6 +282,7 @@ test('--append は該当セクションの表の末尾、ベースURL行より�
   const baseIdx = updated.indexOf('ベースURL:')
   assert.ok(existingIdx < newIdx, '新規行は既存行より後ろに入る')
   assert.ok(newIdx < baseIdx, '新規行はベースURL行より前に入る')
+  assert.deepEqual(skipped, [])
 })
 
 test('--append は長崎県・国では4列の骨格行を追記する', () => {
@@ -221,7 +292,7 @@ test('--append は長崎県・国では4列の骨格行を追記する', () => {
     { id: 'kuni', section: '国', label: '国資料', path: 'https://www.mhlw.go.jp/x.pdf', url: 'x' },
   ]
 
-  const updated = buildAppendedManifest(manifestText, missing, '2026-08-12')
+  const { text: updated } = buildAppendedManifest(manifestText, missing, '2026-08-12')
 
   assert.match(updated, /\| 県計画 \| `\/doc\/1\.html` \| 要判定 \| 2026-08-12 \|$/m)
   assert.match(updated, /\| 国資料 \| `https:\/\/www\.mhlw\.go\.jp\/x\.pdf` \| 要判定 \| 2026-08-12 \|$/m)
@@ -231,7 +302,7 @@ test('--append は既存の行を書き換えない', () => {
   const manifestText = buildManifestText({ iki: ['/existing.html'] })
   const missing = [{ id: 'a', section: '壱岐市', label: '新規', path: '/new.html', url: 'x' }]
 
-  const updated = buildAppendedManifest(manifestText, missing, '2026-08-12')
+  const { text: updated } = buildAppendedManifest(manifestText, missing, '2026-08-12')
 
   assert.ok(updated.includes('| 資料 | `/existing.html` | 高 | 2026-08-01 | ― | ― |'))
 })
@@ -239,8 +310,35 @@ test('--append は既存の行を書き換えない', () => {
 test('残存性は「要判定」で固定され、高・中・低を推測しない', () => {
   const manifestText = buildManifestText()
   const missing = [{ id: 'a', section: '壱岐市', label: '新規', path: '/new.html', url: 'x' }]
-  const updated = buildAppendedManifest(manifestText, missing, '2026-08-12')
+  const { text: updated } = buildAppendedManifest(manifestText, missing, '2026-08-12')
   const newLine = updated.split('\n').find((l) => l.includes('/new.html'))
   assert.match(newLine, /要判定/)
   assert.doesNotMatch(newLine, /\|\s*(高|中|低)\s*\|/)
+})
+
+test('セクションの見出しが MANIFEST.md に無い場合、行を黙って捨てず skipped で報告する', () => {
+  // buildManifestText() が生成する固定フィクスチャには「## 国」が無い版を作れないため、
+  // ここだけ生の文字列で「壱岐市」セクションを欠いた MANIFEST.md を用意する。
+  const manifestTextWithoutIki = `# 出典台帳
+
+## 長崎県
+
+| 資料 | URL | 残存性 | 最終確認 |
+|---|---|---|---|
+| 資料 | \`/existing.html\` | 高 | 2026-08-01 |
+
+ベースURL: \`https://www.pref.nagasaki.jp\`
+`
+  const missing = [
+    { id: 'a', section: '壱岐市', label: '新規（市）', path: '/new.html', url: 'x' },
+    { id: 'b', section: '長崎県', label: '新規（県）', path: '/new2.html', url: 'y' },
+  ]
+
+  const { text: updated, skipped } = buildAppendedManifest(manifestTextWithoutIki, missing, '2026-08-12')
+
+  // 見出しのある「長崎県」には追記される
+  assert.match(updated, /\| 新規（県） \| `\/new2\.html` \| 要判定 \| 2026-08-12 \|/)
+  // 見出しの無い「壱岐市」分は本文に現れず、skipped として報告される
+  assert.equal(updated.includes('/new.html'), false)
+  assert.deepEqual(skipped, [{ section: '壱岐市', count: 1 }])
 })

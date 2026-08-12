@@ -32,8 +32,18 @@ const LEVEL_TO_SECTION = {
 const SECTION_ORDER = ['壱岐市', '長崎県', '国']
 const EXPIRED_TITLE_RE = /^失効した出典/
 
-/** base 配下のURLなら相対パスに、そうでなければフルURLのまま返す */
-const toPath = (url, base) => (base && url.startsWith(base)) ? url.slice(base.length) : url
+/**
+ * base 配下のURLなら相対パスに、そうでなければフルURLのまま返す。
+ * `startsWith` だけだとホスト境界を見ないため、
+ * `https://www.city.iki.nagasaki.jp.example.com/...` のような別ホストを誤って
+ * 「ベースURL配下」と判定しうる。base 自体との完全一致、または base の直後が `/` の
+ * 場合だけを「配下」とみなす。
+ */
+const toPath = (url, base) => {
+  if (!base) return url
+  if (url === base || url.startsWith(base + '/')) return url.slice(base.length)
+  return url
+}
 
 // --- data/plans.yml から出典を抽出する ---------------------------------------
 
@@ -92,6 +102,30 @@ function extractBacktickTargets(bodyLines) {
   return out
 }
 
+/** `| a | b | c |` 形式の行をセルの配列に分割する（前後の空要素は除く） */
+function tableCells(line) {
+  return line.trim().split('|').slice(1, -1).map((c) => c.trim())
+}
+
+/**
+ * 「失効した出典（記録として保持）」の表は、2列目（旧URL）だけを拾う。
+ * 4列目「代替」欄にもURL（移設先候補など）が書かれることがあり、そこまで拾うと
+ * 「代替欄に書いただけのURL」を登録済みと誤認して、同じURLを持つ本当に未登録の
+ * 出典を見逃す経路になる。
+ */
+function extractExpiredOldUrls(bodyLines) {
+  const out = []
+  for (const line of bodyLines) {
+    if (!line.trim().startsWith('|')) continue
+    const cells = tableCells(line)
+    const oldUrlCell = cells[1]
+    if (!oldUrlCell) continue
+    const m = oldUrlCell.match(/^`(\/[^`]*|https?:\/\/[^`]*)`$/)
+    if (m) out.push(m[1])
+  }
+  return out
+}
+
 function extractBaseUrl(bodyLines) {
   for (const line of bodyLines) {
     const m = line.match(/ベースURL:\s*`(https?:\/\/[^`]+)`/)
@@ -103,10 +137,13 @@ function extractBaseUrl(bodyLines) {
 /**
  * MANIFEST.md に書かれている出典URLの集合を、フルURLに正規化して作る。
  *
- * 「失効した出典（記録として保持）」の表にあるURLも登録済みとして扱う。
+ * 「失効した出典（記録として保持）」の表の**2列目（旧URL）**にあるURLも登録済みとして扱う。
  * 失効の記録は意図的に残されているものであり、未登録として再度報告しないため
  * （POLICY.md 6節）。失効の表はどのベースURL配下かを明示しないので、
  * 壱岐市・長崎県それぞれのベースURLで補ったURLをすべて登録済みとみなす。
+ * **4列目「代替」欄は見ない。** 代替欄はURLとは限らない自由記述であり、そこに書かれた
+ * URLまで登録済みとして拾うと、たまたま同じURLを持つ本当に未登録の出典を見逃す
+ * （このツールの目的である「機械的な網羅」が壊れる）。
  */
 export function extractRegisteredUrls(manifestText) {
   const sections = splitSections(manifestText)
@@ -125,7 +162,7 @@ export function extractRegisteredUrls(manifestText) {
 
   const expiredSec = sections.find((s) => EXPIRED_TITLE_RE.test(s.title))
   if (expiredSec) {
-    for (const target of extractBacktickTargets(expiredSec.lines)) {
+    for (const target of extractExpiredOldUrls(expiredSec.lines)) {
       if (target.startsWith('http')) { known.add(target); continue }
       if (bases.length === 0) { known.add(target); continue }
       for (const base of bases) known.add(base + target)
@@ -185,6 +222,10 @@ function lastTableRowIndex(lines, start, end) {
 /**
  * 未登録分の骨格行を、該当セクションの表の末尾（ベースURL行より前）に追記する。
  * 既存の行はいっさい書き換えない。純粋関数（ファイルI/Oはしない）。
+ *
+ * 戻り値の `skipped` は、該当セクションの見出しが MANIFEST.md に見つからず
+ * 追記できなかった件数（セクションごと）。呼び出し側（CLI）が黙って落とさず、
+ * 必ず警告・件数として扱えるようにするための情報。
  */
 export function buildAppendedManifest(manifestText, missing, today) {
   const bySection = new Map()
@@ -194,17 +235,21 @@ export function buildAppendedManifest(manifestText, missing, today) {
   }
 
   const lines = manifestText.split(/\r?\n/)
+  const skipped = []
   // ファイル内で後ろにあるセクションから処理する。
   // 挿入で行がずれても、まだ処理していない前方のセクションの行番号には影響しない。
   for (const title of [...SECTION_ORDER].reverse()) {
     const rows = bySection.get(title)
     if (!rows || !rows.length) continue
     const range = findSectionRange(lines, title)
-    if (!range) continue
+    if (!range) {
+      skipped.push({ section: title, count: rows.length })
+      continue
+    }
     const insertAt = lastTableRowIndex(lines, range.headerIdx, range.endIdx) + 1
     lines.splice(insertAt, 0, ...rows.map((r) => formatRow(title, r, today)))
   }
-  return lines.join('\n')
+  return { text: lines.join('\n'), skipped }
 }
 
 // --- CLI --------------------------------------------------------------------
@@ -225,8 +270,14 @@ if (fileURLToPath(import.meta.url) === process.argv[1]) {
     if (missing.length === 0) {
       console.log('未登録の出典はありません。追記の必要はありません。')
     } else {
-      writeFileSync(manifestPath, buildAppendedManifest(manifestText, missing, today), 'utf8')
-      console.log(`${missing.length} 件の骨格行を sources/MANIFEST.md に追記しました（最終確認日: ${today}）。`)
+      const { text, skipped } = buildAppendedManifest(manifestText, missing, today)
+      writeFileSync(manifestPath, text, 'utf8')
+      const skippedCount = skipped.reduce((n, s) => n + s.count, 0)
+      const appendedCount = missing.length - skippedCount
+      console.log(`${appendedCount} 件の骨格行を sources/MANIFEST.md に追記しました（最終確認日: ${today}）。`)
+      for (const s of skipped) {
+        console.error(`警告: MANIFEST.md に「## ${s.section}」の見出しが見つからず、${s.count} 件を追記できませんでした。`)
+      }
       console.log('残存性はすべて「要判定」です。POLICY.md「2. 出典の選び方」の区分に沿って人が確認してください。')
     }
   } else if (args.includes('--json')) {
