@@ -363,6 +363,39 @@ plans:
     url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/kotsu/3151.html
     todo: 計画期間・法定性・最新版か（第12次の有無）を確認する
 
+  - id: jigyounushi-koudou
+    name: 壱岐市特定事業主行動計画
+    level: municipal
+    domain: gyouzaisei
+    category: jinji
+    tier: jisshi
+    status: current
+    laws: [女性活躍推進法19条]
+    department: 総務課 職員班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/jigyonushi/200.html
+    notes: >-
+      市長・議会・選挙管理委員会・監査委員・教育委員会・農業委員会・消防長が共同で策定する、
+      市を「事業主」として縛る職員向けの人事・雇用計画。住民向け施策の計画ではない。
+      次世代育成支援対策推進法もあわせて根拠とするが、該当条文は未確認。
+    todo: 計画期間・次世代育成支援対策推進法の該当条文・法定性を確認する
+
+  - id: shougaisha-katsuyaku
+    name: 壱岐市障害者活躍推進計画
+    level: municipal
+    domain: gyouzaisei
+    category: jinji
+    tier: jisshi
+    status: current
+    laws: [障害者の雇用の促進等に関する法律]
+    department: 総務課 職員班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/ikishishougaishakatsuyakusuisinn.pdf
+    notes: >-
+      国の「障害者活躍推進計画策定指針」に即して策定した、市を「事業主」として縛る職員向けの
+      人事・雇用計画。住民向け施策の計画ではない。教育委員会分は別冊「壱岐市教育委員会障害者活躍推進計画」
+      として策定されており、対象外（教育委員会の所管）。
+    todo: 計画期間・根拠条文・法定性を確認する
+
   - id: danjo-3
     name: 第3次壱岐市男女共同参画基本計画
     level: municipal
@@ -615,3 +648,4 @@ categories:
   keikan:  { label: 景観・都市計画, domain: kurashi }
   dokusho: { label: 読書・生涯学習, domain: kyouiku }
   gyoukaku: { label: 行財政改革・財政運営, domain: gyouzaisei }
+  jinji:    { label: 人事・雇用（事業主としての計画）, domain: gyouzaisei }
