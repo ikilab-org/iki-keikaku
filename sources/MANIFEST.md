@@ -33,6 +33,97 @@
 | 第3次壱岐市男女共同参画計画策定支援業務仕様書 | `/material/files/group/49/R8-19siyousyo.pdf` | 低 | 2026-08-12 | ― | 計画期間（令和9～13年度）、根拠4法（男女共同参画社会基本法14条3項、DV防止法2条の3第3項、女性活躍推進法6条2項、女性支援新法8条3項） |
 | 第3次壱岐市男女共同参画計画策定支援業務プロポーザル結果 | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/16014.html` | 低 | 2026-08-12 | ― | 正式名称「第３次壱岐市男女共同参画計画」（「基本」を含まない）の確認 |
 | 著作権・免責事項 | `/3313.html` | 中 | 2026-08-11 | ― | 二次利用の記載なし |
+| 第4次壱岐市総合計画（掲載ページ） | `/shisei/machidukuri/keikaku/tougoukeikaku/14357.html` | 中 | 2026-08-13 | ― | ― |
+| 第3期壱岐市SDGs未来都市計画（掲載ページ） | `/soshiki/eng/kyousou/sdgs/SDGs/7558.html` | 中 | 2026-08-13 | ― | ― |
+| 第3期壱岐市SDGs未来都市計画（本体PDF） | `/material/files/group/40/ikicitySDGsplan3rd.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市高齢者福祉計画・第9期介護保険事業計画（掲載ページ） | `/soshiki/hokenka/kaigo_hoken/13262.html` | 中 | 2026-08-13 | ― | ― |
+| 第2期壱岐市子ども・子育て支援事業計画（掲載ページ） | `/soshiki/kodomo/kosodate_shien/191.html` | 中 | 2026-08-13 | ― | ― |
+| 第2期壱岐市子ども・子育て支援事業計画（本体PDF） | `/material/files/group/11/2ikikodomo.pdf` | 高 | 2026-08-13 | ― | ― |
+| 第2期壱岐市子ども・子育て支援事業計画／中間見直し（令和4年度） | `/soshiki/kodomo/kosodate_shien/12048.html` | 要判定 | 2026-08-13 | ― | ― |
+| 第1期壱岐市子ども・子育て支援事業計画（本体PDF） | `/material/files/group/11/1ikikodomo.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市次世代育成支援行動計画（後期計画）（掲載ページ） | `/soshiki/kodomo/machizukuri/shi_keikaku/kenkofukushi/889.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市次世代育成支援行動計画（後期計画）（本体PDF） | `/material/files/group/2/jisedaiikusei.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市国民保護計画（掲載ページ） | `/soshiki/somuka/kiki_kanrika/hoka_keikaku/1021.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市国民保護計画（本体PDF） | `/material/files/group/2/zenpen.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市国土強靭化地域計画（掲載ページ） | `/soshiki/somuka/kiki_kanrika/hoka_keikaku/14317.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市国土強靭化地域計画（本体PDF） | `/material/files/group/3/kokudokyoujinnkachiikikeikaku.pdf` | 高 | 2026-08-13 | ― | ― |
+| 第11次壱岐市交通安全計画（掲載ページ） | `/soshiki/somuka/kiki_kanrika/kotsu/3151.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市特定事業主行動計画（掲載ページ） | `/soshiki/somuka/syokuinhan/jigyonushi/200.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市障害者活躍推進計画（掲載ページ） | `/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市障害者活躍推進計画（本体PDF） | `/material/files/group/3/ikishishougaishakatsuyakusuisinn.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市教育委員会障害者活躍推進計画（本体PDF） | `/material/files/group/3/ikishikyouikuiinkai.pdf` | 高 | 2026-08-13 | ― | ― |
+| 第3次壱岐市男女共同参画計画（掲載ページ） | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/index.html` | 中 | 2026-08-13 | ― | ― |
+| 第3次壱岐市男女共同参画計画／第2次壱岐市男女共同参画基本計画の策定について（現行計画） | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/3784.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市特定居住促進計画（掲載ページ） | `/soshiki/seisaku_kikakuka/teiju/15486.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市特定居住促進計画（本体PDF） | `/material/files/group/49/sokushinkeikaku_01.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市生涯活躍のまち推進プロジェクト（掲載ページ） | `/soshiki/seisaku_kikakuka/4510.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市生涯活躍のまち推進プロジェクト／壱岐CCRC基本指針 概要版 | `/material/files/group/9/CCRC01.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市生涯活躍のまち推進プロジェクト／壱岐CCRC基本指針 本編 | `/material/files/group/9/CCRC02.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市生涯活躍のまち推進プロジェクト／壱岐CCRC実施計画（2017年11月改訂版） | `/material/files/group/9/CCRC03.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市初山開発事業計画／壱岐市初山開発事業計画委員会規程（例規集、平成16年3月1日訓令第15号、令和7年6月1日訓令第26号による改正を含む） | `/section/reiki/reiki_honbun/r014RG00000091.html` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市地球温暖化対策実行計画（区域施策編）（掲載ページ） | `/soshiki/seisaku_kikakuka/energy/CN/14448.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市地球温暖化対策実行計画（区域施策編）（本体PDF） | `/material/files/group/7/ActionPlan_area_iki_202503.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市一般廃棄物処理基本計画（掲載ページ） | `/soshiki/kankyo/gomi/14497.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市一般廃棄物処理基本計画（本体PDF） | `/material/files/group/15/gomisyorihenn2.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市一般廃棄物処理基本計画／壱岐市一般廃棄物処理基本計画（生活排水処理編） | `/material/files/group/15/seikatuhaisuisyorihenn2.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市一般廃棄物処理基本計画／資料編（ごみ処理編） | `/material/files/group/15/siryougomisyorihenn2.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市一般廃棄物処理基本計画／資料編（生活排水処理編） | `/material/files/group/15/siryouseikatuhaisuihenn2.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市観光戦略2025～2027（掲載ページ） | `/soshiki/kankouka/ikisikannkousennryaku/14530.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市観光戦略2025～2027（本体PDF） | `/material/files/group/41/sennryaku.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐北部海洋性公園開発計画／壱岐北部海洋性公園開発計画検討委員会設置規則（例規集、平成19年2月5日規則第10号、平成31年4月1日規則第9号による改正を含む） | `/section/reiki/reiki_honbun/r014RG00000803.html` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市歴史文化基本構想（掲載ページ） | `/soshiki/bunkasportssinkou/bunkazai/5776.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市歴史文化基本構想（本体PDF） | `/material/files/group/27/kihonkousou01.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市文化財展示施設再編計画／壱岐市文化財展示施設再編計画検討委員会規則（例規集、令和7年6月1日規則第33号） | `/section/reiki/reiki_honbun/r014RG00001563.html` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市文化財展示施設再編計画／壱岐市文化財展示施設条例（例規集、平成22年3月23日条例第9号、令和7年6月1日施行の改正を含む） | `/section/reiki/reiki_honbun/r014RG00000923.html` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市景観計画（掲載ページ） | `/soshiki/kensetsuka/keikan/3873.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市景観計画（本体PDF） | `/material/files/group/18/keikaku_all.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市公共施設等総合管理計画（掲載ページ） | `/shisei/machidukuri/keikaku/3750.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市公共施設個別施設計画（掲載ページ） | `/shisei/machidukuri/keikaku/8574.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市財政基盤確立計画（掲載ページ） | `/soshiki/zaiseika/zaisei_jokyo/10021.html` | 中 | 2026-08-13 | ― | ― |
+| シン市役所化計画（第4次壱岐市行財政改革大綱）（掲載ページ） | `/soshiki/zaiseika/gyosei/taikoujisikeikaku/6920.html` | 中 | 2026-08-13 | ― | ― |
+| シン市役所化計画（第4次壱岐市行財政改革大綱）（本体PDF） | `/material/files/group/46/sin_siyakusyokakeikaku_taikou7.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市教育振興基本計画（令和7～11年度）（掲載ページ） | `/soshiki/kyoiku_somuka/ikisikyouikusinnkoukihonnkeikaku/index.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市教育振興基本計画（令和7～11年度）（本体PDF） | `/material/files/group/24/kyouikusinnkoukeikaku.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市いじめ防止基本方針（掲載ページ） | `/soshiki/gakko_kyoikuka/kyouikuzyoho/ijime/150.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市いじめ防止基本方針（本体PDF） | `/material/files/group/2/ikishiijimeboushikihonhousin.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市中学校規模適正化〔統廃合〕計画／壱岐市中学校規模適正化〔統廃合〕準備委員会設置要綱（例規集、平成21年6月25日教育委員会告示第2号） | `/section/reiki/reiki_honbun/r014RG00000921.html` | 高 | 2026-08-13 | ― | ― |
+| 第2次壱岐市子ども読書活動推進計画（掲載ページ） | `/shisei/machidukuri/keikaku/6869.html` | 中 | 2026-08-13 | ― | ― |
+| 第2次壱岐市子ども読書活動推進計画（本体PDF） | `/material/files/group/26/usyfubsfysdfidfu.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市新型インフルエンザ等対策行動計画（掲載ページ） | `/shisei/machidukuri/keikaku/16148.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市新型インフルエンザ等対策行動計画（本体PDF） | `/material/files/group/37/ikisikeikaku.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市社会福祉協議会 第2期地域福祉活動計画（掲載ページ） | `https://ikicity-csw.jp/` | 中 | 2026-08-13 | ― | ― |
+| 壱岐・対馬地域鳥獣被害防止計画（掲載ページ） | `/soshiki/norinka/norin/994.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐・対馬地域鳥獣被害防止計画（本体PDF） | `/material/files/group/16/ikibousi8.pdf` | 高 | 2026-08-13 | ― | ― |
+| 地域計画（地域農業経営基盤強化促進計画）（掲載ページ） | `/soshiki/norinka/norin/14283.html` | 中 | 2026-08-13 | ― | ― |
+| 地域計画（地域農業経営基盤強化促進計画）／地域計画（地域農業経営基盤強化促進計画）について（制度説明ページ） | `/soshiki/norinka/norin/14053.html` | 中 | 2026-08-13 | ― | ― |
+| 地域計画（地域農業経営基盤強化促進計画）／地域計画策定に係る関連手続きの変更について | `/soshiki/norinka/norin/14396.html` | 要判定 | 2026-08-13 | ― | ― |
+| 地域計画（地域農業経営基盤強化促進計画）／人・農地プランの実質化に向けた取り組み（地域計画の前身） | `/soshiki/norinka/norin/6284.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市農業振興地域整備計画／壱岐市農業振興地域整備促進協議会規則（例規集、平成20年7月1日規則第25号） | `/section/reiki/reiki_honbun/r014RG00000868.html` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市森林整備計画（掲載ページ） | `/soshiki/norinka/nogyo/10153.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市森林整備計画（本体PDF） | `/material/files/group/16/sinnrinnkeikaku.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市建築物等木材利用促進基本方針（掲載ページ） | `/soshiki/norinka/nogyo/11222.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市農道施設個別施設計画（掲載ページ） | `/soshiki/norinka/nogyo/9785.html` | 中 | 2026-08-13 | ― | ― |
+| 導入促進基本計画（掲載ページ） | `/soshiki/syoukousinkouka/5129.html` | 中 | 2026-08-13 | ― | ― |
+| 導入促進基本計画（本体PDF） | `/material/files/group/8/bosyuu.pdf` | 高 | 2026-08-13 | ― | ― |
+| 創業支援等事業計画／中小企業庁「産業競争力強化法に基づく認定を受けた市区町村別の創業支援事業計画の概要(長崎県)」 | `https://www.chusho.meti.go.jp/keiei/chiiki/42.nintei_nagasaki.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市橋梁長寿命化修繕計画（掲載ページ） | `/soshiki/kensetsuka/doro_kasen/959.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市橋梁長寿命化修繕計画（本体PDF） | `/material/files/group/18/ikikyouryou64.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市橋梁長寿命化修繕計画／国土交通省 道路メンテナンス事業補助制度に関する資料 | `https://www.mlit.go.jp/road/content/001759331.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市道路法面等維持管理計画（掲載ページ） | `/soshiki/kensetsuka/doro_kasen/3498.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市道路法面等維持管理計画（本体PDF） | `/material/files/group/18/ikinorimen.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市道路トンネル維持管理計画（掲載ページ） | `/soshiki/kensetsuka/doro_kasen/5457.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市道路トンネル維持管理計画（本体PDF） | `/material/files/group/18/tonnneruijikannri.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市公営住宅等長寿命化計画（掲載ページ） | `/soshiki/kensetsuka/jutaku/1005.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市公営住宅等長寿命化計画（本体PDF） | `/material/files/group/18/tyoujyumyoukakousin2025_6.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市公営住宅等長寿命化計画／国土交通省「公営住宅等長寿命化計画　策定指針（改定）」（平成28年8月、国土交通省住宅局住宅総合整備課） | `https://www.mlit.go.jp/common/001042520.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市水道事業経営戦略（掲載ページ） | `/soshiki/suidoka/unnei/3497.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市水道事業経営戦略（本体PDF） | `/material/files/group/19/jousuidoukeiei.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市水道事業経営戦略／総務省「公営企業の経営に当たっての留意事項について」（平成26年8月29日付け総財公第107号・総財営第73号・総財準第83号、総務省自治財政局公営企業課長等通知） | `https://www.soumu.go.jp/main_content/000312922.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市下水道事業経営戦略（本体PDF） | `/material/files/group/19/keieikoukyou.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市下水道事業経営戦略／壱岐市下水道事業（漁業集落排水事業）経営戦略 | `/material/files/group/19/keieigyosyu.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市水道ビジョン／厚生労働省「水道事業ビジョン（地域水道ビジョン）策定状況（上水道事業）」（平成30年1月30日現在） | `https://www.mhlw.go.jp/file/06-Seisakujouhou-10900000-Kenkoukyoku/0000169612.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市住宅マスタープラン／壱岐市景観計画 第1章（策定当時の関連計画の位置づけ図） | `/material/files/group/18/chapter1.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市住宅マスタープラン／壱岐市空家等対策計画（akiya-taisaku の出典PDF） | `/material/files/group/6/ikishiakiyatoutaisakukeikaku.pdf` | 高 | 2026-08-13 | ― | ― |
 
 ベースURL: `https://www.city.iki.nagasaki.jp`
 
@@ -50,6 +141,8 @@
 | 第4期自殺総合対策5カ年計画 | `/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/` | 中 | 2026-08-11 |
 | 第二次再犯防止推進計画 | `/bunrui/anzen-anshin/anzen-anshinmachidukuri/anshin-anzenmachidukurijigyo/saihan/preventionplan/` | 中 | 2026-08-11 |
 | 老人保健福祉関係基礎資料（令和7年6月版） | `/uploads/2025/06/1749604344.pdf` | 高 | 2026-08-10 |
+| 健康ながさき21（第3次）（本体PDF） | `/uploads/2024/08/1722827687.pdf` | 高 | 2026-08-13 |
+| 第五次長崎県子ども読書活動推進計画（本体PDF） | `/uploads/2024/02/1708922156.pdf` | 高 | 2026-08-13 |
 
 ベースURL: `https://www.pref.nagasaki.jp`
 
