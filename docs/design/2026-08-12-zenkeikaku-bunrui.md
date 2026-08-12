@@ -14,7 +14,7 @@ README「フェーズ2」の第1段階、**「`data/plans.yml` にすべての�
 
 このまま分野を足していくと、次の2点で行き詰まります。
 
-1. **分類が破綻する。** `category` は福祉を5つに割っている（`fukushi` `shougai` `kourei` `kodomo` `iryou` `kenkou`）
+1. **分類が破綻する。** `category` は福祉を6つに割っている（`fukushi` `shougai` `kourei` `kodomo` `iryou` `kenkou`）
    のに対し、それ以外は `jyoui` と `other` の2つしかありません。全市に広げると新しい分野がすべて
    `other` に入ります
 2. **関係がデータに載っていない。** 県計画が8件入っているのに、**市計画から県計画へ張られた参照が1本もありません。**

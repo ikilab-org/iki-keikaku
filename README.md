@@ -24,7 +24,7 @@
 ## これから増やすもの
 
 福祉分野に限らず、**壱岐市が持つすべての計画の関連性を図示し、個別の計画に深掘りできる**構成を目指しています。
-分野の分類も、福祉に偏っていた5小分類から、`domain`（大分類）8つ・`category`（小分類）という2階層に広げました。
+分野の分類も、福祉に偏っていた6小分類から、`domain`（大分類）8つ・`category`（小分類）という2階層に広げました。
 
 **組織ごとの巡回で計画を洗い出している途中です。** 市長部局7部のうち3部（総務部・地域振興部・市民部）を
 巡回済みで、収録件数は31件から47件（市38・社協1・県8）に増えました。**残り4部（保健環境部・農林水産部・
@@ -63,7 +63,7 @@
 │   ├── linkcheck.mjs       出典URLの死活チェック
 │   ├── expiring.mjs        満了・パブコメが近い計画の検出
 │   ├── validate.mjs        参照整合・enum・骨格の検査（error/warn の2段階）
-│   ├── yaml.mjs            plans.yml が使う構文だけを解釈する最小YAMLパーサ（validate.mjs が使用）
+│   ├── yaml.mjs            plans.yml が使う構文だけを解釈する最小YAMLパーサ（validate.mjs・manifest.mjs が使用）
 │   ├── manifest.mjs        出典台帳（sources/MANIFEST.md）の未登録を検出・骨格行を追記
 │   └── og/                 OGP画像の生成（cards.html + build.mjs）
 ├── docs/                   分析報告書など（Markdown）
@@ -94,7 +94,8 @@ node tools/manifest.mjs                   # 出典台帳（sources/MANIFEST.md�
 ```
 
 ツール本体（上記4つ）は追加の依存なしで動き、**Node 18 以降**で動作します。
-一方、単体テスト（`node --test`、リポジトリ直下で実行）は Node 標準の `node:test` を使っており**Node 20 以降**が前提です。
+単体テスト（`node --test`、リポジトリ直下で実行）は Node 標準の `node:test` を使います。
+`node --test` は Node 18.1 以降で動きますが、Node 20 で安定版になりました。18系では experimental の警告が出ます。
 CI（`.github/workflows/`）も `actions/setup-node@v4` で `node-version: '20'` を指定しています。
 開発環境は Node 20 以降を用意してください。
 
