@@ -1011,7 +1011,6 @@ plans:
     category: kyouiku
     tier: jisshi
     status: unknown
-    department: 学校教育課
     sources:
       - label: 壱岐市中学校規模適正化〔統廃合〕準備委員会設置要綱（例規集、平成21年6月25日教育委員会告示第2号）
         url: https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000921.html
@@ -1038,6 +1037,8 @@ plans:
     todo: >-
       計画の策定年月・対象校・統廃合の実施内容・計画期間・根拠法の有無を確認する
       （例規集の準備委員会設置要綱以外の一次資料を確認できていない）。
+      所管課も確認する。設置要綱第9条の庶務は学校教育課だが、これは準備委員会の
+      事務局であって、計画そのものの所管とは限らない（他の附属機関由来の4件と同じ扱い）。
 
   - id: kodomo-dokusho-2
     name: 第2次壱岐市子ども読書活動推進計画
