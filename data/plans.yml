@@ -925,7 +925,7 @@ plans:
     name: 壱岐市公共施設等総合管理計画
     level: municipal
     domain: gyouzaisei
-    category: other
+    category: koukyoshisetsu
     tier: shisetsu
     status: current
     adopted: 2022-03
@@ -939,7 +939,7 @@ plans:
     name: 壱岐市公共施設個別施設計画
     level: municipal
     domain: gyouzaisei
-    category: other
+    category: koukyoshisetsu
     tier: shisetsu
     status: current
     adopted: 2022-03
@@ -1443,8 +1443,8 @@ plans:
   - id: noudou-shisetsu-kobetsu
     name: 壱岐市農道施設個別施設計画
     level: municipal
-    domain: gyouzaisei
-    category: other
+    domain: sangyou
+    category: nourin
     tier: shisetsu
     status: current
     department: 農林課 農林整備班
@@ -1526,8 +1526,8 @@ plans:
   - id: kyoryo-choju
     name: 壱岐市橋梁長寿命化修繕計画
     level: municipal
-    domain: gyouzaisei
-    category: other
+    domain: kiban
+    category: douro
     tier: shisetsu
     status: current
     period: { start: 2019, end: 2028 }
@@ -1555,8 +1555,8 @@ plans:
   - id: douro-norimen-iji
     name: 壱岐市道路法面等維持管理計画
     level: municipal
-    domain: gyouzaisei
-    category: other
+    domain: kiban
+    category: douro
     tier: shisetsu
     status: expired
     period: { start: 2016, end: 2025 }
@@ -1582,8 +1582,8 @@ plans:
   - id: douro-tunnel-iji
     name: 壱岐市道路トンネル維持管理計画
     level: municipal
-    domain: gyouzaisei
-    category: other
+    domain: kiban
+    category: douro
     tier: shisetsu
     status: current
     adopted: 2025-12
@@ -1607,8 +1607,8 @@ plans:
   - id: koei-jutaku-choju
     name: 壱岐市公営住宅等長寿命化計画
     level: municipal
-    domain: gyouzaisei
-    category: other
+    domain: kiban
+    category: jutaku
     tier: shisetsu
     status: current
     period: { start: 2025, end: 2034 }
@@ -1820,13 +1820,13 @@ plans:
 # ---------------------------------------------------------------------------
 domains:
   fukushi:    { label: 健康・福祉, slot: 1 }
-  sougou:     { label: 市政総論, slot: 2 }
-  kyouiku:    { label: 教育・文化, slot: 3 }
-  sangyou:    { label: 産業・雇用, slot: 4 }
-  kurashi:    { label: 生活環境, slot: 5 }
-  bousai:     { label: 防災・安全, slot: 6 }
-  kiban:      { label: 都市基盤・交通, slot: 7 }
-  gyouzaisei: { label: 行財政運営, slot: 8 }
+  kiban:      { label: 都市基盤・交通, slot: 2 }
+  sangyou:    { label: 産業・雇用, slot: 3 }
+  sougou:     { label: 市政総論, slot: 4 }
+  gyouzaisei: { label: 行財政運営, slot: 5 }
+  kyouiku:    { label: 教育・文化, slot: 6 }
+  kurashi:    { label: 生活環境, slot: 7 }
+  bousai:     { label: 防災・安全, slot: 8 }
 
 categories:
   fukushi: { label: 地域福祉（総論・横断）, domain: fukushi }
@@ -1837,7 +1837,8 @@ categories:
   kenkou:  { label: 健康づくり・自殺対策, domain: fukushi }
   jyoui:   { label: 上位・関連行政計画, domain: sougou }
   kaihatsu: { label: 地区開発事業, domain: sougou }
-  other:   { label: その他（未整理）, domain: gyouzaisei }
+  koukyoshisetsu: { label: 公共施設マネジメント, domain: gyouzaisei }
+  douro:   { label: 道路施設維持管理, domain: kiban }
   koutsuu: { label: 公共交通, domain: kiban }
   bousai:  { label: 防災・危機管理, domain: bousai }
   keikan:  { label: 景観・都市計画, domain: kurashi }
