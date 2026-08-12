@@ -13,6 +13,7 @@
  *   node tools/expiring.mjs --json
  */
 import { readFileSync } from 'node:fs'
+import { fiscalYearLabel } from './fiscal-year.mjs'
 
 const args = process.argv.slice(2)
 const getArg = (k, d) => {
@@ -46,6 +47,7 @@ const plans = blocks.map(b => {
 
 // 日本の年度末 = 翌年3月31日
 const fyEnd = (y) => new Date(`${y + 1}-03-31`)
+
 const monthsBetween = (a, b) =>
   (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth())
 
@@ -54,11 +56,13 @@ const overdue = []
 const pubcom = []
 
 for (const p of plans) {
-  if (p.end != null) {
+  // status: expired は「履歴として意図的に残している過去の計画」なので、
+  // 満了の追跡からは外す。ここを else if で繋ぐと、除外したはずのものが
+  // 次の枝（満了が近い計画）に落ちて「あと-137か月」のような表示になる。
+  if (p.end != null && p.status !== 'expired') {
     const end = fyEnd(p.end)
     const m = monthsBetween(today, end)
-    // status: expired は「意図的に残している過去の計画」なので対象外
-    if (m < 0 && p.status !== 'expired') overdue.push({ ...p, monthsPast: -m })
+    if (m < 0) overdue.push({ ...p, monthsPast: -m })
     else if (m <= MONTHS) soon.push({ ...p, monthsLeft: m })
   }
   if (p.pcStart) {
@@ -77,7 +81,7 @@ const todos = plans.filter(p => p.todo)
 if (asJson) {
   console.log(JSON.stringify({ today: today.toISOString().slice(0, 10), soon, pubcom, overdue, todos }, null, 2))
 } else {
-  const fy = (y) => `令和${y - 2018}年度（${y}年度）`
+  const fy = fiscalYearLabel
   console.log(`基準日 ${today.toISOString().slice(0, 10)} ／ ${MONTHS}か月先まで\n`)
 
   console.log(`## 満了が近い計画（${soon.length}件）`)
