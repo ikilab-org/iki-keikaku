@@ -1258,7 +1258,7 @@ git commit -m "スキーマに domain・statutory・tier・agency・conforms_to 
 
 **このタスクの完了は `node tools/validate.mjs --fail-on-error` が exit 0 を返すこと。**
 
-暫定の `domains` を使います（設計 3.2、Task 22 で確定させる）。
+暫定の `domains` を使います（設計 3.2、Task 23 で確定させる）。
 
 - [ ] **Step 1: 移行前の状態を記録**
 
@@ -1689,7 +1689,7 @@ Task 11〜19 は、対象の組織が違うだけで**同じ6ステップ**を�
 - **`period` が掲載ページから分からない** → `period` を書かず、`todo:` に「計画期間を確認する」を足す
   （`validate` は `todo:` があれば warn にする）
 - **既存の `category` で表せない分野が出た** → `categories:` に小分類を追加し、適切な `domain` に紐づける。
-  暫定の8 `domains` で収まらないものが出たら `todo:` に記録し、Task 22 で判断する
+  暫定の8 `domains` で収まらないものが出たら `todo:` に記録し、Task 23 で判断する
 - **`agency` は `mayor` 以外のときだけ書く。** 省略は「市長部局である」という主張であり、
   未確定の意味では使わない（`data/schema.md`）
 
@@ -2037,16 +2037,115 @@ git commit -m "改定期が近い計画の根拠法・所管・関係を埋め�
 
 ---
 
+## Task 22: 引用を原本と照合する
+
+**Files:**
+- Modify: `data/plans.yml`
+- Modify: `sources/POLICY.md`
+
+**Interfaces:**
+- Consumes: Task 21 までに投入・深掘りされた全計画
+- Produces: 鉤括弧の中がすべて原文どおりになった状態
+
+**このタスクを設けた理由。** Task 17 の巡回で追加した10エントリを全数照合したところ、**引用の不正確さが9件**見つかりました。
+どれも事実そのものは正しく、悪意のある改変ではありません。しかし内訳は次のとおりです。
+
+| 型 | 件数 | 例 |
+|---|---|---|
+| 出典PDFの取り違え | 1 | 同じ計画書の別セクションにある文言を、別のPDFからの引用として書いた |
+| ページ番号のずれ | 2 | 書いてあるページを開いても該当箇所に無い |
+| 表組みを再構成した疑似引用 | 2 | 複数のセルを1文に組み直して鉤括弧をつけた |
+| 要約を引用として記載 | 3 | 検索結果の要約を、原文を見ずに鉤括弧で書いた |
+| 条文の無断省略 | 2 | 「（以下「〇〇」という。）」を落とした |
+| 全角数字の半角化 | 4箇所 | 原本は「平成３１年度」 |
+| 省略記号なしの部分引用 | 1 | 原文の先頭「壱岐市」を無表示で落とした |
+
+**この資料は出典を辿れることで成り立っています。** 「書いてあるページを開いても該当箇所に辿り着けない」
+「鉤括弧の中が原文と違う」という状態は、その前提を崩します。
+
+**照合済みなのは Task 17 の10エントリだけです。** それ以前に投入された分と、Task 18〜21 で追加される分は未照合です。
+`data/plans.yml` 全体で鉤括弧は125箇所あります。
+
+### 照合の原則
+
+- **鉤括弧の中は原文どおり。** 全角・半角、中黒、括弧、送り仮名を含めて一字一句
+- **換算・要約・項目名の補足は鉤括弧の外**で、自分の記述として書く
+- **部分引用は省略記号を入れる**
+- **ページ番号は、書いてあるページを開いて該当箇所があることを確認する。** 印字ページ番号とファイル通し番号が違う場合は、
+  どちらの番号かが分かるように書く（`kourei-7` の「PDF 107ページ・144ページ（計画本体 p.12・p.49）」が実例）
+- **原本を開かずに照合しない。** 検索結果の要約を原文の代わりにしない
+
+- [ ] **Step 1: 照合の対象を洗い出す**
+
+```bash
+node -e "
+import('./tools/yaml.mjs').then(async ({ parseYaml }) => {
+  const { readFileSync } = await import('node:fs')
+  const d = parseYaml(readFileSync('data/plans.yml', 'utf8'))
+  let n = 0
+  for (const p of d.plans) {
+    const fields = [['notes', p.notes], ['todo', p.todo]]
+    for (const [i, s] of (p.sources ?? []).entries()) fields.push([\`sources[\${i}].note\`, s.note])
+    for (const [name, v] of fields) {
+      if (typeof v === 'string' && v.includes('「')) { console.log(p.id, name); n++ }
+    }
+  }
+  console.log('---', n, '箇所')
+})"
+```
+
+- [ ] **Step 2: エントリごとに原本を開いて照合する**
+
+**Task 17 の10エントリ（`keikan`・`kyoryo-choju`・`douro-norimen-iji`・`douro-tunnel-iji`・`koei-jutaku-choju`・
+`suidou-keiei-senryaku`・`gesuidou-keiei-senryaku`・`suidou-vision`・`jutaku-master-plan`・`akiya-taisaku`）は
+照合済みです。** それ以外を対象にします。
+
+引用元がPDFなら `pdftotext` で抽出し、画像スキャンなら `pdftoppm` で画像化して目視確認します。
+条文なら e-Gov のAPI（`https://laws.e-gov.go.jp/api/2/law_data/{法令ID}`）で原文を取ります。
+
+**原本が失効していて照合できない引用が出たら、その事実を `notes` に記録**し、`sources/POLICY.md` の
+「失効したときの手順」に従ってください。引用を消す必要はありません。
+
+- [ ] **Step 3: 直した内容を記録する**
+
+`sources/POLICY.md` に「引用の照合」の節を追加し、**照合した範囲・見つかった型・直した件数**を記録します。
+次に同じ照合をする人が、どこまで済んでいるかを判断できるようにします。
+
+- [ ] **Step 4: 検証**
+
+```bash
+node tools/validate.mjs --fail-on-error --today 2026-08-12
+echo "exit code = $?"
+node tools/linkcheck.mjs 2>&1 | tail -20
+node --test
+```
+
+期待: `validate` は error 0件で exit 0。**引用を直しても事実は変わらないので、`period`・`status`・`laws` の値は
+原則として動きません。** 動いた場合は、照合の過程で事実の誤りも見つかったということなので、
+その旨を報告に書いてください。
+
+- [ ] **Step 5: コミット**
+
+```bash
+git add data/plans.yml sources/POLICY.md
+git commit -m "引用を原本と照合する
+
+鉤括弧の中が原文と違う箇所、書いてあるページに該当箇所が無い箇所を直した。
+この資料は出典を辿れることで成り立っており、引用の正確さはその前提になる。"
+```
+
+---
+
 # Phase D — 仕上げ
 
-## Task 22: `domains` を確定させ、配色を検証する
+## Task 23: `domains` を確定させ、配色を検証する
 
 **Files:**
 - Modify: `data/plans.yml`
 - Modify: `data/schema.md`
 
 **Interfaces:**
-- Consumes: Task 21 までの状態（全計画が投入され、優先度の高いものは深掘り済み）
+- Consumes: Task 22 までの状態（全計画が投入され、深掘りと引用照合が済んでいる）
 - Produces: 実在する計画から導いた `domains` と、検証済みの `slot` 並び
 
 **確定のルール（設計 3.2）:**
@@ -2122,7 +2221,7 @@ git commit -m "実在する計画から domains を確定し、配色を検証
 
 ---
 
-## Task 23: 手順書とツール一覧を更新する
+## Task 24: 手順書とツール一覧を更新する
 
 **Files:**
 - Modify: `CONTRIBUTING.md`
@@ -2130,7 +2229,7 @@ git commit -m "実在する計画から domains を確定し、配色を検証
 - Modify: `CHANGELOG.md`
 
 **Interfaces:**
-- Consumes: Task 22 までの全成果
+- Consumes: Task 23 までの全成果
 - Produces: 外部の協力者が同じ手順を踏める状態
 
 - [ ] **Step 1: `CONTRIBUTING.md` の「変更前に流すもの」を更新**
@@ -2239,6 +2338,7 @@ git commit -m "全計画の収録に合わせて手順書とツール一覧を�
 1. 5.1 の対象機関をすべて巡回し、機関ごとの組織一覧に対して巡回済みかが `sources/POLICY.md` に記録されている。計画を持たない組織は「なし」と明記されている
 2. 3つの交差検証を実施し、見つかった漏れが `plans.yml` に反映されている
 3. `node tools/validate.mjs --fail-on-error` が exit 0。warn の件数と内訳を報告に書いた
-4. `node tools/linkcheck.mjs` で新規追加したURLがすべて生きている
-5. `node tools/expiring.mjs` が異常な年度を出さず、`todo:` の残件が一覧できる
-6. `domains` が確定し、`data/schema.md` に反映されている
+4. **鉤括弧の中の引用が原本と照合され、照合の範囲が `sources/POLICY.md` に記録されている**
+5. `node tools/linkcheck.mjs` で新規追加したURLがすべて生きている
+6. `node tools/expiring.mjs` が異常な年度を出さず、`todo:` の残件が一覧できる
+7. `domains` が確定し、`data/schema.md` に反映されている
