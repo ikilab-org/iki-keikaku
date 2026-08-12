@@ -544,7 +544,7 @@ plans:
     url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/ikishishougaishakatsuyakusuisinn.pdf
     notes: >-
-      国の「障害者活躍推進計画策定指針」に即して策定した、市を「事業主」として縛る職員向けの
+      国の「障害者活躍推進計画作成指針」に即して策定した、市を「事業主」として縛る職員向けの
       人事・雇用計画。住民向け施策の計画ではない。壱岐市特定事業主行動計画（`jigyounushi-koudou`）
       とは異なり7機関の連名ではなく任命権者ごとの個別策定で、これは市長部局版。PDF本文（`pdftotext`
       で確認）2ページの表の「機関名」欄は「壱岐市（市長部局）」、「任命権者」欄は「壱岐市長」で、
