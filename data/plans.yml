@@ -453,21 +453,59 @@ plans:
     todo: 計画期間・次世代育成支援対策推進法の該当条文・法定性を確認する
 
   - id: shougaisha-katsuyaku
-    name: 壱岐市障害者活躍推進計画
+    name: 壱岐市障害者活躍推進計画（市長部局）
     level: municipal
     domain: gyouzaisei
     category: jinji
     tier: jisshi
     status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
     laws: [障害者の雇用の促進等に関する法律]
     department: 総務課 職員班
+    related: [shougaisha-katsuyaku-kyouiku]
     url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/ikishishougaishakatsuyakusuisinn.pdf
     notes: >-
       国の「障害者活躍推進計画策定指針」に即して策定した、市を「事業主」として縛る職員向けの
-      人事・雇用計画。住民向け施策の計画ではない。教育委員会分は別冊「壱岐市教育委員会障害者活躍推進計画」
-      として策定されており、対象外（教育委員会の所管）。
-    todo: 計画期間・根拠条文・法定性を確認する
+      人事・雇用計画。住民向け施策の計画ではない。壱岐市特定事業主行動計画（`jigyounushi-koudou`）
+      とは異なり7機関の連名ではなく任命権者ごとの個別策定で、これは市長部局版。PDF本文（`pdftotext`
+      で確認）2ページの表の「機関名」欄は「壱岐市（市長部局）」、「任命権者」欄は「壱岐市長」で、
+      議会・選挙管理委員会・監査委員・農業委員会・消防長への言及は本文に無い。PDF表紙は「第二期」
+      「障害者活躍推進計画」「令和７年３月」「壱岐市」の表記（計画期間 令和7年4月1日～令和12年3月
+      31日の5年間）。教育委員会分は「壱岐市教育委員会障害者活躍推進計画」として別文書で策定されて
+      おり、収録範囲（市長部局・教育委員会・行政委員会・消防をすべて含む）に含まれるため、対象外
+      とはせず `shougaisha-katsuyaku-kyouiku` として別エントリで収録した。
+    todo: 根拠条文・法定性を確認する
+
+  - id: shougaisha-katsuyaku-kyouiku
+    name: 壱岐市教育委員会障害者活躍推進計画
+    level: municipal
+    agency: education
+    domain: gyouzaisei
+    category: jinji
+    tier: jisshi
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    laws: [障害者の雇用の促進等に関する法律]
+    department: 教育総務課
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/ikishikyouikuiinkai.pdf
+    notes: >-
+      国の「障害者活躍推進計画策定指針」に即して策定した、市を「事業主」として縛る職員向けの
+      人事・雇用計画。住民向け施策の計画ではない。市長部局版（`shougaisha-katsuyaku`）とは別に、
+      壱岐市教育委員会が任命権者として個別に策定したもの。PDF本文（`pdftotext` で確認）2ページの
+      表の「機関名」欄は「壱岐市教育委員会（教育委員会部局）」、「任命権者」欄は「壱岐市教育委員会
+      教育長」。「壱岐市における障害者雇用に関する課題」欄には「壱岐市教育委員会職員の採用及び
+      人事異動等は、壱岐市（市長部局）において実施しており」とあり、職員採用事務は市長部局が行うが
+      計画自体は教育委員会が別途策定している。PDF表紙は「第二期」「障害者活躍推進計画」「令和７年
+      ３月」「壱岐市教育委員会」の表記（計画期間 令和7年4月1日～令和12年3月31日の5年間）。掲載元は
+      市長部局版と同じ「壱岐市障害者活躍推進計画の策定について」ページ。従来 `shougaisha-katsuyaku`
+      の notes で「対象外（教育委員会の所管）」としていたのは誤りで、市が公表する行政計画は実施機関
+      （市長部局・教育委員会・行政委員会・消防）を問わず収録範囲に含まれるため、別エントリとして
+      追加した。department はPDF末尾の発行元表記「壱岐市教育委員会（教育総務課）」による。
+    todo: 根拠条文・法定性・所管班（教育総務課のどの班か、教育委員会事務局組織規則での確認）を確認する
 
   - id: danjo-3
     name: 第3次壱岐市男女共同参画計画
