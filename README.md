@@ -4,7 +4,7 @@
 公開情報だけを使い、出典をすべて明示しています。
 
 - 公開URL: https://keikaku.ikilab.org
-- 運営: [IKILAB](https://ikilab.org) ／ リポジトリ: [github.com/ikilab-org/iki-plans](https://github.com/ikilab-org/iki-plans)
+- 運営: [IKILAB](https://ikilab.org) ／ リポジトリ: [github.com/ikilab-org/iki-keikaku](https://github.com/ikilab-org/iki-keikaku)
 - 調査基準日: `data/plans.yml` の `meta.survey_date` を参照
 
 > **この資料は壱岐市の公式資料ではありません。** 公表資料をもとに独立して整理したものです。
@@ -133,9 +133,9 @@ CI（`.github/workflows/`）も `actions/setup-node@v4` で `node-version: '20'`
 **詳細な手順は [`SETUP.md`](SETUP.md) にあります。** ここでは要点だけ。
 
 ```bash
-unzip iki-plans.zip && cd iki-plans
+unzip iki-keikaku.zip && cd iki-keikaku
 git init -b main && git add -A && git commit -m "壱岐市 計画マップ 初版"
-gh repo create ikilab-org/iki-plans --public --source=. --remote=origin --push
+gh repo create ikilab-org/iki-keikaku --public --source=. --remote=origin --push
 ```
 
 1. **GitHub**: Settings → Pages → Source `Deploy from a branch`、Branch `main` / `/ (root)`

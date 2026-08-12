@@ -5,6 +5,12 @@
 
 ## 2026-08-12
 
+### 変更（リポジトリ名）
+- リポジトリ名を `ikilab-org/iki-plans` から **`ikilab-org/iki-keikaku`** に変更。ドメイン（keikaku.ikilab.org）および姉妹プロジェクト（iki-gikai、iki-reiki）との表記統一のため
+- 旧URLはGitHubのリダイレクトで引き続き到達可能。旧名 `iki-plans` は今後 ikilab-org で再利用しない（リダイレクト維持のため）
+- README・SETUP・ハブのフッター・package-lock.json の表記を更新。本ファイルの過去の記述は当時の名称のまま残す
+
+
 ### 修正（所管課）
 - **所管課を[壱岐市行政組織規則](https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000018.html)（令和7年6月1日施行）で取り直した。** 組織改編により、記録していた課名が現行組織と合わなくなっていた
   - **長寿支援課**（保健環境部／長寿福祉班・地域包括支援センター）が `data/plans.yml` にも各ページにも一度も登場していなかった。高齢者福祉、老人福祉法に基づく措置、地域支援事業、介護予防、認知症施策を分掌する課
