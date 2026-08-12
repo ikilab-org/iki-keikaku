@@ -892,6 +892,118 @@ plans:
     adopted: 2023-03
     url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/
 
+  - id: ikitsushima-choju-higai
+    name: 壱岐・対馬地域鳥獣被害防止計画
+    level: municipal
+    domain: sangyou
+    category: nourin
+    tier: kobetsu
+    status: current
+    laws:
+      - { law: 鳥獣による農林水産業等に係る被害の防止のための特別措置に関する法律4条1項, obligation: permissive }
+    statutory: permissive
+    department: 農林課 農業振興班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/994.html
+    todo: 計画期間を確認する
+    notes: >-
+      壱岐市と対馬市の共同計画。同法4条1項は市町村が「単独で又は共同して」被害防止計画を
+      定めることができる旨を規定しており（e-Gov法令検索、法令ID 419AC1000000134で確認）、
+      「定めることができる」の文言のため statutory は permissive とした。
+
+  - id: chiiki-nougyou-keikaku
+    name: 地域計画（地域農業経営基盤強化促進計画）
+    level: municipal
+    domain: sangyou
+    category: nourin
+    tier: kobetsu
+    status: current
+    adopted: 2025-03
+    laws:
+      - { law: 農業経営基盤強化促進法19条1項, obligation: mandatory }
+    statutory: mandatory
+    department: 農林課 農業振興班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14283.html
+    sources:
+      - label: 地域計画（地域農業経営基盤強化促進計画）について（制度説明ページ）
+        url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14053.html
+      - label: 地域計画策定に係る関連手続きの変更について
+        url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14396.html
+      - label: 人・農地プランの実質化に向けた取り組み（地域計画の前身）
+        url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/6284.html
+        note: 平成24年度から実施。地区ごとの取り組みで、単一の計画書としては公表されていない
+    todo: 計画期間を確認する
+    notes: >-
+      市内12地区（武生水・渡良・柳田・沼津・志原・初山・勝本・鯨伏・田河・那賀・箱崎・石田）
+      ごとに地域計画を策定・公表。公表ページの更新日は令和7(2025)年3月14日で、令和7年4月から
+      地域計画区域内の農地転用時に地域計画変更（除外）手続きが必須化された。
+      前身は「人・農地プラン」（平成24年度から地区ごとに実施、法定計画ではない任意の取り組み）。
+      地区ごとの取り組みのため単一の計画書がなく、独立エントリではなく本エントリの sources に
+      掲載ページを記録した。laws は「地域計画を定めるものとする」と規定する19条1項を根拠とした
+      （e-Gov法令検索、法令ID 355AC0000000065、2025-04-01時点の現行条文で確認）。掲載ページ
+      自身は根拠として同条8項（策定・変更時の公告義務）を挙げているが、8項は公告手続きの規定で
+      あり、計画の策定自体を義務付けるのは1項。なお、改正前の同法にあった「農業経営基盤強化促進
+      基本構想」（当時の6条）は、確認した現行条文（同法令ID）には対応する条文が存在せず、
+      地域計画（19条）にその機能が引き継がれているとみられる。
+
+  - id: shinrin-seibi
+    name: 壱岐市森林整備計画
+    level: municipal
+    domain: sangyou
+    category: ringyou
+    tier: kobetsu
+    status: current
+    laws:
+      - { law: 森林法10条の5第1項, obligation: mandatory }
+    statutory: mandatory
+    department: 農林課 農林整備班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/10153.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/16/sinnrinnkeikaku.pdf
+    todo: 計画期間（始期・終期の年度）を確認する。PDFが画像スキャンで本文の機械的な読み取りができないため、目視での確認が必要。
+    notes: >-
+      市内の民有林を対象に、地域森林計画に適合して5年ごとに10年を1期として策定。掲載ページの
+      更新日は2022年3月28日、PDF本体の作成日は2022年3月10日（PDFのメタデータより）で、
+      令和4(2022)年頃の改定とみられるが、計画期間の始期・終期は確認できていない。laws は
+      「市町村森林整備計画をたてなければならない」と規定する10条の5第1項を根拠とした
+      （e-Gov法令検索、法令ID 326AC1000000249、2026-04-01時点の現行条文で確認）。
+
+  - id: mokuzai-riyou-houshin
+    name: 壱岐市建築物等木材利用促進基本方針
+    level: municipal
+    domain: sangyou
+    category: ringyou
+    tier: kobetsu
+    status: current
+    adopted: 2022-12
+    laws:
+      - { law: 脱炭素社会の実現に資する等のための建築物等における木材の利用の促進に関する法律12条1項, obligation: permissive }
+    statutory: permissive
+    department: 農林課 農林整備班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/11222.html
+    todo: 当初の策定年月を確認する（掲載ページには令和4年12月1日の一部改訂版のみ記載）
+    notes: >-
+      掲載ページは根拠を「同法第11条」としているが、e-Gov法令検索（法令ID 422AC0000000036、
+      2021-10-01施行版で確認）では、同法11条は都道府県知事が定める「都道府県方針」の規定であり、
+      市町村が定める「市町村方針」は12条である。12条1項は「市町村は…市町村方針を定めることが
+      できる。」（許容規定）としているため、本エントリの laws・statutory は12条1項を根拠として
+      記載した。
+
+  - id: noudou-shisetsu-kobetsu
+    name: 壱岐市農道施設個別施設計画
+    level: municipal
+    domain: gyouzaisei
+    category: other
+    tier: shisetsu
+    status: current
+    department: 農林課 農林整備班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/9785.html
+    related: [kokyoshisetsu-kobetsu]
+    todo: 策定年月・計画期間・根拠を確認する
+    notes: >-
+      壱岐市公共施設等総合管理計画・インフラ長寿命化基本計画に基づく、農林課所管の橋梁
+      （椋橋・平江の本橋、橋長15m以上の2橋）を対象とした個別施設計画。財政課の「壱岐市公共施設
+      個別施設計画」（kokyoshisetsu-kobetsu）は施設類型ごとの詳細を「施設所管課にお尋ねください」
+      としており、本計画はその農林課所管分にあたるとみられる。
+
 # ---------------------------------------------------------------------------
 # 分野の定義（図表の色分けとグルーピングに使う）
 #
@@ -927,3 +1039,5 @@ categories:
   kankyo:   { label: 環境・地球温暖化対策, domain: kurashi }
   kanko:    { label: 観光, domain: sangyou }
   bunkazai: { label: 文化財保護・歴史文化, domain: kyouiku }
+  nourin:   { label: 農業振興・鳥獣被害対策, domain: sangyou }
+  ringyou:  { label: 林業・木材利用, domain: sangyou }
