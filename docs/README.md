@@ -7,6 +7,9 @@ HTMLページの背景になる文書を Markdown で置く場所です。
 
 ```
 docs/
+├── design/
+│   ├── 2026-08-12-zenkeikaku-bunrui.md        設計文書
+│   └── 2026-08-12-zenkeikaku-bunrui-plan.md   実装計画
 ├── kaigo/
 │   ├── analysis-8th-9th.md          調査・分析報告書
 │   ├── city-confirmation-checklist.md   市に確認すべき事項
@@ -14,6 +17,14 @@ docs/
 └── pubcom/
     └── 2026-12-kaigo-10th.md        提出したパブリックコメント
 ```
+
+## 設計文書・実装計画（`docs/design/`）
+
+`data/plans.yml` のスキーマ変更やツールの新設など、**リポジトリの構造そのものに手を入れる作業**の
+設計文書と実装計画を置く場所です。ページの内容についての分析報告書（`kaigo/` など）とは性格が違うため、
+別ディレクトリに分けています。
+
+ファイル名は `YYYY-MM-DD-作業名.md`（設計）と `YYYY-MM-DD-作業名-plan.md`（実装計画）で揃えます。
 
 ## 公開の判断
 

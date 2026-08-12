@@ -24,7 +24,15 @@
 ## これから増やすもの
 
 福祉分野に限らず、**壱岐市が持つすべての計画の関連性を図示し、個別の計画に深掘りできる**構成を目指しています。
-`data/plans.yml` には未調査の計画も `todo:` 付きで入れてあり、`node tools/expiring.mjs` で残りが一覧できます。
+分野の分類も、福祉に偏っていた5小分類から、`domain`（大分類）8つ・`category`（小分類）という2階層に広げました。
+
+**組織ごとの巡回で計画を洗い出している途中です。** 市長部局7部のうち3部（総務部・地域振興部・市民部）を
+巡回済みで、収録件数は31件から47件（市38・社協1・県8）に増えました。**残り4部（保健環境部・農林水産部・
+産業推進部・建設部）と教育委員会・消防・農業委員会・議会・選挙管理委員会・監査委員会は未着手です。**
+巡回の進み具合は [`sources/POLICY.md`](sources/POLICY.md) の巡回台帳を参照してください。
+
+`data/plans.yml` には未調査の計画・項目も `todo:` 付きで入れてあり、`node tools/expiring.mjs` や
+`node tools/validate.mjs` で残りが一覧できます。
 
 優先順位の考え方:
 
@@ -54,9 +62,13 @@
 ├── tools/
 │   ├── linkcheck.mjs       出典URLの死活チェック
 │   ├── expiring.mjs        満了・パブコメが近い計画の検出
+│   ├── validate.mjs        参照整合・enum・骨格の検査（error/warn の2段階）
+│   ├── yaml.mjs            plans.yml が使う構文だけを解釈する最小YAMLパーサ（validate.mjs が使用）
+│   ├── manifest.mjs        出典台帳（sources/MANIFEST.md）の未登録を検出・骨格行を追記
 │   └── og/                 OGP画像の生成（cards.html + build.mjs）
 ├── docs/                   分析報告書など（Markdown）
-├── .github/workflows/      上記2つを定期実行して Issue を立てる
+│   └── design/             設計文書・実装計画
+├── .github/workflows/      linkcheck・expiring を定期実行して Issue を立てる
 ├── SETUP.md                公開までの手順（詳細）
 ├── LICENSE                 CC BY 4.0 の条文（文章・図表・データ）
 ├── LICENSE-CODE            MIT の条文（コード）
@@ -71,14 +83,20 @@
 計画の名称・期間・根拠法・所管課・出典URLは、すべてここに集約しています。
 現時点では HTML は手書きですが、**フェーズ2としてこの YAML から図表を生成する**設計にしてあります（下記）。
 
-いま時点でも YAML が効いているのは次の2つです。
+いま時点で YAML を読んでいるのは次の4つです。週次・月次でCIが回るのは `linkcheck` と `expiring` の2つで、
+`validate` と `manifest` はデータ整備が一段落するまで手動での実行です（背景は下記「フェーズ2」参照）。
 
 ```bash
-node tools/linkcheck.mjs      # 出典URLの死活を確認（週次でCIが実行）
-node tools/expiring.mjs       # 満了・パブコメが近い計画を検出（月次でCIが実行）
+node tools/linkcheck.mjs                  # 出典URLの死活を確認（週次でCIが実行）
+node tools/expiring.mjs                   # 満了・パブコメが近い計画を検出（月次でCIが実行）
+node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格を検査（error 0件が必須）
+node tools/manifest.mjs                   # 出典台帳（sources/MANIFEST.md）の未登録を検出
 ```
 
-`linkcheck` は Node 18 以降であれば追加の依存なしで動きます。
+ツール本体（上記4つ）は追加の依存なしで動き、**Node 18 以降**で動作します。
+一方、単体テスト（`node --test`、リポジトリ直下で実行）は Node 標準の `node:test` を使っており**Node 20 以降**が前提です。
+CI（`.github/workflows/`）も `actions/setup-node@v4` で `node-version: '20'` を指定しています。
+開発環境は Node 20 以降を用意してください。
 
 ---
 
@@ -138,14 +156,24 @@ DNSが引けるようになる前にカスタムドメインを設定すると�
 
 ---
 
-## フェーズ2（予定）: YAML から図表を生成する
+## フェーズ2（進行中）: YAML から図表を生成する
 
-計画の数が増えると、HTML を手で直す方式は破綻します。次の順で移行する想定です。
+計画の数が増えると、HTML を手で直す方式は破綻します。2段階で移行する想定です。
+設計は [`docs/design/2026-08-12-zenkeikaku-bunrui.md`](docs/design/2026-08-12-zenkeikaku-bunrui.md)、
+実装計画は [`docs/design/2026-08-12-zenkeikaku-bunrui-plan.md`](docs/design/2026-08-12-zenkeikaku-bunrui-plan.md) を参照してください。
 
-1. `data/plans.yml` にすべての計画を入れる（`todo:` を消していく）
-2. `tools/build.mjs` を書き、YAML から **階層体系図・タイムライン・一覧表** を生成する
-3. `plans/*/index.html` は「生成された共通パーツ＋そのページ固有の分析」という構成にする
-4. 共通スタイルを `assets/base.css` に切り出す
+### 第1段階（進行中）: `data/plans.yml` にすべての計画を入れる
+
+- 分野を `domain`（大分類）／`category`（小分類）の2階層にし、`statutory`（法定性）・`tier`（計画の階層）・
+  `agency`（実施機関）・`conforms_to`（法令上の整合が求められる国・県計画）を追加
+- 検査の土台として `tools/validate.mjs`（参照整合・enum・骨格）と `tools/manifest.mjs`（出典台帳の未登録検出）を新設
+- 組織ごとの巡回でデータを投入中（「これから増やすもの」参照）。`todo:` を消していく作業も並行
+
+### 第2段階（未着手）: YAML から図表を生成する
+
+1. `tools/build.mjs` を書き、YAML から **階層体系図・タイムライン・一覧表** を生成する
+2. `plans/*/index.html` は「生成された共通パーツ＋そのページ固有の分析」という構成にする
+3. 共通スタイルを `assets/base.css` に切り出す
 
 こうすると、**計画を1本追加＝YAMLを数行足すだけ**になり、他自治体がフォークして自分の市版を作ることもできます。
 

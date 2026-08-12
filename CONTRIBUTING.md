@@ -35,9 +35,17 @@ GitHub アカウントがなくても、ikilab.org の連絡先からご連絡�
 ### 変更前に流すもの
 
 ```bash
-node tools/linkcheck.mjs      # 追加・変更したURLが生きているか
-node tools/expiring.mjs       # 期間の入力ミスがないか（変な年度が出ないか）
+node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格の検査
+node tools/linkcheck.mjs                  # 追加・変更したURLが生きているか
+node tools/expiring.mjs                   # 期間の入力ミスがないか
+node --test                               # ツール自身の単体テスト（リポジトリ直下で実行）
 ```
+
+`validate.mjs` の **error は必ず 0件にしてください。** 未調査の項目は、フィールドを空欄にせず書かないことにして
+`todo:` に内容を書けば warn（明示的な猶予）として扱われます。詳しくは [`data/schema.md`](data/schema.md)「未調査の表し方」を参照。
+
+`data/plans.yml` に出典（`url` / `pdf` / `sources`）を追加・変更したら、`node tools/manifest.mjs` で
+[`sources/MANIFEST.md`](sources/MANIFEST.md)（出典台帳）に未登録がないか確認してください。
 
 ### 守ってほしいこと
 
@@ -48,6 +56,7 @@ node tools/expiring.mjs       # 期間の入力ミスがないか（変な年度
 5. **個別の法人・事業所への評価と読める書き方をしない。** 供給構造の議論として書く（[`DISCLAIMER.md`](DISCLAIMER.md) 参照）
 6. **原因を断定しない。** 計画値と実績に差があっても、その原因（需要側・供給側・感染症・目標設定のどれか）は公開資料だけでは切り分けられません。**差は差として書き、評価は読み手に残します**
 7. 内容を変えたら `CHANGELOG.md` に1行足す
+8. **未調査は `todo:` で宣言する。** 空欄や `null` で誤魔化さないでください。`null` は「調査した結果、値が存在しない」という意味です（例: 随時修正の計画の `period: { start: null, end: null }`）
 
 ### 言い換えの例
 
