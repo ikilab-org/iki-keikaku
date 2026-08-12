@@ -447,6 +447,35 @@ plans:
       実現手段として位置づけられる。都道府県知事への意見聴取は令和8年2月13日、地元まちづくり協議会への
       説明・意見聴取は令和8年1月20日・2月19日。
 
+  - id: shougai-katsuyaku-machi
+    name: 壱岐市生涯活躍のまち推進プロジェクト
+    level: municipal
+    domain: sougou
+    category: teiju
+    tier: jisshi
+    status: unknown
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/4510.html
+    sources:
+      - label: 壱岐CCRC基本指針 概要版
+        url: https://www.city.iki.nagasaki.jp/material/files/group/9/CCRC01.pdf
+      - label: 壱岐CCRC基本指針 本編
+        url: https://www.city.iki.nagasaki.jp/material/files/group/9/CCRC02.pdf
+      - label: 壱岐CCRC実施計画（2017年11月改訂版）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/9/CCRC03.pdf
+    notes: >-
+      掲載ページの更新日は2019年5月10日で、2017年11月改訂版の実施計画が最新の掲載のまま止まっている。
+      基本コンセプトは「来てよし　住んでよし　働いてよし　の壱岐へ」。福岡都市圏との近接性を活かし、
+      アクティブシニア世代を主なターゲットに「移住」「住まい」「活躍（就労/社会参加）」
+      「ケア（医療介護/生活支援）」の4方向で構成。掲載ページに根拠法・計画期間・上位計画への言及はない。
+      URLは現存しない政策企画課のパス（/soshiki/seisaku_kikakuka/）配下にあり、出典として失効しやすい。
+      department は地域共創課 人口対策班の分掌事務（地域創生・人口減少対策の総合調整、移住・定住促進）と
+      内容が一致するため候補として有力だが、政策企画課からの移管を直接示す記録は確認できず、
+      推定にとどまるため未記入とした（※推定）。
+    todo: >-
+      現在も有効か、他の計画に統合されたかを確認する。所管課を確認する（地域共創課 人口対策班が
+      分掌事務上該当しそうだが、政策企画課からの移管記録は未確認）。計画期間・策定年月
+      （掲載PDFは2017年11月改訂版で、当初の策定年月は不明）・根拠法の有無・法定性を確認する。
+
   - id: ondanka-kuiki
     name: 壱岐市地球温暖化対策実行計画（区域施策編）
     level: municipal
