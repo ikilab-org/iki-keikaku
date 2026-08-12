@@ -8,7 +8,7 @@
 # スキーマは data/schema.md を参照。年度は西暦（2022 = 令和4年度）。
 
 meta:
-  updated: 2026-08-12
+  updated: 2026-08-13
   survey_date: 2026-08-12          # 最後に調査を行った日。個々の記載の確認日は sources/POLICY.md の巡回台帳を参照
   era_base: 2018                   # 令和元年 = 2019年。令和n年 = era_base + n
 
@@ -579,6 +579,50 @@ plans:
       追加した。department はPDF末尾の発行元表記「壱岐市教育委員会（教育総務課）」による。
     todo: 根拠条文・法定性・所管班（教育総務課のどの班か、教育委員会事務局組織規則での確認）を確認する
 
+  - id: danjo-2
+    name: 第2次壱岐市男女共同参画基本計画
+    level: municipal
+    domain: sougou
+    category: jyoui
+    tier: bumon
+    status: expiring
+    period: { start: 2017, end: 2026 }
+    adopted: 2017-03
+    laws:
+      - { law: 男女共同参画社会基本法14条3項, obligation: effort }
+      - { law: 女性の職業生活における活躍の推進に関する法律（女性活躍推進法）6条2項, obligation: effort }
+      - { law: 配偶者からの暴力の防止及び被害者の保護等に関する法律（DV防止法）2条の3第3項, obligation: effort }
+    statutory: effort
+    department: 地域共創課 企画市民協働班
+    parent: sougou-4
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/3784.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/7/iki-danjokeikaku-2.pdf
+    sources:
+      - label: 第2次壱岐市男女共同参画基本計画（概要版）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/7/iki-danjokeikaku-2digest-2.pdf
+        note: 計画本体PDFの内容を要約した8ページの概要版。表紙・「計画の期間」の記載は計画本体と同一。
+    notes: >-
+      danjo-3（第3次計画、status: planned、2026年8月時点で未策定）の sources で「現行計画」として
+      挙げられていた第2次計画本体を新規に収録した。計画本体PDF「はじめに」（PDF3ページ）末尾の
+      署名は平成29年3月・壱岐市長名。第1章「計画の期間」の項（PDF6ページ、計画本体 p.1）に
+      「この計画の期間は、平成29年度から平成38年度までの10年間とします。」と明記されている
+      （西暦では2017～2026年度）。第1章「計画の位置付け」の項（PDF7ページ、計画本体 p.2）には
+      「（１）この計画は、男女共同参画社会基本法第14条第3項に規定される「市町村男女共同参画計画」であり、
+      壱岐市の男女共同参画の推進に関する施策を、総合的かつ計画的に実施するための基本指針となるものです。」
+      「（２）この計画の「基本目標Ⅳ 仕事と家庭の両立ができる環境づくり」は、「女性の職業生活における
+      活躍の推進に関する法律（女性活躍推進法）」第６条第２項に規定する「女性活躍推進計画」に位置付けます。」
+      「（３）この計画の「基本目標Ⅴ 配偶者等に対する暴力のない社会づくり」は、「配偶者からの暴力の防止
+      及び被害者の保護に関する法律（配偶者暴力防止法）」第２条の３第３項に規定する「市町村における配偶者
+      からの暴力の防止及び被害者の保護のための施策の実施に関する基本的な計画（ＤＶ基本計画）」に位置付け
+      ます。」との記載がある。danjo-3 の laws（4本）のうち困難な問題を抱える女性への支援に関する法律
+      （女性支援新法、令和4年制定・令和6年4月施行）を除く3本がこの計画の根拠法に対応する（同法はこの
+      計画の策定より後に制定されたため対象外）。obligation は danjo-3 で確認済みの区分（いずれも effort）を
+      同一の条項として引き継いだ。前身の第1次計画は、「はじめに」に平成17年策定、第1章「計画策定の背景と
+      目的」の項に平成19年3月策定と、同じ計画書内で年の記載が食い違っており（原文ママ）、掲載ページも
+      確認できていないため predecessors には追加していない。所管は掲載ページの問い合わせ先（地域共創課
+      企画市民協働班）で、danjo-3 と同一。status は period の終期が2026年度であり、調査基準日
+      （2026-08-13）時点で満了まで1年に満たないため expiring とした。
+
   - id: danjo-3
     name: 第3次壱岐市男女共同参画計画
     level: municipal
@@ -587,6 +631,7 @@ plans:
     tier: bumon
     status: planned
     period: { start: 2027, end: 2031 }
+    predecessors: [danjo-2]
     laws:
       - { law: 男女共同参画社会基本法14条3項, obligation: effort }
       - { law: 配偶者からの暴力の防止及び被害者の保護等に関する法律（DV防止法）2条の3第3項, obligation: effort }
@@ -846,7 +891,7 @@ plans:
       壱岐市景観計画・第3期壱岐市観光振興計画と連携する構想として位置づけられていた
       （parent は現行の第4次総合計画〈sougou-4〉に、連携先は現行の壱岐市景観計画〈keikan〉・
       壱岐市観光戦略2025～2027〈kanko-senryaku、第3期観光振興計画の継承・改称版〉に対応させて
-      related とした）。構想書「第２節　事業の位置付け」（PDF1〜2ページ）に
+      related とした）。構想書「第２節　事業の位置付け」（PDF6ページ、計画本体 p.2）に
       「この構想は、上位計画となる第２次壱岐市総合計画のもとに策定するものである。また、運用においては壱岐市景観計画、第３期壱岐市観光振興計画と連携したものとする。」との記載がある。計画期間については、
       構想書全5分冊（kihonkousou01〜05.pdf）を通読したが、期間・見直し年限を定めた記載は
       見当たらなかった（第9章第5節「実現に向けた課題」を含む）。策定から2026年8月時点まで
@@ -1115,8 +1160,10 @@ plans:
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/6869.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/26/usyfubsfysdfidfu.pdf
     notes: >-
-      計画書表紙（PDF1ページ）に「第２次壱岐市子ども読書活動推進計画」「（令和 6～１０年度）」
-      「令和６年７月 策定」「壱岐市教育委員会」と明記。計画期間は社会教育課 図書館ページ
+      計画書表紙（PDF1ページ）に「第２次壱岐市子ども読書活動推進計画」「（令和6～１０年度）」
+      「令和６年７月策定」「壱岐市教育委員会」と明記（`mutool draw -F trace` でグリフを確認したところ
+      全78グリフ中に空白のグリフは無く、表紙に半角・全角いずれの空白も存在しない。見た目の隙間は
+      Wordの和欧文間隔による描画上のもので文字ではない）。計画期間は社会教育課 図書館ページ
       （soshiki/shakai_kyoikuka/toshokan/5616.html）に「2024年度から2028年度までの5年間」
       と明記されており一致する。同ページの問い合わせ先は「文化スポーツ振興課 文化振興班」だが、
       行政組織規則（令和7年6月1日施行、生のHTMLで確認）第3条・第4条の文化振興班の分掌事務
@@ -1551,6 +1598,9 @@ plans:
       request とした。所管は掲載ページの
       問い合わせ先（建設課 土木班）と、行政組織規則第4条の
       同班分掌事務「道路、河川及び橋梁りようの整備に関すること」が一致するため確認した。
+    todo: >-
+      adopted（2019-03）は当初策定年月。data/schema.md の adopted の定義（現在有効な版の最新の
+      策定・改定年月）に従うと、notes にある令和6年4月改定に合わせて 2024-04 に揃える必要がある。
 
   - id: douro-norimen-iji
     name: 壱岐市道路法面等維持管理計画
@@ -1568,7 +1618,9 @@ plans:
     todo: >-
       根拠（法令上の位置付け・国の補助制度等）を確認する。橋梁・トンネルの長寿命化修繕計画は
       国土交通省の道路メンテナンス事業補助制度の個別施設計画に位置づけられていることを確認できたが、
-      法面等についても同様の位置づけかは確認できていない。
+      法面等についても同様の位置づけかは確認できていない。adopted（2017-04）は当初策定年月。
+      data/schema.md の adopted の定義（現在有効な版の最新の策定・改定年月）に従うと、notes に
+      ある令和5年8月改定に合わせて 2023-08 に揃える必要がある。
     notes: >-
       平成25年度の道路ストック総点検（国土交通省が策定した総点検実施要領
       「道路法面工・土工構造物編」による）を踏まえ、平成29年4月に策定、令和5年8月に改定。計画期間は
@@ -1615,6 +1667,7 @@ plans:
     adopted: 2025-06
     statutory: request
     department: 建設課 住宅班
+    parent: sougou-4
     related: [kokyoshisetsu-kobetsu]
     url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/jutaku/1005.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/tyoujyumyoukakousin2025_6.pdf

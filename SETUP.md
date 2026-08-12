@@ -212,8 +212,8 @@ curl -sI https://keikaku.ikilab.org/about/license/      | head -1
 
 **Actions** タブ → 左のワークフロー名を選択 → **Run workflow** → **Run workflow**
 
-`linkcheck` を動かすと、いまの状態では**失効 0 件**（確認 33 件）で終わり、Issue は立ちません。
-ログに `確認 33 件 / 失効 0 件` と出れば動作確認になります。
+`linkcheck` を動かすと、いまの状態では**失効 0 件**で終わり、Issue は立ちません。
+ログの `確認 N 件` は計画が増えるたびに変わるので件数そのものは見ず、`/ 失効 0 件` になっていれば動作確認になります。
 
 > 初版では健康ながさき21の県の個別ページが1件失効していました（[Issue #1](https://github.com/ikilab-org/iki-keikaku/issues/1)）。
 > 県サイトのカテゴリ移設が原因で、移設先へ差し替え済みです。

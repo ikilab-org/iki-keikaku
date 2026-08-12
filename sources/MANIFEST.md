@@ -124,6 +124,8 @@
 | 壱岐市水道ビジョン／厚生労働省「水道事業ビジョン（地域水道ビジョン）策定状況（上水道事業）」（平成30年1月30日現在） | `https://www.mhlw.go.jp/file/06-Seisakujouhou-10900000-Kenkoukyoku/0000169612.pdf` | 高 | 2026-08-13 | ― | ― |
 | 壱岐市住宅マスタープラン／壱岐市景観計画 第1章（策定当時の関連計画の位置づけ図） | `/material/files/group/18/chapter1.pdf` | 高 | 2026-08-13 | ― | ― |
 | 壱岐市住宅マスタープラン／壱岐市空家等対策計画（akiya-taisaku の出典PDF） | `/material/files/group/6/ikishiakiyatoutaisakukeikaku.pdf` | 高 | 2026-08-13 | ― | ― |
+| 第2次壱岐市男女共同参画基本計画（本体PDF） | `/material/files/group/7/iki-danjokeikaku-2.pdf` | 高 | 2026-08-13 | ― | 計画の期間はPDF6ページ（計画本体p.1）、計画の位置付けはPDF7ページ（計画本体p.2） |
+| 第2次壱岐市男女共同参画基本計画／第2次壱岐市男女共同参画基本計画（概要版） | `/material/files/group/7/iki-danjokeikaku-2digest-2.pdf` | 高 | 2026-08-13 | ― | ― |
 
 ベースURL: `https://www.city.iki.nagasaki.jp`
 

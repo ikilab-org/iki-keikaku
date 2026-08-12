@@ -28,7 +28,7 @@ categories: { ... }        # 小分類の定義（大分類にぶら下がる）
 | `domain` | △ | string | `domains` のキー。大分類（[下記](#domain-と-category)） |
 | `status` | ○ | enum | `current` 現行 / `expiring` 期間中だが満了が近い / `expired` 満了済み（履歴として保持） / `planned` 策定予定 / `unknown` 未調査 |
 | `period` | △ | object | `{ start: 年度, end: 年度 }`。随時修正の計画は `null` |
-| `adopted` | | string | 策定年月（`2024-03`） |
+| `adopted` | | string | **現在有効な版**の最新の策定・改定年月（`2024-03`）。[下記](#adopted)参照 |
 | `laws` | | string[] \| object[] | 根拠法。条項まで書く。`{ law, obligation }` で義務の別も持てる（[下記](#laws-と-statutory)） |
 | `department` | | string | 所管課・班。根拠は行政組織規則（[下記](#department)） |
 | `statutory` | | enum | 法定性。`mandatory` / `effort` / `request` / `permissive` / `voluntary`（[下記](#laws-と-statutory)） |
@@ -81,6 +81,15 @@ categories:
 小分類は20前後になる見込みで、識別可能な色を割り当てられないためです。
 
 計画の `domain` は、その `category` が属する `domain` と一致させます。食い違うと `validate` が error にします。
+
+### adopted
+
+`adopted` は、**現在有効な版の最新の策定・改定年月**を書きます。改定を重ねている計画は直近の改定年月とし、
+当初の策定年月を残したい場合は `notes` に書いてください（改定のない計画は当初の策定年月がそのまま
+最新版なので、どちらの読み方でも値は変わりません）。
+
+過去に「当初の策定年月」と「最新の改定年月」の両方の読み方でデータが入力されており、今後はこの定義に揃えます。
+既存データのうち揃っていないもの（`kyoryo-choju`・`douro-norimen-iji` 等）は `todo:` に回しています。
 
 ### laws と statutory
 
