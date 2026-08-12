@@ -70,7 +70,7 @@ plans:
     department: 市民福祉課 地域福祉班
     parent: sougou-4
     includes: [seinen-kouken, saihan-boushi]
-    related: [kourei-9, shougai-keikaku-3, kodomo-1, csw-katsudou-2, pref-fukushi-hoken-6]
+    related: [kourei-9, shougai-keikaku-3, shougai-fukushi-7, kodomo-1, csw-katsudou-2, pref-fukushi-hoken-6]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html
     successor:
       name: 第4次壱岐市地域福祉計画
@@ -91,10 +91,14 @@ plans:
     period: { start: 2022, end: 2026 }
     embedded_in: chiiki-fukushi-3
     laws: [成年後見制度利用促進法14条1項]
+    statutory: effort
     department: 市民福祉課 地域福祉班
     notes: >-
       地域福祉計画に包含。中核機関「後見センター壱岐」は令和3年7月に社協内へ開設。
       高齢者の権利擁護（成年後見制度の利用支援）の実務は長寿支援課 地域包括支援センターが担う。
+      成年後見制度の利用の促進に関する法律14条1項をe-Gov法令検索で確認したところ、国の
+      「成年後見制度利用促進基本計画を勘案して…定めるよう努める」（努力義務）とあるのみで、
+      都道府県計画は登場しない。
 
   - id: saihan-boushi
     name: 壱岐市再犯防止推進計画
@@ -106,9 +110,14 @@ plans:
     period: { start: 2022, end: 2026 }
     embedded_in: chiiki-fukushi-3
     laws: [再犯防止推進法8条1項]
+    statutory: effort
     department: 市民福祉課 地域福祉班
     related: [pref-saihan-2]
-    notes: 地域福祉計画に包含。
+    notes: >-
+      地域福祉計画に包含。再犯の防止等の推進に関する法律8条1項をe-Gov法令検索で確認したところ
+      「再犯防止推進計画を勘案して、当該都道府県又は市町村における再犯の防止等に関する施策の推進に関する
+      計画…を定めるよう努めなければならない」であり、国の計画を勘案する努力義務
+      （都道府県計画との整合規定はなし）。
 
   - id: shougai-keikaku-3
     name: 第3次壱岐市障がい者計画
@@ -120,7 +129,9 @@ plans:
     period: { start: 2022, end: 2026 }
     adopted: 2022-03
     laws: [障害者基本法11条3項]
+    statutory: mandatory
     department: 市民福祉課 地域福祉班
+    parent: sougou-4
     conforms_to: [pref-shougai-kihon-5]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/10383.html
     successor:
@@ -129,7 +140,9 @@ plans:
       public_comment: { start: 2027-01, end: 2027-02 }
     notes: >-
       障害者基本法11条3項により、市町村障害者計画は障害者基本計画及び都道府県障害者計画を
-      基本として策定しなければならない。
+      基本として策定しなければならない。e-Gov法令検索で条文（同条3項「市町村は、障害者基本計画
+      及び都道府県障害者計画を基本とするとともに…当該市町村における障害者のための施策に関する
+      基本的な計画…を策定しなければならない。」）を確認し、conforms_toの根拠とした。
 
   - id: shougai-fukushi-7
     name: 第7期壱岐市障がい福祉計画・第3期障がい児福祉計画
@@ -141,13 +154,23 @@ plans:
     period: { start: 2024, end: 2026 }
     adopted: 2024-03
     laws: [障害者総合支援法88条1項, 児童福祉法33条の20]
+    statutory: mandatory
     department: 市民福祉課 地域福祉班
-    related: [pref-shougai-fukushi-7]
+    related: [pref-shougai-fukushi-7, shougai-keikaku-3]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/12605.html
     successor:
       name: 第8期障がい福祉計画・第4期障がい児福祉計画
       status: planned
       public_comment: { start: 2027-01, end: 2027-02 }
+    notes: >-
+      障害者総合支援法88条1項・児童福祉法33条の20第1項をe-Gov法令検索で確認したところ、いずれも
+      「定めるものとする」（義務規定）。同法88条7項は「市町村障害福祉計画は、障害者基本法第十一条
+      第三項に規定する市町村障害者計画、社会福祉法第百七条第一項に規定する市町村地域福祉計画その他
+      の法律の規定による計画であって障害者等の福祉に関する事項を定めるものと調和が保たれたもので
+      なければならない。」と定め、調和を求める相手は同じ壱岐市内の障がい者計画・地域福祉計画であり、
+      都道府県計画（pref-shougai-fukushi-7）との整合は条文上求められていない
+      （都道府県の意見聴取義務〈11項〉があるのみ）ため、pref-shougai-fukushi-7 は
+      conforms_to ではなく related のままとした。
 
   - id: kourei-9
     name: 壱岐市高齢者福祉計画・第9期介護保険事業計画
@@ -561,6 +584,7 @@ plans:
       - { law: 困難な問題を抱える女性への支援に関する法律（女性支援新法）8条3項, obligation: effort }
     statutory: effort
     department: 地域共創課 企画市民協働班
+    parent: sougou-4
     url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/index.html
     sources:
       - label: 第2次壱岐市男女共同参画基本計画の策定について（現行計画）
@@ -577,6 +601,9 @@ plans:
       計画本体は未策定。名称・内容は策定後に変更される可能性がある。計画期間と正式名称の根拠は策定支援業務の
       仕様書とプロポーザル結果のみであり、いずれも掲載期間終了後に削除されやすい（残存性「低」、
       sources/MANIFEST.md参照）。失効時は議案書・施政方針での再確認が必要。
+      根拠4法をe-Gov法令検索で確認したところ、都道府県計画との関係はいずれも「勘案して」（男女共同参画
+      社会基本法14条3項、DV防止法2条の3第3項、女性活躍推進法6条2項、女性支援新法8条3項）にとどまり、
+      「整合」「調和」「基本とする」の規定は無かったため conforms_to は設定していない。
 
   - id: tokutei-kyoju
     name: 壱岐市特定居住促進計画
