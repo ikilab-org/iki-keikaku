@@ -572,6 +572,37 @@ plans:
       （計画内の推進体制表では旧課名「政策企画課」表記）、事務局補佐は環境衛生課。上位計画の第4次総合計画や
       壱岐市観光振興計画・壱岐市景観計画等と連携する位置づけ。
 
+  - id: ippan-haiki
+    name: 壱岐市一般廃棄物処理基本計画
+    level: municipal
+    domain: kurashi
+    category: kankyo
+    tier: bumon
+    status: current
+    period: { start: 2020, end: 2034 }
+    adopted: 2021-03
+    laws: [廃棄物処理法6条1項]
+    statutory: mandatory
+    department: 環境衛生課 廃棄物対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/kankyo/gomi/14497.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/15/gomisyorihenn2.pdf
+    sources:
+      - label: 壱岐市一般廃棄物処理基本計画（生活排水処理編）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/15/seikatuhaisuisyorihenn2.pdf
+      - label: 資料編（ごみ処理編）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/15/siryougomisyorihenn2.pdf
+      - label: 資料編（生活排水処理編）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/15/siryouseikatuhaisuihenn2.pdf
+    notes: >-
+      「ごみ処理編」（本編）と「生活排水処理編」の2編構成（廃棄物処理法施行規則1条の3）。ごみ処理編・
+      生活排水処理編とも令和3年3月策定、計画策定期間は令和2年度、計画目標年度は令和16年度
+      （中間目標年度：令和9年度）。前回の計画策定（本文に「前回の計画策定から7年が経過」とあり、
+      平成26年度頃と推定）から改定。位置付け上の上位計画は壱岐市総合計画（策定当時は第3次総合計画
+      〈2020～2024年度〉）だが、現行のsougou-4とは策定時点が異なるためparentは付していない。
+      掲載ページの「このページに関するお問い合わせ先」は環境衛生課環境衛生班だが、行政組織規則
+      第4条の廃棄物対策班の分掌事務「一般廃棄物処理基本計画及びその実施計画に関すること」に
+      該当するため、規則を優先し環境衛生課廃棄物対策班とした。
+
   - id: kanko-senryaku
     name: 壱岐市観光戦略2025～2027
     level: municipal
@@ -699,10 +730,22 @@ plans:
     domain: fukushi
     category: kenkou
     tier: jisshi
-    status: unknown
+    status: current
+    period: { start: null, end: null }   # 随時改定
+    adopted: 2026-06
+    laws: [新型インフルエンザ等対策特別措置法8条1項]
+    statutory: mandatory
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/16148.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/37/ikisikeikaku.pdf
     department: 健康増進課
-    todo: 策定時期・所管課を確認する（令和8年にパブコメ実施結果あり）
+    notes: >-
+      平成27(2015)年6月に特措法8条1項（市町村長は都道府県行動計画に基づき市町村行動計画を
+      作成するものとする）に基づき壱岐市独自の行動計画として策定。国の政府行動計画・長崎県
+      行動計画の改定を受けて令和8(2026)年6月に改定（計画書「はじめに」及び第2章第1節に
+      策定・改定の経緯の記載あり）。計画書上、固定の計画期間の定めはなく、政府・県行動計画の
+      改定に応じて随時改定される。所管課は行政組織規則第4条の健康増進班分掌事務
+      「感染症対策(予防接種を含む。)に関すること」に該当するため健康増進課で確認（課内に
+      班は健康増進班のみのため班名は付していない）。
 
   # ---------------------------------------------------------------------------
   # 壱岐市社会福祉協議会
