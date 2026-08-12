@@ -1014,6 +1014,62 @@ plans:
       個別施設計画」（kokyoshisetsu-kobetsu）は施設類型ごとの詳細を「施設所管課にお尋ねください」
       としており、本計画はその農林課所管分にあたるとみられる。
 
+  - id: dounyu-sokushin-kihon
+    name: 導入促進基本計画
+    level: municipal
+    domain: sangyou
+    category: shokou
+    tier: kobetsu
+    status: unknown
+    laws:
+      - { law: 中小企業等経営強化法49条1項, obligation: permissive }
+    statutory: permissive
+    department: 商工振興課 ふるさと振興班
+    url: https://www.city.iki.nagasaki.jp/soshiki/syoukousinkouka/5129.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/8/bosyuu.pdf
+    todo: >-
+      計画期間の起算日（経済産業大臣の同意日）と現在の有効性（改定・再同意の有無）を確認する。
+      掲載ページの更新日は2019年04月04日のまま止まっており、直近の改定を裏付ける記録が無い。
+    notes: >-
+      中小企業・小規模事業者等が設備投資により労働生産性の向上を図る「先端設備等導入計画」の
+      認定基準として、市が策定した基本計画。掲載ページ・PDF（別紙）とも単に「導入促進基本計画」
+      とのみ表記し、市名を冠した正式名称の表記は確認できなかった。PDFは画像スキャン（テキスト
+      レイヤーなし）だが、目視で内容を確認できた：計画期間は「国が同意した日から3年間」、対象地域は
+      市内全域、対象業種・事業は全業種・全事業、目標は計画期間中の先端設備等導入計画6件程度の認定・
+      設備投資額180百万円。根拠条文は中小企業等経営強化法49条1項「…その同意を求めることができる。」
+      （e-Gov法令検索、法令ID 411AC0000000018で確認）で、許容規定のため statutory は permissive とした。
+      PDF本文が引用する「経済産業省関係生産性向上特別措置法施行規則」は、同制度が令和2年10月の
+      中小企業等経営強化法改正で同法に統合される前の根拠規則とみられる。
+
+  - id: sougyou-shien-jigyou
+    name: 創業支援等事業計画
+    level: municipal
+    domain: sangyou
+    category: shokou
+    tier: kobetsu
+    status: unknown
+    laws:
+      - { law: 産業競争力強化法127条1項, obligation: permissive }
+    statutory: permissive
+    department: 商工振興課 ふるさと振興班
+    sources:
+      - label: 中小企業庁「産業競争力強化法に基づく認定を受けた市区町村別の創業支援等事業計画の概要（長崎県）」
+        url: https://www.chusho.meti.go.jp/keiei/chiiki/42.nintei_nagasaki.html
+        note: >-
+          一覧表に壱岐市の行があり、認定年月は「平成27年10月」。行内のPDFリンク（nintei/2014-3/9-136.pdf）は
+          2026-08-12時点で404（「指定されたページまたはファイルは存在しません」）。このURL自体はブラウザで
+          2026-08-12に手動確認済み（表示内容も上記のとおり確認）。tools/linkcheck.mjs は403で失効と誤検知する
+          （サーバがbot User-Agentを拒否しているとみられる）。
+    todo: 計画の正式名称・計画期間・現在の有効性（改定・失効の有無）を確認する。
+    notes: >-
+      市サイト（商工振興課の掲載記事、サイト内検索）で計画本文・掲載ページを確認できない。
+      根拠条文は産業競争力強化法127条1項「…その認定を受けることができる。」（e-Gov法令検索、
+      法令ID 425AC0000000098で確認）で、許容規定のため statutory は permissive とした。
+      department は行政組織規則第4条の商工振興課ふるさと振興班分掌事務「商工業の振興に関すること」
+      「中小企業振興制度に関すること」に近いと考えて記載したが、直接の裏付けは確認できていない
+      （※推定）。壱岐市商工会が実施主体の「経営発達支援計画」（小規模事業者支援法に基づく別制度）とは
+      別物であり、本エントリでは扱わない。
+
 # ---------------------------------------------------------------------------
 # 分野の定義（図表の色分けとグルーピングに使う）
 #
@@ -1051,3 +1107,4 @@ categories:
   bunkazai: { label: 文化財保護・歴史文化, domain: kyouiku }
   nourin:   { label: 農業振興・鳥獣被害対策, domain: sangyou }
   ringyou:  { label: 林業・木材利用, domain: sangyou }
+  shokou:   { label: 商工業振興・企業立地, domain: sangyou }
