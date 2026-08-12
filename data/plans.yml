@@ -572,6 +572,34 @@ plans:
       （計画内の推進体制表では旧課名「政策企画課」表記）、事務局補佐は環境衛生課。上位計画の第4次総合計画や
       壱岐市観光振興計画・壱岐市景観計画等と連携する位置づけ。
 
+  - id: ondanka-jimu
+    name: 壱岐市地球温暖化対策実行計画（事務事業編）
+    level: municipal
+    domain: kurashi
+    category: kankyo
+    status: unknown
+    laws: [{ law: 地球温暖化対策の推進に関する法律21条1項, obligation: mandatory }]
+    statutory: mandatory
+    department: 環境衛生課 環境衛生班
+    related: [ondanka-kuiki]
+    sources:
+      - label: 環境省 令和7年度地域脱炭素の推進に関する状況調査（長崎県別データ）
+        url: https://policies.env.go.jp/policy/roadmap/local_keikaku/sakutei/files/map/42.xlsx
+        note: >-
+          壱岐市が策定済みと回答（区分「現在、計画期間中であり、2025年10月1日以降に改定する予定は
+          ない」）。計画名「壱岐市地球温暖化対策実行計画」、策定/改定年度2024年度、目標年度2030年度、
+          計画期間7年の記載（調査時点：令和7年10月1日）。
+    notes: >-
+      環境省の状況調査では市が策定済みと回答しているが、2026-08-12時点で市サイト（環境衛生課、
+      地球温暖化対策カテゴリ、区域施策編〈ondanka-kuiki〉の掲載ページ）に計画本文・掲載ページを
+      確認できない。区域施策編（ondanka-kuiki）とは別の計画。laws は地球温暖化対策の推進に関する
+      法律21条1項「都道府県及び市町村は…地方公共団体実行計画を策定するものとする」をe-Gov法令検索
+      （法令ID 410AC0000000117）で確認して記載（都道府県・市町村を問わず一律の義務規定）。
+      同条4項〈区域施策編に相当する事項の努力義務、ondanka-kuiki が引用〉とは別項。department は
+      行政組織規則第4条の環境衛生班分掌事務「地球温暖化に関すること」に基づく（区域施策編と異なり、
+      事務事業編を環境衛生課とすることを直接裏付ける市の一次資料は確認できていない）。
+    todo: 計画本文と掲載ページの所在を確認する。計画期間・tierも未確認。
+
   - id: ippan-haiki
     name: 壱岐市一般廃棄物処理基本計画
     level: municipal

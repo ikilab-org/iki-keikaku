@@ -61,6 +61,7 @@
 | 同 第133回 介護保険制度の見直しに関する意見（案） | `https://www.mhlw.go.jp/content/12300000/001621854.pdf` | 高 | 2026-08-11 |
 | 第179回介護給付費分科会 資料（小規模多機能型居宅介護） | `https://www.mhlw.go.jp/content/12300000/000647292.pdf` | 高 | 2026-08-11 |
 | e-Stat 介護保険事業状況報告 | `https://www.e-stat.go.jp/stat-search?iroha=6&toukei=00450351` | 高 | 2026-08-10 |
+| 環境省 令和7年度地域脱炭素の推進に関する状況調査（長崎県別データ、Excel） | `https://policies.env.go.jp/policy/roadmap/local_keikaku/sakutei/files/map/42.xlsx` | 要判定 | 2026-08-12 |
 
 ## 失効した出典（記録として保持）
 
