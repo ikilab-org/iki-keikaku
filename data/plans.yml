@@ -899,7 +899,7 @@ plans:
   - id: keikan
     name: 壱岐市景観計画
     level: municipal
-    domain: kurashi
+    domain: kiban
     category: keikan
     tier: bumon
     status: current
@@ -1443,8 +1443,8 @@ plans:
   - id: noudou-shisetsu-kobetsu
     name: 壱岐市農道施設個別施設計画
     level: municipal
-    domain: sangyou
-    category: nourin
+    domain: kiban
+    category: douro
     tier: shisetsu
     status: current
     department: 農林課 農林整備班
@@ -1816,7 +1816,13 @@ plans:
 # 分野の定義（図表の色分けとグルーピングに使う）
 #
 # domain = 大分類（配色の単位）。category = 小分類。
-# 顔ぶれは骨格収集の完了時に確定させる（設計 3.2）。現時点は暫定。
+#
+# 分類の判断は所管課ではなく計画の内容で決めています。所管は department が持ちます。
+# 景観計画は建設課の所管で、景観法が都市計画と連携する制度であることから kiban に置きます。
+# 農道施設個別施設計画は農林課の所管ですが、対象が橋梁2橋の道路構造物なので kiban / douro です。
+# 施設・財産の管理という性格は tier: shisetsu が表すため、category の label には
+# 「維持管理」「マネジメント」のような tier の語を入れません。
+# 顔ぶれは全75件の投入後に確定させました（設計 3.2）。slot は件数の多い順。
 # ---------------------------------------------------------------------------
 domains:
   fukushi:    { label: 健康・福祉, slot: 1 }
@@ -1825,8 +1831,8 @@ domains:
   sougou:     { label: 市政総論, slot: 4 }
   gyouzaisei: { label: 行財政運営, slot: 5 }
   kyouiku:    { label: 教育・文化, slot: 6 }
-  kurashi:    { label: 生活環境, slot: 7 }
-  bousai:     { label: 防災・安全, slot: 8 }
+  bousai:     { label: 防災・安全, slot: 7 }
+  kurashi:    { label: 生活環境, slot: 8 }
 
 categories:
   fukushi: { label: 地域福祉（総論・横断）, domain: fukushi }
@@ -1837,11 +1843,11 @@ categories:
   kenkou:  { label: 健康づくり・自殺対策, domain: fukushi }
   jyoui:   { label: 上位・関連行政計画, domain: sougou }
   kaihatsu: { label: 地区開発事業, domain: sougou }
-  koukyoshisetsu: { label: 公共施設マネジメント, domain: gyouzaisei }
-  douro:   { label: 道路施設維持管理, domain: kiban }
+  koukyoshisetsu: { label: 公共施設, domain: gyouzaisei }
+  douro:   { label: 道路, domain: kiban }
   koutsuu: { label: 公共交通, domain: kiban }
   bousai:  { label: 防災・危機管理, domain: bousai }
-  keikan:  { label: 景観・都市計画, domain: kurashi }
+  keikan:  { label: 景観・都市計画, domain: kiban }
   dokusho: { label: 読書・生涯学習, domain: kyouiku }
   kyouiku:  { label: 教育行政総論・学校教育, domain: kyouiku }
   gyoukaku: { label: 行財政改革・財政運営, domain: gyouzaisei }
