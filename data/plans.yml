@@ -1293,13 +1293,13 @@ plans:
     status: current
     period: { start: 2024, end: 2028 }
     adopted: 2024-03
-    url: https://www.pref.nagasaki.jp/bunrui/kanko-kyoiku-bunka/shogaigakushu-shakaikyoiku/kodomodokusyo/yojikeikaku/
     pdf: https://www.pref.nagasaki.jp/uploads/2024/02/1708922156.pdf
     notes: >-
       PDF表紙に「第五次」「長崎県子ども読書活動推進計画」「令和６年３月」「長崎県教育委員会」と
       明記。「２　第五次計画の期間」（PDF本文1ページ）に「この計画は、令和６年度から10年度までの
-      ５年間とします。」とある。掲載ページURLは第四次計画のものと同一（yojikeikaku）だが、
-      PDFリンク先は第五次計画に更新されている。
+      ５年間とします。」とある。県サイトの紹介ページURL（yojikeikaku、旧称「第四次長崎県子ども
+      読書活動推進計画」のページ）は2026年8月時点で404（本文はサーバーの汎用404ページ）だったため
+      url は記載せず、直接確認できたPDFのみを根拠とした。
 
   - id: ikitsushima-choju-higai
     name: 壱岐・対馬地域鳥獣被害防止計画
