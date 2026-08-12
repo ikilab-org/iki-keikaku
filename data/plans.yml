@@ -678,9 +678,24 @@ plans:
     domain: kurashi
     category: keikan
     tier: bumon
-    status: unknown
-    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/keikan/index.html
-    todo: 計画期間・根拠法・所管課を確認する
+    status: current
+    period: { start: null, end: null }   # 随時見直し
+    adopted: 2015-03
+    laws: [景観法8条1項]
+    statutory: permissive
+    department: 建設課 管理土地対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/keikan/3873.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/keikaku_all.pdf
+    notes: >-
+      景観法8条1項「景観行政団体は…良好な景観の形成に関する計画（景観計画）を定めることが
+      できる」（許容規定、e-Gov法令検索 法令ID 416AC0000000110で確認）に基づき、平成27年3月
+      策定。平成22年度に景観行政団体へ移行し、平成25～26年度の2か年で策定（掲載ページ本文）。
+      計画書に固定の計画期間の定めはなく、壱岐市景観審議会が市長の諮問に応じて「景観計画の
+      変更や見直し」を審議する体制（計画書第11章）のため随時見直し型とした。所管は掲載ページの
+      問い合わせ先（建設課 管理土地対策班）と、行政組織規則第4条の同班分掌事務「景観まちづくりに
+      関すること」が一致するため確認した。計画書第1章によれば、策定当時「壱岐市住宅マスタープラン
+      （2011～2020）」「壱岐市観光振興計画（2015～2017）」等と並ぶ「市の関連制度」の一つとして
+      位置づけられていた（jutaku-master-plan 参照）。
 
   - id: kokyoshisetsu-sougou
     name: 壱岐市公共施設等総合管理計画
@@ -1073,6 +1088,235 @@ plans:
       壱岐市商工会が実施主体の「経営発達支援計画」（小規模事業者支援法に基づく別制度）とは
       別物であり、本エントリでは扱わない。
 
+  - id: kyoryo-choju
+    name: 壱岐市橋梁長寿命化修繕計画
+    level: municipal
+    domain: gyouzaisei
+    category: other
+    tier: shisetsu
+    status: current
+    period: { start: 2019, end: 2028 }
+    adopted: 2019-03
+    statutory: request
+    department: 建設課 土木班
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/959.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/ikikyouryou64.pdf
+    notes: >-
+      平成19年4月2日付け国土交通省道路局長通知（長寿命化修繕計画策定事業費補助制度の創設）等に
+      基づき、平成31年3月策定（令和6年4月改定版）。橋長2m以上（土被り1m以上のBOXカルバートを
+      含む）の橋梁294橋が対象。計画期間は「平成31年度～令和10年度（今後10年間）」とPDF本文に
+      明記されている。国土交通省の道路メンテナンス事業補助制度は「橋梁 長寿命化修繕計画
+      【個別施設計画】」を個別施設計画の一つに位置づけており、statutory はこれに基づき
+      request とした。所管は掲載ページの問い合わせ先（建設課 土木班）と、行政組織規則第4条の
+      同班分掌事務「道路、河川及び橋梁りようの整備に関すること」が一致するため確認した。
+
+  - id: douro-norimen-iji
+    name: 壱岐市道路法面等維持管理計画
+    level: municipal
+    domain: gyouzaisei
+    category: other
+    tier: shisetsu
+    status: expired
+    period: { start: 2016, end: 2025 }
+    adopted: 2017-04
+    department: 建設課 土木班
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/3498.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/ikinorimen.pdf
+    todo: >-
+      根拠（法令上の位置付け・国の補助制度等）を確認する。橋梁・トンネルの長寿命化修繕計画は
+      国土交通省の道路メンテナンス事業補助制度の個別施設計画に位置づけられていることを確認できたが、
+      法面等についても同様の位置づけかは確認できていない。
+    notes: >-
+      平成25年度の道路ストック総点検（国土交通省が策定した総点検実施要領「道路法面工・
+      土工構造物編」による）を踏まえ、平成29年4月に策定、令和5年8月に改定。計画期間は
+      「平成28年度から令和7年度までの10年間」、概ね5年ごとに見直すとPDF本文（3.5節）に
+      明記されている。2026年8月（survey_date）時点で計画期間の終期（令和7年度末＝2026年3月）を
+      過ぎており、市サイトには令和5年8月改定版が最新のまま掲載され、次期計画の掲載は
+      確認できていないため status は expired とした。所管は掲載ページの問い合わせ先
+      （建設課 土木班）と、行政組織規則第4条の同班分掌事務「道路、河川及び橋梁りようの整備に
+      関すること」が一致するため確認した。
+
+  - id: douro-tunnel-iji
+    name: 壱岐市道路トンネル維持管理計画
+    level: municipal
+    domain: gyouzaisei
+    category: other
+    tier: shisetsu
+    status: current
+    adopted: 2025-12
+    statutory: request
+    department: 建設課 土木班
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/5457.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/tonnneruijikannri.pdf
+    todo: >-
+      計画期間の定めの有無・当初策定年月を確認する（今回確認できたのは「令和7年12月改訂版」の
+      みで、当初の策定年月・固定の計画期間の記載をPDF本文から確認できていない）。
+    notes: >-
+      市が管理する郷ノ浦トンネル（1998年12月竣工の1橋のみ）を対象に、事後保全型から予防保全型の
+      維持管理へ転換するために策定。5年に一度の近接目視点検（法定点検）に加え年1回の通常点検を
+      実施する方針（PDF本文）。国土交通省の道路メンテナンス事業補助制度は「トンネル 長寿命化
+      修繕計画【個別施設計画】」を個別施設計画の一つに位置づけており、statutory はこれに基づき
+      request とした。所管は掲載ページの問い合わせ先（建設課 土木班）と、行政組織規則第4条の
+      同班分掌事務「道路、河川及び橋梁りようの整備に関すること」が一致するため確認した。
+
+  - id: koei-jutaku-choju
+    name: 壱岐市公営住宅等長寿命化計画
+    level: municipal
+    domain: gyouzaisei
+    category: other
+    tier: shisetsu
+    status: current
+    period: { start: 2025, end: 2034 }
+    adopted: 2025-06
+    statutory: request
+    department: 建設課 住宅班
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/jutaku/1005.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/tyoujyumyoukakousin2025_6.pdf
+    notes: >-
+      平成25(2013)年3月に初回策定、平成30(2018)年6月改訂に続く3回目の改訂（令和7(2025)年6月）。
+      計画期間は「令和7年度から令和16年度までの10年間」、概ね5年ごとに見直すとPDF第1章に
+      明記されている。上位計画は第4次壱岐市総合計画（sougou-4）とし、国の住生活基本計画
+      （全国計画）・長崎県住生活基本計画との整合を図るとPDF第1章「計画の位置付け」に明記されて
+      いる。国土交通省「公営住宅等長寿命化計画策定指針」（平成21年3月公表、平成28年8月改定）に
+      基づき、社会資本整備総合交付金（公営住宅等整備事業等）の要件として策定が求められているため
+      statutory は request とした。所管は掲載ページの問い合わせ先（建設課 住宅班）と、行政組織
+      規則第4条の同班分掌事務「市営住宅の整備に関すること」「市営住宅の維持管理に関すること」が
+      一致するため確認した。
+
+  - id: suidou-keiei-senryaku
+    name: 壱岐市水道事業経営戦略
+    level: municipal
+    domain: kiban
+    category: suido
+    tier: bumon
+    status: current
+    period: { start: 2026, end: 2035 }
+    adopted: 2026-03
+    statutory: request
+    department: 上下水道課 水道班
+    predecessors: [suidou-vision]
+    url: https://www.city.iki.nagasaki.jp/soshiki/suidoka/unnei/3497.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/19/jousuidoukeiei.pdf
+    notes: >-
+      平成26年8月総務省通知「公営企業の経営に当たっての留意事項について」等により、中長期的な
+      経営の基本計画である「経営戦略」（計画期間10年以上）の策定が求められたことを受け、平成27
+      年度に初回策定。今回（令和8年3月改定）は水道事業（簡易水道は対象外）分の改定で、計画期間は
+      「令和8年度～令和17年度」とPDFの「計画期間」欄に明記されている。PDF内の「④組織」欄に
+      「市長部局－建設部－上下水道課(15人)－水道班(9人)」と明記されており、department の根拠と
+      した（行政組織規則第4条の水道班の分掌事務は「専用水道及び簡易専用水道に関すること」のみで、
+      市営水道事業の経営自体を明記していないが、上記の一次資料で補強した）。statutory は上記通知
+      に基づく request とした。PDF内「(2)これまでの主な経営健全化の取組」欄に「平成29年度に壱岐市
+      新水道事業ビジョンを策定し、経営健全化に取り組んでいます」との記載があり、当該ビジョン
+      （suidou-vision 参照）の後継として経営戦略が運用されているとみられる。
+
+  - id: gesuidou-keiei-senryaku
+    name: 壱岐市下水道事業経営戦略
+    level: municipal
+    domain: kiban
+    category: suido
+    tier: bumon
+    status: current
+    period: { start: 2024, end: 2033 }
+    adopted: 2024-03
+    statutory: request
+    department: 上下水道課 下水道班
+    url: https://www.city.iki.nagasaki.jp/soshiki/suidoka/unnei/3497.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/19/keieikoukyou.pdf
+    sources:
+      - label: 壱岐市下水道事業（漁業集落排水事業）経営戦略
+        url: https://www.city.iki.nagasaki.jp/material/files/group/19/keieigyosyu.pdf
+    notes: >-
+      「公共下水道事業」（北部処理区・中央処理区）と「漁業集落排水事業」（恵美須地区・山崎地区・
+      瀬戸芦辺地区）の2事業について、それぞれ別冊で策定された経営戦略（いずれも令和6年3月策定、
+      計画期間「令和6年度～令和15年度」、PDFの「計画期間」欄で確認）を1エントリにまとめた。
+      statutory の根拠は suidou-keiei-senryaku と同じ平成26年8月総務省通知等。両PDFの「事業運営
+      組織」欄に「下水道班3名」と明記されており、department の根拠とした（行政組織規則第4条の
+      下水道班の分掌事務「公共下水道事業及び漁業集落排水整備事業に関すること」とも一致）。
+      両PDFに、平成21年4月に水道課と下水道課が統合して水道課となり、平成23年4月に上下水道課へ
+      改称した旨の記載がある。
+
+  - id: suidou-vision
+    name: 壱岐市水道ビジョン
+    level: municipal
+    domain: kiban
+    category: suido
+    tier: bumon
+    status: expired
+    period: { start: 2010, end: 2020 }
+    adopted: 2010-08
+    sources:
+      - label: 厚生労働省「水道事業ビジョン（地域水道ビジョン）策定状況（上水道事業）」（平成30年1月30日現在）
+        url: https://www.mhlw.go.jp/file/06-Seisakujouhou-10900000-Kenkoukyoku/0000169612.pdf
+        note: 長崎県の一覧に「壱岐市水道ビジョン」の行があり、策定時期2010/08、目標年度2020、給水人口26,168人と記載。
+    todo: >-
+      市サイトに本計画自体の掲載ページ・PDFを確認できていない（厚生労働省の全国調査による把握）。
+      壱岐市水道事業経営戦略（suidou-keiei-senryaku）のPDFには「平成29年度に壱岐市新水道事業
+      ビジョンを策定し」との記載があり、本計画の改定版・後継版とみられるが、名称・策定年月・
+      計画期間が一致するかは市の一次資料で確認できていない。所管班を分掌事務で確認する。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。厚生労働省の全国調査（水道事業ビジョン
+      策定状況一覧）にのみ記載を確認した。所管は水道事業経営戦略（suidou-keiei-senryaku）と
+      同じ上下水道課 水道班が候補として有力だが、行政組織規則にこのビジョン自体を明記した
+      規定はなく、確定していないため department は未記入とした（※推定）。
+
+  - id: jutaku-master-plan
+    name: 壱岐市住宅マスタープラン
+    level: municipal
+    domain: kiban
+    category: jutaku
+    tier: bumon
+    status: unknown
+    sources:
+      - label: 壱岐市景観計画 第1章（策定当時の関連計画の位置づけ図）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/18/chapter1.pdf
+        note: >-
+          「壱岐市住宅マスタープラン　■策定期間：平成23年度～平成32年度」として、壱岐市景観計画
+          （平成27年3月策定）策定当時の「市の関連制度」の一つに位置づけられている。
+    todo: >-
+      市サイトに本計画自体の掲載ページ・PDFを確認できていない（壱岐市景観計画PDF内の言及のみで
+      把握）。計画期間（平成23～32年度、2011～2020年度相当）を過ぎており、改定・後継計画の有無、
+      壱岐市公営住宅等長寿命化計画（koei-jutaku-choju、公営住宅のみが対象）との関係を確認する。
+      所管班を分掌事務で確認する。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。壱岐市景観計画（平成27年3月策定）PDF第1章の
+      「市の関連制度」一覧表に記載されているのが確認できた唯一の情報で、それ以外の一次資料は
+      確認できていない。
+
+  - id: akiya-taisaku
+    name: 壱岐市空家等対策計画
+    level: municipal
+    domain: kiban
+    category: jutaku
+    tier: bumon
+    status: expired
+    period: { start: 2018, end: 2022 }
+    adopted: 2018-03
+    laws: [空家等対策の推進に関する特別措置法7条1項]
+    statutory: permissive
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/6/ikishiakiyatoutaisakukeikaku.pdf
+    todo: >-
+      所管班を分掌事務で確認する（計画書自体は策定当時「危機管理課」を空家等担当課としているが
+      〈計画書第5章〉、2026年時点の特定空家等の措置命令〈空家法22条3項〉の問い合わせ先は建設課
+      建築整備班であり〈同課ページID 16113〉、行政組織規則には「空家」の語の記載がなく、どちらが
+      現在の所管か確定できない）。計画期間（平成30～34〈令和4〉年度）が満了しているため、
+      改定・次期計画の有無を確認する。市サイトに本計画の掲載ページを確認できていない
+      （PDF本体のみ確認）。
+    notes: >-
+      平成26年11月制定の空家等対策の推進に関する特別措置法（空家法）に先立ち、平成25年3月に
+      市独自の「壱岐市空き家等の適正管理に関する条例」を制定していた。空家法施行を受け、平成29年
+      12月に「壱岐市空家等対策協議会設置要綱」を制定し、平成30年3月に本計画を策定した
+      （計画書第1章）。計画期間は「5年間」、具体的には「平成30年度～平成34年度」（令和4年度に
+      相当）とPDF本文（第1章）に明記されている。laws は空家等対策の推進に関する特別措置法7条1項
+      「市町村は…空家等に関する対策についての計画（空家等対策計画）を定めることができる」
+      （許容規定）を根拠とした。この条項は令和5年6月改正・同年12月施行により、計画書策定当時の
+      条番号「第6条」から現行の「第7条」に繰り下がっている（e-Gov法令検索、法令ID
+      426AC1000000127で現行条文を確認。計画書自体は策定当時の条番号「第6条」を引用している）。
+      2026年8月時点で市サイトに本計画の掲載ページ・改定版を確認できていない。
+
 # ---------------------------------------------------------------------------
 # 分野の定義（図表の色分けとグルーピングに使う）
 #
@@ -1111,3 +1355,5 @@ categories:
   nourin:   { label: 農業振興・鳥獣被害対策, domain: sangyou }
   ringyou:  { label: 林業・木材利用, domain: sangyou }
   shokou:   { label: 商工業振興・企業立地, domain: sangyou }
+  suido:    { label: 上下水道, domain: kiban }
+  jutaku:   { label: 住宅政策, domain: kiban }
