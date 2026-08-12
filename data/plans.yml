@@ -2,7 +2,8 @@
 #
 # このファイルがサイト全体の「単一の真実」です。
 # 図表・タイムライン・一覧表は、将来的にすべてこのファイルから生成します（README「フェーズ2」参照）。
-# 現時点では tools/linkcheck.mjs と tools/expiring.mjs がこのファイルを読みます。
+# tools/validate.mjs（整合性）・tools/linkcheck.mjs（URLの死活）・
+# tools/expiring.mjs（満了とパブコメ）・tools/manifest.mjs（出典台帳）がこのファイルを読みます。
 #
 # スキーマは data/schema.md を参照。年度は西暦（2022 = 令和4年度）。
 
