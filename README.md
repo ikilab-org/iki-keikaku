@@ -4,7 +4,7 @@
 公開情報だけを使い、出典をすべて明示しています。
 
 - 公開URL: https://keikaku.ikilab.org
-- 運営: [IKILAB](https://ikilab.org) ／ リポジトリ: [github.com/ikilab-org/iki-plans](https://github.com/ikilab-org/iki-plans)
+- 運営: [IKILAB](https://ikilab.org) ／ リポジトリ: [github.com/ikilab-org/iki-keikaku](https://github.com/ikilab-org/iki-keikaku)
 - 調査基準日: `data/plans.yml` の `meta.survey_date` を参照
 
 > **この資料は壱岐市の公式資料ではありません。** 公表資料をもとに独立して整理したものです。
@@ -24,13 +24,23 @@
 ## これから増やすもの
 
 福祉分野に限らず、**壱岐市が持つすべての計画の関連性を図示し、個別の計画に深掘りできる**構成を目指しています。
-`data/plans.yml` には未調査の計画も `todo:` 付きで入れてあり、`node tools/expiring.mjs` で残りが一覧できます。
+分野の分類は、福祉に偏っていた6小分類から、`domain`（大分類）8つ・`category`（小分類）という2階層に広げ、
+確定しました。
 
-優先順位の考え方:
+**組織ごとの巡回で市の全機関を巡り終え、収録件数は31件から76件（市66・社協1・県9）に増えました。**
+市長部局7部（総務部・地域振興部・市民部・保健環境部・農林水産部・産業推進部・建設部）に加え、
+教育委員会・消防本部・農業委員会・議会・選挙管理委員会・監査委員のすべてを巡回し、計画を持たない
+組織は「なし」と記録しています。パブリックコメント実施状況・第4次総合計画の関連計画一覧・附属機関の
+設置条例の3系統でも交差検証し、洗い出しの漏れを確認しました。巡回・交差検証の記録は
+[`sources/POLICY.md`](sources/POLICY.md) の巡回台帳を参照してください。
 
-1. **改定期が近い計画から**。令和8年12月〜令和9年2月に5計画がパブリックコメントにかかるため、そこに間に合うものを先に
-2. **上位計画とのつながりが強いもの**（総合計画・過疎計画・公共施設等総合管理計画）
-3. その他
+`data/plans.yml` には未調査の項目が `todo:`（28件）付きで残っており、`node tools/expiring.mjs` や
+`node tools/validate.mjs` で一覧できます。
+
+これからの優先順位:
+
+1. **残る `todo:` の解消。** 計画期間・所管課など、巡回時点では確認しきれなかった項目です
+2. **フェーズ2 第2段階（下記）への着手。** `data/plans.yml` から図表を自動生成する仕組みに移行します
 
 ---
 
@@ -54,9 +64,13 @@
 ├── tools/
 │   ├── linkcheck.mjs       出典URLの死活チェック
 │   ├── expiring.mjs        満了・パブコメが近い計画の検出
+│   ├── validate.mjs        参照整合・enum・骨格の検査（error/warn の2段階）
+│   ├── yaml.mjs            plans.yml が使う構文だけを解釈する最小YAMLパーサ（validate.mjs・manifest.mjs が使用）
+│   ├── manifest.mjs        出典台帳（sources/MANIFEST.md）の未登録を検出・骨格行を追記
 │   └── og/                 OGP画像の生成（cards.html + build.mjs）
 ├── docs/                   分析報告書など（Markdown）
-├── .github/workflows/      上記2つを定期実行して Issue を立てる
+│   └── design/             設計文書・実装計画
+├── .github/workflows/      linkcheck・expiring を定期実行して Issue を立てる
 ├── SETUP.md                公開までの手順（詳細）
 ├── LICENSE                 CC BY 4.0 の条文（文章・図表・データ）
 ├── LICENSE-CODE            MIT の条文（コード）
@@ -71,14 +85,21 @@
 計画の名称・期間・根拠法・所管課・出典URLは、すべてここに集約しています。
 現時点では HTML は手書きですが、**フェーズ2としてこの YAML から図表を生成する**設計にしてあります（下記）。
 
-いま時点でも YAML が効いているのは次の2つです。
+いま時点で YAML を読んでいるのは次の4つです。週次・月次でCIが回るのは `linkcheck` と `expiring` の2つで、
+`validate` と `manifest` はデータ整備が一段落するまで手動での実行です（背景は下記「フェーズ2」参照）。
 
 ```bash
-node tools/linkcheck.mjs      # 出典URLの死活を確認（週次でCIが実行）
-node tools/expiring.mjs       # 満了・パブコメが近い計画を検出（月次でCIが実行）
+node tools/linkcheck.mjs                  # 出典URLの死活を確認（週次でCIが実行）
+node tools/expiring.mjs                   # 満了・パブコメが近い計画を検出（月次でCIが実行）
+node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格を検査（error 0件が必須）
+node tools/manifest.mjs                   # 出典台帳（sources/MANIFEST.md）の未登録を検出
 ```
 
-`linkcheck` は Node 18 以降であれば追加の依存なしで動きます。
+ツール本体（上記4つ）は追加の依存なしで動き、**Node 18 以降**で動作します。
+単体テスト（`node --test`、リポジトリ直下で実行）は Node 標準の `node:test` を使います。
+`node --test` は Node 18.1 以降で動きますが、Node 20 で安定版になりました。18系では experimental の警告が出ます。
+CI（`.github/workflows/`）も `actions/setup-node@v4` で `node-version: '20'` を指定しています。
+開発環境は Node 20 以降を用意してください。
 
 ---
 
@@ -114,9 +135,9 @@ node tools/expiring.mjs       # 満了・パブコメが近い計画を検出（
 **詳細な手順は [`SETUP.md`](SETUP.md) にあります。** ここでは要点だけ。
 
 ```bash
-unzip iki-plans.zip && cd iki-plans
+unzip iki-keikaku.zip && cd iki-keikaku
 git init -b main && git add -A && git commit -m "壱岐市 計画マップ 初版"
-gh repo create ikilab-org/iki-plans --public --source=. --remote=origin --push
+gh repo create ikilab-org/iki-keikaku --public --source=. --remote=origin --push
 ```
 
 1. **GitHub**: Settings → Pages → Source `Deploy from a branch`、Branch `main` / `/ (root)`
@@ -138,14 +159,27 @@ DNSが引けるようになる前にカスタムドメインを設定すると�
 
 ---
 
-## フェーズ2（予定）: YAML から図表を生成する
+## フェーズ2: YAML から図表を生成する
 
-計画の数が増えると、HTML を手で直す方式は破綻します。次の順で移行する想定です。
+計画の数が増えると、HTML を手で直す方式は破綻します。2段階で移行する想定です。
+設計は [`docs/design/2026-08-12-zenkeikaku-bunrui.md`](docs/design/2026-08-12-zenkeikaku-bunrui.md)、
+実装計画は [`docs/design/2026-08-12-zenkeikaku-bunrui-plan.md`](docs/design/2026-08-12-zenkeikaku-bunrui-plan.md) を参照してください。
 
-1. `data/plans.yml` にすべての計画を入れる（`todo:` を消していく）
-2. `tools/build.mjs` を書き、YAML から **階層体系図・タイムライン・一覧表** を生成する
-3. `plans/*/index.html` は「生成された共通パーツ＋そのページ固有の分析」という構成にする
-4. 共通スタイルを `assets/base.css` に切り出す
+### 第1段階（完了）: `data/plans.yml` にすべての計画を入れる
+
+- 分野を `domain`（大分類）／`category`（小分類）の2階層にし、`statutory`（法定性）・`tier`（計画の階層）・
+  `agency`（実施機関）・`conforms_to`（法令上の整合が求められる国・県計画）を追加
+- 検査の土台として `tools/validate.mjs`（参照整合・enum・骨格）・`tools/yaml.mjs`（依存なしの最小YAMLパーサ）・
+  `tools/manifest.mjs`（出典台帳の未登録検出）を新設
+- **組織ごとの巡回で市の全機関を巡り終え、収録件数は31件から76件になった。** `domains`（大分類）8つを
+  確定し、鉤括弧の中の引用も原本と照合した（詳細は「これから増やすもの」・`CHANGELOG.md` を参照）
+- 残る `todo:`（28件）の解消は継続中
+
+### 第2段階（未着手）: YAML から図表を生成する
+
+1. `tools/build.mjs` を書き、YAML から **階層体系図・タイムライン・一覧表** を生成する
+2. `plans/*/index.html` は「生成された共通パーツ＋そのページ固有の分析」という構成にする
+3. 共通スタイルを `assets/base.css` に切り出す
 
 こうすると、**計画を1本追加＝YAMLを数行足すだけ**になり、他自治体がフォークして自分の市版を作ることもできます。
 

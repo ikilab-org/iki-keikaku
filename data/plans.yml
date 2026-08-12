@@ -2,13 +2,14 @@
 #
 # このファイルがサイト全体の「単一の真実」です。
 # 図表・タイムライン・一覧表は、将来的にすべてこのファイルから生成します（README「フェーズ2」参照）。
-# 現時点では tools/linkcheck.mjs と tools/expiring.mjs がこのファイルを読みます。
+# tools/validate.mjs（整合性）・tools/linkcheck.mjs（URLの死活）・
+# tools/expiring.mjs（満了とパブコメ）・tools/manifest.mjs（出典台帳）がこのファイルを読みます。
 #
 # スキーマは data/schema.md を参照。年度は西暦（2022 = 令和4年度）。
 
 meta:
-  updated: 2026-08-12
-  survey_date: 2026-08-10          # 記載内容の調査基準日
+  updated: 2026-08-13
+  survey_date: 2026-08-12          # 最後に調査を行った日。個々の記載の確認日は sources/POLICY.md の巡回台帳を参照
   era_base: 2018                   # 令和元年 = 2019年。令和n年 = era_base + n
 
 # ---------------------------------------------------------------------------
@@ -19,7 +20,9 @@ plans:
     name: 第4次壱岐市総合計画
     short: 総合計画
     level: municipal
+    domain: sougou
     category: jyoui
+    tier: sougou
     status: current
     period: { start: 2025, end: 2029 }
     adopted: 2025-03
@@ -31,11 +34,31 @@ plans:
       市の最上位計画。地方版総合戦略を取り込んだ一体型。合言葉「一緒に前へ、壱岐新時代へ。」
       福祉は基本目標2、子育ては基本目標3。
 
+  - id: sdgs-mirai-toshi
+    name: 第3期壱岐市SDGs未来都市計画
+    short: SDGs未来都市計画
+    level: municipal
+    domain: sougou
+    category: jyoui
+    tier: sougou
+    status: expiring
+    period: { start: 2024, end: 2026 }
+    adopted: 2024-03
+    statutory: voluntary
+    department: 一緒に推進課 共創推進班
+    url: https://www.city.iki.nagasaki.jp/soshiki/eng/kyousou/sdgs/SDGs/7558.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/40/ikicitySDGsplan3rd.pdf
+    notes: >-
+      平成30(2018)年6月にSDGs未来都市に選定。第1期(2018～2020)・第2期(2021～2023)に続く第3期。
+      内閣府の選定制度に基づく計画で、個別法の根拠なし。
+
   - id: chiiki-fukushi-3
     name: 第3次壱岐市地域福祉計画
     short: 地域福祉計画
     level: municipal
+    domain: fukushi
     category: fukushi
+    tier: bumon
     status: expiring
     period: { start: 2022, end: 2026 }
     adopted: 2022-03
@@ -43,91 +66,125 @@ plans:
       - 社会福祉法107条
       - 成年後見制度利用促進法14条1項
       - 再犯防止推進法8条1項
+    statutory: effort
     department: 市民福祉課 地域福祉班
     parent: sougou-4
     includes: [seinen-kouken, saihan-boushi]
-    related: [kourei-9, shougai-keikaku-3, kodomo-1, csw-katsudou-2]
+    related: [kourei-9, shougai-keikaku-3, shougai-fukushi-7, kodomo-1, csw-katsudou-2, pref-fukushi-hoken-6]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html
     successor:
       name: 第4次壱岐市地域福祉計画
       status: planned
       public_comment: { start: 2027-01, end: 2027-02 }
     notes: >-
-      福祉分野の分野横断的な上位計画。基本理念「誰一人取り残されることがないよう、支え合い、
-      尊重し合い、安心して、自分らしく、いきいきと暮らせるまちづくり」。
+      福祉分野の分野横断的な上位計画。基本理念「誰一人取り残されることがないよう、支え合い、尊重し合い、安心して、自分らしく、いきいきと暮らせるまちづくり」。
       掲載ページ本文の基本理念は第2次のまま更新されていない（計画本文 第3章が正）。
 
   - id: seinen-kouken
     name: 壱岐市成年後見制度利用促進基本計画
     level: municipal
+    domain: fukushi
     category: fukushi
+    tier: kobetsu
     status: expiring
     period: { start: 2022, end: 2026 }
-    parent: chiiki-fukushi-3
     embedded_in: chiiki-fukushi-3
     laws: [成年後見制度利用促進法14条1項]
+    statutory: effort
     department: 市民福祉課 地域福祉班
     notes: >-
       地域福祉計画に包含。中核機関「後見センター壱岐」は令和3年7月に社協内へ開設。
       高齢者の権利擁護（成年後見制度の利用支援）の実務は長寿支援課 地域包括支援センターが担う。
+      成年後見制度の利用の促進に関する法律14条1項をe-Gov法令検索で確認したところ、国の
+      「…成年後見制度利用促進基本計画を勘案して…定めるよう努める…」（努力義務）とあるのみで、
+      都道府県計画は登場しない。
 
   - id: saihan-boushi
     name: 壱岐市再犯防止推進計画
     level: municipal
+    domain: fukushi
     category: fukushi
+    tier: kobetsu
     status: expiring
     period: { start: 2022, end: 2026 }
-    parent: chiiki-fukushi-3
     embedded_in: chiiki-fukushi-3
     laws: [再犯防止推進法8条1項]
+    statutory: effort
     department: 市民福祉課 地域福祉班
-    notes: 地域福祉計画に包含。
+    related: [pref-saihan-2]
+    notes: >-
+      地域福祉計画に包含。再犯の防止等の推進に関する法律8条1項をe-Gov法令検索で確認したところ
+      「…再犯防止推進計画を勘案して、当該都道府県又は市町村における再犯の防止等に関する施策の推進に関する計画…を定めるよう努めなければならない。」であり、国の計画を勘案する努力義務
+      （都道府県計画との整合規定はなし）。
 
   - id: shougai-keikaku-3
     name: 第3次壱岐市障がい者計画
     level: municipal
+    domain: fukushi
     category: shougai
+    tier: bumon
     status: expiring
     period: { start: 2022, end: 2026 }
     adopted: 2022-03
     laws: [障害者基本法11条3項]
+    statutory: mandatory
     department: 市民福祉課 地域福祉班
+    parent: sougou-4
+    conforms_to: [pref-shougai-kihon-5]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/10383.html
     successor:
       name: 第4次壱岐市障がい者計画
       status: planned
       public_comment: { start: 2027-01, end: 2027-02 }
+    notes: >-
+      障害者基本法11条3項により、市町村障害者計画は障害者基本計画及び都道府県障害者計画を基本として策定しなければならない。e-Gov法令検索で条文（同条3項
+      「市町村は、障害者基本計画及び都道府県障害者計画を基本とするとともに…当該市町村における障害者のための施策に関する基本的な計画…を策定しなければならない。」）を確認し、conforms_toの根拠とした。
 
   - id: shougai-fukushi-7
     name: 第7期壱岐市障がい福祉計画・第3期障がい児福祉計画
     level: municipal
+    domain: fukushi
     category: shougai
+    tier: kobetsu
     status: expiring
     period: { start: 2024, end: 2026 }
     adopted: 2024-03
     laws: [障害者総合支援法88条1項, 児童福祉法33条の20]
+    statutory: mandatory
     department: 市民福祉課 地域福祉班
+    related: [pref-shougai-fukushi-7, shougai-keikaku-3]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/12605.html
     successor:
       name: 第8期障がい福祉計画・第4期障がい児福祉計画
       status: planned
       public_comment: { start: 2027-01, end: 2027-02 }
+    notes: >-
+      障害者総合支援法88条1項・児童福祉法33条の20第1項をe-Gov法令検索で確認したところ、いずれも
+      「定めるものとする」（義務規定）。同法88条7項は
+      「市町村障害福祉計画は、障害者基本法第十一条第三項に規定する市町村障害者計画、社会福祉法第百七条第一項に規定する市町村地域福祉計画その他の法律の規定による計画であって障害者等の福祉に関する事項を定めるものと調和が保たれたものでなければならない。」と定め、調和を求める相手は同じ壱岐市内の障がい者計画・地域福祉計画であり、
+      都道府県計画（pref-shougai-fukushi-7）との整合は条文上求められていない
+      （都道府県の意見聴取義務〈11項〉があるのみ）ため、pref-shougai-fukushi-7 は
+      conforms_to ではなく related のままとした。
 
   - id: kourei-9
     name: 壱岐市高齢者福祉計画・第9期介護保険事業計画
     short: 高齢者福祉・介護保険事業計画
     level: municipal
+    domain: fukushi
     category: kourei
+    tier: kobetsu
     status: expiring
     period: { start: 2024, end: 2026 }
     adopted: 2024-03
     laws: [老人福祉法20条の8, 介護保険法117条]
+    statutory: mandatory
     department: 保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）
     url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/13262.html
     pdf: https://www.city.iki.nagasaki.jp/material/files/group/38/keikakukeikaku.pdf
     sources:
       - label: 議案書収録版（令和6年2月第2回会議 議案第15号）
         url: https://www.city.iki.nagasaki.jp/material/files/group/3/6nen2gatu2gian5_15.pdf
+    related: [pref-chouju-9]
     predecessors: [kourei-8, kourei-7]
     successor:
       name: 壱岐市高齢者福祉計画・第10期介護保険事業計画
@@ -142,7 +199,9 @@ plans:
   - id: kourei-8
     name: 壱岐市高齢者福祉計画・第8期介護保険事業計画
     level: municipal
+    domain: fukushi
     category: kourei
+    tier: kobetsu
     status: expired
     period: { start: 2021, end: 2023 }
     adopted: 2021-03
@@ -155,7 +214,9 @@ plans:
   - id: kourei-7
     name: 壱岐市高齢者福祉計画・第7期介護保険事業計画
     level: municipal
+    domain: fukushi
     category: kourei
+    tier: kobetsu
     status: expired
     period: { start: 2018, end: 2020 }
     adopted: 2018-03
@@ -169,55 +230,155 @@ plans:
   - id: kodomo-1
     name: 壱岐市こども計画
     level: municipal
+    domain: fukushi
     category: kodomo
+    tier: bumon
     status: current
     period: { start: 2025, end: 2029 }
     adopted: 2025-03
-    laws: [こども基本法10条2項ほか5法]
+    laws:
+      - { law: 子ども・子育て支援法61条1項, obligation: mandatory }
+      - { law: こども基本法10条2項, obligation: effort }
+      - { law: 子ども・若者育成支援推進法9条2項, obligation: effort }
+      - { law: こどもの貧困の解消に向けた対策の推進に関する法律10条2項, obligation: effort }
+      - { law: 次世代育成支援対策推進法8条1項, obligation: permissive }
+    statutory: mandatory
     department: 子育て支援課
+    related: [pref-kosodate-jourei]
+    predecessors: [kodomo-jigyou-2, kodomo-jigyou-1, jisedai-koki]
     url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html
     notes: >-
       子ども・子育て支援事業計画／次世代育成支援／こどもの貧困対策／子ども・若者計画を一体化。
       令和9年度に中間見直し。
+      子どもの貧困対策の根拠法は令和6年改正で題名が「こどもの貧困の解消に向けた対策の推進に関する法律」に、
+      条項が旧9条1項から10条2項に変更されている（本データは現行条項に修正済み）。
+
+  - id: kodomo-jigyou-2
+    name: 第2期壱岐市子ども・子育て支援事業計画
+    level: municipal
+    domain: fukushi
+    category: kodomo
+    tier: kobetsu
+    status: expired
+    period: { start: 2020, end: 2024 }
+    adopted: 2020-03
+    laws:
+      - { law: 子ども・子育て支援法61条1項, obligation: mandatory }
+    statutory: mandatory
+    department: 子育て支援課
+    url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/191.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/11/2ikikodomo.pdf
+    sources:
+      - label: 中間見直し（令和4年度）
+        url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/12048.html
+        note: 教育・保育の量の見込み等について見直し。更新日2023-10-06。
+    notes: >-
+      kodomo-1（壱岐市こども計画）の前身。計画書本文（第1章2）に、次世代育成支援対策推進法8条1項に基づく
+      市町村行動計画（前身の第1期計画、jisedai-koki も参照）の内容を一部引き継いだ旨、
+      および子どもの貧困対策の推進に関する法律4条に基づく子どもの貧困対策の取組に関する計画を兼ねる旨が
+      明記されている（いずれも法的な一体策定ではなく内容の引継ぎ・兼用という位置付けのため、
+      `laws` には子ども・子育て支援法61条1項のみを記載）。
+
+  - id: kodomo-jigyou-1
+    name: 第1期壱岐市子ども・子育て支援事業計画
+    level: municipal
+    domain: fukushi
+    category: kodomo
+    tier: kobetsu
+    status: expired
+    period: { start: 2015, end: 2019 }
+    adopted: 2015-03
+    laws:
+      - { law: 子ども・子育て支援法61条1項, obligation: mandatory }
+      - { law: 次世代育成支援対策推進法8条1項, obligation: permissive }
+    statutory: mandatory
+    department: 子育て支援課
+    url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/191.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/11/1ikikodomo.pdf
+    notes: >-
+      kodomo-1（壱岐市こども計画）・kodomo-jigyou-2（第2期）の前身。子ども・子育て支援法61条1項に基づく
+      市町村子ども・子育て支援事業計画であると同時に、次世代育成支援対策推進法8条1項に基づく市町村行動計画
+      （前身の jisedai-koki を参照）にも位置付けて一体的に策定した旨が計画書本文（第1章3）に明記されている。
+      計画書本文で引用される次世代育成支援対策推進法8条1項の条文は「策定することができる」（許容規定）。
+
+  - id: jisedai-koki
+    name: 壱岐市次世代育成支援行動計画（後期計画）
+    level: municipal
+    domain: fukushi
+    category: kodomo
+    tier: kobetsu
+    status: expired
+    period: { start: 2010, end: 2014 }
+    laws: [次世代育成支援対策推進法8条1項]
+    department: 子育て支援課
+    url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/machizukuri/shi_keikaku/kenkofukushi/889.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/2/jisedaiikusei.pdf
+    todo: 策定年月を確認する（計画書第1章に「…平成 22 年度から始まる後期計画を策定しました。」とあるのみで、確定した年月の記載を確認できていない）
+    notes: >-
+      kodomo-jigyou-1（第1期子ども・子育て支援事業計画）の前身。次世代育成支援対策推進法8条1項は、
+      同法が平成26年度までの時限法だった当時（本計画の策定当時）は市町村に行動計画の策定を義務づけており、
+      計画書第1章にも
+      「（国は）...平成 17 年度から 5 年を１期とした前期・後期計 10 年間の次世代育成対策に関する行動計画の策定を義務づけ」と明記されている。その後、同法の有効期限を延長する改正が行われ、
+      延長後の期間分については「策定することができる」という許容規定になっている（kodomo-1 参照）。
+      策定当時と現行とで義務の強さの意味が変わるため `statutory` は書かない。
+      本計画（後期計画、平成22～26年度）の前に前期計画（平成17～21年度）があるが、掲載ページを確認できていない。
 
   - id: data-health-3
     name: 第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画
     level: municipal
+    domain: fukushi
     category: iryou
+    tier: kobetsu
     status: current
     period: { start: 2024, end: 2029 }
     adopted: 2024-03
-    laws: [国民健康保険法82条, 高齢者医療確保法]
+    laws:
+      - { law: 高齢者医療確保法19条1項, obligation: mandatory }
+      - { law: 国民健康保険法82条, obligation: request }
+    statutory: mandatory
     department: 保険課 国保・後期・年金班
     url: https://www.city.iki.nagasaki.jp/soshiki/hokenka/kenko_hoken/datahealth3.html
+    notes: >-
+      国民健康保険法82条自体にデータヘルス計画を定める規定はなく、同条11項に基づき厚生労働大臣が
+      公表する指針（国民健康保険法に基づく保健事業の実施等に関する指針、平成16年厚生労働省告示第307号）が
+      データヘルス計画の策定を求めている。
 
   - id: kenkou-iki21
     name: 壱岐市健康づくり計画「健康いき21」
     level: municipal
+    domain: fukushi
     category: kenkou
+    tier: bumon
     status: current
     period: { start: 2024, end: 2029 }
     adopted: 2024-03
     laws: [健康増進法8条2項, 食育基本法18条, 長崎県歯・口腔の健康づくり推進条例9条]
+    statutory: effort
     department: 健康増進課
+    related: [pref-kenkou-21-3]
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/kenkoufukushi/12683.html
     notes: 健康増進計画・歯科口腔保健推進計画・食育推進計画を一体化。
 
   - id: jisatsu-2
     name: 第2次壱岐市いのち支える自殺対策計画
     level: municipal
+    domain: fukushi
     category: kenkou
+    tier: bumon
     status: current
     period: { start: 2023, end: 2027 }
     adopted: 2023-04
     laws: [自殺対策基本法13条2項]
     department: 健康増進課
+    related: [pref-jisatsu-4]
     url: https://www.city.iki.nagasaki.jp/kenkou/kenkoujigyou/6001.html
 
   - id: kaso-r8
     name: 壱岐市過疎地域持続的発展計画
     level: municipal
+    domain: sougou
     category: jyoui
+    tier: sougou
     status: current
     period: { start: 2026, end: 2030 }
     adopted: 2026-03
@@ -229,7 +390,9 @@ plans:
   - id: koutsuu
     name: 壱岐市地域公共交通計画
     level: municipal
-    category: jyoui
+    domain: kiban
+    category: koutsuu
+    tier: bumon
     status: current
     period: { start: 2026, end: 2031 }
     adopted: 2026-03
@@ -238,10 +401,49 @@ plans:
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/15734.html
     notes: 高齢者の通院・買物支援、免許返納、デマンド型交通の検討。
 
+  - id: koutsuu-ribenzoushin
+    name: 壱岐市地域公共交通利便増進計画
+    level: municipal
+    domain: kiban
+    category: koutsuu
+    tier: jisshi
+    status: planned
+    period: { start: 2027, end: 2031 }
+    laws:
+      - { law: 地域公共交通の活性化及び再生に関する法律27条の14第1項, obligation: mandatory }
+    statutory: mandatory
+    department: 総務課
+    related: [koutsuu]
+    sources:
+      - label: パブリックコメント（意見公募）実施予定
+        url: https://www.city.iki.nagasaki.jp/shisei/koho_kocho/comment/15343.html
+        note: >-
+          一覧表に「壱岐市地域公共交通利便増進計画」の行があり、区分「実施予定」、計画期間
+          「令和9年度～令和13年度」、パブリックコメント実施期間（予定）「令和9年1月～2月
+          （予定）」、担当部署「総務課」と記載（2026-08-12にブラウザで確認、ページ更新日
+          2026年04月22日）。既存の壱岐市地域公共交通計画（`koutsuu`）の掲載ページ本文
+          （2026-08-12確認）には「利便増進」の語は登場せず、別の計画とみられる。
+    notes: >-
+      巡回では拾えず、パブリックコメント実施予定一覧との突き合わせで新たに把握した。地域
+      公共交通の活性化及び再生に関する法律27条の14第1項（e-Gov法令検索、法令ID
+      419AC0000000059、第三章第九節「地域公共交通利便増進事業」で確認）は
+      「地域公共交通計画において、地域公共交通利便増進事業に関する事項が定められたときは、…地域公共交通利便増進事業を実施するための計画（以下「地域公共交通利便増進実施計画」という。）を作成し、…実施を促進するものとする。」と規定しており、法律上の正式名称は
+      「地域公共交通利便増進実施計画」（「実施」を含む）。市のパブリックコメント予定一覧の表記
+      「壱岐市地域公共交通利便増進計画」は「実施」を含まない表記だが、市が対外的に用いている表記
+      であるためそのまま採用した。壱岐市地域公共交通計画（`koutsuu`、令和8年3月策定、
+      計画期間2026～2031年度）に定めた利便増進事業を実施するための計画とみられ、`related`
+      で紐づけた。上記の義務規定は「地域公共交通計画において…事項が定められたとき」という
+      条件付きのため、statutory の判定はこの条件が満たされていることを前提とする。
+    todo: >-
+      所管班・計画の具体的な内容（対象事業）を確認する。2026年8月時点ではパブリック
+      コメント実施予定の段階で、計画案自体は未公表。
+
   - id: bousai
     name: 壱岐市地域防災計画
     level: municipal
-    category: jyoui
+    domain: bousai
+    category: bousai
+    tier: jisshi
     status: current
     period: { start: null, end: null }   # 随時修正
     laws: [災害対策基本法]
@@ -249,60 +451,753 @@ plans:
     url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/bosai/bousaikaigi/chiiki/13851.html
     notes: 避難行動要支援者名簿・個別避難計画・福祉避難所を規定。
 
-  - id: danjo-3
-    name: 第3次壱岐市男女共同参画基本計画
+  - id: kokumin-hogo
+    name: 壱岐市国民保護計画
     level: municipal
+    domain: bousai
+    category: bousai
+    tier: jisshi
+    status: current
+    laws: [国民保護法]
+    department: 総務課 危機管理班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/hoka_keikaku/1021.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/2/zenpen.pdf
+    notes: 国民保護避難実施（マニュアル）もあわせて策定。
+    todo: 計画期間・根拠条文・法定性を確認する
+
+  - id: kokudo-kyoujinka
+    name: 壱岐市国土強靭化地域計画
+    level: municipal
+    domain: bousai
+    category: bousai
+    tier: bumon
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2026-03
+    laws: [国土強靱化基本法13条]
+    statutory: permissive
+    department: 総務課 危機管理班
+    related: [sougou-4, bousai]
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/hoka_keikaku/14317.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/kokudokyoujinnkachiikikeikaku.pdf
+    notes: >-
+      PDF表紙に「令和２年３月 策定」「令和７年３月 改訂」「令和８年３月 改訂」と記載（月と策定・
+      改訂の間は半角スペース、pdftotextのグリフ座標で確認）。PDF5ページ（計画本体 p.3）に
+      「計画期間は、令和７年度から令和１１年度までの５か年とするが、必要に応じて随時修正するものとする。」
+      とあり、period はこれによる（adopted は最新の令和8年3月改訂）。強くしなやかな国民生活の
+      実現を図るための防災・減災等に資する国土強靱化基本法13条をe-Gov法令検索で確認したところ
+      「…定めることができる。」（許容規定）であり、statutory は permissive とした（`laws` の
+      表記は法律の正式名称にあわせ「靱」に修正）。PDF12ページ（計画本体 p.10）の位置づけ図では、
+      「調和」の矢印は国の国土強靱化基本計画・県の国土強靱化地域計画を一括した1つの枠につながって
+      おり、両者を「調和」「連携」で書き分けているわけではない。「連携」「協力」の両矢印は
+      「住民、国、県、他市町、民間事業者」の枠に、「指針」「補完」の両矢印は市の総合計画・
+      地域防災計画等（「市の各種計画」）の枠につながっており、後者について
+      「指針、相互補完として機能し、双方向でより実践的な計画となるよう努める。」と明記されている。一方向の下位計画では
+      ないため parent ではなく related（sougou-4・bousai）とした。県の国土強靱化地域計画は
+      本データセットに未収録のため conforms_to は設定していない。
+
+  - id: koutsuu-anzen-11
+    name: 第11次壱岐市交通安全計画
+    level: municipal
+    domain: bousai
+    category: bousai
+    tier: jisshi
+    status: unknown
+    laws: [交通安全対策基本法26条1項]
+    department: 総務課 危機管理班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/kotsu/3151.html
+    todo: 計画期間・法定性・最新版か（第12次の有無）を確認する
+
+  - id: jigyounushi-koudou
+    name: 壱岐市特定事業主行動計画
+    level: municipal
+    domain: gyouzaisei
+    category: jinji
+    tier: jisshi
+    status: current
+    laws: [女性活躍推進法19条]
+    department: 総務課 職員班
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/jigyonushi/200.html
+    notes: >-
+      市長・議会・選挙管理委員会・監査委員・教育委員会・農業委員会・消防長が共同で策定する、
+      市を「事業主」として縛る職員向けの人事・雇用計画。住民向け施策の計画ではない。
+      次世代育成支援対策推進法もあわせて根拠とするが、該当条文は未確認。
+    todo: 計画期間・次世代育成支援対策推進法の該当条文・法定性を確認する
+
+  - id: shougaisha-katsuyaku
+    name: 壱岐市障害者活躍推進計画
+    level: municipal
+    domain: gyouzaisei
+    category: jinji
+    tier: jisshi
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    laws: [障害者の雇用の促進等に関する法律]
+    department: 総務課 職員班
+    related: [shougaisha-katsuyaku-kyouiku]
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/ikishishougaishakatsuyakusuisinn.pdf
+    notes: >-
+      国の「障害者活躍推進計画作成指針」に即して策定した、市を「事業主」として縛る職員向けの
+      人事・雇用計画。住民向け施策の計画ではない。壱岐市特定事業主行動計画（`jigyounushi-koudou`）
+      とは異なり7機関の連名ではなく任命権者ごとの個別策定で、これは市長部局版。PDF本文（`pdftotext`
+      で確認）2ページの表の「機関名」欄は「壱岐市（市長部局）」、「任命権者」欄は「壱岐市長」で、
+      議会・選挙管理委員会・監査委員・農業委員会・消防長への言及は本文に無い。PDF表紙は「第二期」
+      「障害者活躍推進計画」「令和７年３月」「壱岐市」の表記（計画期間 令和7年4月1日～令和12年3月
+      31日の5年間）。教育委員会分は「壱岐市教育委員会障害者活躍推進計画」として別文書で策定されて
+      おり、収録範囲（市長部局・教育委員会・行政委員会・消防をすべて含む）に含まれるため、対象外
+      とはせず `shougaisha-katsuyaku-kyouiku` として別エントリで収録した。
+    todo: 根拠条文・法定性を確認する
+
+  - id: shougaisha-katsuyaku-kyouiku
+    name: 壱岐市教育委員会障害者活躍推進計画
+    level: municipal
+    agency: education
+    domain: gyouzaisei
+    category: jinji
+    tier: jisshi
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    laws: [障害者の雇用の促進等に関する法律]
+    department: 教育総務課
+    url: https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/ikishikyouikuiinkai.pdf
+    notes: >-
+      国の「障害者活躍推進計画作成指針」に即して策定した、市を「事業主」として縛る職員向けの
+      人事・雇用計画。住民向け施策の計画ではない。市長部局版（`shougaisha-katsuyaku`）とは別に、
+      壱岐市教育委員会が任命権者として個別に策定したもの。PDF本文（`pdftotext` で確認）2ページの
+      表の「機関名」欄は「壱岐市教育委員会（教育委員会部局）」、「任命権者」欄は
+      「壱岐市教育委員会教育長」。「壱岐市における障害者雇用に関する課題」欄には
+      「壱岐市教育委員会職員の採用及び人事異動等は、壱岐市（市長部局）において実施しており」とあり、職員採用事務は市長部局が行うが
+      計画自体は教育委員会が別途策定している。PDF表紙は「第二期」「障害者活躍推進計画」「令和７年
+      ３月」「壱岐市教育委員会」の表記（計画期間 令和7年4月1日～令和12年3月31日の5年間）。掲載元は
+      市長部局版と同じ「壱岐市障害者活躍推進計画の策定について」ページ。従来 `shougaisha-katsuyaku`
+      の notes で「対象外（教育委員会の所管）」としていたのは誤りで、市が公表する行政計画は実施機関
+      （市長部局・教育委員会・行政委員会・消防）を問わず収録範囲に含まれるため、別エントリとして
+      追加した。department はPDF末尾の発行元表記「壱岐市教育委員会（教育総務課）」による。
+    todo: 根拠条文・法定性・所管班（教育総務課のどの班か、教育委員会事務局組織規則での確認）を確認する
+
+  - id: danjo-2
+    name: 第2次壱岐市男女共同参画基本計画
+    level: municipal
+    domain: sougou
     category: jyoui
-    status: planned
-    period: { start: 2027, end: null }
+    tier: bumon
+    status: expiring
+    period: { start: 2017, end: 2026 }
+    adopted: 2017-03
+    laws:
+      - { law: 男女共同参画社会基本法14条3項, obligation: effort }
+      - { law: 女性の職業生活における活躍の推進に関する法律（女性活躍推進法）6条2項, obligation: effort }
+      - { law: 配偶者からの暴力の防止及び被害者の保護等に関する法律（DV防止法）2条の3第3項, obligation: effort }
+    statutory: effort
     department: 地域共創課 企画市民協働班
+    parent: sougou-4
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/3784.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/7/iki-danjokeikaku-2.pdf
+    sources:
+      - label: 第2次壱岐市男女共同参画基本計画（概要版）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/7/iki-danjokeikaku-2digest-2.pdf
+        note: 計画本体PDFの内容を要約した8ページの概要版。表紙・「計画の期間」の記載は計画本体と同一。
+    notes: >-
+      danjo-3（第3次計画、status: planned、2026年8月時点で未策定）の sources で「現行計画」として
+      挙げられていた第2次計画本体を新規に収録した。計画本体PDF「はじめに」（PDF3ページ）末尾の
+      署名は平成29年3月・壱岐市長名。第1章「計画の期間」の項（PDF6ページ、計画本体 p.1）に
+      「この計画の期間は、平成29年度から平成38年度までの10年間とします。」と明記されている
+      （西暦では2017～2026年度）。第1章「計画の位置付け」の項（PDF7ページ、計画本体 p.2）には
+      「（１）この計画は、男女共同参画社会基本法第14条第3項に規定される「市町村男女共同参画計画」であり、
+      壱岐市の男女共同参画の推進に関する施策を、総合的かつ計画的に実施するための基本指針となるものです。」
+      「（２）この計画の「基本目標Ⅳ 仕事と家庭の両立ができる環境づくり」は、「女性の職業生活における
+      活躍の推進に関する法律（女性活躍推進法）」第６条第２項に規定する「女性活躍推進計画」に位置付けます。」
+      「（３）この計画の「基本目標Ⅴ 配偶者等に対する暴力のない社会づくり」は、「配偶者からの暴力の防止
+      及び被害者の保護に関する法律（配偶者暴力防止法）」第２条の３第３項に規定する「市町村における配偶者
+      からの暴力の防止及び被害者の保護のための施策の実施に関する基本的な計画（ＤＶ基本計画）」に位置付け
+      ます。」との記載がある。danjo-3 の laws（4本）のうち困難な問題を抱える女性への支援に関する法律
+      （女性支援新法、令和4年制定・令和6年4月施行）を除く3本がこの計画の根拠法に対応する（同法はこの
+      計画の策定より後に制定されたため対象外）。obligation は danjo-3 で確認済みの区分（いずれも effort）を
+      同一の条項として引き継いだ。前身の第1次計画は、「はじめに」に平成17年策定、第1章「計画策定の背景と
+      目的」の項に平成19年3月策定と、同じ計画書内で年の記載が食い違っており（原文ママ）、掲載ページも
+      確認できていないため predecessors には追加していない。所管は掲載ページの問い合わせ先（地域共創課
+      企画市民協働班）で、danjo-3 と同一。status は period の終期が2026年度であり、調査基準日
+      （2026-08-13）時点で満了まで1年に満たないため expiring とした。
+
+  - id: danjo-3
+    name: 第3次壱岐市男女共同参画計画
+    level: municipal
+    domain: sougou
+    category: jyoui
+    tier: bumon
+    status: planned
+    period: { start: 2027, end: 2031 }
+    predecessors: [danjo-2]
+    laws:
+      - { law: 男女共同参画社会基本法14条3項, obligation: effort }
+      - { law: 配偶者からの暴力の防止及び被害者の保護等に関する法律（DV防止法）2条の3第3項, obligation: effort }
+      - { law: 女性の職業生活における活躍の推進に関する法律（女性活躍推進法）6条2項, obligation: effort }
+      - { law: 困難な問題を抱える女性への支援に関する法律（女性支援新法）8条3項, obligation: effort }
+    statutory: effort
+    department: 地域共創課 企画市民協働班
+    parent: sougou-4
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/index.html
+    sources:
+      - label: 第2次壱岐市男女共同参画基本計画の策定について（現行計画）
+        url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/3784.html
+        note: 平成29年3月策定、計画期間は平成29～38年度（2017～2026年度）の10年間。
+      - label: 第3次壱岐市男女共同参画計画策定支援業務仕様書
+        url: https://www.city.iki.nagasaki.jp/material/files/group/49/R8-19siyousyo.pdf
+        note: 計画期間（令和9～13年度）と根拠4法を明記。プロポーザル関連資料のため残存性は低い。
     successor:
       public_comment: { start: 2027-01, end: 2027-02 }
-    todo: 計画期間・根拠法・現行計画の所在を確認する
+    notes: >-
+      仕様書上の名称は「基本」を含まない「第３次壱岐市男女共同参画計画」（次期計画）。2026年8月時点では
+      策定支援業務の公募型プロポーザルで優先交渉権者が決定した段階（契約締結は令和8年7月下旬見込み）で、
+      計画本体は未策定。名称・内容は策定後に変更される可能性がある。計画期間と正式名称の根拠は策定支援業務の
+      仕様書とプロポーザル結果のみであり、いずれも掲載期間終了後に削除されやすい（残存性「低」、
+      sources/MANIFEST.md参照）。失効時は議案書・施政方針での再確認が必要。
+      根拠4法をe-Gov法令検索で確認したところ、都道府県計画との関係はいずれも「勘案して」（男女共同参画
+      社会基本法14条3項、DV防止法2条の3第3項、女性活躍推進法6条2項、女性支援新法8条3項）にとどまり、
+      「整合」「調和」「基本とする」の規定は無かったため conforms_to は設定していない。
+      parent: sougou-4 の根拠は、策定支援業務の仕様書に、壱岐市総合計画など上位・関連計画との
+      整合を図る旨の記載があること。計画本体が未策定のため、策定後に一次資料で確認し直す必要がある。
+
+  - id: tokutei-kyoju
+    name: 壱岐市特定居住促進計画
+    level: municipal
+    domain: sougou
+    category: teiju
+    tier: kobetsu
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2026-03
+    laws: [{ law: 広域的地域活性化のための基盤整備に関する法律22条1項, obligation: permissive }]
+    statutory: permissive
+    department: 地域共創課 人口対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/teiju/15486.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/49/sokushinkeikaku_01.pdf
+    notes: >-
+      対象区域（特定居住促進区域）は芦辺町芦辺浦地区・瀬戸地区。二地域居住者の年10名獲得、
+      その他移住者の年100名獲得を目標に掲げる。第4次総合計画の人口目標（2050年人口2万人の維持）の
+      実現手段として位置づけられる。都道府県知事への意見聴取は令和8年2月13日、地元まちづくり協議会への
+      説明・意見聴取は令和8年1月20日・2月19日。
+
+  - id: ccrc-machi
+    name: 壱岐市生涯活躍のまち推進プロジェクト
+    level: municipal
+    domain: sougou
+    category: teiju
+    tier: jisshi
+    status: unknown
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/4510.html
+    sources:
+      - label: 壱岐CCRC基本指針 概要版
+        url: https://www.city.iki.nagasaki.jp/material/files/group/9/CCRC01.pdf
+      - label: 壱岐CCRC基本指針 本編
+        url: https://www.city.iki.nagasaki.jp/material/files/group/9/CCRC02.pdf
+      - label: 壱岐CCRC実施計画（2017年11月改訂版）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/9/CCRC03.pdf
+    notes: >-
+      掲載ページの更新日は2019年5月10日で、2017年11月改訂版の実施計画が最新の掲載のまま止まっている。
+      基本コンセプトは「来てよし、住んでよし、働いてよしの壱岐へ…」。福岡都市圏との近接性を活かし、
+      アクティブシニア世代を主なターゲットに「移住」「住まい」「活躍（就労／社会参加）」「ケア（医療介護／生活支援）」
+      の4方向で構成。掲載ページに根拠法・計画期間・上位計画への言及はない。
+      URLは現存しない政策企画課のパス（/soshiki/seisaku_kikakuka/）配下にあり、出典として失効しやすい。
+      department は地域共創課 人口対策班の分掌事務（地域創生・人口減少対策の総合調整、移住・定住促進）と
+      内容が一致するため候補として有力だが、政策企画課からの移管を直接示す記録は確認できず、
+      推定にとどまるため未記入とした（※推定）。
+    todo: >-
+      現在も有効か、他の計画に統合されたかを確認する。所管課を確認する（地域共創課 人口対策班が
+      分掌事務上該当しそうだが、政策企画課からの移管記録は未確認）。計画期間・策定年月
+      （掲載PDFは2017年11月改訂版で、当初の策定年月は不明）・根拠法の有無・法定性を確認する。
+
+  - id: hatsuyama-kaihatsu
+    name: 壱岐市初山開発事業計画
+    level: municipal
+    domain: sougou
+    category: kaihatsu
+    tier: kobetsu
+    status: unknown
+    sources:
+      - label: 壱岐市初山開発事業計画委員会規程（例規集、平成16年3月1日訓令第15号、令和7年6月1日訓令第26号による改正を含む）
+        url: https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000091.html
+        note: >-
+          第1条（設置）「初山開発事業計画について調査、研究、協議するため、壱岐市初山開発事業計画委員会(以下「委員会」という。)を置く。」、第6条（庶務）
+          「委員会の庶務は、地域振興部地域共創課において処理する。」（2026-08-12にブラウザで確認）。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。例規（訓令）上
+      「壱岐市初山開発事業計画」という名称の計画の存在を確認できるのみで、現在も有効かは確認できていない
+      （古い時代の計画が例規に名前だけ残っている可能性もある）。制定は平成16年3月1日
+      （訓令第15号、壱岐市発足時）、直近の改正は令和7年6月1日（訓令第26号）で、規程
+      自体は現存する。category は当初 jyoui（上位・関連行政計画）としていたが、
+      既存の jyoui は sougou-4・sdgs-mirai-toshi・kaso-r8・danjo-3 等、市全体または
+      横断的な上位計画（tier: sougou / bumon）に限って使われており、特定区域（初山地区）
+      を対象とする個別開発事業計画（tier: kobetsu）を同じ小分類に置くのは体系と合わない。
+      内容の具体的な分野（観光・住宅・産業等）も未確認のため、既存の分野別小分類に無理に
+      割り当てず、新設した kaihatsu（地区開発事業）に分類し直した。庶務規定上の所管
+      （地域共創課）は、まちづくり協議会・過疎対策等を横断的に扱う部署であり単一分野に
+      紐づかないため、domain は tokutei-kyoju（同じく地域共創課所管、tier: kobetsu、
+      domain: sougou）にならい sougou のままとした。
+    todo: 計画期間・現在の有効性・所管（規程上の庶務は地域振興部地域共創課）を確認する。
+
+  - id: ondanka-kuiki
+    name: 壱岐市地球温暖化対策実行計画（区域施策編）
+    level: municipal
+    domain: kurashi
+    category: kankyo
+    tier: jisshi
+    status: current
+    period: { start: 2025, end: 2030 }
+    adopted: 2025-03
+    laws:
+      - { law: 地球温暖化対策の推進に関する法律21条4項, obligation: effort }
+      - { law: 気候変動適応法12条, obligation: effort }
+    statutory: effort
+    department: 地域共創課 企画市民協働班（再エネ部門）／環境衛生課 環境衛生班（家庭部門・廃棄物部門）
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/energy/CN/14448.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/7/ActionPlan_area_iki_202503.pdf
+    notes: >-
+      地球温暖化対策推進法上の「地方公共団体実行計画（区域施策編）」と、気候変動適応法上の
+      「地域気候変動適応計画」を一体的に策定。基準年度2013年度、目標年度2030年度。事務局は地域共創課
+      （計画内の推進体制表では旧課名「政策企画課」表記）、事務局補佐は環境衛生課。上位計画の第4次総合計画や
+      壱岐市観光振興計画・壱岐市景観計画等と連携する位置づけ。
+
+  - id: ondanka-jimu
+    name: 壱岐市地球温暖化対策実行計画（事務事業編）
+    level: municipal
+    domain: kurashi
+    category: kankyo
+    status: unknown
+    laws: [{ law: 地球温暖化対策の推進に関する法律21条1項, obligation: mandatory }]
+    statutory: mandatory
+    department: 環境衛生課 環境衛生班
+    related: [ondanka-kuiki]
+    sources:
+      - label: 環境省 令和7年度地域脱炭素の推進に関する状況調査（長崎県別データ）
+        url: https://policies.env.go.jp/policy/roadmap/local_keikaku/sakutei/files/map/42.xlsx
+        note: >-
+          壱岐市が策定済みと回答（区分
+          「現在、計画期間中であり、2025年10月１日以降に改定する予定はない」）。計画名「壱岐市地球温暖化対策実行計画」、策定/改定年度2024年度、目標年度2030年度、
+          計画期間7年の記載（調査時点：令和7年10月1日）。
+          この出典は自治体の自己回答であり、内容が実態と食い違うことがある。同じ行で区域施策編は
+          「過去に一度も策定したことがないが、2025年10月１日以降に策定する予定がある」と回答されているが、
+          区域施策編（ondanka-kuiki）は令和7年3月に策定され市サイトに掲載されている。
+          この出典だけを根拠に事実を断定しないこと。
+    notes: >-
+      環境省の状況調査では市が策定済みと回答しているが、2026-08-12時点で市サイト（環境衛生課、
+      地球温暖化対策カテゴリ、区域施策編〈ondanka-kuiki〉の掲載ページ）に計画本文・掲載ページを
+      確認できない。区域施策編（ondanka-kuiki）とは別の計画。laws は地球温暖化対策の推進に関する
+      法律21条1項「都道府県及び市町村は…（以下「地方公共団体実行計画」という。）を策定するものとする。」
+      をe-Gov法令検索（法令ID 410AC0000000117）で確認して記載（都道府県・市町村を問わず一律の義務規定）。
+      同条4項〈区域施策編に相当する事項の努力義務、ondanka-kuiki が引用〉とは別項。department は
+      行政組織規則第4条の環境衛生班分掌事務「地球温暖化に関すること。」に基づく（区域施策編と異なり、
+      事務事業編を環境衛生課とすることを直接裏付ける市の一次資料は確認できていない）。
+    todo: 計画本文と掲載ページの所在を確認する。計画期間・tierも未確認。
+
+  - id: ippan-haiki
+    name: 壱岐市一般廃棄物処理基本計画
+    level: municipal
+    domain: kurashi
+    category: kankyo
+    tier: bumon
+    status: current
+    period: { start: 2020, end: 2034 }
+    adopted: 2021-03
+    laws: [廃棄物処理法6条1項]
+    statutory: mandatory
+    department: 環境衛生課 廃棄物対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/kankyo/gomi/14497.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/15/gomisyorihenn2.pdf
+    sources:
+      - label: 壱岐市一般廃棄物処理基本計画（生活排水処理編）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/15/seikatuhaisuisyorihenn2.pdf
+      - label: 資料編（ごみ処理編）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/15/siryougomisyorihenn2.pdf
+      - label: 資料編（生活排水処理編）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/15/siryouseikatuhaisuihenn2.pdf
+    notes: >-
+      「ごみ処理編」（本編）と「生活排水処理編」の2編構成（廃棄物処理法施行規則1条の3）。ごみ処理編・
+      生活排水処理編とも令和3年3月策定、計画策定期間は令和2年度、計画目標年度は令和16年度
+      （中間目標年度：令和9年度）。前回の計画策定（本文に「前回の計画策定から7年が経過…」とあり、
+      平成26年度頃と推定）から改定。位置付け上の上位計画は壱岐市総合計画（策定当時は第3次総合計画
+      〈2020～2024年度〉）だが、現行のsougou-4とは策定時点が異なるためparentは付していない。
+      掲載ページの「この記事に関するお問い合わせ先」は環境衛生課環境衛生班だが、行政組織規則
+      第4条の廃棄物対策班の分掌事務「一般廃棄物処理基本計画及びその実施計画に関すること。」に
+      該当するため、規則を優先し環境衛生課廃棄物対策班とした。
+
+  - id: kanko-senryaku
+    name: 壱岐市観光戦略2025～2027
+    level: municipal
+    domain: sangyou
+    category: kanko
+    tier: bumon
+    status: current
+    period: { start: 2025, end: 2027 }
+    adopted: 2025-03
+    statutory: voluntary
+    department: 観光課 観光しまづくり班
+    url: https://www.city.iki.nagasaki.jp/soshiki/kankouka/ikisikannkousennryaku/14530.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/41/sennryaku.pdf
+    notes: >-
+      第4次総合計画の観光分野の施策を具体的に実施するための個別戦略。従来策定してきた「観光振興計画」
+      （第3期は平成30年3月策定）を継承し、よりシンプルな形式に改めたもの。根拠法の記載はなく任意策定。
+
+  - id: hokubu-kaiyousei-kouen
+    name: 壱岐北部海洋性公園開発計画
+    level: municipal
+    domain: sangyou
+    category: kanko
+    tier: kobetsu
+    status: unknown
+    sources:
+      - label: 壱岐北部海洋性公園開発計画検討委員会設置規則（例規集、平成19年2月5日規則第10号、平成31年4月1日規則第9号による改正を含む）
+        url: https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000803.html
+        note: >-
+          第2条（任務）
+          「委員会は、次の各号に掲げる事項について審議して立案する。(1)　壱岐北部海洋性公園開発計画の検討に関すること。(2)　前号に関する資料の収集・調査・研究及び取りまとめに関すること。(3)　その他必要な事項」、第8条（庶務）
+          「委員会の庶務は、観光課において処理する。」（2026-08-12にブラウザで確認）。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。例規（規則）上
+      「壱岐北部海洋性公園開発計画」という名称の計画の存在を確認できるのみで、現在も有効かは確認できていない。
+      制定は平成19年2月5日（規則第10号）、直近の改正は平成31年4月1日（規則第9号）で、
+      規程自体は現存する。category は kanko（観光）のまま維持した。庶務規定上の所管が
+      観光課であること、計画名自体が「公園開発計画」であることから観光施設としての性格が
+      うかがえ、bunkazai（文化財班・文化財展示施設再編計画）や nourin（農林課・地域計画等）
+      と同様、kanko も分野別の小分類として tier の異なるエントリ（kanko-senryaku は
+      tier: bumon）を含みうる。jyoui は「上位・関連行政計画」という上位性そのものを表す
+      小分類である点が kanko 等の分野別小分類と異なり、hatsuyama-kaihatsu の見直しとは
+      性質が違うと判断した。
+    todo: 計画期間・現在の有効性・所管（規程上の庶務は観光課）を確認する。
+
+  - id: rekishi-bunka-kousou
+    name: 壱岐市歴史文化基本構想
+    level: municipal
+    domain: kyouiku
+    category: bunkazai
+    tier: bumon
+    status: current
+    period: { start: null, end: null }   # 構想書に期間の定めなし（下記参照）
+    adopted: 2019-03
+    statutory: voluntary
+    department: 文化スポーツ振興課 文化財班
+    parent: sougou-4
+    related: [keikan, kanko-senryaku]
+    url: https://www.city.iki.nagasaki.jp/soshiki/bunkasportssinkou/bunkazai/5776.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/27/kihonkousou01.pdf
+    notes: >-
+      文化庁文化芸術振興費補助金（文化遺産を活かした地域活性化事業・文化遺産総合活用推進事業）を活用し、
+      平成28～30年度の3か年で策定。策定時の所管は教育委員会（事務局：文化課）だったが、現在は文化財班が
+      文化スポーツ振興課（市長部局）に属するため当課の所管として扱う。策定時点の上位計画は第2次総合計画で、
+      壱岐市景観計画・第3期壱岐市観光振興計画と連携する構想として位置づけられていた
+      （parent は現行の第4次総合計画〈sougou-4〉に、連携先は現行の壱岐市景観計画〈keikan〉・
+      壱岐市観光戦略2025～2027〈kanko-senryaku、第3期観光振興計画の継承・改称版〉に対応させて
+      related とした）。構想書「第２節　事業の位置付け」（PDF6ページ、計画本体 p.2）に
+      「この構想は、上位計画となる第２次壱岐市総合計画のもとに策定するものである。また、運用においては壱岐市景観計画、第３期壱岐市観光振興計画と連携したものとする。」との記載がある。計画期間については、
+      構想書全5分冊（kihonkousou01〜05.pdf）を通読したが、期間・見直し年限を定めた記載は
+      見当たらなかった（第9章第5節「実現に向けた課題」を含む）。策定から2026年8月時点まで
+      改定の実績も確認できていない。
+
+  - id: bunkazai-tenji-saihen
+    name: 壱岐市文化財展示施設再編計画
+    level: municipal
+    domain: kyouiku
+    category: bunkazai
+    tier: shisetsu
+    status: unknown
+    statutory: voluntary
+    sources:
+      - label: 壱岐市文化財展示施設再編計画検討委員会規則（例規集、令和7年6月1日規則第33号）
+        url: https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00001563.html
+        note: >-
+          第2条（所掌事務）「検討委員会は、市が定める文化財展示施設に関する再編計画について協議及び検討を行うものとする。」、
+          第7条（庶務）「検討委員会の庶務は、地域振興部文化スポーツ振興課において処理する。」
+          （2026-08-12にブラウザで確認）。
+      - label: 壱岐市文化財展示施設条例（例規集、平成22年3月23日条例第9号、令和7年6月1日施行の改正を含む）
+        url: https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000923.html
+        note: >-
+          第2条「名称及び位置」の表には「“電力の鬼”松永安左ェ門記念館(以下「松永記念館」という。)」の
+          1施設のみが記載されている（2026-08-12確認。原文の引用符はストレートクォート(")ではなく
+          カーリークォート“　”）。附則により旧壱岐郷土館条例・旧松永記念館条例・旧壱岐風土記の丘条例は
+          平成22年施行時に廃止済み。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。例規集の検討委員会規則（令和7年6月
+      1日施行）から、「文化財展示施設に関する再編計画」という名称の計画を市が策定中、
+      または策定を検討中であることを把握した。検討委員会の委員は壱岐市文化財保護審議会の
+      委員等から構成される（同規則第3条2項）。department は、検討委員会規則第7条（庶務）
+      が示すのは検討委員会（附属機関）の事務局であって、計画そのものの所管を直接裏付ける
+      行政組織規則第3条・第4条の分掌事務ではないと判断し、文化スポーツ振興課という課
+      レベルの記載も含めて確定値とせず todo に残した（hatsuyama-kaihatsu・
+      hokubu-kaiyousei-kouen と同じ扱いに揃えた。経緯は sources/POLICY.md
+      「附属機関の設置条例」の項を参照）。statutory は、検討委員会規則・文化財展示施設条例のいずれの
+      本文にも計画の策定を義務付け・許容する外部法令の引用は無く（壱岐市附属機関設置条例
+      という市自身の条例に基づき検討委員会を設置しているのみ）、博物館法（e-Gov法令検索
+      で確認）にも個別の展示施設の再編計画を義務付け・許容する条項は見当たらず、同法8条に
+      基づく文部科学省告示「博物館の設置及び運営上の望ましい基準」（法的拘束力のない基準）
+      があるのみだった。以上を確認したうえで根拠法は無いと判断し、statutory: voluntary
+      とした。
+    todo: >-
+      計画が既に策定されているか、なお検討中かを確認する。策定時期・対象施設・所管課・班
+      （検討委員会の庶務は文化スポーツ振興課だが、行政組織規則の分掌事務での裏付けは未確認。
+      文化財班とみられるが未確認）を確認する。
 
   # --- 未調査（将来の拡張枠。todo が立っているものは内容未検証） -------------
   - id: keikan
     name: 壱岐市景観計画
     level: municipal
-    category: other
-    status: unknown
-    url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/keikan/index.html
-    todo: 計画期間・根拠法・所管課を確認する
+    domain: kiban
+    category: keikan
+    tier: bumon
+    status: current
+    period: { start: null, end: null }   # 随時見直し
+    adopted: 2015-03
+    laws: [景観法8条1項]
+    statutory: permissive
+    department: 建設課 管理土地対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/keikan/3873.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/keikaku_all.pdf
+    notes: >-
+      景観法8条1項「景観行政団体は…良好な景観の形成に関する計画（以下「景観計画」という。）
+      を定めることができる」（許容規定、e-Gov法令検索 法令ID 416AC0000000110で確認）に基づき、平成27年3月
+      策定。平成22年度に景観行政団体へ移行し、平成25～26年度の2か年で策定（掲載ページ本文）。
+      計画書に固定の計画期間の定めはなく、壱岐市景観審議会が市長の諮問に応じて
+      「壱岐市景観計画の変更や見直し、景観条例の改正に関わる審議」を行う体制（計画書第11章）のため随時見直し型とした。所管は掲載ページの
+      問い合わせ先（建設課 管理土地対策班）と、行政組織規則第4条の同班分掌事務
+      「景観まちづくりに関すること」が一致するため確認した。計画書第1章によれば、策定当時
+      「壱岐市住宅マスタープラン（2011～2020）」「壱岐市観光振興計画（2015～2017）」等と並ぶ「市の関連制度」の一つとして
+      位置づけられていた（jutaku-master-plan 参照）。
 
   - id: kokyoshisetsu-sougou
     name: 壱岐市公共施設等総合管理計画
     level: municipal
-    category: other
-    status: unknown
+    domain: gyouzaisei
+    category: koukyoshisetsu
+    tier: shisetsu
+    status: current
+    adopted: 2022-03
+    statutory: request
+    department: 財政課 契約管財班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html
-    department: 財政課
-    todo: 計画期間・所管課を確認する
+    notes: 平成26年4月の総務省要請に基づき策定。令和4年3月に改訂。
+    todo: 計画期間を確認する
 
   - id: kokyoshisetsu-kobetsu
     name: 壱岐市公共施設個別施設計画
     level: municipal
-    category: other
-    status: unknown
+    domain: gyouzaisei
+    category: koukyoshisetsu
+    tier: shisetsu
+    status: current
+    adopted: 2022-03
+    statutory: request
+    department: 財政課 契約管財班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html
-    department: 財政課
-    todo: 計画期間・所管課を確認する
+    notes: 平成29年3月策定、令和4年3月に内容を改訂。公共施設等総合管理計画の基本方針に基づき、施設ごとの方向性・実施事項を定める。
+    todo: 計画期間を確認する
+
+  - id: zaisei-kiban
+    name: 壱岐市財政基盤確立計画
+    level: municipal
+    domain: gyouzaisei
+    category: gyoukaku
+    tier: bumon
+    status: expired
+    period: { start: 2022, end: 2024 }
+    statutory: voluntary
+    department: 財政課 財政班
+    url: https://www.city.iki.nagasaki.jp/soshiki/zaiseika/zaisei_jokyo/10021.html
+    notes: >-
+      令和3年度を「財政基盤確立推進元年」と位置づけ、令和4～6年度の3年間を計画期間として策定。
+      以後は毎年度改定の「壱岐市中期財政見通し」に内容を反映する運用に移行しており、後継の同名計画は確認できず。
+
+  - id: gyozaisei-kaikaku
+    name: シン市役所化計画（第4次壱岐市行財政改革大綱）
+    short: 行財政改革大綱
+    level: municipal
+    domain: gyouzaisei
+    category: gyoukaku
+    tier: bumon
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    statutory: voluntary
+    department: 一緒に推進課 共創推進班
+    parent: sougou-4
+    url: https://www.city.iki.nagasaki.jp/soshiki/zaiseika/gyosei/taikoujisikeikaku/6920.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/46/sin_siyakusyokakeikaku_taikou7.pdf
+    notes: >-
+      令和7年策定。従来の実施計画に相当する内容を計画書本体に統合し、別冊の実施計画は作成していない。
+      前身は第3次壱岐市行財政改革大綱（令和2年策定）・第2次壱岐市行財政改革大綱（平成28年策定）・
+      壱岐市行財政改革大綱（平成16年策定、平成17年改定）。PDF本文「（４）計画期間」
+      （本編8ページ、表紙のページ番号表記では6ページ）に
+      「第4次壱岐市総合計画に合わせ、2025年度から2029年度までの５年間とします。」と明記（高解像度で画像化し目視で確認）。
+      掲載ページの問い合わせ先は「財政課 経営戦略班」だが、行政組織規則（令和7年6月1日施行）を
+      生のHTMLで確認したところ、財政課は財政班（予算・決算・地方債等）と契約管財班（入札・契約・
+      財産管理等）の2班のみで「経営戦略班」は存在せず、いずれの分掌事務にも行政改革の項目はない。
+      一方、一緒に推進課 共創推進班の分掌事務(2)に「行政改革に関すること。」と明記されており
+      （同班(1)は「総合計画に関すること。」で sougou-4 と同一部署）、department はこちらに修正した。
+      parent: sougou-4 の根拠は、計画本体PDF8ページの「（１）計画の位置付け」に、
+      市の最上位計画である総合計画を行財政の側面から支えるものとして位置づける記載があること。
+      計画書本文は個々の取組ごとに担当課を【】表記で示す横断的な構成（財政課・総務課・一緒に推進課
+      ほか多数）で、全体の所管とは別に読む必要がある。
+
+  - id: kyouiku-shinkou
+    name: 壱岐市教育振興基本計画（令和7～11年度）
+    level: municipal
+    agency: education
+    domain: kyouiku
+    category: kyouiku
+    tier: bumon
+    status: current
+    period: { start: 2025, end: 2029 }
+    adopted: 2025-03
+    parent: sougou-4
+    laws:
+      - { law: 教育基本法17条2項, obligation: effort }
+      - { law: 地方教育行政の組織及び運営に関する法律1条の3, obligation: mandatory }
+    statutory: mandatory
+    department: 学校教育課 学校教育班（教育振興基本計画）
+    url: https://www.city.iki.nagasaki.jp/soshiki/kyoiku_somuka/ikisikyouikusinnkoukihonnkeikaku/index.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/24/kyouikusinnkoukeikaku.pdf
+    notes: >-
+      壱岐市が初めて策定した教育振興基本計画（PDF「１．経緯」に
+      「あえて新しく計画をつくりませんでした。」とあり、従来は「壱岐市教育方針」「壱岐市教育努力目標」で運用してきたと明記）。
+      計画書「４．位置づけ」（PDF6ページ、計画本体 p.4）に
+      「本計画は、教育基本法第１７条第２項の規定に基づき壱岐市が定める、教育の振興のための施策に関する基本的な計画です。」「さらに、「地方教育行政の組織及び運営に関する法律」第１条の３の規定…に基づき、壱岐市が定める教育、学術及び文化の振興に関する総合的な施策の「大綱」として、これまでの大綱に替えて本計画を位置づけます。」と明記されており、教育振興基本計画と教育大綱を一体策定したもの。同ページ
+      には「第４次壱岐市総合計画」（令和７～１１年度）に対応した教育分野の個別計画に位置づけられる、
+      との記載もある。「３．協議経過」（PDF25ページ、計画本体 p.23）によれば、令和6年12月20日に
+      教育委員会が計画を決定、
+      令和7年2月21日の総合教育会議で教育大綱として決定している。
+      教育大綱は地方教育行政の組織及び運営に関する法律1条の3により本来は市長が総合教育会議の
+      協議を経て定めるもので、**この計画は教育委員会と市長の双方の権限にまたがる。**
+      agency は enum が単一値のため、主たる作成機関である教育委員会（education）を採り、
+      内訳はここに記す。1冊が複数の機関・課にまたがる計画を、粗い軸では主たるもので代表させ、
+      内訳を laws・department・notes で表すのは kourei-9（保険課と長寿支援課）と同じ扱い。
+    todo: >-
+      教育大綱としての部分の所管（総合教育会議の庶務担当課）を確認する。教育委員会事務局組織規則
+      （生のHTMLで確認）第3条の学校教育課学校教育班の分掌事務(1)「教育の基本計画に関すること。」
+      と、教育総務課総務班の分掌事務（(1)～(33)）に該当項目が無いことを確認し、教育振興基本計画
+      としての部分の department は学校教育課 学校教育班に確定した。ただし大綱の部分は本来市長・
+      総合教育会議の所管であり、同事務局組織規則（市長部局を対象外とする）だけでは総合教育会議
+      事務局がどの課かを決め切れないため、その部分は未確定のまま残す。
+
+  - id: ijime-boushi
+    name: 壱岐市いじめ防止基本方針
+    level: municipal
+    agency: education
+    domain: kyouiku
+    category: kyouiku
+    tier: bumon
+    status: current
+    period: { start: null, end: null }   # 随時見直し（改定の記録は確認できず）
+    adopted: 2014-02
+    laws: [いじめ防止対策推進法12条]
+    statutory: effort
+    department: 学校教育課 学校教育班
+    url: https://www.city.iki.nagasaki.jp/soshiki/gakko_kyoikuka/kyouikuzyoho/ijime/150.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/2/ikishiijimeboushikihonhousin.pdf
+    notes: >-
+      PDF表紙に「壱岐市いじめ防止基本方針」「平成２６年２月」「壱岐市教育委員会」と明記。PDFは
+      文字レイヤーのないスキャン画像のため pdftotext では抽出できず、ページ画像を目視で確認した。
+      「はじめに」（PDF3ページ、本文 p.1）に
+      「本基本方針は、平成25年10月11日に策定された国の「いじめ防止基本方針」、平成25年12月17日に策定された県の「いじめ防止基本方針」を参酌し、いじめの早期発見及び対処のための方策を、総合的かつ効果的に推進するために策定するものである」とあり、
+      「2　壱岐市の基本方針」（PDF4ページ、本文 p.2）には
+      「市、学校はそれぞれ「壱岐市いじめ防止基本方針」（以下「市の基本方針」という）「学校いじめ防止基本方針」を策定する。」「（「いじめ防止対策推進法12・13条」以下法律名は省略する。）」との記載がある。掲載ページの更新日は
+      2017年02月11日で、平成26年2月の策定以降の改定は確認できていない。改定の有無を追加で
+      調査した：(1) 掲載ページ自体の更新日は2017年02月11日のまま、(2) 平成29年3月22日制定の
+      「壱岐市子どものいじめ防止に関する条例」（条例第10号、施行 平成29年4月1日）を条文で確認
+      したが、これは連絡協議会・専門委員会の設置等を定める別の条例であり、基本方針の改定を
+      指示・記録するものではない、(3) いじめ・不登校対策の一覧ページ（kosodate/kyoikujoho/ijime/
+      index.html）にも改定版へのリンクは無く「壱岐市いじめ防止基本方針」1本のみが掲載されている。
+      以上より、2026年8月時点で確認できる公開情報の範囲では改定の記録は見当たらない
+      （未公開の改定がある可能性までは否定できない）。
+
+  - id: chugakko-tekiseika
+    name: 壱岐市中学校規模適正化〔統廃合〕計画
+    level: municipal
+    agency: education
+    domain: kyouiku
+    category: kyouiku
+    tier: jisshi
+    status: unknown
+    sources:
+      - label: 壱岐市中学校規模適正化〔統廃合〕準備委員会設置要綱（例規集、平成21年6月25日教育委員会告示第2号）
+        url: https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000921.html
+        note: >-
+          第1条「壱岐市教育委員会(以下「教育委員会」という。)が定めた壱岐市中学校規模適正化〔統廃合〕計画に基づき、壱岐市の中学校の具体的な統廃合を推進するため、壱岐市中学校規模適正化〔統廃合〕準備委員会…を設置する。」とあり、
+          郷ノ浦町・勝本町・芦辺町・石田町の4地区に準備委員会を設置。第4条（任期）「委員の任期は、平成23年3月31日までとする。ただし、補欠委員は、前任者の残任期間とする。」、
+          第9条（庶務）「準備委員会の庶務は、教育委員会学校教育課において処理する。」
+          （2026-08-12にブラウザで確認）。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。教育委員会が策定した中学校統廃合の
+      計画で、平成21年6月に郷ノ浦町・勝本町・芦辺町・石田町の4地区ごとの準備委員会が
+      設置され、委員任期は平成23年3月31日までとされている。学校教育課の巡回（本POLICY.md
+      「教育委員会」「学校教育課」の行）でも「学校規模適正化・学校再編については、平成22年前後の中学校統合〈勝本中学校区等〉に関する過去の議会記録は見つかったが、現行の基本計画として掲載されているページは確認できず。」としており、この例規集の
+      記載と整合する。ただし、準備委員会の委員任期（平成23年3月31日まで）は、統廃合を
+      推進するために設置された下部組織（準備委員会）自身の任期であって、教育委員会が
+      定めた「壱岐市中学校規模適正化〔統廃合〕計画」そのものの計画期間ではない。任期が
+      終了した事実から計画自体の終期・完了を断定することはできないため、status は
+      unknown とした（統廃合が完了して現行の計画でなくなったことを意味しない）。
+    todo: >-
+      計画の策定年月・対象校・統廃合の実施内容・計画期間・根拠法の有無を確認する
+      （例規集の準備委員会設置要綱以外の一次資料を確認できていない）。
+      所管課も確認する。設置要綱第9条の庶務は学校教育課だが、これは準備委員会の
+      事務局であって、計画そのものの所管とは限らない（他の附属機関由来の4件と同じ扱い）。
 
   - id: kodomo-dokusho-2
     name: 第2次壱岐市子ども読書活動推進計画
     level: municipal
-    category: kodomo
-    status: unknown
+    domain: kyouiku
+    category: dokusho
+    tier: bumon
+    status: current
+    period: { start: 2024, end: 2028 }
+    adopted: 2024-07
+    laws: [子どもの読書活動の推進に関する法律9条2項]
+    statutory: effort
+    agency: education
+    department: 社会教育課 生涯学習班
+    conforms_to: [pref-kodomo-dokusho-5]
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/6869.html
-    todo: 計画期間・所管課を確認する
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/26/usyfubsfysdfidfu.pdf
+    notes: >-
+      計画書表紙（PDF1ページ）に「第２次壱岐市子ども読書活動推進計画」「（令和6～１０年度）」
+      「令和６年７月策定」「壱岐市教育委員会」と明記（`mutool draw -F trace` でグリフを確認したところ
+      全78グリフ中に空白のグリフは無く、表紙に半角・全角いずれの空白も存在しない。見た目の隙間は
+      Wordの和欧文間隔による描画上のもので文字ではない）。計画期間は社会教育課 図書館ページ
+      （soshiki/shakai_kyoikuka/toshokan/5616.html）に「2024年度から2028年度までの5年間」
+      と明記されており一致する。同ページの問い合わせ先は「文化スポーツ振興課 文化振興班」だが、
+      行政組織規則（令和7年6月1日施行、生のHTMLで確認）第3条・第4条の文化振興班の分掌事務
+      (1)～(7)に図書館・読書活動に関する項目はなく、教育委員会事務局組織規則第3条・第4条の
+      社会教育課生涯学習班分掌事務(9)「図書館に関すること。」と一致することを確認したため、
+      department はこちらに確定した。前計画はPDF「はじめに」に
+      「壱岐市も令和元年に「壱岐市子ども読書計画推進計画」をつくり…」との言及があるが（原文ママ、通常の名称
+      「子ども読書活動推進計画」と語順が異なる）、掲載ページ・正式名称を確認できていないため predecessors
+      には追加していない。子どもの読書活動の推進に関する法律9条2項をe-Gov法令検索で確認したところ
+      「子ども読書活動推進基本計画（都道府県子ども読書活動推進計画が策定されているときは、子ども読書活動推進基本計画及び都道府県子ども読書活動推進計画）を基本とするとともに…策定するよう努めなければならない。」とあり、「基本とする」の規定があるため、現行の県計画（第五次、
+      令和6～10年度、pref-kodomo-dokusho-5として新規収録）を conforms_to とした。
 
   - id: influenza
     name: 壱岐市新型インフルエンザ等対策行動計画
     level: municipal
+    domain: fukushi
     category: kenkou
-    status: unknown
+    tier: jisshi
+    status: current
+    period: { start: null, end: null }   # 随時改定
+    adopted: 2026-06
+    laws: [新型インフルエンザ等対策特別措置法8条1項]
+    statutory: mandatory
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/16148.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/37/ikisikeikaku.pdf
     department: 健康増進課
-    todo: 策定時期・所管課を確認する（令和8年にパブコメ実施結果あり）
+    notes: >-
+      平成27(2015)年6月に特措法8条1項（市町村長は都道府県行動計画に基づき市町村行動計画を
+      作成するものとする）に基づき壱岐市独自の行動計画として策定。国の政府行動計画・長崎県
+      行動計画の改定を受けて令和8(2026)年6月に改定（計画書「はじめに」及び第2章第1節に
+      策定・改定の経緯の記載あり）。計画書上、固定の計画期間の定めはなく、政府・県行動計画の
+      改定に応じて随時改定される。所管課は行政組織規則第4条の健康増進班分掌事務
+      「感染症対策(予防接種を含む。)に関すること。」に該当するため健康増進課で確認（課内に
+      班は健康増進班のみのため班名は付していない）。
 
   # ---------------------------------------------------------------------------
   # 壱岐市社会福祉協議会
@@ -310,17 +1205,34 @@ plans:
   - id: csw-katsudou-2
     name: 壱岐市社会福祉協議会 第2期地域福祉活動計画
     level: council
+    domain: fukushi
     category: fukushi
+    tier: bumon
     status: planned
     period: { start: null, end: null }
     url: https://ikicity-csw.jp/
     notes: >-
       令和6年度事業計画で策定を掲げたが、令和7年度事業計画では「調査・研究」「策定の検討」
-      段階の記載にとどまり、2026年8月時点で未公表。市計画とは一体的策定ではなく「連携」の関係。
-    todo: 第1期の計画期間と、第2期の策定スケジュールを確認する
+      段階の記載にとどまり、2026年8月時点で未公表。市計画とは一体的策定ではなく「連携」の関係
+      （chiiki-fukushi-3 の related 側に記載済み）。令和5・6・7年度の3か年分の事業計画PDF
+      （ikicity-csw.jp/pdf/keikaku_2023.pdf・keikaku_2024.pdf・keikaku_2025.pdf）を確認した。
+      令和5年度計画「Ⅱ 地域福祉事業」の「１．地域福祉活動の推進」に「(3) 地域福祉活動計画第２期の策定」、
+      令和6年度計画にも同じ項目名で記載があるが、令和7年度計画（PDF3ページ目、画像スキャンのため
+      目視で確認）では「(3)調査・研究の取り組み…②第２期「地域福祉活動計画」策定の検討」という、
+      より準備段階の見出しに後退しており、3か年を通じて第2期は未策定であることを確認した。
+      策定スケジュールは令和7年度計画にも明記が無い。
+    todo: 第1期の計画期間を確認する（社協サイト・事業計画PDFに記載を見つけられていない）
 
   # ---------------------------------------------------------------------------
-  # 長崎県（市計画が整合を求められる先）
+  # 長崎県（市計画が参照・連携する先）
+  #
+  # 「市計画は県計画との整合を求められる」と考えがちだが、条文を確認すると
+  # そうなっているものは少ない。8件を調べて conforms_to（法令上の整合）に
+  # 該当したのは障害者基本法11条3項の1件だけで、残りは related（連携）。
+  # その後、子どもの読書活動の推進に関する法律9条2項（「基本とするとともに」）も
+  # 整合を求める規定であることを確認し、conforms_to は現在2件。
+  # 多くは「勘案して」にとどまり、県計画はむしろ市町村計画を支援する側に置かれる
+  # （社会福祉法108条「市町村地域福祉計画の達成に資するために」）。
   # ---------------------------------------------------------------------------
   - id: pref-fukushi-hoken-6
     name: 第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」
@@ -331,7 +1243,7 @@ plans:
     adopted: 2026-03
     laws: [社会福祉法108条（都道府県地域福祉支援計画）]
     url: https://www.pref.nagasaki.jp/doc/46393.html
-    notes: 県には「地域福祉支援計画」という単独名称の計画はなく、本計画がその役割を兼ねる。
+    notes: 県には「都道府県地域福祉支援計画」という単独名称の計画はなく、本計画がその役割を兼ねる。
 
   - id: pref-saihan-2
     name: 第二次長崎県再犯防止推進計画
@@ -409,15 +1321,598 @@ plans:
     adopted: 2023-03
     url: https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/
 
+  - id: pref-kodomo-dokusho-5
+    name: 第五次長崎県子ども読書活動推進計画
+    level: prefectural
+    category: dokusho
+    status: current
+    period: { start: 2024, end: 2028 }
+    adopted: 2024-03
+    pdf: https://www.pref.nagasaki.jp/uploads/2024/02/1708922156.pdf
+    notes: >-
+      PDF表紙に「第五次」「長崎県子ども読書活動推進計画」「令和６年３月」「長崎県教育委員会」と
+      明記。「２ 第五次計画の期間」（PDF本文1ページ）に
+      「この計画は、令和６年度から10年度までの５年間とします。」とある。県サイトの紹介ページURL（yojikeikaku、旧称
+      「第四次長崎県子ども読書活動推進計画」のページ）は2026年8月時点で404（本文はサーバーの汎用404ページ）だったため
+      url は記載せず、直接確認できたPDFのみを根拠とした。
+
+  - id: ikitsushima-choju-higai
+    name: 壱岐・対馬地域鳥獣被害防止計画
+    level: municipal
+    domain: sangyou
+    category: nourin
+    tier: kobetsu
+    status: current
+    period: { start: 2026, end: 2028 }
+    laws:
+      - { law: 鳥獣による農林水産業等に係る被害の防止のための特別措置に関する法律4条1項, obligation: permissive }
+    statutory: permissive
+    department: 農林課 農業振興班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/994.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/16/ikibousi8.pdf
+    notes: >-
+      壱岐市と対馬市の共同計画。同法4条1項は市町村が「単独で又は共同して」被害防止計画を
+      定めることができる旨を規定しており（e-Gov法令検索、法令ID 419AC1000000134で確認）、
+      「定めることができる」の文言のため statutory は permissive とした。PDF本体（別記様式第１号）
+      を pdftotext で読み取ったところ、計画主体は「対馬市（代表）・壱岐市」で、対馬市が代表市。
+      連絡先の担当部署も対馬市農林水産部農林しいたけ課であり、実務は対馬市側が担っている。
+      計画作成年度は令和7年度、計画期間は令和8年度～令和10年度（PDF本文の記載による）。
+
+  - id: chiiki-nougyou-keikaku
+    name: 地域計画（地域農業経営基盤強化促進計画）
+    level: municipal
+    domain: sangyou
+    category: nourin
+    tier: kobetsu
+    status: current
+    period: { start: null, end: null }   # 随時修正
+    adopted: 2025-03
+    laws:
+      - { law: 農業経営基盤強化促進法19条1項, obligation: mandatory }
+    statutory: mandatory
+    department: 農林課 農業振興班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14283.html
+    sources:
+      - label: 地域計画（地域農業経営基盤強化促進計画）について（制度説明ページ）
+        url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14053.html
+      - label: 地域計画策定に係る関連手続きの変更について
+        url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14396.html
+      - label: 人・農地プランの実質化に向けた取り組み（地域計画の前身）
+        url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/6284.html
+        note: 平成24年度から実施。地区ごとの取り組みで、単一の計画書としては公表されていない
+    notes: >-
+      市内12地区（武生水・渡良・柳田・沼津・志原・初山・勝本・鯨伏・田河・那賀・箱崎・石田）
+      ごとに地域計画を策定・公表。公表ページの更新日は令和7(2025)年3月14日で、令和7年4月から
+      地域計画区域内の農地転用時に地域計画変更（除外）手続きが必須化された。
+      前身は「人・農地プラン」（平成24年度から地区ごとに実施、法定計画ではない任意の取り組み）。
+      地区ごとの取り組みのため単一の計画書がなく、独立エントリではなく本エントリの sources に
+      掲載ページを記録した。laws は「…（以下「地域計画」という。）を定めるものとする」と規定する
+      19条1項を根拠とした（e-Gov法令検索、法令ID 355AC0000000065、2025-04-01時点の現行条文で確認）。
+      掲載ページ自身は根拠として同条8項（策定・変更時の公告義務）を挙げているが、8項は公告手続きの
+      規定であり、計画の策定自体を義務付けるのは1項。
+      同法6条「基本構想」（農業経営基盤の強化の促進に関する基本的な構想、市町村が定めることができる、
+      許容規定）は現行条文にも存在しており、19条4項1号は地域計画が「基本構想に即する」ことを要件と
+      している（同法令ID
+      の条文本文で確認）。壱岐市の基本構想の存在を農林課の掲載ページ・サイト内検索・一般Web検索で
+      探したが、該当するページ・PDFは見つからなかった（探し方は sources/POLICY.md に記録）。
+      壱岐市の地域計画が基本構想にどのように即しているかは、市の一次資料からは確認できていない。
+      period は、19条2項が地域計画の記載事項として計画期間を挙げておらず、19条5項も
+      「…情勢の推移により必要が生じたときは、地域計画を変更するものとする」として固定の改定サイクルを定めて
+      いないため、`bousai`（地域防災計画）と同様の随時修正型と判断し null とした。
+
+  - id: nourin-shinkou-chiiki
+    name: 壱岐市農業振興地域整備計画
+    level: municipal
+    domain: sangyou
+    category: nourin
+    tier: kobetsu
+    status: unknown
+    laws:
+      - { law: 農業振興地域の整備に関する法律8条1項, obligation: mandatory }
+    statutory: mandatory
+    sources:
+      - label: 壱岐市農業振興地域整備促進協議会規則（例規集、平成20年7月1日規則第25号）
+        url: https://www.city.iki.nagasaki.jp/section/reiki/reiki_honbun/r014RG00000868.html
+        note: >-
+          第1条（趣旨）
+          「この規則は、壱岐市附属機関設置条例(平成18年壱岐市条例第9号)に基づき設置された壱岐市農業振興地域整備促進協議会(以下「協議会」という。)の組織、運営等について必要な事項を定めるものとする。」、第6条（庶務）
+          「協議会の庶務は、農林課において処理する。」（2026-08-12にブラウザで確認）。
+      - label: 地域計画策定に係る関連手続きの変更について
+        url: https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14396.html
+        note: >-
+          「…地域計画区域内の農地において、「農用地区域からの除外（農振除外）」や
+          「農地転用」を行う場合は、あらかじめ地域計画区域から除外する必要がある…」と
+          記載されている（2026-08-12確認、問い合わせ先は農林課農業振興班）。農業振興地域
+          整備計画上の「農用地区域」が壱岐市で現に運用されていることを裏付ける。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。農業振興地域の整備に関する法律8条1項
+      （e-Gov法令検索、法令ID 344AC0000000058で確認）は
+      「都道府県知事の指定した一の農業振興地域の区域の全部又は一部がその区域内にある市町村は、…農業振興地域整備計画を定めなければならない。」と規定する。壱岐市農業振興地域整備促進協議会（平成20年設置、
+      令和7年6月1日にも改正）の存在と、農林課の別ページで「農用地区域」「農振除外」の語が
+      現に使われていることから、壱岐市域に農業振興地域の指定と整備計画が存在するとみられる
+      が、計画自体の公表ページ・策定年月・計画期間は確認できていない。name は農振法8条の
+      見出し（市町村の定める農業振興地域整備計画）に市名を冠した一般的な呼称であり、壱岐市
+      自身が用いる正式名称を確認したものではない。tier は当初 bumon としていたが、同じ
+      農林課所管の法定個別計画である chiiki-nougyou-keikaku（地域計画、農業経営基盤強化
+      促進法19条1項）・shinrin-seibi（森林整備計画、森林法10条の5第1項）がいずれも
+      tier: kobetsu であり、農振法8条1項に基づく本計画も同種の法定個別計画であるため
+      kobetsu に揃えた。department は、協議会規則第6条（庶務）が示すのは協議会（附属機関）
+      の事務局であって、計画そのものの所管を直接裏付ける行政組織規則第3条・第4条の分掌事務
+      ではないと判断し、農林課という課レベルの記載も含めて確定値とせず todo に残した
+      （hatsuyama-kaihatsu・hokubu-kaiyousei-kouen と同じ扱いに揃えた。経緯は
+      sources/POLICY.md「附属機関の設置条例」の項を参照）。
+    todo: >-
+      計画の正式名称・策定年月・計画期間・改定履歴・所管課・班（協議会の庶務は農林課とのみ
+      確認でき、行政組織規則の分掌事務での裏付けは未確認）を確認する。
+
+  - id: shinrin-seibi
+    name: 壱岐市森林整備計画
+    level: municipal
+    domain: sangyou
+    category: ringyou
+    tier: kobetsu
+    status: current
+    laws:
+      - { law: 森林法10条の5第1項, obligation: mandatory }
+    statutory: mandatory
+    department: 農林課 農林整備班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/10153.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/16/sinnrinnkeikaku.pdf
+    todo: 計画期間（始期・終期の年度）を確認する。PDFが画像スキャンで本文の機械的な読み取りができないため、目視での確認が必要。
+    notes: >-
+      市内の民有林を対象に、地域森林計画に適合して5年ごとに10年を1期として策定。掲載ページの
+      更新日は2022年3月28日、PDF本体の作成日は2022年3月10日（PDFのメタデータより）で、
+      令和4(2022)年頃の改定とみられるが、計画期間の始期・終期は確認できていない。laws は
+      「市町村森林整備計画をたてなければならない」と規定する10条の5第1項を根拠とした
+      （e-Gov法令検索、法令ID 326AC1000000249、2026-04-01時点の現行条文で確認）。
+
+  - id: mokuzai-riyou-houshin
+    name: 壱岐市建築物等木材利用促進基本方針
+    level: municipal
+    domain: sangyou
+    category: ringyou
+    tier: kobetsu
+    status: current
+    adopted: 2022-12
+    laws:
+      - { law: 脱炭素社会の実現に資する等のための建築物等における木材の利用の促進に関する法律12条1項, obligation: permissive }
+    statutory: permissive
+    department: 農林課 農林整備班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/11222.html
+    todo: 当初の策定年月を確認する（掲載ページには令和4年12月1日の一部改訂版のみ記載）
+    notes: >-
+      掲載ページは根拠を「同法第11条」としているが、e-Gov法令検索（法令ID 422AC0000000036、
+      2021-10-01施行版で確認）では、同法11条は都道府県知事が定める「都道府県方針」の規定であり、
+      市町村が定める「市町村方針」は12条である。12条1項は
+      「市町村は…（以下この条において「市町村方針」という。）を定めることができる。」（許容規定）としているため、本エントリの laws・statutory は12条1項を根拠として
+      記載した。
+
+  - id: noudou-shisetsu-kobetsu
+    name: 壱岐市農道施設個別施設計画
+    level: municipal
+    domain: kiban
+    category: douro
+    tier: shisetsu
+    status: current
+    department: 農林課 農林整備班
+    url: https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/9785.html
+    related: [kokyoshisetsu-kobetsu]
+    todo: 策定年月・計画期間・根拠を確認する
+    notes: >-
+      壱岐市公共施設等総合管理計画・インフラ長寿命化基本計画に基づく、農林課所管の橋梁
+      （椋橋・平江の本橋、橋長15m以上の2橋）を対象とした個別施設計画。財政課の
+      「壱岐市公共施設個別施設計画」（kokyoshisetsu-kobetsu）は施設類型ごとの詳細を「…施設所管課にお尋ねください。」
+      としており、本計画はその農林課所管分にあたるとみられる。
+
+  - id: dounyu-sokushin-kihon
+    name: 導入促進基本計画
+    level: municipal
+    domain: sangyou
+    category: shokou
+    tier: kobetsu
+    status: unknown
+    laws:
+      - { law: 中小企業等経営強化法49条1項, obligation: permissive }
+    statutory: permissive
+    department: 商工振興課 ふるさと振興班
+    url: https://www.city.iki.nagasaki.jp/soshiki/syoukousinkouka/5129.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/8/bosyuu.pdf
+    todo: >-
+      計画期間の起算日（経済産業大臣の同意日）と現在の有効性（改定・再同意の有無）を確認する。
+      掲載ページの更新日は2019年04月04日のまま止まっており、直近の改定を裏付ける記録が無い。
+    notes: >-
+      中小企業・小規模事業者等が設備投資により労働生産性の向上を図る「先端設備等導入計画」の
+      認定基準として、市が策定した基本計画。掲載ページ・PDF（別紙）とも単に「導入促進基本計画」
+      とのみ表記し、市名を冠した正式名称の表記は確認できなかった。PDFは画像スキャン（テキスト
+      レイヤーなし）だが、目視で内容を確認できた：計画期間は「国が同意した日から３年間…」、対象地域は
+      市内全域、対象業種・事業は全業種・全事業、目標は計画期間中の先端設備等導入計画6件程度の認定・
+      設備投資額180百万円。根拠条文は中小企業等経営強化法49条1項「…その同意を求めることができる。」
+      （e-Gov法令検索、法令ID 411AC0000000018で確認）で、許容規定のため statutory は permissive とした。
+      PDF本文が引用する「経済産業省関係生産性向上特別措置法施行規則」は、同制度が令和2年10月の
+      中小企業等経営強化法改正で同法に統合される前の根拠規則とみられる。
+
+  - id: sougyou-shien-jigyou
+    name: 創業支援等事業計画
+    level: municipal
+    domain: sangyou
+    category: shokou
+    tier: kobetsu
+    status: unknown
+    laws:
+      - { law: 産業競争力強化法127条1項, obligation: permissive }
+    statutory: permissive
+    sources:
+      - label: 中小企業庁「産業競争力強化法に基づく認定を受けた市区町村別の創業支援事業計画の概要(長崎県)」
+        url: https://www.chusho.meti.go.jp/keiei/chiiki/42.nintei_nagasaki.html
+        note: >-
+          一覧表に壱岐市の行があり、認定年月は「平成27年10月」。ページの<title>・<h1>は「創業支援事業計画」
+          （等を欠く）だが、パンくずリストは「創業支援等事業計画」（産業競争力強化法127条1項の定義語と一致）
+          であり、中小企業庁のページ自体に表記の揺れがある。一覧ページ自体（sources[0].url）はUser-Agentを
+          送らない場合HTTP 403で「指定されたページまたはファイルは存在しません」という404風のエラーページを
+          返すが、ブラウザ相当のUser-Agentでは2026-08-12時点でHTTP 200・実コンテンツを取得できる
+          （tools/linkcheck.mjs にブラウザ相当の User-Agent を設定したところ 403 は解消したが、
+          代わりに HTTP 202 で本文0バイトが返るようになり、linkcheck は「200 を返すのに中身がない」型
+          として失効に数える。実ブラウザでは表示できるため、これは残る誤検知）。行内のPDFリンク
+          （nintei/2014-3/9-136.pdf）も同じ現象で、User-Agentを送らないと同一の
+          「指定されたページまたはファイルは存在しません」（実際はHTTP 403）が返るため、従来はこれをPDFの404＝不存在と誤認していたが、
+          ブラウザ相当のUser-Agentで再確認したところHTTP 200・PDF本体（市区町村：壱岐市、認定連携創業支援等
+          事業者、年間目標数〈創業支援者件数25件・創業者数7件〉等を記載、Last-Modified 2026-06-28、計画期間の
+          記載はなし）を実際に取得できた。PDFは削除されておらず、当初の「404」という記述は誤りだった。
+    todo: >-
+      計画の正式名称・計画期間・現在の有効性（改定・失効の有無）を確認する。
+      所管班も分掌事務で確認する（ふるさと振興班「商工業の振興」「中小企業振興制度」が
+      候補だが直接の裏付けなし）。
+    notes: >-
+      市サイト（商工振興課の掲載記事、サイト内検索）で計画本文・掲載ページを確認できない。
+      根拠条文は産業競争力強化法127条1項「…その認定を受けることができる。」（e-Gov法令検索、
+      法令ID 425AC0000000098で確認）で、許容規定のため statutory は permissive とした。
+      所管は行政組織規則第4条の商工振興課ふるさと振興班の分掌事務「商工業の振興に関すること」
+      「中小企業振興制度に関すること」が内容として近いが、この計画を所管する直接の裏付けは
+      確認できていない（※推定）。**確定していないため department には書かず、todo に残している。**
+      壱岐市商工会が実施主体の「経営発達支援計画」（小規模事業者支援法に基づく別制度）とは
+      別物であり、本エントリでは扱わない。
+
+  - id: kyoryo-choju
+    name: 壱岐市橋梁長寿命化修繕計画
+    level: municipal
+    domain: kiban
+    category: douro
+    tier: shisetsu
+    status: current
+    period: { start: 2019, end: 2028 }
+    adopted: 2019-03
+    statutory: request
+    department: 建設課 土木班
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/959.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/ikikyouryou64.pdf
+    sources:
+      - label: 国土交通省 道路メンテナンス事業補助制度に関する資料
+        url: https://www.mlit.go.jp/road/content/001759331.pdf
+        note: >-
+          「橋梁」「トンネル」「道路附属物等」の3種の長寿命化修繕計画を、それぞれ【個別施設計画】
+          として表内に位置づけている記載を直接確認した。
+    notes: >-
+      平成19年4月2日付け国土交通省道路局長通知（長寿命化修繕計画策定事業費補助制度の創設）等に
+      基づき、平成31年3月策定（令和6年4月改定版）。橋長2m以上（土被り1m以上のBOXカルバートを
+      含む）の橋梁294橋が対象。計画期間は「平成３１年度～令和１０年度（今後１０年間）」とPDF本文に
+      明記されている。statutory は上記の道路メンテナンス事業補助制度資料（sources 参照）に基づき
+      request とした。所管は掲載ページの
+      問い合わせ先（建設課 土木班）と、行政組織規則第4条の
+      同班分掌事務「道路、河川及び橋梁りようの整備に関すること」が一致するため確認した。
+    todo: >-
+      adopted（2019-03）は当初策定年月。data/schema.md の adopted の定義（現在有効な版の最新の
+      策定・改定年月）に従うと、notes にある令和6年4月改定に合わせて 2024-04 に揃える必要がある。
+
+  - id: douro-norimen-iji
+    name: 壱岐市道路法面等維持管理計画
+    level: municipal
+    domain: kiban
+    category: douro
+    tier: shisetsu
+    status: expired
+    period: { start: 2016, end: 2025 }
+    adopted: 2017-04
+    department: 建設課 土木班
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/3498.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/ikinorimen.pdf
+    todo: >-
+      根拠（法令上の位置付け・国の補助制度等）を確認する。橋梁・トンネルの長寿命化修繕計画は
+      国土交通省の道路メンテナンス事業補助制度の個別施設計画に位置づけられていることを確認できたが、
+      法面等についても同様の位置づけかは確認できていない。adopted（2017-04）は当初策定年月。
+      data/schema.md の adopted の定義（現在有効な版の最新の策定・改定年月）に従うと、notes に
+      ある令和5年8月改定に合わせて 2023-08 に揃える必要がある。
+    notes: >-
+      平成25年度の道路ストック総点検（国土交通省が策定した総点検実施要領
+      「道路法面工・土工構造物編」による）を踏まえ、平成29年4月に策定、令和5年8月に改定。計画期間は
+      「平成２８年度から令和７年度までの１０年間」、概ね5年ごとに見直すとPDF本文（3.5節）に
+      明記されている。2026年8月（survey_date）時点で計画期間の終期（令和7年度末＝2026年3月）を
+      過ぎており、市サイトには令和5年8月改定版が最新のまま掲載され、次期計画の掲載は
+      確認できていないため status は expired とした。所管は掲載ページの問い合わせ先
+      （建設課 土木班）と、行政組織規則第4条の同班分掌事務
+      「道路、河川及び橋梁りようの整備に関すること」が一致するため確認した。
+
+  - id: douro-tunnel-iji
+    name: 壱岐市道路トンネル維持管理計画
+    level: municipal
+    domain: kiban
+    category: douro
+    tier: shisetsu
+    status: current
+    adopted: 2025-12
+    statutory: request
+    department: 建設課 土木班
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/5457.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/tonnneruijikannri.pdf
+    todo: >-
+      計画期間の定めの有無・当初策定年月を確認する（今回確認できたのは「令和７年１２月改訂版」の
+      みで、当初の策定年月・固定の計画期間の記載をPDF本文から確認できていない）。
+    notes: >-
+      市が管理する郷ノ浦トンネル（1998年12月竣工の1橋のみ）を対象に、事後保全型から予防保全型の
+      維持管理へ転換するために策定。5年に一度の近接目視点検（法定点検）に加え年1回の通常点検を
+      実施する方針（PDF本文）。statutory は国土交通省の道路メンテナンス事業補助制度資料
+      （kyoryo-choju の sources 参照。トンネルの長寿命化修繕計画も【個別施設計画】として
+      表内に位置づけている）に基づき request とした。所管は掲載ページの
+      問い合わせ先（建設課 土木班）と、行政組織規則第4条の
+      同班分掌事務「道路、河川及び橋梁りようの整備に関すること」が一致するため確認した。
+
+  - id: koei-jutaku-choju
+    name: 壱岐市公営住宅等長寿命化計画
+    level: municipal
+    domain: kiban
+    category: jutaku
+    tier: shisetsu
+    status: current
+    period: { start: 2025, end: 2034 }
+    adopted: 2025-06
+    statutory: request
+    department: 建設課 住宅班
+    parent: sougou-4
+    related: [kokyoshisetsu-kobetsu]
+    url: https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/jutaku/1005.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/18/tyoujyumyoukakousin2025_6.pdf
+    sources:
+      - label: 国土交通省「公営住宅等長寿命化計画　策定指針（改定）」（平成28年8月、国土交通省住宅局住宅総合整備課）
+        url: https://www.mlit.go.jp/common/001042520.pdf
+        note: >-
+          「平成21年3月、公営住宅等長寿命化計画策定指針（以下「旧指針」という。）が策定された」
+          と記載されている（PDF印字ページ番号3ページ、ファイル通し番号5ページ目。全66ページ中。
+          自分で当該ページを開き、画像化して目視でも確認した）。表題・策定月・策定局課はPDF表紙で確認。
+    notes: >-
+      平成25(2013)年3月に初回策定、平成30(2018)年6月改訂に続く3回目の改訂（令和7(2025)年6月）。
+      計画期間は「令和7年度（2025年度）から令和16年度（2034年度）までの10年間」、概ね5年ごとに見直すとPDF第1章に
+      明記されている。上位計画は第4次壱岐市総合計画（sougou-4）とし、国の住生活基本計画
+      （全国計画）・長崎県住生活基本計画との整合を図るとPDF第1章「計画の位置付け」に明記されて
+      いる。statutory は上記の国土交通省「公営住宅等長寿命化計画策定指針」（sources 参照）に基づき、
+      社会資本整備総合交付金（公営住宅等整備事業等）の要件として策定が求められているため request
+      とした。所管は掲載ページの問い合わせ先（建設課 住宅班）と、行政組織
+      規則第4条の同班分掌事務「市営住宅の整備に関すること」「市営住宅の維持管理に関すること」が
+      一致するため確認した。
+
+  - id: suidou-keiei-senryaku
+    name: 壱岐市水道事業経営戦略
+    level: municipal
+    domain: kiban
+    category: suido
+    tier: bumon
+    status: current
+    period: { start: 2026, end: 2035 }
+    adopted: 2026-03
+    statutory: request
+    department: 上下水道課 水道班
+    predecessors: [suidou-vision]
+    url: https://www.city.iki.nagasaki.jp/soshiki/suidoka/unnei/3497.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/19/jousuidoukeiei.pdf
+    sources:
+      - label: 総務省「公営企業の経営に当たっての留意事項について」（平成26年8月29日付け総財公第107号・総財営第73号・総財準第83号、総務省自治財政局公営企業課長等通知）
+        url: https://www.soumu.go.jp/main_content/000312922.pdf
+        note: >-
+          「そのために、各公営企業において、中長期的な経営の基本計画である「経営戦略」を策定し、経営基盤の強化と財政マネジメントの向上に取り組まれるようお願いします。」
+          「計画期間は、10年以上を基本とすることが求められる。」と記載されている（総務省ウェブページ
+          https://www.soumu.go.jp/main_sosiki/c-zaisei/kouei_ryui.html で通知の存在・日付・発出者を
+          確認したうえで、PDF本文を直接確認した）。
+    notes: >-
+      上記通知等により、中長期的な経営の基本計画である「経営戦略」（計画期間10年以上）の策定が
+      求められたことを受け、平成27年度に初回策定。今回（令和8年3月改定）は水道事業（簡易水道は
+      対象外）分の改定で、計画期間は「令和8年度～令和17年度」とPDFの「計画期間」欄に明記されて
+      いる。PDF内の「④組織」欄に「市長部局－建設部－上下水道課(15人)－水道班(9人)」と明記されて
+      おり、department の根拠とした（行政組織規則第4条の水道班の分掌事務は
+      「専用水道及び簡易専用水道に関すること」のみで、市営水道事業の経営自体を明記していないが、上記の一次資料で
+      補強した）。statutory は上記通知に基づく request とした。PDF内
+      「(2)これまでの主な経営健全化の取組」欄に「平成29年度に壱岐市新水道事業ビジョンを策定し、経営健全化に取り組んでいます」
+      との記載があり、当該ビジョン（suidou-vision 参照）の後継として経営戦略が運用されているとみられる。
+
+  - id: gesuidou-keiei-senryaku
+    name: 壱岐市下水道事業経営戦略
+    level: municipal
+    domain: kiban
+    category: suido
+    tier: bumon
+    status: current
+    period: { start: 2024, end: 2033 }
+    adopted: 2024-03
+    statutory: request
+    department: 上下水道課 下水道班
+    url: https://www.city.iki.nagasaki.jp/soshiki/suidoka/unnei/3497.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/19/keieikoukyou.pdf
+    sources:
+      - label: 壱岐市下水道事業（漁業集落排水事業）経営戦略
+        url: https://www.city.iki.nagasaki.jp/material/files/group/19/keieigyosyu.pdf
+    notes: >-
+      「公共下水道事業」（北部処理区・中央処理区）と「漁業集落排水事業」（恵美須地区・山崎地区・
+      瀬戸・芦辺地区）の2事業について、それぞれ別冊で策定された経営戦略（いずれも令和6年3月策定、
+      計画期間「令和6年度～令和15年度」、PDFの「計画期間」欄で確認）を1エントリにまとめた。
+      statutory の根拠は suidou-keiei-senryaku と同じ総務省通知（平成26年8月29日付け
+      「公営企業の経営に当たっての留意事項について」、suidou-keiei-senryaku の sources 参照）等。両PDFの
+      「事業運営組織」欄に「下水道班３名」と明記されており、department の根拠とした（行政組織規則第4条の
+      下水道班の分掌事務「公共下水道事業及び漁業集落排水整備事業に関すること」とも一致）。
+      両PDFに、平成21年4月に水道課と下水道課が統合して水道課となり、平成23年4月に上下水道課へ
+      改称した旨の記載がある。
+
+  - id: suidou-vision
+    name: 壱岐市水道ビジョン
+    level: municipal
+    domain: kiban
+    category: suido
+    tier: bumon
+    status: expired
+    period: { start: 2010, end: 2020 }
+    adopted: 2010-08
+    sources:
+      - label: 厚生労働省「水道事業ビジョン（地域水道ビジョン）策定状況（上水道事業）」（平成30年1月30日現在）
+        url: https://www.mhlw.go.jp/file/06-Seisakujouhou-10900000-Kenkoukyoku/0000169612.pdf
+        note: 長崎県の一覧に「壱岐市水道ビジョン」の行があり、策定時期2010/08、目標年度2020、現在給水人口26,168人と記載（列見出しは「策定時期」「目標年度」「現在給水人口（人）」）。
+    todo: >-
+      市サイトに本計画自体の掲載ページ・PDFを確認できていない（厚生労働省の全国調査による把握）。
+      壱岐市水道事業経営戦略（suidou-keiei-senryaku）のPDFには
+      「平成29年度に壱岐市新水道事業ビジョンを策定し」との記載があり、本計画の改定版・後継版とみられるが、名称・策定年月・
+      計画期間が一致するかは市の一次資料で確認できていない。所管班を分掌事務で確認する。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。厚生労働省の全国調査（水道事業ビジョン
+      策定状況一覧）にのみ記載を確認した。所管は水道事業経営戦略（suidou-keiei-senryaku）と
+      同じ上下水道課 水道班が候補として有力だが、行政組織規則にこのビジョン自体を明記した
+      規定はなく、確定していないため department は未記入とした（※推定）。行政組織規則
+      （令和7年6月1日施行、生のHTMLで確認）第4条の上下水道課 水道班の分掌事務は
+      「専用水道及び簡易専用水道に関すること。」の1項目のみで、水道事業全般の運営・ビジョン
+      策定を明記した項目はなかった（上下水道課は地方公営企業のため、大半の運営事務は本規則
+      以外の企業出納員規程等で定められているとみられる）。ウェブ検索でも市サイト内に
+      本計画・後継版とも掲載ページを見つけられなかった。
+
+  - id: jutaku-master-plan
+    name: 壱岐市住宅マスタープラン
+    level: municipal
+    domain: kiban
+    category: jutaku
+    tier: bumon
+    status: expired
+    period: { start: 2011, end: 2020 }
+    adopted: 2011-03
+    sources:
+      - label: 壱岐市景観計画 第1章（策定当時の関連計画の位置づけ図）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/18/chapter1.pdf
+        note: >-
+          「壱岐市住宅マスタープラン（2011～2020）」として、壱岐市景観計画（平成27年3月策定）
+          策定当時の「市の関連制度」の一つに位置づけられている（図中の表記をそのまま引用。
+          西暦のみで元号・「策定期間」等の項目名の記載はない）。
+      - label: 壱岐市景観計画（全編） 第2章「表：壱岐市の景観関連計画」
+        url: https://www.city.iki.nagasaki.jp/material/files/group/18/keikaku_all.pdf
+        note: >-
+          「『壱岐市住宅マスタープラン』　■策定期間：平成23年度～平成32年度」と記載されている
+          （PDF印字ページ番号8ページ、ファイル通し番号12ページ目。全66ページ中。自分で当該
+          ページを開き、画像化して目視でも確認した）。二重かぎ括弧（『』）は原文どおり。
+      - label: 壱岐市空家等対策計画（akiya-taisaku の出典PDF）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/6/ikishiakiyatoutaisakukeikaku.pdf
+        note: >-
+          「【壱岐市住宅マスタープラン（住生活基本計画）】」「平成23年3月策定」
+          「（計画期間：平成23年度〜平成32年度）」と記載されている（PDF印字ページ番号46ページ、ファイル通し
+          番号50ページ目。全107ページ中。自分で当該ページを開き、画像化して目視でも確認した）。
+          「住生活基本法」や
+          「住宅確保要配慮者に対する賃貸住宅の供給の促進に関する法律（住宅セーフティネット法）」の施行、「壱岐市総合計画」や「長崎県住宅マスタープラン」の
+          策定等を背景に、住宅政策の指針を定めることを目的として策定された旨の記載もある。
+          adopted・period はこの出典による。
+    related: [koei-jutaku-choju]
+    todo: >-
+      市サイトに本計画自体の掲載ページ・PDFを確認できていない（壱岐市景観計画・壱岐市空家等対策
+      計画という、市が策定した他の2計画書内の言及のみで把握）。計画期間（平成23～32年度、
+      2011～2020年度相当）が満了しているため、改定・後継計画の有無を確認する。所管班を分掌事務で
+      確認する（建設課 住宅班の分掌事務は市営住宅に限定〈市営住宅入居者の募集・台帳整備・家賃・
+      用途廃止・整備・維持管理の6項目のみ〉で、住宅政策全般を扱う本計画の所管とみなせるかは
+      未確定）。
+    notes: >-
+      市サイトに計画本文・掲載ページを確認できない。壱岐市景観計画（第1章の一覧図、および全編
+      PDF第2章「表：壱岐市の景観関連計画」）と壱岐市空家等対策計画（PDF印字46ページ）という、
+      市が策定した2つの別の計画書内の言及（sources 参照）で存在・策定年月・計画期間を確認した。
+      改定・後継計画の有無をウェブ検索でも調査したが、市サイト内に該当する記載は見つからなかった。
+      公営住宅のみを対象とする壱岐市公営住宅等長寿命化計画（koei-jutaku-choju、建設課 住宅班）とは
+      対象範囲が異なる別計画のため related とした（本計画の department 未確定のため部分的な
+      重複所管かどうかは不明）。
+
+  - id: akiya-taisaku
+    name: 壱岐市空家等対策計画
+    level: municipal
+    domain: kiban
+    category: jutaku
+    tier: kobetsu
+    status: expired
+    period: { start: 2018, end: 2022 }
+    adopted: 2018-03
+    laws: [空家等対策の推進に関する特別措置法7条1項]
+    statutory: permissive
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/6/ikishiakiyatoutaisakukeikaku.pdf
+    todo: >-
+      所管班を分掌事務で確認する（計画書第4章2.(5)「推進体制の構築」〈PDF52ページ〉に、策定当時
+      「危機管理課」を空家等担当課としている旨の記載がある。ただし現行の行政組織規則に「危機管理課」
+      という課は存在せず、総務課の下に「危機管理班」があるのみで、「空家」の語自体も規則に
+      登場しない。当時の組織〈危機管理課がどの部に属していたか等〉は未確認。2026年時点の特定空家等
+      の措置命令〈空家法22条3項〉の問い合わせ先は建設課 建築整備班であり〈同課ページID 16113〉、
+      策定当時と現在とで所管が同じか異なるかは確定できない）。計画期間（平成30～34〈令和4〉年度）
+      が満了しているため、改定・次期計画の有無を確認する。市サイトに本計画の掲載ページを確認
+      できていない（PDF本体のみ確認）。
+    notes: >-
+      平成26年11月制定の空家等対策の推進に関する特別措置法（空家法）に先立ち、平成25年3月に
+      市独自の「壱岐市空き家等の適正管理に関する条例」を制定していた。空家法施行を受け、平成29年
+      12月に「壱岐市空家等対策協議会設置要綱」を制定し、平成30年3月に本計画を策定した
+      （計画書第1章）。計画期間は「5年間」、具体的には「平成30年度～平成34年度」（令和4年度に
+      相当）とPDF本文（第1章）に明記されている。laws は空家等対策の推進に関する特別措置法7条1項
+      「市町村は…空家等に関する対策についての計画（以下「空家等対策計画」という。）を定める
+      ことができる」（許容規定）を根拠とした。この条項は令和5年6月改正・同年12月施行により、
+      計画書策定当時の条番号「第6条」から現行の「第7条」に繰り下がっている（e-Gov法令検索、
+      法令ID 426AC1000000127で現行条文を確認。計画書自体は策定当時の条番号「第6条」を引用して
+      いる）。2026年8月時点で市サイトに本計画の掲載ページ・改定版を確認できていない。data/schema.md の
+      tier 区分に照らすと、本計画は分野横断的な方針を定める部門別基本計画（bumon、例: 地域福祉計画）
+      ではなく、対象を空家等・特定空家等・空家等の跡地に特定し、除却・利活用等の具体的な施策を
+      定める計画（計画書第4章「空家等対策の推進」に「1．空家等対策の施策の体系」の章立てがある）
+      であり、介護保険事業計画や障がい福祉計画（kobetsu の例）と同様に具体的な対象・目標を持つ
+      性格が強いため、tier は kobetsu とした。
+
 # ---------------------------------------------------------------------------
 # 分野の定義（図表の色分けとグルーピングに使う）
+#
+# domain = 大分類（配色の単位）。category = 小分類。
+#
+# 分類の判断は所管課ではなく計画の内容で決めています。所管は department が持ちます。
+# 景観計画は建設課の所管で、景観法が都市計画と連携する制度であることから kiban に置きます。
+# 農道施設個別施設計画は農林課の所管ですが、対象が橋梁2橋の道路構造物なので kiban / douro です。
+# 施設・財産の管理という性格は tier: shisetsu が表すため、category の label には
+# 「維持管理」「マネジメント」のような tier の語を入れません。
+# 顔ぶれは全75件の投入後に確定させました（設計 3.2）。slot は件数の多い順。
 # ---------------------------------------------------------------------------
+domains:
+  fukushi:    { label: 健康・福祉, slot: 1 }
+  kiban:      { label: 都市基盤・交通, slot: 2 }
+  sangyou:    { label: 産業・雇用, slot: 3 }
+  sougou:     { label: 市政総論, slot: 4 }
+  gyouzaisei: { label: 行財政運営, slot: 5 }
+  kyouiku:    { label: 教育・文化, slot: 6 }
+  bousai:     { label: 防災・安全, slot: 7 }
+  kurashi:    { label: 生活環境, slot: 8 }
+
 categories:
-  fukushi: { label: 地域福祉（総論・横断）, slot: 1 }
-  shougai: { label: 障がい福祉, slot: 2 }
-  kourei:  { label: 高齢者・介護, slot: 3 }
-  kodomo:  { label: こども・子育て, slot: 4 }
-  iryou:   { label: 医療保険・保健事業, slot: 5 }
-  kenkou:  { label: 健康づくり・自殺対策, slot: 6 }
-  jyoui:   { label: 上位・関連行政計画, slot: 7 }
-  other:   { label: その他（未整理）, slot: 0 }
+  fukushi: { label: 地域福祉（総論・横断）, domain: fukushi }
+  shougai: { label: 障がい福祉, domain: fukushi }
+  kourei:  { label: 高齢者・介護, domain: fukushi }
+  kodomo:  { label: こども・子育て, domain: fukushi }
+  iryou:   { label: 医療保険・保健事業, domain: fukushi }
+  kenkou:  { label: 健康づくり・自殺対策, domain: fukushi }
+  jyoui:   { label: 上位・関連行政計画, domain: sougou }
+  kaihatsu: { label: 地区開発事業, domain: sougou }
+  koukyoshisetsu: { label: 公共施設, domain: gyouzaisei }
+  douro:   { label: 道路, domain: kiban }
+  koutsuu: { label: 公共交通, domain: kiban }
+  bousai:  { label: 防災・危機管理, domain: bousai }
+  keikan:  { label: 景観・都市計画, domain: kiban }
+  dokusho: { label: 読書・生涯学習, domain: kyouiku }
+  kyouiku:  { label: 教育行政総論・学校教育, domain: kyouiku }
+  gyoukaku: { label: 行財政改革・財政運営, domain: gyouzaisei }
+  jinji:    { label: 人事・雇用（事業主としての計画）, domain: gyouzaisei }
+  teiju:    { label: 移住・定住促進, domain: sougou }
+  kankyo:   { label: 環境・地球温暖化対策, domain: kurashi }
+  kanko:    { label: 観光, domain: sangyou }
+  bunkazai: { label: 文化財保護・歴史文化, domain: kyouiku }
+  nourin:   { label: 農業振興・鳥獣被害対策, domain: sangyou }
+  ringyou:  { label: 林業・木材利用, domain: sangyou }
+  shokou:   { label: 商工業振興・企業立地, domain: sangyou }
+  suido:    { label: 上下水道, domain: kiban }
+  jutaku:   { label: 住宅政策, domain: kiban }

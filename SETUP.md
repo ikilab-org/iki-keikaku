@@ -17,8 +17,8 @@ GitHub Pages ＋ 独自ドメイン（`keikaku.ikilab.org`）で公開するま�
 配布した zip を展開し、Git リポジトリとして初期化します。
 
 ```bash
-unzip iki-plans.zip
-cd iki-plans
+unzip iki-keikaku.zip
+cd iki-keikaku
 
 git init -b main
 git add -A
@@ -78,7 +78,7 @@ GitHub で見つけた人が「何者が作っているのか」を辿れるよ�
 
 ```bash
 gh auth login          # 初回のみ
-gh repo create ikilab-org/iki-plans --public --source=. --remote=origin --push \
+gh repo create ikilab-org/iki-keikaku --public --source=. --remote=origin --push \
   --description "長崎県壱岐市の行政計画の関係を図にし、個別の計画を深掘りできる資料集。CC BY 4.0 + MIT"
 ```
 
@@ -88,7 +88,7 @@ gh repo create ikilab-org/iki-plans --public --source=. --remote=origin --push \
 
 1. https://github.com/new を開く
 2. **Owner**: `ikilab-org` を選択（**個人アカウントのままにしないよう注意**）
-3. **Repository name**: `iki-plans`
+3. **Repository name**: `iki-keikaku`
 4. **Description**: `長崎県壱岐市の行政計画の関係を図にし、個別の計画を深掘りできる資料集`
 5. **Public** を選択
 6. **「Add a README file」「Add .gitignore」「Choose a license」はすべてチェックしない**
@@ -102,7 +102,7 @@ gh repo create ikilab-org/iki-plans --public --source=. --remote=origin --push \
 Step 2 でブラウザから作った場合のみ必要です。
 
 ```bash
-git remote add origin https://github.com/ikilab-org/iki-plans.git
+git remote add origin https://github.com/ikilab-org/iki-keikaku.git
 git push -u origin main
 ```
 
@@ -117,7 +117,7 @@ push 後、GitHub のリポジトリ画面の右側に **`CC-BY-4.0`** のバッ
 2. **Build and deployment**
    - **Source**: `Deploy from a branch`
    - **Branch**: `main` / `/ (root)` → **Save**
-3. 1〜2分待つと、ページ上部に `Your site is live at https://ikilab-org.github.io/iki-plans/` と表示されます
+3. 1〜2分待つと、ページ上部に `Your site is live at https://ikilab-org.github.io/iki-keikaku/` と表示されます
 
 この時点で、まず `github.io` のURLで表示を確認しておいてください。
 **ここで表示されていれば、以降のトラブルはすべてDNSかドメイン設定の問題**と切り分けられます。
@@ -212,10 +212,10 @@ curl -sI https://keikaku.ikilab.org/about/license/      | head -1
 
 **Actions** タブ → 左のワークフロー名を選択 → **Run workflow** → **Run workflow**
 
-`linkcheck` を動かすと、いまの状態では**失効 0 件**（確認 33 件）で終わり、Issue は立ちません。
-ログに `確認 33 件 / 失効 0 件` と出れば動作確認になります。
+`linkcheck` を動かすと、いまの状態では**失効 0 件**で終わり、Issue は立ちません。
+ログの `確認 N 件` は計画が増えるたびに変わるので件数そのものは見ず、`/ 失効 0 件` になっていれば動作確認になります。
 
-> 初版では健康ながさき21の県の個別ページが1件失効していました（[Issue #1](https://github.com/ikilab-org/iki-plans/issues/1)）。
+> 初版では健康ながさき21の県の個別ページが1件失効していました（[Issue #1](https://github.com/ikilab-org/iki-keikaku/issues/1)）。
 > 県サイトのカテゴリ移設が原因で、移設先へ差し替え済みです。
 
 ### 8-2. Issue が作れずに失敗した場合
@@ -313,7 +313,7 @@ X のカードバリデータでキャッシュを更新してください。
 ### `github.io` のURLでも 404 になる
 
 - Settings → Pages で Branch が `main` / `/ (root)` になっているか
-- ルートに `index.html` があるか（`iki-plans/index.html` ではなく、リポジトリ直下）
+- ルートに `index.html` があるか（`iki-keikaku/index.html` ではなく、リポジトリ直下）
 - 初回は数分かかります。Actions タブの `pages build and deployment` が成功しているか確認
 
 ### カスタムドメインで「Domain's DNS record could not be retrieved」
