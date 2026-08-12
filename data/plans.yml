@@ -227,12 +227,83 @@ plans:
     statutory: mandatory
     department: 子育て支援課
     related: [pref-kosodate-jourei]
+    predecessors: [kodomo-jigyou-2, kodomo-jigyou-1, jisedai-koki]
     url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html
     notes: >-
       子ども・子育て支援事業計画／次世代育成支援／こどもの貧困対策／子ども・若者計画を一体化。
       令和9年度に中間見直し。
       子どもの貧困対策の根拠法は令和6年改正で題名が「こどもの貧困の解消に向けた対策の推進に関する法律」に、
       条項が旧9条1項から10条2項に変更されている（本データは現行条項に修正済み）。
+
+  - id: kodomo-jigyou-2
+    name: 第2期壱岐市子ども・子育て支援事業計画
+    level: municipal
+    domain: fukushi
+    category: kodomo
+    tier: kobetsu
+    status: expired
+    period: { start: 2020, end: 2024 }
+    adopted: 2020-03
+    laws:
+      - { law: 子ども・子育て支援法61条1項, obligation: mandatory }
+    statutory: mandatory
+    department: 子育て支援課
+    url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/191.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/11/2ikikodomo.pdf
+    sources:
+      - label: 中間見直し（令和4年度）
+        url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/12048.html
+        note: 教育・保育の量の見込み等について見直し。更新日2023-10-06。
+    notes: >-
+      kodomo-1（壱岐市こども計画）の前身。計画書本文（第1章2）に、次世代育成支援対策推進法8条1項に基づく
+      市町村行動計画（前身の第1期計画、jisedai-koki も参照）の内容を一部引き継いだ旨、
+      および子どもの貧困対策の推進に関する法律4条に基づく子どもの貧困対策の取組に関する計画を兼ねる旨が
+      明記されている（いずれも法的な一体策定ではなく内容の引継ぎ・兼用という位置付けのため、
+      `laws` には子ども・子育て支援法61条1項のみを記載）。
+
+  - id: kodomo-jigyou-1
+    name: 第1期壱岐市子ども・子育て支援事業計画
+    level: municipal
+    domain: fukushi
+    category: kodomo
+    tier: kobetsu
+    status: expired
+    period: { start: 2015, end: 2019 }
+    adopted: 2015-03
+    laws:
+      - { law: 子ども・子育て支援法61条1項, obligation: mandatory }
+      - { law: 次世代育成支援対策推進法8条1項, obligation: permissive }
+    statutory: mandatory
+    department: 子育て支援課
+    url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/191.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/11/1ikikodomo.pdf
+    notes: >-
+      kodomo-1（壱岐市こども計画）・kodomo-jigyou-2（第2期）の前身。子ども・子育て支援法61条1項に基づく
+      市町村子ども・子育て支援事業計画であると同時に、次世代育成支援対策推進法8条1項に基づく市町村行動計画
+      （前身の jisedai-koki を参照）にも位置付けて一体的に策定した旨が計画書本文（第1章3）に明記されている。
+      計画書本文で引用される次世代育成支援対策推進法8条1項の条文は「策定することができる」（許容規定）。
+
+  - id: jisedai-koki
+    name: 壱岐市次世代育成支援行動計画（後期計画）
+    level: municipal
+    domain: fukushi
+    category: kodomo
+    tier: kobetsu
+    status: expired
+    period: { start: 2010, end: 2014 }
+    laws: [次世代育成支援対策推進法8条1項]
+    department: 子育て支援課
+    url: https://www.city.iki.nagasaki.jp/soshiki/kodomo/machizukuri/shi_keikaku/kenkofukushi/889.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/2/jisedaiikusei.pdf
+    todo: 策定年月を確認する（計画書第1章に「平成21年度に後期計画を策定」とあるのみで、確定した年月の記載を確認できていない）
+    notes: >-
+      kodomo-jigyou-1（第1期子ども・子育て支援事業計画）の前身。次世代育成支援対策推進法8条1項は、
+      同法が平成26年度までの時限法だった当時（本計画の策定当時）は市町村に行動計画の策定を義務づけており、
+      計画書第1章にも「（国は）...平成17年度から5年を1期とした前期・後期計10年間の次世代育成対策に関する
+      行動計画の策定を義務づけ」と明記されている。その後、同法の有効期限を延長する改正が行われ、
+      延長後の期間分については「策定することができる」という許容規定になっている（kodomo-1 参照）。
+      策定当時と現行とで義務の強さの意味が変わるため `statutory` は書かない。
+      本計画（後期計画、平成22～26年度）の前に前期計画（平成17～21年度）があるが、掲載ページを確認できていない。
 
   - id: data-health-3
     name: 第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画
