@@ -109,7 +109,10 @@ function parseBlockScalar(lines, i, parentIndent, style) {
   }
   while (body.length && body[body.length - 1] === '') body.pop()
   const folded = style.startsWith('>')
-  return [folded ? body.join(' ').replace(/\s+/g, ' ').trim() : body.join('\n'), i]
+  // 折りたたみは行の連結だけを行い、行の中の空白には触れません。
+  // ここで /\s+/ を潰すと、原文の全角スペース（U+3000）まで半角に変わり、
+  // 引用が原文と違うものになります。行末の空白は tokenize で落としてあります。
+  return [folded ? body.join(' ') : body.join('\n'), i]
 }
 
 // --- 構造 -------------------------------------------------------------------

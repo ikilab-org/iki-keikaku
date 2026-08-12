@@ -47,6 +47,13 @@ test('折りたたみブロックスカラーは1行に畳む', () => {
   assert.equal(doc.next, 'x')
 })
 
+test('折りたたみは行の中の空白を変えない', () => {
+  // /\s+/ で潰すと原文の全角スペース（U+3000）が半角になり、引用が原文と違うものになる
+  const doc = parseYaml(['notes: >-', '  令和６年７月　策定', '  と表紙に明記。'].join('\n'))
+  assert.equal(doc.notes, '令和６年７月　策定 と表紙に明記。')
+  assert.equal(doc.notes.includes('　'), true, '全角スペースが失われています')
+})
+
 test('入れ子のマップ', () => {
   const doc = parseYaml(['successor:', '  name: 次期', '  public_comment: { start: 2026-12, end: 2027-01 }'].join('\n'))
   assert.deepEqual(doc.successor, { name: '次期', public_comment: { start: '2026-12', end: '2027-01' } })
