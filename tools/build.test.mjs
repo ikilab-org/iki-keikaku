@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { parseYaml } from './yaml.mjs'
@@ -223,4 +223,21 @@ test('null は「なし」、欠落は「未確認」と書き分ける', () => 
   assert.match(withNull, /class="unk">なし</)
   assert.match(withMissing, /class="unk">未確認</)
   assert.equal(/class="unk">未確認</.test(withNull.split('所管')[1] ?? ''), true, '他の列の未確認まで消えていないこと')
+})
+
+test('--check は生成物が最新なら 0、古ければ 1 を返す', () => {
+  const r = execFileSync('node', [script, '--check'], { encoding: 'utf8' })
+  assert.match(r, /一致しています/)
+})
+
+test('--check は生成物が古いと exit 1 で落ちる', () => {
+  // plans.yml を変えたのに生成し忘れた、を CI が拾えることの確認。
+  const out = fileURLToPath(new URL('../plans/all/index.html', import.meta.url))
+  const saved = readFileSync(out, 'utf8')
+  writeFileSync(out, saved.replace('</html>', '<!-- わざと古くする --></html>'))
+  try {
+    assert.throws(() => execFileSync('node', [script, '--check'], { stdio: 'pipe' }))
+  } finally {
+    writeFileSync(out, saved)
+  }
 })

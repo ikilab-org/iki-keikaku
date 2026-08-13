@@ -1,0 +1,35 @@
+name: 俯瞰ページの生成漏れチェック
+
+on:
+  push:
+    paths:
+      - 'data/plans.yml'
+      - 'tools/**'
+      - 'assets/palette.css'
+      - 'plans/all/index.html'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 依存のインストールはしない。ツールは外部依存なしで動く
+      - name: 単体テスト
+        run: node --test
+
+      - name: データの検査
+        run: node tools/validate.mjs --fail-on-error
+
+      # data/plans.yml を変えたのに plans/all/index.html を生成し忘れると、ここで落ちる
+      - name: 生成物が最新か検査
+        run: node tools/build.mjs --check
