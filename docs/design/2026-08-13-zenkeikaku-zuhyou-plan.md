@@ -63,7 +63,7 @@
 
 ---
 
-## タスク1: 配色を1か所に定義する
+## Task 1: 配色を1か所に定義する
 
 **ファイル:**
 - 作成: `assets/palette.css`
@@ -73,7 +73,7 @@
 
 **インタフェース:**
 - 提供: `cssBlocks(css) -> [{sel, vars}]` / `readPalette() -> {blocks, slots}`。
-  `slots` は `{1:'#0072b2', …, 8:'#000000'}`（light の値）。タスク3の `build.mjs` が
+  `slots` は `{1:'#0072b2', …, 8:'#000000'}`（light の値）。Task 3の `build.mjs` が
   「`domains` の slot すべてに色があるか」を検査するのに使います
 
 - [ ] **手順1: 失敗するテストを書く**
@@ -321,7 +321,7 @@ CUD 8色とも一致していなかった。値を持つ場所を1か所にす�
 
 ---
 
-## タスク2: 分類の規則を view-model に切り出す
+## Task 2: 分類の規則を view-model に切り出す
 
 **ファイル:**
 - 作成: `tools/view-model.mjs`
@@ -332,7 +332,7 @@ CUD 8色とも一致していなかった。値を持つ場所を1か所にす�
 - 提供: `BANDS` / `RELATIONS` / `bandOf(p)` / `bandGroups(plans)` / `periodKind(p)` /
   `yearRange(plans)` / `slotOf(p, domains)` / `domainGroups(plans, domains)` /
   `relationCounts(plans)` / `expiryByYear(plans)` / `buildModel(doc)`。
-  タスク3〜6の `build.mjs` はこれだけを使い、`plans.yml` の形を直接見ません
+  Task 3〜6の `build.mjs` はこれだけを使い、`plans.yml` の形を直接見ません
 
 - [ ] **手順1: 失敗するテストを書く**
 
@@ -658,7 +658,7 @@ domain の無い9件を末尾のグループにまとめる。"
 
 ---
 
-## タスク3: ページの外枠を生成する
+## Task 3: ページの外枠を生成する
 
 **ファイル:**
 - 作成: `tools/build.mjs`
@@ -667,10 +667,10 @@ domain の無い9件を末尾のグループにまとめる。"
 - 変更: `tools/expiring.test.mjs`（`fiscalYearShort` の検査を追加）
 
 **インタフェース:**
-- 消費: タスク2の `buildModel` / `BANDS` ほか、タスク1の `readPalette`
+- 消費: Task 2の `buildModel` / `BANDS` ほか、Task 1の `readPalette`
 - 提供: `esc(s)` / `colorOf(p, domains)` / `buildPage(doc)` / `PAGE_CSS` /
   `fiscalYearShort(y)` -> `'令和8'`。
-  タスク4〜6が `buildPage` の中に各セクションを差し込みます。
+  Task 4〜6が `buildPage` の中に各セクションを差し込みます。
   セクションの関数（`taikeiSection` など）は各タスクで追加します
 
 - [ ] **手順1: 失敗するテストを書く**
@@ -687,7 +687,7 @@ import { parseYaml } from './yaml.mjs'
 import { buildModel } from './view-model.mjs'
 import { esc, buildPage } from './build.mjs'
 
-// タスク4〜6では、この import に taikeiSection / timelineSection / listSection を足し、
+// Task 4〜6では、この import に taikeiSection / timelineSection / listSection を足し、
 // 下の定数に対応する行を1行ずつ足していきます。
 const doc = parseYaml(readFileSync(new URL('../data/plans.yml', import.meta.url), 'utf8'))
 const model = buildModel(doc)
@@ -738,9 +738,9 @@ test('2回生成しても同じ結果になる', () => {
 })
 ```
 
-> **注:** `--check` の検査は、`plans/all/index.html` がコミットされたタスク7で書きます。
+> **注:** `--check` の検査は、`plans/all/index.html` がコミットされたTask 7で書きます。
 > ここで書くと、生成物がまだ無いので必ず落ちます。
-> `script` 定数はタスク7で使うので、いま置いておきます。
+> `script` 定数はTask 7で使うので、いま置いておきます。
 
 `tools/expiring.test.mjs` の import を
 `import { fiscalYearLabel, fiscalYearShort } from './fiscal-year.mjs'` に変え、末尾に足します。
@@ -932,7 +932,7 @@ export function buildPage(doc) {
     '<div class="wrap">',
     headerBlock(),
     statsSection(m),
-    // タスク4〜6でここにセクションを足します
+    // Task 4〜6でここにセクションを足します
     footerBlock(m),
     '</div>',
     '<script>',
@@ -1071,7 +1071,7 @@ validate の基準日を doc.meta.updated にした。現在時刻にすると
 
 ---
 
-## タスク4: 体系図を生成する
+## Task 4: 体系図を生成する
 
 **ファイル:**
 - 変更: `tools/build.mjs`（`taikeiSection` を追加し、`buildPage` から呼ぶ）
@@ -1262,7 +1262,7 @@ parent は8本しかなく、線にするとほとんどの計画が孤立して
 
 ---
 
-## タスク5: タイムラインを生成する
+## Task 5: タイムラインを生成する
 
 **ファイル:**
 - 変更: `tools/build.mjs`（`timelineSection` を追加）
@@ -1270,7 +1270,7 @@ parent は8本しかなく、線にするとほとんどの計画が孤立して
 
 **インタフェース:**
 - 消費: `buildModel(doc).years` / `.zuiji` / `.unclear`、`domainGroups`、`periodKind`、
-  タスク3で足した `fiscalYearShort`
+  Task 3で足した `fiscalYearShort`
 - 提供: `timelineSection(m)` -> HTML文字列
 
 - [ ] **手順1: 失敗するテストを書く**
@@ -1459,7 +1459,7 @@ node tools/build.mjs && git add tools/build.mjs tools/build.test.mjs && git comm
 
 ---
 
-## タスク6: 一覧を生成する
+## Task 6: 一覧を生成する
 
 **ファイル:**
 - 変更: `tools/build.mjs`（`listSection` とラベル定義を追加）
@@ -1632,7 +1632,7 @@ enum に日本語ラベルが揃っているかをテストで検査する。
 
 ---
 
-## タスク7: 生成物をコミットし、CI と導線をつなぐ
+## Task 7: 生成物をコミットし、CI と導線をつなぐ
 
 **ファイル:**
 - 作成: `plans/all/index.html`（生成物）
@@ -1641,7 +1641,7 @@ enum に日本語ラベルが揃っているかをテストで検査する。
 - 変更: `tools/build.test.mjs`（`test.skip` を `test` に戻す）
 
 **インタフェース:**
-- 消費: タスク3〜6の `tools/build.mjs`
+- 消費: Task 3〜6の `tools/build.mjs`
 - 提供: 公開URL `https://keikaku.ikilab.org/plans/all/`
 
 - [ ] **手順1: 生成して、目で確かめる**
@@ -1796,14 +1796,14 @@ CI は --check で「plans.yml を変えたのに生成し忘れた」を拾う�
 
 ---
 
-## タスク8: 既存ページを共通配色に載せ替える
+## Task 8: 既存ページを共通配色に載せ替える
 
 **ファイル:**
 - 変更: `index.html` / `plans/fukushi/index.html` / `plans/kaigo-7-9/index.html`
 - 変更: `README.md` / `CHANGELOG.md`
 
 **インタフェース:**
-- 消費: `assets/palette.css`（タスク1）
+- 消費: `assets/palette.css`（Task 1）
 
 **注意:** 既存ページの**図と本文は手書きのまま残します。差し替えるのは配色だけです**（設計 2）。
 
@@ -1994,11 +1994,11 @@ node tools/linkcheck.mjs                               # 4
 |---|---|---|
 | 1 | 生成できて `--check` が exit 0 | 上のコマンド |
 | 2 | `node --test` が通る（既存71件＋今回48件） | 上のコマンド |
-| 3 | **76件すべてが現れ、期間を持たない25件も帯に表示されている** | タスク4・5・6のテスト |
+| 3 | **76件すべてが現れ、期間を持たない25件も帯に表示されている** | Task 4・5・6のテスト |
 | 4 | 既存4ツールが現状のまま通る | 上のコマンド。linkcheck は中小企業庁の1件が既知（HTTP 202・本文0バイト）|
 | 5 | 俯瞰ページと既存3ページが同じ `assets/palette.css` を読む | `grep -rl "assets/palette.css" index.html plans/` が3ファイル＋1 |
-| 6 | **`<script>` はテーマ切替だけで、計画のデータを含まない** | タスク3のテスト |
-| 7 | ライト・ダーク・システム既定の3状態で色が破綻せず読める | タスク7手順2・タスク8手順3（目視）|
+| 6 | **`<script>` はテーマ切替だけで、計画のデータを含まない** | Task 3のテスト |
+| 7 | ライト・ダーク・システム既定の3状態で色が破綻せず読める | Task 7手順2・Task 8手順3（目視）|
 
 ---
 
