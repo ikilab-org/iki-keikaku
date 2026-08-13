@@ -21,18 +21,24 @@
   --c6:#56b4e9;  /* 空    教育・文化 */
   --c7:#f0e442;  /* 黄    防災・安全 */
   --c8:#000000;  /* 黒    生活環境 */
-  --c7-ink:#0b0b0b;  /* 黄の塗りの上に置く文字。黄は明るいので黒文字にする */
-  --c8-ink:#ffffff;  /* 黒の塗りの上に置く文字 */
+  /* --cN-ink は --cN を塗りに使ったときに、その上に置く文字色です。
+     どの色に白を置けるかは色ごとに違うので、slot ごとに持ちます。
+     値は対比 4.5:1 を満たす側を選んであります（tools/palette.test.mjs が検査します）。 */
+  --c1-ink:#ffffff; --c2-ink:#0b0b0b; --c3-ink:#0b0b0b; --c4-ink:#0b0b0b;
+  --c5-ink:#0b0b0b; --c6-ink:#0b0b0b; --c7-ink:#0b0b0b; --c8-ink:#ffffff;
 }
 :root[data-theme="dark"]{
   --c1:#3d9ee0; --c2:#f07b22; --c3:#1fbe90; --c4:#f2b33d;
   --c5:#e294bf; --c6:#8fd3f4; --c7:#efe04a; --c8:#c9c7bf;
-  --c7-ink:#0b0b0b; --c8-ink:#0b0b0b;
+  /* dark は8色すべて、白より黒のほうが対比を稼げるので黒文字に揃える。 */
+  --c1-ink:#0b0b0b; --c2-ink:#0b0b0b; --c3-ink:#0b0b0b; --c4-ink:#0b0b0b;
+  --c5-ink:#0b0b0b; --c6-ink:#0b0b0b; --c7-ink:#0b0b0b; --c8-ink:#0b0b0b;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --c1:#3d9ee0; --c2:#f07b22; --c3:#1fbe90; --c4:#f2b33d;
     --c5:#e294bf; --c6:#8fd3f4; --c7:#efe04a; --c8:#c9c7bf;
-    --c7-ink:#0b0b0b; --c8-ink:#0b0b0b;
+    --c1-ink:#0b0b0b; --c2-ink:#0b0b0b; --c3-ink:#0b0b0b; --c4-ink:#0b0b0b;
+    --c5-ink:#0b0b0b; --c6-ink:#0b0b0b; --c7-ink:#0b0b0b; --c8-ink:#0b0b0b;
   }
 }

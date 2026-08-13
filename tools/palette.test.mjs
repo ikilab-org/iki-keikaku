@@ -70,3 +70,29 @@ test('分野の数だけ slot がある', () => {
     assert.ok(slots[def.slot], `domains.${key} の slot ${def.slot} に色がありません`)
   }
 })
+
+/** WCAG の相対輝度。 */
+const luminance = (hex) => {
+  const v = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+  return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]
+}
+const contrast = (a, b) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
+  return (hi + 0.05) / (lo + 0.05)
+}
+
+test('塗りの上の文字が、どの状態でも 4.5:1 を満たす', () => {
+  // CUD の8色は、白文字を置けるものと置けないものが混ざっている。
+  // slot ごとに ink を持たせているのはそのため。ここが崩れると図の中の文字が読めなくなる。
+  const { blocks } = readPalette()
+  for (const b of blocks) {
+    for (let i = 1; i <= 8; i++) {
+      const fill = b.vars[`--c${i}`]
+      const ink = b.vars[`--c${i}-ink`]
+      assert.ok(ink, `${b.sel} に --c${i}-ink がありません`)
+      const r = contrast(fill, ink)
+      assert.ok(r >= 4.5, `${b.sel} の --c${i}（${fill}）と --c${i}-ink（${ink}）は ${r.toFixed(2)}:1 しかありません`)
+    }
+  }
+})

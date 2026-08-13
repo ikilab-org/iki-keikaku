@@ -130,7 +130,7 @@ table.rel td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:no
   background-size:calc(100%/var(--cols)) 100%}
 .nowline{position:absolute;top:0;bottom:0;width:2px;background:var(--crit);opacity:.45;z-index:3;pointer-events:none}
 .bar{height:19px;border-radius:5px;display:flex;align-items:center;justify-content:center;
-  font-size:10.5px;color:#fff;position:relative;z-index:2;white-space:nowrap;overflow:hidden}
+  font-size:10.5px;color:#0b0b0b;position:relative;z-index:2;white-space:nowrap;overflow:hidden}
 .bar.dash{background:transparent!important;border:1.5px dashed var(--muted);color:var(--ink2);
   grid-column:1 / -1;justify-content:flex-start;padding-left:8px}
 .grp{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;padding-top:10px;
@@ -161,10 +161,13 @@ const TITLE = '壱岐市の全計画 76件の俯瞰'
 const DESC = '長崎県壱岐市に関わる行政計画76件（壱岐市66・壱岐市社会福祉協議会1・長崎県9）を、'
   + '位置づけの階層・計画期間・分野別の一覧で俯瞰します。data/plans.yml から生成しています。'
 
-/** 塗りの上に置く文字色。黄と黒だけ白文字が読めないので palette.css の指定に従う。 */
+/**
+ * 塗りの上に置く文字色。どの色に白を置けるかは色ごとに違うので palette.css の指定に従う。
+ * domain の無い計画（国・県）は var(--muted) の塗りになるので、対比の取れる黒にする。
+ */
 const barInk = (p, domains) => {
   const s = slotOf(p, domains)
-  return s === 7 || s === 8 ? `var(--c${s}-ink)` : '#fff'
+  return s == null ? '#0b0b0b' : `var(--c${s}-ink)`
 }
 
 export function timelineSection(m) {
