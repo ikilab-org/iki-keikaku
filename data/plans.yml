@@ -9,7 +9,7 @@
 
 meta:
   updated: 2026-08-13
-  survey_date: 2026-08-12          # 最後に調査を行った日。個々の記載の確認日は sources/POLICY.md の巡回台帳を参照
+  survey_date: 2026-08-13          # 最後に調査を行った日。個々の記載の確認日は sources/POLICY.md の巡回台帳を参照
   era_base: 2018                   # 令和元年 = 2019年。令和n年 = era_base + n
 
 # ---------------------------------------------------------------------------
@@ -33,6 +33,58 @@ plans:
     notes: >-
       市の最上位計画。地方版総合戦略を取り込んだ一体型。合言葉「一緒に前へ、壱岐新時代へ。」
       福祉は基本目標2、子育ては基本目標3。
+
+  - id: jinkou-vision
+    name: 壱岐市まち・ひと・しごと創生人口ビジョン
+    short: 人口ビジョン
+    level: municipal
+    domain: sougou
+    category: jyoui
+    tier: sougou
+    status: unknown
+    department: 地域共創課 人口対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/sogo_senryaku/1044.html
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/2/ikisi_mati_hito_sigoto_sosei_vision.pdf
+    related: [sousei-senryaku-2]
+    notes: >-
+      総合戦略の前提となる人口の現状分析と将来展望。目次は「人口ビジョンのあらまし／人口の現状分析／
+      定住・結婚・子育てに関する市民意識／将来人口の推計と分析／人口の将来展望」の5章。
+      固定の計画期間はなく、2060年に目標人口 約1万8千人の維持を掲げる長期ビジョン。
+      掲載ページ本文は「平成27年度内に『地方人口ビジョン』及び『地方版総合戦略』の策定が努力義務とされました」
+      と両者をまとめて努力義務としているが、まち・ひと・しごと創生法10条1項が努力義務を課しているのは
+      総合戦略のみで、人口ビジョンに対応する条文は同法に無い（e-Gov法令検索 法令ID 426AC0000000136 で全条を確認）。
+      国の通知・要請によるものとみられるが未確認のため statutory は未記入とした。
+      第4次総合計画は「2050年人口2万人の維持」を掲げており（`tokutei-kyoju` の notes 参照）、
+      本ビジョンの2060年約1万8千人とは基準年次も水準も異なる。
+    todo: >-
+      現在も有効か、第4次総合計画の人口目標に置き換わったかを確認する。策定年月を確定する
+      （掲載PDF・ページ本文に策定年月の明記がない）。statutory の根拠となる国の通知を特定する。
+
+  - id: sousei-senryaku-2
+    name: 壱岐市まち・ひと・しごと創生総合戦略（令和2年度〜令和6年度）
+    short: 総合戦略
+    level: municipal
+    domain: sougou
+    category: jyoui
+    tier: sougou
+    status: expired
+    period: { start: 2020, end: 2024 }
+    laws: [{ law: まち・ひと・しごと創生法10条1項, obligation: effort }]
+    statutory: effort
+    department: 地域共創課 人口対策班
+    url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/sogo_senryaku/1044.html
+    notes: >-
+      掲載ページ本文に「総合戦略については、平成27年度から平成31年度までの5年間が終了したことにより、
+      次の5年間（令和2年度から令和6年度まで）の新たな計画を『第3次総合計画』に包含するものとして策定しました」
+      とあり、単独の計画書PDFは掲載されていない。まち・ひと・しごと創生法10条1項は
+      「市町村は…定めるよう努めなければならない」（努力義務、e-Gov法令検索 法令ID 426AC0000000136 で条文を確認）。
+      包含先の第3次壱岐市総合計画は本データに未収録のため embedded_in は張っていない。
+      令和7年度以降は第4次壱岐市総合計画（`sougou-4`）が「地方版総合戦略を取り込んだ一体型」として引き継いでいる。
+      第1期（平成27〜31年度）も同じページで言及されているが、別エントリとしては収録していない。
+    todo: >-
+      正式名称に「第2期」等の表記が付くかを確認する（掲載ページ本文は版を明示していない）。
+      第3次壱岐市総合計画を収録し embedded_in を張るか判断する。第1期（平成27〜31年度）を
+      別エントリとして収録するか判断する。
 
   - id: sdgs-mirai-toshi
     name: 第3期壱岐市SDGs未来都市計画

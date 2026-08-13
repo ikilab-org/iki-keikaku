@@ -168,7 +168,7 @@ test('タイムラインに76件すべてが現れる', () => {
 const timelineGroup = (label) =>
   timeline.split('<div class="grp">').find((s) => s.startsWith(esc(label))) ?? ''
 
-test('期間を持たない25件が専用のグループにある', () => {
+test('期間を持たない26件が専用のグループにある', () => {
   // ここを落とすと、俯瞰したつもりで3分の1が見えていないことになる（設計 3.2）。
   const zuiji = timelineGroup('随時修正（期間を定めない）')
   assert.ok(zuiji, '「随時修正」のグループが見つかりません')
@@ -178,7 +178,7 @@ test('期間を持たない25件が専用のグループにある', () => {
   assert.ok(unclear, '「計画期間を確認できていない」のグループが見つかりません')
   for (const p of model.unclear) assert.ok(unclear.includes(esc(p.name)), `未確認のグループに無い: ${p.id}`)
 
-  assert.equal(model.zuiji.length + model.unclear.length, 25)
+  assert.equal(model.zuiji.length + model.unclear.length, 26)
 })
 
 test('軸の範囲がデータの実際の範囲と一致する', () => {
