@@ -62,6 +62,15 @@ test('2回生成しても同じ結果になる', () => {
   assert.equal(buildPage(doc), html)
 })
 
+test('見出しと説明文の件数がデータから来ている', () => {
+  // 件数を文字列に埋め込むと、計画を足したときに見出しだけが古い数字で残る。
+  assert.ok(html.includes(`${doc.plans.length}件`), '件数が出ていません')
+  const fake = { ...doc, plans: doc.plans.slice(0, 5) }
+  const small = buildPage(fake)
+  assert.ok(small.includes('5件'), `件数がデータに追随していません`)
+  assert.equal(small.includes(`${doc.plans.length}件の俯瞰`), false, '古い件数が残っています')
+})
+
 test('体系図に76件すべてが現れる', () => {
   for (const p of doc.plans) {
     assert.ok(taikei.includes(esc(p.name)), `体系図に出ていません: ${p.id} ${p.name}`)
@@ -222,7 +231,9 @@ test('null は「なし」、欠落は「未確認」と書き分ける', () => 
   const withMissing = listSection({ plans: [{ ...base, domain: 'fukushi' }], domains, meta: {} })
   assert.match(withNull, /class="unk">なし</)
   assert.match(withMissing, /class="unk">未確認</)
-  assert.equal(/class="unk">未確認</.test(withNull.split('所管')[1] ?? ''), true, '他の列の未確認まで消えていないこと')
+  // 表の見出しセルで区切る。前書きの文中にも「所管」の語が出るようになったため、
+  // 生の文字列 '所管' で割ると前書きのほうで区切れてしまう。
+  assert.equal(/class="unk">未確認</.test(withNull.split('<th>所管</th>')[1] ?? ''), true, '他の列の未確認まで消えていないこと')
 })
 
 test('--check は生成物が最新なら 0、古ければ 1 を返す', () => {

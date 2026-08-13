@@ -157,9 +157,29 @@ document.getElementById('tg').addEventListener('click',()=>{
 });
 `.trim()
 
-const TITLE = '壱岐市の全計画 76件の俯瞰'
-const DESC = '長崎県壱岐市に関わる行政計画76件（壱岐市66・壱岐市社会福祉協議会1・長崎県9）を、'
-  + '位置づけの階層・計画期間・分野別の一覧で俯瞰します。data/plans.yml から生成しています。'
+/** level の表示順と名前。件数が0の区分は内訳に出しません。 */
+const LEVEL_BREAKDOWN = [
+  ['municipal', '壱岐市'],
+  ['council', '壱岐市社会福祉協議会'],
+  ['prefectural', '長崎県'],
+  ['national', '国'],
+]
+
+/**
+ * 見出しと説明文はデータから作ります。
+ * 件数を文字列に埋め込むと、計画を1本足したときに図と表だけが追随して
+ * 見出しが古い数字のまま残ります。--check は出力が決定的なので気づけません。
+ */
+const titleOf = (m) => `壱岐市に関わる行政計画 ${m.plans.length}件の俯瞰`
+const descOf = (m) => {
+  const breakdown = LEVEL_BREAKDOWN
+    .map(([key, label]) => [label, m.plans.filter((p) => p.level === key).length])
+    .filter(([, n]) => n > 0)
+    .map(([label, n]) => `${label}${n}`)
+    .join('・')
+  return `長崎県壱岐市に関わる行政計画${m.plans.length}件（${breakdown}）を、`
+    + '位置づけの階層・計画期間・分野別の一覧で俯瞰します。data/plans.yml から生成しています。'
+}
 
 /**
  * 塗りの上に置く文字色。どの色に白を置けるかは色ごとに違うので palette.css の指定に従う。
@@ -293,7 +313,7 @@ ${g.plans.map(row).join('\n')}
   return `<section>
   <div class="hd"><h2>一覧</h2>
   <p class="sub">分野ごとに分けています。<strong>「未確認」は、そこに何も無いという意味ではなく、まだ調べていないという意味です。</strong>
-  空欄と区別できるように書き分けています。計画名のリンク先は各機関の公表ページです。</p></div>
+  空欄と区別できるように書き分けています。計画名にリンクがあるものは、その計画を掲載しているページ（未策定のものは所管機関のページ）に繋がります。</p></div>
 ${groups}
 </section>`
 }
@@ -306,13 +326,13 @@ export function buildPage(doc) {
     '<head>',
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
-    `<title>${esc(TITLE)} | 壱岐市 計画マップ</title>`,
-    `<meta name="description" content="${esc(DESC)}">`,
+    `<title>${esc(titleOf(m))} | 壱岐市 計画マップ</title>`,
+    `<meta name="description" content="${esc(descOf(m))}">`,
     '<link rel="canonical" href="https://keikaku.ikilab.org/plans/all/">',
     '<meta property="og:type" content="article">',
     '<meta property="og:site_name" content="壱岐市 計画マップ">',
-    `<meta property="og:title" content="${esc(TITLE)}">`,
-    `<meta property="og:description" content="${esc(DESC)}">`,
+    `<meta property="og:title" content="${esc(titleOf(m))}">`,
+    `<meta property="og:description" content="${esc(descOf(m))}">`,
     '<meta property="og:url" content="https://keikaku.ikilab.org/plans/all/">',
     '<meta property="og:locale" content="ja_JP">',
     '<meta property="og:image" content="https://keikaku.ikilab.org/assets/og.png">',
@@ -324,7 +344,7 @@ export function buildPage(doc) {
     '</head>',
     '<body>',
     '<div class="wrap">',
-    headerBlock(),
+    headerBlock(m),
     statsSection(m),
     taikeiSection(m),
     timelineSection(m),
@@ -340,12 +360,12 @@ export function buildPage(doc) {
   ].join('\n')
 }
 
-function headerBlock() {
+function headerBlock(m) {
   return `<header class="top">
   <div>
     <a class="badge" href="../../">← 計画マップ</a>
     <span class="badge">IKILAB ／ 長崎県壱岐市</span>
-    <h1>${esc(TITLE)}</h1>
+    <h1>${esc(titleOf(m))}</h1>
     <p class="sub">壱岐市に関わる行政計画を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。
     このページは <code>data/plans.yml</code> から生成しているので、データを直せば図も表も追随します。
     <strong>分野ごとの掘り下げは各分野のページの役割です。</strong>ここには構造だけを置いています。</p>
@@ -368,7 +388,7 @@ function statsSection(m) {
     ${tile(m.todoCount, '件', '未調査の項目が残っている', true)}
   </div>
   <p class="mut" style="margin-top:12px">調査基準日 ${esc(m.meta.survey_date)}／データ更新 ${esc(m.meta.updated)}。
-  収録の範囲と除外の基準は <a href="https://github.com/ikilab-org/iki-keikaku/blob/main/data/schema.md">data/schema.md</a> にあります。</p>
+  収録の対象と出典の選び方は <a href="https://github.com/ikilab-org/iki-keikaku/blob/main/sources/POLICY.md">sources/POLICY.md</a> にあります。</p>
 </section>`
 }
 
