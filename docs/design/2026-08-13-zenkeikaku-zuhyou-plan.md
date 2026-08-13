@@ -83,6 +83,8 @@
 ```js
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+import { parseYaml } from './yaml.mjs'
 import { cssBlocks, readPalette } from './palette.mjs'
 
 test('入れ子の @media の中の :root も1ブロックとして取れる', () => {
@@ -144,8 +146,12 @@ test('light の slot は CUD の推奨配色の値になっている', () => {
 
 test('分野の数だけ slot がある', () => {
   // domains を9つ目に増やしたら、このテストが先に落ちて配色の再検証を促す。
+  // palette.css の中だけを数えても domains は増えないので、plans.yml と突き合わせる。
   const { slots } = readPalette()
-  assert.ok(Object.keys(slots).length >= 8)
+  const doc = parseYaml(readFileSync(new URL('../data/plans.yml', import.meta.url), 'utf8'))
+  for (const [key, def] of Object.entries(doc.domains)) {
+    assert.ok(slots[def.slot], `domains.${key} の slot ${def.slot} に色がありません`)
+  }
 })
 ```
 
@@ -275,8 +281,14 @@ node --test 2>&1 | tail -12
 - [ ] **手順6: `data/schema.md` の配色の記述を実態に合わせる**
 
 `data/schema.md` の「### slot と配色セットの対応」の節を、次の内容に**置き換え**ます。
-（現在は「実際の色の値は図表を作る段階で `assets/` 側に置きます」で終わっていますが、
-その `assets/` 側が出来たので、対応表を書きます。）
+
+**置き換えるのは配色の説明だけです。** 節の最後にある次の2行は配色と無関係な参照整合性の話なので、
+**消さずにそのまま残してください。**
+
+```
+`categories` の各エントリが指す `domain` が `domains` に無い場合も、`validate` が error にします。
+小分類を追加するときは、先に `domains` 側があることを確かめてください。
+```
 
 ```markdown
 ### slot と配色セットの対応
