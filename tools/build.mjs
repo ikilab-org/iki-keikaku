@@ -135,6 +135,18 @@ table.rel td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:no
   grid-column:1 / -1;justify-content:flex-start;padding-left:8px}
 .grp{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;padding-top:10px;
   border-top:1px solid var(--grid);display:flex;align-items:center;gap:7px}
+.tblwrap{overflow-x:auto;margin-top:8px}
+table.list{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+table.list th,table.list td{padding:8px 10px;border-bottom:1px solid var(--grid);
+  text-align:left;vertical-align:top}
+table.list th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;
+  border-bottom:1px solid var(--axis);white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+table.list td.per{font-variant-numeric:tabular-nums;white-space:nowrap}
+table.list .unk{color:var(--muted)}
+table.list h3{margin:0}
+.lsec{margin-top:26px}
+.lsec h3{font-size:14px;margin:0;display:flex;align-items:center;gap:8px}
+.lsec h3 b{font-weight:500;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
 `.trim()
 
 const THEME_JS = `
@@ -218,6 +230,61 @@ ${axis()}
 </section>`
 }
 
+/** enum を画面に出すときの日本語。値を足したらここも足す（テストが検査します）。 */
+export const LABELS = {
+  tier: { sougou: '総合計画', bumon: '部門別基本', kobetsu: '個別', jisshi: '実施・行動', shisetsu: '施設・財産' },
+  statutory: { mandatory: '策定義務', effort: '努力義務', request: '要請', permissive: 'できる規定', voluntary: '任意' },
+  status: { current: '計画期間中', expiring: '満了が近い', expired: '満了済み', planned: '策定予定', unknown: '不明' },
+  level: { national: '国', prefectural: '長崎県', municipal: '壱岐市', council: '市社協' },
+}
+
+/** 未記載は「未確認」と書く。空欄にすると「無い」と読まれる（data/schema.md「未調査の表し方」）。 */
+const cell = (v) => (v === undefined || v === null || v === '' ? '<span class="unk">未確認</span>' : esc(v))
+
+function periodCell(p) {
+  const kind = periodKind(p)
+  if (kind === 'zuiji') return '随時修正'
+  if (kind !== 'range') return '<span class="unk">未確認</span>'
+  return `${esc(fiscalYearShort(p.period.start))}〜${esc(fiscalYearShort(p.period.end))}年度`
+    + `<br><span class="unk">${p.period.start}〜${p.period.end}年度</span>`
+}
+
+export function listSection(m) {
+  const row = (p) => {
+    const name = p.url
+      ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.name)}</a>`
+      : esc(p.name)
+    return `        <tr data-id="${esc(p.id)}">
+          <td><span class="dot" style="background:${colorOf(p, m.domains)};display:inline-block;margin-right:6px"></span>${name}`
+      + `${p.todo ? '<span class="todo" title="未調査の項目があります">未</span>' : ''}</td>
+          <td class="per">${periodCell(p)}</td>
+          <td>${cell(LABELS.tier[p.tier])}</td>
+          <td>${cell(LABELS.statutory[p.statutory])}</td>
+          <td>${cell(p.department)}</td>
+          <td>${cell(LABELS.status[p.status])}</td>
+        </tr>`
+  }
+
+  const groups = domainGroups(m.plans, m.domains)
+    .filter((g) => g.plans.length)
+    .map((g) => `  <div class="lsec">
+    <h3>${esc(g.label)}<b>${g.plans.length}件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+${g.plans.map(row).join('\n')}
+      </tbody>
+    </table></div>
+  </div>`).join('\n')
+
+  return `<section>
+  <div class="hd"><h2>一覧</h2>
+  <p class="sub">分野ごとに分けています。<strong>「未確認」は、そこに何も無いという意味ではなく、まだ調べていないという意味です。</strong>
+  空欄と区別できるように書き分けています。計画名のリンク先は市・県の公表ページです。</p></div>
+${groups}
+</section>`
+}
+
 export function buildPage(doc) {
   const m = buildModel(doc)
   return [
@@ -248,7 +315,7 @@ export function buildPage(doc) {
     statsSection(m),
     taikeiSection(m),
     timelineSection(m),
-    // Task 4〜6でここにセクションを足します
+    listSection(m),
     footerBlock(m),
     '</div>',
     '<script>',

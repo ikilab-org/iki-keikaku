@@ -5,8 +5,9 @@ import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { parseYaml } from './yaml.mjs'
 import { buildModel } from './view-model.mjs'
-import { esc, buildPage, taikeiSection, timelineSection } from './build.mjs'
+import { esc, buildPage, taikeiSection, timelineSection, listSection, LABELS } from './build.mjs'
 import { fiscalYearShort } from './fiscal-year.mjs'
+import { ENUM } from './validate.mjs'
 
 // Task 4〜6では、この import に taikeiSection / timelineSection / listSection を足し、
 // 下の定数に対応する行を1行ずつ足していきます。
@@ -15,6 +16,7 @@ const model = buildModel(doc)
 const html = buildPage(doc)
 const taikei = taikeiSection(model)
 const timeline = timelineSection(model)
+const list = listSection(model)
 const script = fileURLToPath(new URL('./build.mjs', import.meta.url))
 
 test('HTMLの特殊文字を落とす', () => {
@@ -162,4 +164,51 @@ test('帯の grid-column が軸の範囲に収まる', () => {
 
 test('横に長い図はページ本体ではなく図の中でスクロールする', () => {
   assert.ok(timeline.includes('class="tlwrap"'))
+})
+
+test('一覧に76件すべてが行として現れる', () => {
+  for (const p of doc.plans) {
+    assert.ok(list.includes(esc(p.name)), `一覧に出ていません: ${p.id} ${p.name}`)
+  }
+  const rows = (list.match(/<tr data-id="/g) ?? []).length
+  assert.equal(rows, doc.plans.length, `行数が合いません: ${rows}`)
+})
+
+test('domain を持たない9件は末尾の「国・長崎県」の節にある', () => {
+  const sections = list.split('<h3').slice(1)
+  const last = sections[sections.length - 1]
+  assert.ok(last.includes('国・長崎県'), `末尾の節が違います: ${last.slice(0, 60)}`)
+  for (const p of doc.plans.filter((x) => x.domain === undefined)) {
+    assert.ok(last.includes(esc(p.name)), `末尾の節に無い: ${p.id}`)
+  }
+})
+
+test('enum はすべて日本語のラベルを持つ', () => {
+  // enum に値を足してラベルを忘れると、画面に生の enum（mandatory など）が出る。
+  for (const [field, values] of Object.entries(ENUM)) {
+    if (!LABELS[field]) continue
+    for (const v of values) assert.ok(LABELS[field][v], `${field}: ${v} のラベルがありません`)
+  }
+})
+
+test('空欄と「調べていない」を区別して出す', () => {
+  // data/schema.md「未調査の表し方」を画面にそのまま出す。
+  const nodept = doc.plans.filter((p) => p.department === undefined).length
+  const nostat = doc.plans.filter((p) => p.statutory === undefined).length
+  assert.ok(nodept > 0 && nostat > 0)
+  const unknowns = (list.match(/class="unk">未確認</g) ?? []).length
+  assert.ok(unknowns >= nodept + nostat, `未確認の表示が足りません: ${unknowns}`)
+})
+
+test('url のある計画はリンクになり、無い計画は素のテキストになる', () => {
+  const withUrl = doc.plans.find((p) => p.url)
+  const without = doc.plans.find((p) => !p.url)
+  assert.ok(list.includes(`href="${esc(withUrl.url)}"`))
+  assert.ok(without, 'url の無い計画がデータにありません')
+  const row = list.split(`<tr data-id="${without.id}"`)[1].split('</tr>')[0]
+  assert.equal(row.includes('<a '), false, `url が無いのにリンクになっています: ${without.id}`)
+})
+
+test('横に長い表はページ本体ではなく表の中でスクロールする', () => {
+  assert.equal((list.match(/class="tblwrap"/g) ?? []).length > 0, true)
 })
