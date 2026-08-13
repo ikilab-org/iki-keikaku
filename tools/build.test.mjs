@@ -5,7 +5,8 @@ import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { parseYaml } from './yaml.mjs'
 import { buildModel } from './view-model.mjs'
-import { esc, buildPage, taikeiSection } from './build.mjs'
+import { esc, buildPage, taikeiSection, timelineSection } from './build.mjs'
+import { fiscalYearShort } from './fiscal-year.mjs'
 
 // Task 4〜6では、この import に taikeiSection / timelineSection / listSection を足し、
 // 下の定数に対応する行を1行ずつ足していきます。
@@ -13,6 +14,7 @@ const doc = parseYaml(readFileSync(new URL('../data/plans.yml', import.meta.url)
 const model = buildModel(doc)
 const html = buildPage(doc)
 const taikei = taikeiSection(model)
+const timeline = timelineSection(model)
 const script = fileURLToPath(new URL('./build.mjs', import.meta.url))
 
 test('HTMLの特殊文字を落とす', () => {
@@ -113,4 +115,42 @@ test('分野色の凡例が8分野そろっている', () => {
     assert.ok(taikei.includes(esc(def.label)), `凡例に無い分野: ${key}`)
     assert.ok(taikei.includes(`var(--c${def.slot})`), `slot ${def.slot} の色が使われていません`)
   }
+})
+
+test('タイムラインに76件すべてが現れる', () => {
+  for (const p of doc.plans) {
+    assert.ok(timeline.includes(esc(p.name)), `タイムラインに出ていません: ${p.id} ${p.name}`)
+  }
+})
+
+test('期間を持たない25件が専用のグループにある', () => {
+  // ここを落とすと、俯瞰したつもりで3分の1が見えていないことになる（設計 3.2）。
+  const zuiji = timeline.split('随時修正')[1]?.split('<div class="grp">')[0] ?? ''
+  for (const p of model.zuiji) assert.ok(zuiji.includes(esc(p.name)), `随時修正のグループに無い: ${p.id}`)
+  const unclear = timeline.split('計画期間を確認できていない')[1] ?? ''
+  for (const p of model.unclear) assert.ok(unclear.includes(esc(p.name)), `未確認のグループに無い: ${p.id}`)
+  assert.equal(model.zuiji.length + model.unclear.length, 25)
+})
+
+test('軸の範囲がデータの実際の範囲と一致する', () => {
+  // 軸を短く取ると、はみ出した計画の帯が範囲外の grid-column を指す。
+  assert.ok(timeline.includes(fiscalYearShort(model.years.start)), '左端のラベルがありません')
+  assert.ok(timeline.includes(fiscalYearShort(model.years.end)), '右端のラベルがありません')
+  const cols = model.years.end - model.years.start + 1
+  assert.ok(timeline.includes(`repeat(${cols},1fr)`), `列数が ${cols} になっていません`)
+})
+
+test('帯の grid-column が軸の範囲に収まる', () => {
+  const cols = model.years.end - model.years.start + 1
+  const spans = [...timeline.matchAll(/grid-column:(\d+) \/ (\d+)/g)]
+  assert.ok(spans.length > 0)
+  for (const [, a, b] of spans) {
+    assert.ok(Number(a) >= 1, `左端が範囲外: ${a}`)
+    assert.ok(Number(b) <= cols + 1, `右端が範囲外: ${b} > ${cols + 1}`)
+    assert.ok(Number(a) < Number(b), `幅が0以下: ${a} / ${b}`)
+  }
+})
+
+test('横に長い図はページ本体ではなく図の中でスクロールする', () => {
+  assert.ok(timeline.includes('class="tlwrap"'))
 })

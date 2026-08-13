@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url'
 import { parseYaml } from './yaml.mjs'
 import { validate } from './validate.mjs'
 import { readPalette } from './palette.mjs'
-import { buildModel, slotOf } from './view-model.mjs'
+import { buildModel, slotOf, domainGroups, periodKind } from './view-model.mjs'
 import { fiscalYearShort } from './fiscal-year.mjs'
 
 const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }
@@ -115,6 +115,26 @@ table.rel th,table.rel td{padding:7px 10px;border-bottom:1px solid var(--grid);t
 table.rel th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;
   border-bottom:1px solid var(--axis);white-space:nowrap}
 table.rel td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tlwrap{overflow-x:auto}
+.gantt{min-width:940px}
+.grow{display:grid;grid-template-columns:290px 1fr;gap:10px;align-items:center}
+.glabel{display:flex;align-items:center;gap:7px;font-size:12.5px;min-width:0}
+.glabel .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gaxis{display:grid;border-bottom:1px solid var(--axis)}
+.gaxis div{font-size:11px;color:var(--muted);text-align:center;padding:0 0 5px;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.gaxis div.now{color:var(--ink);font-weight:650}
+.gtrack{position:relative;display:grid;height:28px;align-items:center}
+.gtrack::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(to right,var(--grid) 0 1px,transparent 1px 100%);
+  background-size:calc(100%/var(--cols)) 100%}
+.nowline{position:absolute;top:0;bottom:0;width:2px;background:var(--crit);opacity:.45;z-index:3;pointer-events:none}
+.bar{height:19px;border-radius:5px;display:flex;align-items:center;justify-content:center;
+  font-size:10.5px;color:#fff;position:relative;z-index:2;white-space:nowrap;overflow:hidden}
+.bar.dash{background:transparent!important;border:1.5px dashed var(--muted);color:var(--ink2);
+  grid-column:1 / -1;justify-content:flex-start;padding-left:8px}
+.grp{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;padding-top:10px;
+  border-top:1px solid var(--grid);display:flex;align-items:center;gap:7px}
 `.trim()
 
 const THEME_JS = `
@@ -129,6 +149,74 @@ document.getElementById('tg').addEventListener('click',()=>{
 const TITLE = '壱岐市の全計画 76件の俯瞰'
 const DESC = '長崎県壱岐市が公表している行政計画76件（市66・社会福祉協議会1・長崎県9）を、'
   + '位置づけの階層・計画期間・分野別の一覧で俯瞰します。data/plans.yml から生成しています。'
+
+/** 塗りの上に置く文字色。黄と黒だけ白文字が読めないので palette.css の指定に従う。 */
+const barInk = (p, domains) => {
+  const s = slotOf(p, domains)
+  return s === 7 || s === 8 ? `var(--c${s}-ink)` : '#fff'
+}
+
+export function timelineSection(m) {
+  const { start: Y0, end: Y1 } = m.years
+  const cols = Y1 - Y0 + 1
+  // meta.updated は YYYY-MM-DD。年度なので4月始まりで判定する。
+  const [uy, um] = m.meta.updated.split('-').map(Number)
+  const nowFy = um >= 4 ? uy : uy - 1
+  const nowPct = ((nowFy - Y0 + 0.5) / cols) * 100
+
+  const axis = () => {
+    const cells = []
+    for (let y = Y0; y <= Y1; y++) {
+      // 26年ぶんの目盛りに毎年ラベルを振ると読めないので、5年ごとと両端と現在だけ出す
+      const show = (y - Y0) % 5 === 0 || y === Y1 || y === nowFy
+      cells.push(`<div class="${y === nowFy ? 'now' : ''}">${show ? esc(fiscalYearShort(y)) : ''}</div>`)
+    }
+    return `<div class="gaxis" style="grid-template-columns:repeat(${cols},1fr)">${cells.join('')}</div>`
+  }
+
+  const row = (p) => {
+    const kind = periodKind(p)
+    const col = colorOf(p, m.domains)
+    const label = `<div class="glabel"><span class="dot" style="background:${col}"></span>`
+      + `<span class="nm">${esc(p.name)}</span>${p.todo ? '<span class="todo">未</span>' : ''}</div>`
+    const track = (inner) => `<div class="gtrack" style="grid-template-columns:repeat(${cols},1fr);--cols:${cols}">`
+      + `<div class="nowline" style="left:${nowPct.toFixed(2)}%"></div>${inner}</div>`
+    if (kind !== 'range') {
+      const text = kind === 'zuiji' ? '定期的に改定' : '情報確認待ち'
+      return `<div class="grow">${label}${track(`<div class="bar dash">${esc(text)}</div>`)}</div>`
+    }
+    const a = p.period.start - Y0 + 1
+    const b = p.period.end - Y0 + 2
+    const span = `${esc(fiscalYearShort(p.period.start))}〜${esc(fiscalYearShort(p.period.end))}`
+    const bar = `<div class="bar" style="grid-column:${a} / ${b};background:${col};color:${barInk(p, m.domains)}"`
+      + ` title="${esc(p.name)}｜${span}年度（${p.period.start}〜${p.period.end}年度）">${span}</div>`
+    return `<div class="grow">${label}${track(bar)}</div>`
+  }
+
+  const ranged = m.plans.filter((p) => periodKind(p) === 'range')
+  const groups = domainGroups(ranged, m.domains)
+    .filter((g) => g.plans.length)
+    .map((g) => `<div class="grp">${esc(g.label)}<span>${g.plans.length}件</span></div>\n${g.plans.map(row).join('\n')}`)
+
+  const extra = [
+    ['随時修正（期間を定めない）', m.zuiji],
+    ['計画期間を確認できていない', m.unclear],
+  ].filter(([, ps]) => ps.length)
+    .map(([label, ps]) => `<div class="grp">${esc(label)}<span>${ps.length}件</span></div>\n${ps.map(row).join('\n')}`)
+
+  return `<section>
+  <div class="hd"><h2>計画期間</h2>
+  <p class="sub">${esc(fiscalYearShort(Y0))}年度から${esc(fiscalYearShort(Y1))}年度まで。分野ごとに並べています。
+  <strong>期間を持たない${m.zuiji.length + m.unclear.length}件も落とさず、末尾に別のグループとして置いています。</strong>
+  ここを落とすと、俯瞰したつもりで3分の1が見えていないことになります。</p></div>
+  <div class="tlwrap"><div class="gantt">
+${axis()}
+${groups.join('\n')}
+${extra.join('\n')}
+${axis()}
+  </div></div>
+</section>`
+}
 
 export function buildPage(doc) {
   const m = buildModel(doc)
@@ -159,6 +247,7 @@ export function buildPage(doc) {
     headerBlock(),
     statsSection(m),
     taikeiSection(m),
+    timelineSection(m),
     // Task 4〜6でここにセクションを足します
     footerBlock(m),
     '</div>',
