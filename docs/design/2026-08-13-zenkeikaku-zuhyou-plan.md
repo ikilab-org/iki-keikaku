@@ -736,16 +736,11 @@ test('調査基準日と更新日はデータから取る', () => {
 test('2回生成しても同じ結果になる', () => {
   assert.equal(buildPage(doc), html)
 })
-
-test('--check は生成物が最新なら 0、古ければ 1 を返す', () => {
-  // このテストは plans/all/index.html がコミットされている前提（タスク7以降）。
-  const r = execFileSync('node', [script, '--check'], { encoding: 'utf8' })
-  assert.match(r, /最新/)
-})
 ```
 
-> **注:** 最後のテストは `plans/all/index.html` がまだ無いので、タスク3の時点では失敗します。
-> タスク3では**このテストだけを `test.skip(...)` と書き**、タスク7で `test(...)` に戻します。
+> **注:** `--check` の検査は、`plans/all/index.html` がコミットされたタスク7で書きます。
+> ここで書くと、生成物がまだ無いので必ず落ちます。
+> `script` 定数はタスク7で使うので、いま置いておきます。
 
 `tools/expiring.test.mjs` の import を
 `import { fiscalYearLabel, fiscalYearShort } from './fiscal-year.mjs'` に変え、末尾に足します。
@@ -1046,7 +1041,7 @@ if (fileURLToPath(import.meta.url) === process.argv[1]) {
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 99` / `fail 0` / `skipped 1`（前タスクまで92件 + build 6件 + expiring 1件 + skip 1件）。
+期待: `pass 98` / `fail 0` / `skipped 0`（前タスクまで92件 + build 5件 + expiring 1件）。
 
 - [ ] **手順6: 生成できることを目で確かめる**
 
@@ -1250,7 +1245,7 @@ ${rel}
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 107` / `fail 0` / `skipped 1`。
+期待: `pass 106` / `fail 0`。
 
 - [ ] **手順5: コミット**
 
@@ -1445,7 +1440,7 @@ ${axis()}
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 112` / `fail 0` / `skipped 1`。
+期待: `pass 111` / `fail 0`。
 
 - [ ] **手順5: コミット**
 
@@ -1621,7 +1616,7 @@ ${groups}
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 118` / `fail 0` / `skipped 1`。
+期待: `pass 117` / `fail 0`。
 
 - [ ] **手順5: コミット**
 
@@ -1688,10 +1683,9 @@ echo "http://localhost:8765/plans/all/ を開いてください"
 - 「◐ 表示切替」を押すと、OS の設定と逆の表示に切り替わり、どちらでも色が破綻しないこと
 - 横幅を狭めたとき、**ページ本体が横スクロールせず**、タイムラインと表だけが中でスクロールすること
 
-- [ ] **手順3: `tools/build.test.mjs` の `test.skip` を `test` に戻す**
+- [ ] **手順3: `--check` の検査を `tools/build.test.mjs` に足す**
 
-タスク3で `test.skip('--check は生成物が最新なら 0、古ければ 1 を返す', …)` と書いた行を
-`test(` に戻し、さらに「古ければ 1 を返す」側の検査を足します。
+`plans/all/index.html` ができたので、ここで書けるようになります。末尾に次を足します。
 
 ```js
 test('--check は生成物が最新なら 0、古ければ 1 を返す', () => {
@@ -1718,7 +1712,7 @@ import に `writeFileSync` を足します: `import { readFileSync, writeFileSyn
 node --test 2>&1 | tail -8
 ```
 
-期待: `pass 120` / `fail 0` / `skipped 0`。
+期待: `pass 119` / `fail 0` / `skipped 0`。
 
 - [ ] **手順4: `.github/workflows/build.yml` を書く**
 
@@ -1999,7 +1993,7 @@ node tools/linkcheck.mjs                               # 4
 | # | 判定 | 確かめ方 |
 |---|---|---|
 | 1 | 生成できて `--check` が exit 0 | 上のコマンド |
-| 2 | `node --test` が通る（既存71件＋今回49件） | 上のコマンド |
+| 2 | `node --test` が通る（既存71件＋今回48件） | 上のコマンド |
 | 3 | **76件すべてが現れ、期間を持たない25件も帯に表示されている** | タスク4・5・6のテスト |
 | 4 | 既存4ツールが現状のまま通る | 上のコマンド。linkcheck は中小企業庁の1件が既知（HTTP 202・本文0バイト）|
 | 5 | 俯瞰ページと既存3ページが同じ `assets/palette.css` を読む | `grep -rl "assets/palette.css" index.html plans/` が3ファイル＋1 |
