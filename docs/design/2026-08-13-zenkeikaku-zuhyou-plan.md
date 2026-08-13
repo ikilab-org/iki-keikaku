@@ -1920,15 +1920,20 @@ echo "http://localhost:8765/ / /plans/fukushi/ / /plans/kaigo-7-9/ を開いて�
 │   ├── fukushi/
 │   └── kaigo-7-9/
 ├── assets/
-│   └── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
+│   ├── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
+│   └── og*.png             OGP画像（1200×630）
 ```
+
+**`assets/` の行を丸ごと差し替えないでください。** 既存の OGP画像3つ（`og.png` `og-fukushi.png`
+`og-kaigo.png`）はそのまま残っているので、書き落とすと文書がリポジトリの実態より狭い像を与えます。
 
 「いま時点で YAML を読んでいるのは次の4つです」の段落と、その下のコマンド一覧を差し替えます。
 
 ````markdown
-いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次）・`expiring`（月次）・
-`build --check` と `validate`（`data/plans.yml` などへの push 時）です。
-`manifest` は手動での実行です。
+いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次と、
+`data/plans.yml`・`tools/linkcheck.mjs` への push 時）・`expiring`（月次）・
+`build --check` と `validate`（`data/plans.yml`・`tools/`・`assets/palette.css` への push 時と、
+すべての pull request）です。`manifest` は手動での実行です。
 
 ```bash
 node tools/build.mjs                      # plans/all/index.html を生成（生成物はコミットする）

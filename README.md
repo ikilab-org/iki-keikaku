@@ -64,7 +64,8 @@
 │   ├── POLICY.md           出典URLの寿命管理・スナップショットの方針
 │   └── MANIFEST.md         出典台帳
 ├── assets/
-│   └── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
+│   ├── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
+│   └── og*.png             OGP画像（1200×630）
 ├── tools/
 │   ├── linkcheck.mjs       出典URLの死活チェック
 │   ├── expiring.mjs        満了・パブコメが近い計画の検出
@@ -91,9 +92,10 @@
 手書きのままです。生成物は網羅的で常に最新な代わりに記述が薄くなるので、
 **俯瞰は生成、掘り下げは手書き**と役割を分けています。
 
-いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次）・`expiring`（月次）・
-`build --check` と `validate`（`data/plans.yml` などへの push 時）です。
-`manifest` は手動での実行です。
+いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次と、
+`data/plans.yml`・`tools/linkcheck.mjs` への push 時）・`expiring`（月次）・
+`build --check` と `validate`（`data/plans.yml`・`tools/`・`assets/palette.css` への push 時と、
+すべての pull request）です。`manifest` は手動での実行です。
 
 ```bash
 node tools/build.mjs                      # plans/all/index.html を生成（生成物はコミットする）
