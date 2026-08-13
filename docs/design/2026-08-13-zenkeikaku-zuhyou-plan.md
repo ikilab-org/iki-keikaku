@@ -1301,12 +1301,21 @@ test('タイムラインに76件すべてが現れる', () => {
   }
 })
 
+// グループの見出しで区切り、ラベルで始まる断片をそのグループとみなす。
+// 本文の言葉を検索して区間を切ると、帯の中に同じ語が出たときに区間が縮む。
+const timelineGroup = (label) =>
+  timeline.split('<div class="grp">').find((s) => s.startsWith(esc(label))) ?? ''
+
 test('期間を持たない25件が専用のグループにある', () => {
   // ここを落とすと、俯瞰したつもりで3分の1が見えていないことになる（設計 3.2）。
-  const zuiji = timeline.split('随時修正')[1]?.split('<div class="grp">')[0] ?? ''
+  const zuiji = timelineGroup('随時修正（期間を定めない）')
+  assert.ok(zuiji, '「随時修正」のグループが見つかりません')
   for (const p of model.zuiji) assert.ok(zuiji.includes(esc(p.name)), `随時修正のグループに無い: ${p.id}`)
-  const unclear = timeline.split('計画期間を確認できていない')[1] ?? ''
+
+  const unclear = timelineGroup('計画期間を確認できていない')
+  assert.ok(unclear, '「計画期間を確認できていない」のグループが見つかりません')
   for (const p of model.unclear) assert.ok(unclear.includes(esc(p.name)), `未確認のグループに無い: ${p.id}`)
+
   assert.equal(model.zuiji.length + model.unclear.length, 25)
 })
 
