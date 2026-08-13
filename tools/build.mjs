@@ -158,7 +158,7 @@ document.getElementById('tg').addEventListener('click',()=>{
 `.trim()
 
 const TITLE = '壱岐市の全計画 76件の俯瞰'
-const DESC = '長崎県壱岐市が公表している行政計画76件（市66・社会福祉協議会1・長崎県9）を、'
+const DESC = '長崎県壱岐市に関わる行政計画76件（壱岐市66・壱岐市社会福祉協議会1・長崎県9）を、'
   + '位置づけの階層・計画期間・分野別の一覧で俯瞰します。data/plans.yml から生成しています。'
 
 /** 塗りの上に置く文字色。黄と黒だけ白文字が読めないので palette.css の指定に従う。 */
@@ -343,7 +343,7 @@ function headerBlock() {
     <a class="badge" href="../../">← 計画マップ</a>
     <span class="badge">IKILAB ／ 長崎県壱岐市</span>
     <h1>${esc(TITLE)}</h1>
-    <p class="sub">壱岐市が公表している行政計画を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。
+    <p class="sub">壱岐市に関わる行政計画を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。
     このページは <code>data/plans.yml</code> から生成しているので、データを直せば図も表も追随します。
     <strong>分野ごとの掘り下げは各分野のページの役割です。</strong>ここには構造だけを置いています。</p>
   </div>
