@@ -212,3 +212,15 @@ test('url のある計画はリンクになり、無い計画は素のテキス�
 test('横に長い表はページ本体ではなく表の中でスクロールする', () => {
   assert.equal((list.match(/class="tblwrap"/g) ?? []).length > 0, true)
 })
+
+test('null は「なし」、欠落は「未確認」と書き分ける', () => {
+  // data/schema.md の「未調査の表し方」。null は「調べた結果 無い」、
+  // 欠落は「まだ調べていない」。同じ表示にすると調査の進み具合が読めなくなる。
+  const base = { id: 'x', name: 'テスト計画', level: 'municipal', status: 'current' }
+  const domains = { fukushi: { label: '健康・福祉', slot: 1 } }
+  const withNull = listSection({ plans: [{ ...base, domain: 'fukushi', department: null }], domains, meta: {} })
+  const withMissing = listSection({ plans: [{ ...base, domain: 'fukushi' }], domains, meta: {} })
+  assert.match(withNull, /class="unk">なし</)
+  assert.match(withMissing, /class="unk">未確認</)
+  assert.equal(/class="unk">未確認</.test(withNull.split('所管')[1] ?? ''), true, '他の列の未確認まで消えていないこと')
+})

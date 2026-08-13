@@ -140,10 +140,9 @@ table.list{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
 table.list th,table.list td{padding:8px 10px;border-bottom:1px solid var(--grid);
   text-align:left;vertical-align:top}
 table.list th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;
-  border-bottom:1px solid var(--axis);white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+  border-bottom:1px solid var(--axis);white-space:nowrap}
 table.list td.per{font-variant-numeric:tabular-nums;white-space:nowrap}
 table.list .unk{color:var(--muted)}
-table.list h3{margin:0}
 .lsec{margin-top:26px}
 .lsec h3{font-size:14px;margin:0;display:flex;align-items:center;gap:8px}
 .lsec h3 b{font-weight:500;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
@@ -238,15 +237,26 @@ export const LABELS = {
   level: { national: '国', prefectural: '長崎県', municipal: '壱岐市', council: '市社協' },
 }
 
-/** 未記載は「未確認」と書く。空欄にすると「無い」と読まれる（data/schema.md「未調査の表し方」）。 */
-const cell = (v) => (v === undefined || v === null || v === '' ? '<span class="unk">未確認</span>' : esc(v))
+/**
+ * 表のセル。
+ *
+ * data/schema.md の「未調査の表し方」を画面にそのまま出します。
+ *   欠落 … まだ調べていない → 「未確認」
+ *   null … 調べた結果、値が存在しない → 「なし」
+ * この2つを同じ表示にすると、調査の進み具合が読めなくなります。
+ */
+const cell = (v) => {
+  if (v === null) return '<span class="unk">なし</span>'
+  if (v === undefined || v === '') return '<span class="unk">未確認</span>'
+  return esc(v)
+}
 
 function periodCell(p) {
   const kind = periodKind(p)
   if (kind === 'zuiji') return '随時修正'
   if (kind !== 'range') return '<span class="unk">未確認</span>'
   return `${esc(fiscalYearShort(p.period.start))}〜${esc(fiscalYearShort(p.period.end))}年度`
-    + `<br><span class="unk">${p.period.start}〜${p.period.end}年度</span>`
+    + `<br><span class="mut">${p.period.start}〜${p.period.end}年度</span>`
 }
 
 export function listSection(m) {
@@ -280,7 +290,7 @@ ${g.plans.map(row).join('\n')}
   return `<section>
   <div class="hd"><h2>一覧</h2>
   <p class="sub">分野ごとに分けています。<strong>「未確認」は、そこに何も無いという意味ではなく、まだ調べていないという意味です。</strong>
-  空欄と区別できるように書き分けています。計画名のリンク先は市・県の公表ページです。</p></div>
+  空欄と区別できるように書き分けています。計画名のリンク先は各機関の公表ページです。</p></div>
 ${groups}
 </section>`
 }
