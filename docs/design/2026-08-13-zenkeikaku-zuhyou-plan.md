@@ -895,8 +895,10 @@ section > .hd{margin-bottom:16px}
 .tile .k{font-size:12px;color:var(--ink2);margin-top:3px}
 .tile.alert{border-color:var(--warn);box-shadow:inset 3px 0 0 var(--warn)}
 .dot{width:9px;height:9px;border-radius:3px;flex:none;box-shadow:inset 0 0 0 1px var(--ring)}
-.todo{font-size:10px;line-height:1.6;padding:0 4px;border-radius:4px;border:1px solid var(--warn);
-  color:var(--ink2);margin-left:5px;white-space:nowrap}
+/* 凡例の説明用バッジだけクラス名を分けます。テストが class="todo" の出現回数で
+   未調査の件数を数えるので、同じクラスにすると凡例のぶんまで数えてしまいます。 */
+.todo,.todo-legend{font-size:10px;line-height:1.6;padding:0 4px;border-radius:4px;
+  border:1px solid var(--warn);color:var(--ink2);margin-left:5px;white-space:nowrap}
 .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--ink2);margin-top:14px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 footer{color:var(--muted);font-size:12px;padding:8px 4px 0;line-height:1.9}
@@ -1183,7 +1185,6 @@ node --test 2>&1 | tail -20
 .tier .tl{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:2px;
   display:flex;justify-content:space-between;gap:10px}
 .tier .tl b{font-weight:600;color:var(--ink2);font-variant-numeric:tabular-nums}
-.tier .tt{font-size:15px;font-weight:600}
 .tier .td{font-size:12.5px;color:var(--ink2);margin-top:2px}
 .arrow{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);
   font-size:11.5px;padding:7px 0}
@@ -1235,7 +1236,7 @@ ${bands}
   <div class="legend">
     ${legend}
     <span><i class="dot" style="background:var(--muted)"></i>分野の割り当てなし（国・長崎県）</span>
-    <span><span class="todo">未</span>未調査の項目がある</span>
+    <span><span class="todo-legend">未</span>未調査の項目がある</span>
   </div>
   <h3 style="font-size:14px;margin:22px 0 0;color:var(--ink2)">分かっている関係</h3>
   <p class="mut" style="margin:2px 0 0">分母は収録件数。<strong>本数の少なさは、関係が無いことではなく調査が進んでいないことを表します。</strong></p>
