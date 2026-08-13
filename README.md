@@ -67,6 +67,10 @@
 │   ├── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
 │   └── og*.png             OGP画像（1200×630）
 ├── tools/
+│   ├── build.mjs           plans/all/index.html を生成（--check で生成漏れを検出）
+│   ├── view-model.mjs      図表の分類規則（どの計画がどの帯・グループに入るか）
+│   ├── palette.mjs         assets/palette.css を読む（build.mjs の事前検査とテストが使用）
+│   ├── fiscal-year.mjs     年度の元号表記
 │   ├── linkcheck.mjs       出典URLの死活チェック
 │   ├── expiring.mjs        満了・パブコメが近い計画の検出
 │   ├── validate.mjs        参照整合・enum・骨格の検査（error/warn の2段階）
@@ -75,7 +79,7 @@
 │   └── og/                 OGP画像の生成（cards.html + build.mjs）
 ├── docs/                   分析報告書など（Markdown）
 │   └── design/             設計文書・実装計画
-├── .github/workflows/      linkcheck・expiring を定期実行して Issue を立てる
+├── .github/workflows/      linkcheck・expiring の定期実行（Issue を立てる）と、生成漏れの検査
 ├── SETUP.md                公開までの手順（詳細）
 ├── LICENSE                 CC BY 4.0 の条文（文章・図表・データ）
 ├── LICENSE-CODE            MIT の条文（コード）
@@ -94,8 +98,8 @@
 
 いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次と、
 `data/plans.yml`・`tools/linkcheck.mjs` への push 時）・`expiring`（月次）・
-`build --check` と `validate`（`data/plans.yml`・`tools/`・`assets/palette.css` への push 時と、
-すべての pull request）です。`manifest` は手動での実行です。
+`build --check` と `validate`（`data/plans.yml`・`tools/`・`assets/palette.css`・`plans/all/index.html`
+への push 時と、すべての pull request）です。`manifest` は手動での実行です。
 
 ```bash
 node tools/build.mjs                      # plans/all/index.html を生成（生成物はコミットする）

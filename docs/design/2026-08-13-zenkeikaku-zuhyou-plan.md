@@ -344,7 +344,7 @@ CUD 8色とも一致していなかった。値を持つ場所を1か所にす�
 - 提供: `BANDS` / `RELATIONS` / `bandOf(p)` / `bandGroups(plans)` / `periodKind(p)` /
   `yearRange(plans)` / `slotOf(p, domains)` / `domainGroups(plans, domains)` /
   `relationCounts(plans)` / `expiryByYear(plans)` / `buildModel(doc)`。
-  Task 3〜6の `build.mjs` はこれだけを使い、`plans.yml` の形を直接見ません
+  分類の規則はここに集約し、Task 3〜6の `build.mjs` では分類をやり直しません
 
 - [ ] **手順1: 失敗するテストを書く**
 
