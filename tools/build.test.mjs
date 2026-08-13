@@ -5,9 +5,10 @@ import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { parseYaml } from './yaml.mjs'
 import { buildModel } from './view-model.mjs'
-import { esc, buildPage, taikeiSection, timelineSection, listSection, LABELS } from './build.mjs'
+import { esc, buildPage, taikeiSection, timelineSection, listSection, LABELS, PAGE_CSS } from './build.mjs'
 import { fiscalYearShort } from './fiscal-year.mjs'
 import { ENUM } from './validate.mjs'
+import { contrast } from './palette.mjs'
 
 // Task 4〜6では、この import に taikeiSection / timelineSection / listSection を足し、
 // 下の定数に対応する行を1行ずつ足していきます。
@@ -40,6 +41,21 @@ test('3つの表示状態すべてで色が定義されている', () => {
   assert.match(html, /:root:not\(\[data-theme="light"\]\)/)
 })
 
+test('分野色を持たない帯の文字が読める', () => {
+  // domain を持たない計画（国・長崎県）の帯は --muted の塗り（colorOf）で、
+  // 文字色は barInk が固定で返す #0b0b0b。palette.test.mjs は分野色（--c1〜--c8）の
+  // コントラストしか見ておらず、--muted はどこからも検査されていなかった。
+  // --muted を変えたときにここが落ちるようにしておく。
+  // ライト/ダークで --muted の値は今のところ同じだが、将来ずれても検査から
+  // 漏れないよう PAGE_CSS 中に出現する値をすべて拾って調べる。
+  const mutedValues = [...PAGE_CSS.matchAll(/--muted:\s*(#[0-9a-f]{6})/gi)].map((m) => m[1].toLowerCase())
+  assert.ok(mutedValues.length > 0, 'PAGE_CSS に --muted がありません')
+  for (const muted of new Set(mutedValues)) {
+    const r = contrast(muted, '#0b0b0b')
+    assert.ok(r >= 4.5, `--muted（${muted}）の上の文字が ${r.toFixed(2)}:1 しかありません`)
+  }
+})
+
 test('script はテーマ切替の1ブロックだけで、計画のデータを含まない', () => {
   // 既存2ページはタイムラインと表をJSで組み立てていて、HTMLに内容が無い。
   // 生成に移す動機の一つがこれ（設計 4.4）。
@@ -65,10 +81,23 @@ test('2回生成しても同じ結果になる', () => {
 test('見出しと説明文の件数がデータから来ている', () => {
   // 件数を文字列に埋め込むと、計画を足したときに見出しだけが古い数字で残る。
   assert.ok(html.includes(`${doc.plans.length}件`), '件数が出ていません')
-  const fake = { ...doc, plans: doc.plans.slice(0, 5) }
+  // 先頭から機械的に切ると（例: slice(0, 5)）council が1件しかないため
+  // 内訳に入らず、下の和のチェックが素通りしてしまう。各 level を最低1件ずつ入れる。
+  const pick = (lv) => doc.plans.find((p) => p.level === lv)
+  const fake = { ...doc, plans: [pick('municipal'), pick('council'), pick('prefectural')].filter(Boolean) }
   const small = buildPage(fake)
-  assert.ok(small.includes('5件'), `件数がデータに追随していません`)
+  assert.ok(small.includes(`${fake.plans.length}件`), '件数がデータに追随していません')
   assert.equal(small.includes(`${doc.plans.length}件の俯瞰`), false, '古い件数が残っています')
+
+  // 総数だけ追随して内訳が古いままだと、説明文が自分と矛盾する。
+  // 内訳の和が総数と一致することを見れば、level を1つ足して
+  // LEVEL_BREAKDOWN に書き忘れた場合も落ちる。
+  const desc = /<meta name="description" content="([^"]*)"/.exec(small)?.[1] ?? ''
+  const inner = /（([^）]*)）/.exec(desc)?.[1] ?? ''
+  const nums = [...inner.matchAll(/(\d+)/g)].map((m) => Number(m[1]))
+  assert.ok(nums.length > 0, `説明文の内訳が読み取れません: ${desc}`)
+  assert.equal(nums.reduce((a, b) => a + b, 0), fake.plans.length,
+    `説明文の内訳の和が総数と合いません: ${desc}`)
 })
 
 test('体系図に76件すべてが現れる', () => {

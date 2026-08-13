@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { cssBlocks, readPalette } from './palette.mjs'
+import { cssBlocks, readPalette, contrast } from './palette.mjs'
 import { parseYaml } from './yaml.mjs'
 
 test('入れ子の @media の中の :root も1ブロックとして取れる', () => {
@@ -70,17 +70,6 @@ test('分野の数だけ slot がある', () => {
     assert.ok(slots[def.slot], `domains.${key} の slot ${def.slot} に色がありません`)
   }
 })
-
-/** WCAG の相対輝度。 */
-const luminance = (hex) => {
-  const v = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
-    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
-  return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]
-}
-const contrast = (a, b) => {
-  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
-  return (hi + 0.05) / (lo + 0.05)
-}
 
 test('塗りの上の文字が、どの状態でも 4.5:1 を満たす', () => {
   // CUD の8色は、白文字を置けるものと置けないものが混ざっている。
