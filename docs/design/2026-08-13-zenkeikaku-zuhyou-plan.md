@@ -63,7 +63,7 @@
 
 ---
 
-## タスク1: 配色を1か所に定義する
+## Task 1: 配色を1か所に定義する
 
 **ファイル:**
 - 作成: `assets/palette.css`
@@ -73,7 +73,7 @@
 
 **インタフェース:**
 - 提供: `cssBlocks(css) -> [{sel, vars}]` / `readPalette() -> {blocks, slots}`。
-  `slots` は `{1:'#0072b2', …, 8:'#000000'}`（light の値）。タスク3の `build.mjs` が
+  `slots` は `{1:'#0072b2', …, 8:'#000000'}`（light の値）。Task 3の `build.mjs` が
   「`domains` の slot すべてに色があるか」を検査するのに使います
 
 - [ ] **手順1: 失敗するテストを書く**
@@ -83,6 +83,8 @@
 ```js
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
+import { parseYaml } from './yaml.mjs'
 import { cssBlocks, readPalette } from './palette.mjs'
 
 test('入れ子の @media の中の :root も1ブロックとして取れる', () => {
@@ -144,8 +146,12 @@ test('light の slot は CUD の推奨配色の値になっている', () => {
 
 test('分野の数だけ slot がある', () => {
   // domains を9つ目に増やしたら、このテストが先に落ちて配色の再検証を促す。
+  // palette.css の中だけを数えても domains は増えないので、plans.yml と突き合わせる。
   const { slots } = readPalette()
-  assert.ok(Object.keys(slots).length >= 8)
+  const doc = parseYaml(readFileSync(new URL('../data/plans.yml', import.meta.url), 'utf8'))
+  for (const [key, def] of Object.entries(doc.domains)) {
+    assert.ok(slots[def.slot], `domains.${key} の slot ${def.slot} に色がありません`)
+  }
 })
 ```
 
@@ -275,8 +281,14 @@ node --test 2>&1 | tail -12
 - [ ] **手順6: `data/schema.md` の配色の記述を実態に合わせる**
 
 `data/schema.md` の「### slot と配色セットの対応」の節を、次の内容に**置き換え**ます。
-（現在は「実際の色の値は図表を作る段階で `assets/` 側に置きます」で終わっていますが、
-その `assets/` 側が出来たので、対応表を書きます。）
+
+**置き換えるのは配色の説明だけです。** 節の最後にある次の2行は配色と無関係な参照整合性の話なので、
+**消さずにそのまま残してください。**
+
+```
+`categories` の各エントリが指す `domain` が `domains` に無い場合も、`validate` が error にします。
+小分類を追加するときは、先に `domains` 側があることを確かめてください。
+```
 
 ```markdown
 ### slot と配色セットの対応
@@ -321,7 +333,7 @@ CUD 8色とも一致していなかった。値を持つ場所を1か所にす�
 
 ---
 
-## タスク2: 分類の規則を view-model に切り出す
+## Task 2: 分類の規則を view-model に切り出す
 
 **ファイル:**
 - 作成: `tools/view-model.mjs`
@@ -332,7 +344,7 @@ CUD 8色とも一致していなかった。値を持つ場所を1か所にす�
 - 提供: `BANDS` / `RELATIONS` / `bandOf(p)` / `bandGroups(plans)` / `periodKind(p)` /
   `yearRange(plans)` / `slotOf(p, domains)` / `domainGroups(plans, domains)` /
   `relationCounts(plans)` / `expiryByYear(plans)` / `buildModel(doc)`。
-  タスク3〜6の `build.mjs` はこれだけを使い、`plans.yml` の形を直接見ません
+  分類の規則はここに集約し、Task 3〜6の `build.mjs` では分類をやり直しません
 
 - [ ] **手順1: 失敗するテストを書く**
 
@@ -658,7 +670,7 @@ domain の無い9件を末尾のグループにまとめる。"
 
 ---
 
-## タスク3: ページの外枠を生成する
+## Task 3: ページの外枠を生成する
 
 **ファイル:**
 - 作成: `tools/build.mjs`
@@ -667,10 +679,10 @@ domain の無い9件を末尾のグループにまとめる。"
 - 変更: `tools/expiring.test.mjs`（`fiscalYearShort` の検査を追加）
 
 **インタフェース:**
-- 消費: タスク2の `buildModel` / `BANDS` ほか、タスク1の `readPalette`
+- 消費: Task 2の `buildModel` / `BANDS` ほか、Task 1の `readPalette`
 - 提供: `esc(s)` / `colorOf(p, domains)` / `buildPage(doc)` / `PAGE_CSS` /
   `fiscalYearShort(y)` -> `'令和8'`。
-  タスク4〜6が `buildPage` の中に各セクションを差し込みます。
+  Task 4〜6が `buildPage` の中に各セクションを差し込みます。
   セクションの関数（`taikeiSection` など）は各タスクで追加します
 
 - [ ] **手順1: 失敗するテストを書く**
@@ -687,7 +699,7 @@ import { parseYaml } from './yaml.mjs'
 import { buildModel } from './view-model.mjs'
 import { esc, buildPage } from './build.mjs'
 
-// タスク4〜6では、この import に taikeiSection / timelineSection / listSection を足し、
+// Task 4〜6では、この import に taikeiSection / timelineSection / listSection を足し、
 // 下の定数に対応する行を1行ずつ足していきます。
 const doc = parseYaml(readFileSync(new URL('../data/plans.yml', import.meta.url), 'utf8'))
 const model = buildModel(doc)
@@ -736,16 +748,11 @@ test('調査基準日と更新日はデータから取る', () => {
 test('2回生成しても同じ結果になる', () => {
   assert.equal(buildPage(doc), html)
 })
-
-test('--check は生成物が最新なら 0、古ければ 1 を返す', () => {
-  // このテストは plans/all/index.html がコミットされている前提（タスク7以降）。
-  const r = execFileSync('node', [script, '--check'], { encoding: 'utf8' })
-  assert.match(r, /最新/)
-})
 ```
 
-> **注:** 最後のテストは `plans/all/index.html` がまだ無いので、タスク3の時点では失敗します。
-> タスク3では**このテストだけを `test.skip(...)` と書き**、タスク7で `test(...)` に戻します。
+> **注:** `--check` の検査は、`plans/all/index.html` がコミットされたTask 7で書きます。
+> ここで書くと、生成物がまだ無いので必ず落ちます。
+> `script` 定数はTask 7で使うので、いま置いておきます。
 
 `tools/expiring.test.mjs` の import を
 `import { fiscalYearLabel, fiscalYearShort } from './fiscal-year.mjs'` に変え、末尾に足します。
@@ -888,8 +895,10 @@ section > .hd{margin-bottom:16px}
 .tile .k{font-size:12px;color:var(--ink2);margin-top:3px}
 .tile.alert{border-color:var(--warn);box-shadow:inset 3px 0 0 var(--warn)}
 .dot{width:9px;height:9px;border-radius:3px;flex:none;box-shadow:inset 0 0 0 1px var(--ring)}
-.todo{font-size:10px;line-height:1.6;padding:0 4px;border-radius:4px;border:1px solid var(--warn);
-  color:var(--ink2);margin-left:5px;white-space:nowrap}
+/* 凡例の説明用バッジだけクラス名を分けます。テストが class="todo" の出現回数で
+   未調査の件数を数えるので、同じクラスにすると凡例のぶんまで数えてしまいます。 */
+.todo,.todo-legend{font-size:10px;line-height:1.6;padding:0 4px;border-radius:4px;
+  border:1px solid var(--warn);color:var(--ink2);margin-left:5px;white-space:nowrap}
 .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--ink2);margin-top:14px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 footer{color:var(--muted);font-size:12px;padding:8px 4px 0;line-height:1.9}
@@ -937,7 +946,7 @@ export function buildPage(doc) {
     '<div class="wrap">',
     headerBlock(),
     statsSection(m),
-    // タスク4〜6でここにセクションを足します
+    // Task 4〜6でここにセクションを足します
     footerBlock(m),
     '</div>',
     '<script>',
@@ -1046,7 +1055,7 @@ if (fileURLToPath(import.meta.url) === process.argv[1]) {
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 99` / `fail 0` / `skipped 1`（前タスクまで92件 + build 6件 + expiring 1件 + skip 1件）。
+期待: `pass 98` / `fail 0` / `skipped 0`（前タスクまで92件 + build 5件 + expiring 1件）。
 
 - [ ] **手順6: 生成できることを目で確かめる**
 
@@ -1076,7 +1085,7 @@ validate の基準日を doc.meta.updated にした。現在時刻にすると
 
 ---
 
-## タスク4: 体系図を生成する
+## Task 4: 体系図を生成する
 
 **ファイル:**
 - 変更: `tools/build.mjs`（`taikeiSection` を追加し、`buildPage` から呼ぶ）
@@ -1176,7 +1185,6 @@ node --test 2>&1 | tail -20
 .tier .tl{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:2px;
   display:flex;justify-content:space-between;gap:10px}
 .tier .tl b{font-weight:600;color:var(--ink2);font-variant-numeric:tabular-nums}
-.tier .tt{font-size:15px;font-weight:600}
 .tier .td{font-size:12.5px;color:var(--ink2);margin-top:2px}
 .arrow{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);
   font-size:11.5px;padding:7px 0}
@@ -1228,7 +1236,7 @@ ${bands}
   <div class="legend">
     ${legend}
     <span><i class="dot" style="background:var(--muted)"></i>分野の割り当てなし（国・長崎県）</span>
-    <span><span class="todo">未</span>未調査の項目がある</span>
+    <span><span class="todo-legend">未</span>未調査の項目がある</span>
   </div>
   <h3 style="font-size:14px;margin:22px 0 0;color:var(--ink2)">分かっている関係</h3>
   <p class="mut" style="margin:2px 0 0">分母は収録件数。<strong>本数の少なさは、関係が無いことではなく調査が進んでいないことを表します。</strong></p>
@@ -1250,7 +1258,7 @@ ${rel}
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 107` / `fail 0` / `skipped 1`。
+期待: `pass 106` / `fail 0`。
 
 - [ ] **手順5: コミット**
 
@@ -1267,7 +1275,7 @@ parent は8本しかなく、線にするとほとんどの計画が孤立して
 
 ---
 
-## タスク5: タイムラインを生成する
+## Task 5: タイムラインを生成する
 
 **ファイル:**
 - 変更: `tools/build.mjs`（`timelineSection` を追加）
@@ -1275,7 +1283,7 @@ parent は8本しかなく、線にするとほとんどの計画が孤立して
 
 **インタフェース:**
 - 消費: `buildModel(doc).years` / `.zuiji` / `.unclear`、`domainGroups`、`periodKind`、
-  タスク3で足した `fiscalYearShort`
+  Task 3で足した `fiscalYearShort`
 - 提供: `timelineSection(m)` -> HTML文字列
 
 - [ ] **手順1: 失敗するテストを書く**
@@ -1293,12 +1301,21 @@ test('タイムラインに76件すべてが現れる', () => {
   }
 })
 
+// グループの見出しで区切り、ラベルで始まる断片をそのグループとみなす。
+// 本文の言葉を検索して区間を切ると、帯の中に同じ語が出たときに区間が縮む。
+const timelineGroup = (label) =>
+  timeline.split('<div class="grp">').find((s) => s.startsWith(esc(label))) ?? ''
+
 test('期間を持たない25件が専用のグループにある', () => {
   // ここを落とすと、俯瞰したつもりで3分の1が見えていないことになる（設計 3.2）。
-  const zuiji = timeline.split('随時修正')[1]?.split('<div class="grp">')[0] ?? ''
+  const zuiji = timelineGroup('随時修正（期間を定めない）')
+  assert.ok(zuiji, '「随時修正」のグループが見つかりません')
   for (const p of model.zuiji) assert.ok(zuiji.includes(esc(p.name)), `随時修正のグループに無い: ${p.id}`)
-  const unclear = timeline.split('計画期間を確認できていない')[1] ?? ''
+
+  const unclear = timelineGroup('計画期間を確認できていない')
+  assert.ok(unclear, '「計画期間を確認できていない」のグループが見つかりません')
   for (const p of model.unclear) assert.ok(unclear.includes(esc(p.name)), `未確認のグループに無い: ${p.id}`)
+
   assert.equal(model.zuiji.length + model.unclear.length, 25)
 })
 
@@ -1445,7 +1462,7 @@ ${axis()}
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 112` / `fail 0` / `skipped 1`。
+期待: `pass 111` / `fail 0`。
 
 - [ ] **手順5: コミット**
 
@@ -1464,7 +1481,7 @@ node tools/build.mjs && git add tools/build.mjs tools/build.test.mjs && git comm
 
 ---
 
-## タスク6: 一覧を生成する
+## Task 6: 一覧を生成する
 
 **ファイル:**
 - 変更: `tools/build.mjs`（`listSection` とラベル定義を追加）
@@ -1546,11 +1563,13 @@ node --test 2>&1 | tail -20
 table.list{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
 table.list th,table.list td{padding:8px 10px;border-bottom:1px solid var(--grid);
   text-align:left;vertical-align:top}
+/* th に position:sticky は付けません。.tblwrap の overflow-x:auto は overflow-y も auto にするため
+   .tblwrap がスクロールの基準になりますが、高さ制限が無く内部スクロールが起きないので効きません。
+   高さを制限すると長い資料ページの中に縦スクロールの入れ子ができて読みにくくなります。 */
 table.list th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;
-  border-bottom:1px solid var(--axis);white-space:nowrap;position:sticky;top:0;background:var(--surface)}
+  border-bottom:1px solid var(--axis);white-space:nowrap}
 table.list td.per{font-variant-numeric:tabular-nums;white-space:nowrap}
 table.list .unk{color:var(--muted)}
-table.list h3{margin:0}
 .lsec{margin-top:26px}
 .lsec h3{font-size:14px;margin:0;display:flex;align-items:center;gap:8px}
 .lsec h3 b{font-weight:500;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
@@ -1567,15 +1586,24 @@ export const LABELS = {
   level: { national: '国', prefectural: '長崎県', municipal: '壱岐市', council: '市社協' },
 }
 
-/** 未記載は「未確認」と書く。空欄にすると「無い」と読まれる（data/schema.md「未調査の表し方」）。 */
-const cell = (v) => (v === undefined || v === null || v === '' ? '<span class="unk">未確認</span>' : esc(v))
+/**
+ * 表のセル。data/schema.md の「未調査の表し方」を画面にそのまま出します。
+ *   欠落 … まだ調べていない → 「未確認」
+ *   null … 調べた結果、値が存在しない → 「なし」
+ * この2つを同じ表示にすると、調査の進み具合が読めなくなります。
+ */
+const cell = (v) => {
+  if (v === null) return '<span class="unk">なし</span>'
+  if (v === undefined || v === '') return '<span class="unk">未確認</span>'
+  return esc(v)
+}
 
 function periodCell(p) {
   const kind = periodKind(p)
   if (kind === 'zuiji') return '随時修正'
   if (kind !== 'range') return '<span class="unk">未確認</span>'
   return `${esc(fiscalYearShort(p.period.start))}〜${esc(fiscalYearShort(p.period.end))}年度`
-    + `<br><span class="unk">${p.period.start}〜${p.period.end}年度</span>`
+    + `<br><span class="mut">${p.period.start}〜${p.period.end}年度</span>`
 }
 
 export function listSection(m) {
@@ -1609,7 +1637,7 @@ ${g.plans.map(row).join('\n')}
   return `<section>
   <div class="hd"><h2>一覧</h2>
   <p class="sub">分野ごとに分けています。<strong>「未確認」は、そこに何も無いという意味ではなく、まだ調べていないという意味です。</strong>
-  空欄と区別できるように書き分けています。計画名のリンク先は市・県の公表ページです。</p></div>
+  空欄と区別できるように書き分けています。計画名のリンク先は各機関の公表ページです。</p></div>
 ${groups}
 </section>`
 }
@@ -1621,7 +1649,7 @@ ${groups}
 node --test 2>&1 | tail -12
 ```
 
-期待: `pass 118` / `fail 0` / `skipped 1`。
+期待: `pass 117` / `fail 0`。
 
 - [ ] **手順5: コミット**
 
@@ -1637,7 +1665,7 @@ enum に日本語ラベルが揃っているかをテストで検査する。
 
 ---
 
-## タスク7: 生成物をコミットし、CI と導線をつなぐ
+## Task 7: 生成物をコミットし、CI と導線をつなぐ
 
 **ファイル:**
 - 作成: `plans/all/index.html`（生成物）
@@ -1646,7 +1674,7 @@ enum に日本語ラベルが揃っているかをテストで検査する。
 - 変更: `tools/build.test.mjs`（`test.skip` を `test` に戻す）
 
 **インタフェース:**
-- 消費: タスク3〜6の `tools/build.mjs`
+- 消費: Task 3〜6の `tools/build.mjs`
 - 提供: 公開URL `https://keikaku.ikilab.org/plans/all/`
 
 - [ ] **手順1: 生成して、目で確かめる**
@@ -1688,10 +1716,9 @@ echo "http://localhost:8765/plans/all/ を開いてください"
 - 「◐ 表示切替」を押すと、OS の設定と逆の表示に切り替わり、どちらでも色が破綻しないこと
 - 横幅を狭めたとき、**ページ本体が横スクロールせず**、タイムラインと表だけが中でスクロールすること
 
-- [ ] **手順3: `tools/build.test.mjs` の `test.skip` を `test` に戻す**
+- [ ] **手順3: `--check` の検査を `tools/build.test.mjs` に足す**
 
-タスク3で `test.skip('--check は生成物が最新なら 0、古ければ 1 を返す', …)` と書いた行を
-`test(` に戻し、さらに「古ければ 1 を返す」側の検査を足します。
+`plans/all/index.html` ができたので、ここで書けるようになります。末尾に次を足します。
 
 ```js
 test('--check は生成物が最新なら 0、古ければ 1 を返す', () => {
@@ -1718,7 +1745,7 @@ import に `writeFileSync` を足します: `import { readFileSync, writeFileSyn
 node --test 2>&1 | tail -8
 ```
 
-期待: `pass 120` / `fail 0` / `skipped 0`。
+期待: `pass 119` / `fail 0` / `skipped 0`。
 
 - [ ] **手順4: `.github/workflows/build.yml` を書く**
 
@@ -1802,14 +1829,14 @@ CI は --check で「plans.yml を変えたのに生成し忘れた」を拾う�
 
 ---
 
-## タスク8: 既存ページを共通配色に載せ替える
+## Task 8: 既存ページを共通配色に載せ替える
 
 **ファイル:**
 - 変更: `index.html` / `plans/fukushi/index.html` / `plans/kaigo-7-9/index.html`
 - 変更: `README.md` / `CHANGELOG.md`
 
 **インタフェース:**
-- 消費: `assets/palette.css`（タスク1）
+- 消費: `assets/palette.css`（Task 1）
 
 **注意:** 既存ページの**図と本文は手書きのまま残します。差し替えるのは配色だけです**（設計 2）。
 
@@ -1893,15 +1920,20 @@ echo "http://localhost:8765/ / /plans/fukushi/ / /plans/kaigo-7-9/ を開いて�
 │   ├── fukushi/
 │   └── kaigo-7-9/
 ├── assets/
-│   └── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
+│   ├── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
+│   └── og*.png             OGP画像（1200×630）
 ```
+
+**`assets/` の行を丸ごと差し替えないでください。** 既存の OGP画像3つ（`og.png` `og-fukushi.png`
+`og-kaigo.png`）はそのまま残っているので、書き落とすと文書がリポジトリの実態より狭い像を与えます。
 
 「いま時点で YAML を読んでいるのは次の4つです」の段落と、その下のコマンド一覧を差し替えます。
 
 ````markdown
-いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次）・`expiring`（月次）・
-`build --check` と `validate`（`data/plans.yml` などへの push 時）です。
-`manifest` は手動での実行です。
+いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次と、
+`data/plans.yml`・`tools/linkcheck.mjs` への push 時）・`expiring`（月次）・
+`build --check` と `validate`（`data/plans.yml`・`tools/`・`assets/palette.css` への push 時と、
+すべての pull request）です。`manifest` は手動での実行です。
 
 ```bash
 node tools/build.mjs                      # plans/all/index.html を生成（生成物はコミットする）
@@ -1977,8 +2009,9 @@ git add index.html plans/fukushi/index.html plans/kaigo-7-9/index.html README.md
 各ファイルが持っていた --c1〜--c7 の定義を消し、assets/palette.css を
 読ませる。図と本文は手書きのまま残し、差し替えたのは配色だけ。
 
-ハブの上位計画タグは黄（--c7）だった。8pxの点として白地に置くと
-見えないので紫赤（--c5）にした。"
+黄（--c7）は細い点や白抜き文字の帯にすると見えない。使っていた
+2ページ3か所を muted に寄せた。どれも「上位・関連行政計画」を
+指していて、分野色でなくてよい。"
 ```
 
 ---
@@ -1999,12 +2032,12 @@ node tools/linkcheck.mjs                               # 4
 | # | 判定 | 確かめ方 |
 |---|---|---|
 | 1 | 生成できて `--check` が exit 0 | 上のコマンド |
-| 2 | `node --test` が通る（既存71件＋今回49件） | 上のコマンド |
-| 3 | **76件すべてが現れ、期間を持たない25件も帯に表示されている** | タスク4・5・6のテスト |
+| 2 | `node --test` が通る（既存71件＋今回48件） | 上のコマンド |
+| 3 | **76件すべてが現れ、期間を持たない25件も帯に表示されている** | Task 4・5・6のテスト |
 | 4 | 既存4ツールが現状のまま通る | 上のコマンド。linkcheck は中小企業庁の1件が既知（HTTP 202・本文0バイト）|
 | 5 | 俯瞰ページと既存3ページが同じ `assets/palette.css` を読む | `grep -rl "assets/palette.css" index.html plans/` が3ファイル＋1 |
-| 6 | **`<script>` はテーマ切替だけで、計画のデータを含まない** | タスク3のテスト |
-| 7 | ライト・ダーク・システム既定の3状態で色が破綻せず読める | タスク7手順2・タスク8手順3（目視）|
+| 6 | **`<script>` はテーマ切替だけで、計画のデータを含まない** | Task 3のテスト |
+| 7 | ライト・ダーク・システム既定の3状態で色が破綻せず読める | Task 7手順2・Task 8手順3（目視）|
 
 ---
 

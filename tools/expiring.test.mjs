@@ -2,7 +2,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
-import { fiscalYearLabel } from './fiscal-year.mjs'
+import { fiscalYearLabel, fiscalYearShort } from './fiscal-year.mjs'
 
 // expiring.mjs は全体がトップレベルのスクリプトで、import すると実行されます。
 // そこで CLI として動かし、出力を検証します。
@@ -45,4 +45,12 @@ test('未調査の項目は todo のあるものだけを拾う', () => {
   const { todos } = JSON.parse(run('--json', ...TODAY))
   assert.ok(todos.length > 0, 'todo が1件も拾えていません')
   assert.equal(todos.every((p) => p.todo === true), true)
+})
+
+test('軸ラベル用の短い元号表記', () => {
+  // 図の軸に「令和8年度（2026年度）」は長すぎる。年度の判定の仕方は fiscalYearLabel と同じ。
+  assert.equal(fiscalYearShort(2026), '令和8')
+  assert.equal(fiscalYearShort(2019), '令和1')
+  assert.equal(fiscalYearShort(2018), '平成30')
+  assert.equal(fiscalYearShort(1988), '昭和63')
 })

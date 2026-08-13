@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>壱岐市に関わる行政計画 76件の俯瞰 | 壱岐市 計画マップ</title>
+<meta name="description" content="長崎県壱岐市に関わる行政計画76件（壱岐市66・壱岐市社会福祉協議会1・長崎県9）を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。data/plans.yml から生成しています。">
+<link rel="canonical" href="https://keikaku.ikilab.org/plans/all/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="壱岐市 計画マップ">
+<meta property="og:title" content="壱岐市に関わる行政計画 76件の俯瞰">
+<meta property="og:description" content="長崎県壱岐市に関わる行政計画76件（壱岐市66・壱岐市社会福祉協議会1・長崎県9）を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。data/plans.yml から生成しています。">
+<meta property="og:url" content="https://keikaku.ikilab.org/plans/all/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://keikaku.ikilab.org/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../assets/palette.css">
+<style>
+:root{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+  --wash:rgba(11,11,11,0.035);
+  --warn:#fab219; --crit:#d03b3b;
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+  --wash:rgba(255,255,255,0.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+    --wash:rgba(255,255,255,0.05);
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--page); color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;
+  font-size:15px; line-height:1.75; letter-spacing:.01em;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;line-height:1.4;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+p{margin:.5em 0}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--axis)}
+a:hover{border-bottom-color:currentColor}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.sub{color:var(--ink2);font-size:13.5px}
+.mut{color:var(--muted);font-size:12.5px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:26px}
+.badge{display:inline-block;font-size:11.5px;letter-spacing:.06em;padding:3px 9px;border:1px solid var(--ring);
+  border-radius:999px;color:var(--ink2);background:var(--surface)}
+a.badge{text-decoration:none;margin-right:8px}
+a.badge:hover{background:var(--wash);border-color:var(--axis)}
+button.tg{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--ring);border-radius:8px;
+  background:var(--surface);color:var(--ink2);cursor:pointer}
+button.tg:hover{background:var(--wash)}
+section{background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:22px 22px 24px;margin:0 0 22px}
+section > .hd{margin-bottom:16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.tile{border:1px solid var(--ring);border-radius:11px;padding:13px 14px;background:var(--page)}
+.tile .v{font-size:30px;line-height:1.15;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tile .v small{font-size:14px;font-weight:500;color:var(--ink2);margin-left:2px}
+.tile .k{font-size:12px;color:var(--ink2);margin-top:3px}
+.tile.alert{border-color:var(--warn);box-shadow:inset 3px 0 0 var(--warn)}
+.dot{width:9px;height:9px;border-radius:3px;flex:none;box-shadow:inset 0 0 0 1px var(--ring)}
+/* .todo と .todo-legend は見た目を共有する。.todo-legend は凡例の説明用バッジで、
+   テストが .todo クラスの出現回数で未調査の件数を数えているため、凡例は別クラス名にする。 */
+.todo,.todo-legend{font-size:10px;line-height:1.6;padding:0 4px;border-radius:4px;border:1px solid var(--warn);
+  color:var(--ink2);margin-left:5px;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--ink2);margin-top:14px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+footer{color:var(--muted);font-size:12px;padding:8px 4px 0;line-height:1.9}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.tier{border:1px solid var(--ring);border-radius:12px;padding:12px 14px;background:var(--page)}
+.tier .tl{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:2px;
+  display:flex;justify-content:space-between;gap:10px}
+.tier .tl b{font-weight:600;color:var(--ink2);font-variant-numeric:tabular-nums}
+.tier .td{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.arrow{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);
+  font-size:11.5px;padding:7px 0}
+.arrow::before,.arrow::after{content:"";height:1px;width:34px;background:var(--axis)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.chip{font-size:12px;padding:4px 10px;border-radius:8px;border:1px solid var(--ring);background:var(--surface);
+  display:inline-flex;align-items:center;gap:6px}
+.bands{display:flex;flex-direction:column;gap:0}
+table.rel{border-collapse:collapse;width:100%;margin-top:14px;font-size:13px}
+table.rel th,table.rel td{padding:7px 10px;border-bottom:1px solid var(--grid);text-align:left}
+table.rel th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;
+  border-bottom:1px solid var(--axis);white-space:nowrap}
+table.rel td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tlwrap{overflow-x:auto}
+.gantt{min-width:940px}
+.grow{display:grid;grid-template-columns:290px 1fr;gap:10px;align-items:center}
+.glabel{display:flex;align-items:center;gap:7px;font-size:12.5px;min-width:0}
+.glabel .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gaxis{display:grid;border-bottom:1px solid var(--axis)}
+.gaxis div{font-size:11px;color:var(--muted);text-align:center;padding:0 0 5px;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.gaxis div.now{color:var(--ink);font-weight:650}
+.gtrack{position:relative;display:grid;height:28px;align-items:center}
+.gtrack::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(to right,var(--grid) 0 1px,transparent 1px 100%);
+  background-size:calc(100%/var(--cols)) 100%}
+.nowline{position:absolute;top:0;bottom:0;width:2px;background:var(--crit);opacity:.45;z-index:3;pointer-events:none}
+.bar{height:19px;border-radius:5px;display:flex;align-items:center;justify-content:center;
+  font-size:10.5px;color:#0b0b0b;position:relative;z-index:2;white-space:nowrap;overflow:hidden}
+.bar.dash{background:transparent!important;border:1.5px dashed var(--muted);color:var(--ink2);
+  grid-column:1 / -1;justify-content:flex-start;padding-left:8px}
+.grp{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;padding-top:10px;
+  border-top:1px solid var(--grid);display:flex;align-items:center;gap:7px}
+.tblwrap{overflow-x:auto;margin-top:8px}
+table.list{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+table.list th,table.list td{padding:8px 10px;border-bottom:1px solid var(--grid);
+  text-align:left;vertical-align:top}
+table.list th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;
+  border-bottom:1px solid var(--axis);white-space:nowrap}
+table.list td.per{font-variant-numeric:tabular-nums;white-space:nowrap}
+table.list .unk{color:var(--muted)}
+.lsec{margin-top:26px}
+.lsec h3{font-size:14px;margin:0;display:flex;align-items:center;gap:8px}
+.lsec h3 b{font-weight:500;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <a class="badge" href="../../">← 計画マップ</a>
+    <span class="badge">IKILAB ／ 長崎県壱岐市</span>
+    <h1>壱岐市に関わる行政計画 76件の俯瞰</h1>
+    <p class="sub">壱岐市に関わる行政計画を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。
+    このページは <code>data/plans.yml</code> から生成しているので、データを直せば図も表も追随します。
+    <strong>分野ごとの掘り下げは各分野のページの役割です。</strong>ここには構造だけを置いています。</p>
+  </div>
+  <button class="tg" id="tg">◐ 表示切替</button>
+</header>
+<section>
+  <div class="hd"><h2>数でみる</h2></div>
+  <div class="tiles">
+    <div class="tile"><div class="v">76<small>件</small></div><div class="k">収録している計画</div></div>
+    <div class="tile alert"><div class="v">11<small>件</small></div><div class="k">令和8年度末に満了</div></div>
+    <div class="tile"><div class="v">7<small>件</small></div><div class="k">随時修正（期間を定めない）</div></div>
+    <div class="tile alert"><div class="v">18<small>件</small></div><div class="k">計画期間を確認できていない</div></div>
+    <div class="tile alert"><div class="v">29<small>件</small></div><div class="k">未調査の項目が残っている</div></div>
+  </div>
+  <p class="mut" style="margin-top:12px">調査基準日 2026-08-12／データ更新 2026-08-13。
+  収録の対象と出典の選び方は <a href="https://github.com/ikilab-org/iki-keikaku/blob/main/sources/POLICY.md">sources/POLICY.md</a> にあります。</p>
+</section>
+<section>
+  <div class="hd"><h2>体系</h2>
+  <p class="sub">帯の順序は <code>tier</code>（位置づけの階層）です。<strong>個々の計画のあいだに線は引いていません。</strong>
+  明示的な関係はまだ本数が薄く、線にすると「関係が無い」のか「まだ調べていない」のかが区別できなくなるためです。
+  分かっている関係は下の表に本数で示します。</p></div>
+  <div class="bands">
+    <div class="tier" data-band-count="9">
+      <div class="tl"><span>国・長崎県</span><b>9件</b></div>
+      <div class="td">市の計画が整合・調和を求められる相手</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>第二次長崎県再犯防止推進計画</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>長崎県障害者基本計画（第5次）</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>第7期長崎県障害福祉計画・第3期長崎県障害児福祉計画</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>ながさき長寿いきいきプラン（第9期）</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>長崎県子育て条例行動計画</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>健康ながさき21（第3次）</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>第4期長崎県自殺総合対策5カ年計画</span>
+        <span class="chip"><span class="dot" style="background:var(--muted)"></span>第五次長崎県子ども読書活動推進計画</span>
+      </div>
+    </div>
+    <div class="arrow">整合・調和</div>
+    <div class="tier" data-band-count="3">
+      <div class="tl"><span>総合計画</span><b>3件</b></div>
+      <div class="td">市の最上位計画</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>第4次壱岐市総合計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>第3期壱岐市SDGs未来都市計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>壱岐市過疎地域持続的発展計画</span>
+      </div>
+    </div>
+    <div class="arrow">分野の基本方針として展開</div>
+    <div class="tier" data-band-count="22">
+      <div class="tl"><span>部門別基本計画</span><b>22件</b></div>
+      <div class="td">分野の基本方針を定めるもの</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>第3次壱岐市地域福祉計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>第3次壱岐市障がい者計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市こども計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市健康づくり計画「健康いき21」</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>第2次壱岐市いのち支える自殺対策計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市地域公共交通計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c7)"></span>壱岐市国土強靭化地域計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>第2次壱岐市男女共同参画基本計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>第3次壱岐市男女共同参画計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c8)"></span>壱岐市一般廃棄物処理基本計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>壱岐市観光戦略2025～2027</span>
+        <span class="chip"><span class="dot" style="background:var(--c6)"></span>壱岐市歴史文化基本構想</span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市景観計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c5)"></span>壱岐市財政基盤確立計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c5)"></span>シン市役所化計画（第4次壱岐市行財政改革大綱）</span>
+        <span class="chip"><span class="dot" style="background:var(--c6)"></span>壱岐市教育振興基本計画（令和7～11年度）<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c6)"></span>壱岐市いじめ防止基本方針</span>
+        <span class="chip"><span class="dot" style="background:var(--c6)"></span>第2次壱岐市子ども読書活動推進計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市水道事業経営戦略</span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市下水道事業経営戦略</span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市水道ビジョン<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市住宅マスタープラン<span class="todo" title="未調査の項目があります">未</span></span>
+      </div>
+    </div>
+    <div class="arrow">個別の課題・事業に展開</div>
+    <div class="tier" data-band-count="21">
+      <div class="tl"><span>個別計画</span><b>21件</b></div>
+      <div class="td">特定の課題・事業を扱うもの</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市成年後見制度利用促進基本計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市再犯防止推進計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>第7期壱岐市障がい福祉計画・第3期障がい児福祉計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市高齢者福祉計画・第9期介護保険事業計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市高齢者福祉計画・第8期介護保険事業計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市高齢者福祉計画・第7期介護保険事業計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>第2期壱岐市子ども・子育て支援事業計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>第1期壱岐市子ども・子育て支援事業計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市次世代育成支援行動計画（後期計画）<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>壱岐市特定居住促進計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>壱岐市初山開発事業計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>壱岐北部海洋性公園開発計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>壱岐・対馬地域鳥獣被害防止計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>地域計画（地域農業経営基盤強化促進計画）</span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>壱岐市農業振興地域整備計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>壱岐市森林整備計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>壱岐市建築物等木材利用促進基本方針<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>導入促進基本計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c3)"></span>創業支援等事業計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市空家等対策計画<span class="todo" title="未調査の項目があります">未</span></span>
+      </div>
+    </div>
+    <div class="arrow">実施内容と目標値に展開</div>
+    <div class="tier" data-band-count="11">
+      <div class="tl"><span>実施・行動計画</span><b>11件</b></div>
+      <div class="td">実施内容と目標値を定めるもの</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市地域公共交通利便増進計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c7)"></span>壱岐市地域防災計画</span>
+        <span class="chip"><span class="dot" style="background:var(--c7)"></span>壱岐市国民保護計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c7)"></span>第11次壱岐市交通安全計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c5)"></span>壱岐市特定事業主行動計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c5)"></span>壱岐市障害者活躍推進計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c5)"></span>壱岐市教育委員会障害者活躍推進計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c4)"></span>壱岐市生涯活躍のまち推進プロジェクト<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c8)"></span>壱岐市地球温暖化対策実行計画（区域施策編）</span>
+        <span class="chip"><span class="dot" style="background:var(--c6)"></span>壱岐市中学校規模適正化〔統廃合〕計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市新型インフルエンザ等対策行動計画</span>
+      </div>
+    </div>
+    <div class="tier" data-band-count="8">
+      <div class="tl"><span>施設・財産管理</span><b>8件</b></div>
+      <div class="td">公共施設・インフラの維持管理を定めるもの</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c6)"></span>壱岐市文化財展示施設再編計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c5)"></span>壱岐市公共施設等総合管理計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c5)"></span>壱岐市公共施設個別施設計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市農道施設個別施設計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市橋梁長寿命化修繕計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市道路法面等維持管理計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市道路トンネル維持管理計画<span class="todo" title="未調査の項目があります">未</span></span>
+        <span class="chip"><span class="dot" style="background:var(--c2)"></span>壱岐市公営住宅等長寿命化計画</span>
+      </div>
+    </div>
+    <div class="tier" data-band-count="1">
+      <div class="tl"><span>階層を確認できていない</span><b>1件</b></div>
+      <div class="td">調査中。落とさずにここへ置く</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c8)"></span>壱岐市地球温暖化対策実行計画（事務事業編）<span class="todo" title="未調査の項目があります">未</span></span>
+      </div>
+    </div>
+    <div class="tier" data-band-count="1">
+      <div class="tl"><span>社会福祉協議会</span><b>1件</b></div>
+      <div class="td">市の計画ではないが対になるもの</div>
+      <div class="chips">
+        <span class="chip"><span class="dot" style="background:var(--c1)"></span>壱岐市社会福祉協議会 第2期地域福祉活動計画<span class="todo" title="未調査の項目があります">未</span></span>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--c1)"></i>健康・福祉</span>
+    <span><i class="dot" style="background:var(--c2)"></i>都市基盤・交通</span>
+    <span><i class="dot" style="background:var(--c3)"></i>産業・雇用</span>
+    <span><i class="dot" style="background:var(--c4)"></i>市政総論</span>
+    <span><i class="dot" style="background:var(--c5)"></i>行財政運営</span>
+    <span><i class="dot" style="background:var(--c6)"></i>教育・文化</span>
+    <span><i class="dot" style="background:var(--c7)"></i>防災・安全</span>
+    <span><i class="dot" style="background:var(--c8)"></i>生活環境</span>
+    <span><i class="dot" style="background:var(--muted)"></i>分野の割り当てなし（国・長崎県）</span>
+  </div>
+  <p class="mut" style="margin-top:9px">凡例のほか、<span class="todo-legend">未</span>印は未調査の項目がある計画です。</p>
+  <h3 style="font-size:14px;margin:22px 0 0;color:var(--ink2)">分かっている関係</h3>
+  <p class="mut" style="margin:2px 0 0">分母は収録件数。<strong>本数の少なさは、関係が無いことではなく調査が進んでいないことを表します。</strong></p>
+  <table class="rel">
+    <thead><tr><th>関係</th><th class="n">持つ計画</th><th class="n">延べ本数</th></tr></thead>
+    <tbody>
+      <tr><td>位置づけ上の上位計画がある</td><td class="n">8 / 76</td><td class="n">8</td></tr>
+      <tr><td>他の計画に一体化して策定されている</td><td class="n">2 / 76</td><td class="n">2</td></tr>
+      <tr><td>他の計画を一体化して含んでいる</td><td class="n">1 / 76</td><td class="n">2</td></tr>
+      <tr><td>国・県の計画との整合が法令で定められている</td><td class="n">2 / 76</td><td class="n">2</td></tr>
+      <tr><td>相互に参照する関係がある</td><td class="n">18 / 76</td><td class="n">26</td></tr>
+      <tr><td>前の版が分かっている</td><td class="n">4 / 76</td><td class="n">7</td></tr>
+      <tr><td>次期計画の予定が分かっている</td><td class="n">5 / 76</td><td class="n">5</td></tr>
+    </tbody>
+  </table>
+</section>
+<section>
+  <div class="hd"><h2>計画期間</h2>
+  <p class="sub">平成22年度から令和17年度まで。分野ごとに並べています。
+  <strong>期間を持たない25件も落とさず、末尾に別のグループとして置いています。</strong>
+  ここを落とすと、俯瞰したつもりで3分の1が見えていないことになります。</p></div>
+  <div class="tlwrap"><div class="gantt">
+<div class="gaxis" style="grid-template-columns:repeat(26,1fr)"><div class="">平成22</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">平成27</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">令和2</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">令和7</div><div class="now">令和8</div><div class=""></div><div class=""></div><div class=""></div><div class="">令和12</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">令和17</div></div>
+<div class="grp">健康・福祉<span>15件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">第3次壱岐市地域福祉計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:13 / 18;background:var(--c1);color:var(--c1-ink)" title="第3次壱岐市地域福祉計画｜令和4〜令和8年度（2022〜2026年度）">令和4〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市成年後見制度利用促進基本計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:13 / 18;background:var(--c1);color:var(--c1-ink)" title="壱岐市成年後見制度利用促進基本計画｜令和4〜令和8年度（2022〜2026年度）">令和4〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市再犯防止推進計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:13 / 18;background:var(--c1);color:var(--c1-ink)" title="壱岐市再犯防止推進計画｜令和4〜令和8年度（2022〜2026年度）">令和4〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">第3次壱岐市障がい者計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:13 / 18;background:var(--c1);color:var(--c1-ink)" title="第3次壱岐市障がい者計画｜令和4〜令和8年度（2022〜2026年度）">令和4〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">第7期壱岐市障がい福祉計画・第3期障がい児福祉計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 18;background:var(--c1);color:var(--c1-ink)" title="第7期壱岐市障がい福祉計画・第3期障がい児福祉計画｜令和6〜令和8年度（2024〜2026年度）">令和6〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市高齢者福祉計画・第9期介護保険事業計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 18;background:var(--c1);color:var(--c1-ink)" title="壱岐市高齢者福祉計画・第9期介護保険事業計画｜令和6〜令和8年度（2024〜2026年度）">令和6〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市高齢者福祉計画・第8期介護保険事業計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:12 / 15;background:var(--c1);color:var(--c1-ink)" title="壱岐市高齢者福祉計画・第8期介護保険事業計画｜令和3〜令和5年度（2021〜2023年度）">令和3〜令和5</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市高齢者福祉計画・第7期介護保険事業計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:9 / 12;background:var(--c1);color:var(--c1-ink)" title="壱岐市高齢者福祉計画・第7期介護保険事業計画｜平成30〜令和2年度（2018〜2020年度）">平成30〜令和2</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市こども計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c1);color:var(--c1-ink)" title="壱岐市こども計画｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">第2期壱岐市子ども・子育て支援事業計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:11 / 16;background:var(--c1);color:var(--c1-ink)" title="第2期壱岐市子ども・子育て支援事業計画｜令和2〜令和6年度（2020〜2024年度）">令和2〜令和6</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">第1期壱岐市子ども・子育て支援事業計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:6 / 11;background:var(--c1);color:var(--c1-ink)" title="第1期壱岐市子ども・子育て支援事業計画｜平成27〜令和1年度（2015〜2019年度）">平成27〜令和1</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市次世代育成支援行動計画（後期計画）</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:1 / 6;background:var(--c1);color:var(--c1-ink)" title="壱岐市次世代育成支援行動計画（後期計画）｜平成22〜平成26年度（2010〜2014年度）">平成22〜平成26</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 21;background:var(--c1);color:var(--c1-ink)" title="第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画｜令和6〜令和11年度（2024〜2029年度）">令和6〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市健康づくり計画「健康いき21」</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 21;background:var(--c1);color:var(--c1-ink)" title="壱岐市健康づくり計画「健康いき21」｜令和6〜令和11年度（2024〜2029年度）">令和6〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">第2次壱岐市いのち支える自殺対策計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:14 / 19;background:var(--c1);color:var(--c1-ink)" title="第2次壱岐市いのち支える自殺対策計画｜令和5〜令和9年度（2023〜2027年度）">令和5〜令和9</div></div></div>
+<div class="grp">都市基盤・交通<span>10件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市地域公共交通計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:17 / 23;background:var(--c2);color:var(--c2-ink)" title="壱岐市地域公共交通計画｜令和8〜令和13年度（2026〜2031年度）">令和8〜令和13</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市地域公共交通利便増進計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:18 / 23;background:var(--c2);color:var(--c2-ink)" title="壱岐市地域公共交通利便増進計画｜令和9〜令和13年度（2027〜2031年度）">令和9〜令和13</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市橋梁長寿命化修繕計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:10 / 20;background:var(--c2);color:var(--c2-ink)" title="壱岐市橋梁長寿命化修繕計画｜令和1〜令和10年度（2019〜2028年度）">令和1〜令和10</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市道路法面等維持管理計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:7 / 17;background:var(--c2);color:var(--c2-ink)" title="壱岐市道路法面等維持管理計画｜平成28〜令和7年度（2016〜2025年度）">平成28〜令和7</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市公営住宅等長寿命化計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 26;background:var(--c2);color:var(--c2-ink)" title="壱岐市公営住宅等長寿命化計画｜令和7〜令和16年度（2025〜2034年度）">令和7〜令和16</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市水道事業経営戦略</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:17 / 27;background:var(--c2);color:var(--c2-ink)" title="壱岐市水道事業経営戦略｜令和8〜令和17年度（2026〜2035年度）">令和8〜令和17</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市下水道事業経営戦略</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 25;background:var(--c2);color:var(--c2-ink)" title="壱岐市下水道事業経営戦略｜令和6〜令和15年度（2024〜2033年度）">令和6〜令和15</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市水道ビジョン</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:1 / 12;background:var(--c2);color:var(--c2-ink)" title="壱岐市水道ビジョン｜平成22〜令和2年度（2010〜2020年度）">平成22〜令和2</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市住宅マスタープラン</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:2 / 12;background:var(--c2);color:var(--c2-ink)" title="壱岐市住宅マスタープラン｜平成23〜令和2年度（2011〜2020年度）">平成23〜令和2</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市空家等対策計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:9 / 14;background:var(--c2);color:var(--c2-ink)" title="壱岐市空家等対策計画｜平成30〜令和4年度（2018〜2022年度）">平成30〜令和4</div></div></div>
+<div class="grp">産業・雇用<span>2件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">壱岐市観光戦略2025～2027</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 19;background:var(--c3);color:var(--c3-ink)" title="壱岐市観光戦略2025～2027｜令和7〜令和9年度（2025〜2027年度）">令和7〜令和9</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">壱岐・対馬地域鳥獣被害防止計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:17 / 20;background:var(--c3);color:var(--c3-ink)" title="壱岐・対馬地域鳥獣被害防止計画｜令和8〜令和10年度（2026〜2028年度）">令和8〜令和10</div></div></div>
+<div class="grp">市政総論<span>6件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">第4次壱岐市総合計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c4);color:var(--c4-ink)" title="第4次壱岐市総合計画｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">第3期壱岐市SDGs未来都市計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 18;background:var(--c4);color:var(--c4-ink)" title="第3期壱岐市SDGs未来都市計画｜令和6〜令和8年度（2024〜2026年度）">令和6〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">壱岐市過疎地域持続的発展計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:17 / 22;background:var(--c4);color:var(--c4-ink)" title="壱岐市過疎地域持続的発展計画｜令和8〜令和12年度（2026〜2030年度）">令和8〜令和12</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">第2次壱岐市男女共同参画基本計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:8 / 18;background:var(--c4);color:var(--c4-ink)" title="第2次壱岐市男女共同参画基本計画｜平成29〜令和8年度（2017〜2026年度）">平成29〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">第3次壱岐市男女共同参画計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:18 / 23;background:var(--c4);color:var(--c4-ink)" title="第3次壱岐市男女共同参画計画｜令和9〜令和13年度（2027〜2031年度）">令和9〜令和13</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">壱岐市特定居住促進計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c4);color:var(--c4-ink)" title="壱岐市特定居住促進計画｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grp">行財政運営<span>4件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c5)"></span><span class="nm">壱岐市障害者活躍推進計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c5);color:var(--c5-ink)" title="壱岐市障害者活躍推進計画｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c5)"></span><span class="nm">壱岐市教育委員会障害者活躍推進計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c5);color:var(--c5-ink)" title="壱岐市教育委員会障害者活躍推進計画｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c5)"></span><span class="nm">壱岐市財政基盤確立計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:13 / 16;background:var(--c5);color:var(--c5-ink)" title="壱岐市財政基盤確立計画｜令和4〜令和6年度（2022〜2024年度）">令和4〜令和6</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c5)"></span><span class="nm">シン市役所化計画（第4次壱岐市行財政改革大綱）</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c5);color:var(--c5-ink)" title="シン市役所化計画（第4次壱岐市行財政改革大綱）｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grp">教育・文化<span>2件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c6)"></span><span class="nm">壱岐市教育振興基本計画（令和7～11年度）</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c6);color:var(--c6-ink)" title="壱岐市教育振興基本計画（令和7～11年度）｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c6)"></span><span class="nm">第2次壱岐市子ども読書活動推進計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 20;background:var(--c6);color:var(--c6-ink)" title="第2次壱岐市子ども読書活動推進計画｜令和6〜令和10年度（2024〜2028年度）">令和6〜令和10</div></div></div>
+<div class="grp">防災・安全<span>1件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c7)"></span><span class="nm">壱岐市国土強靭化地域計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--c7);color:var(--c7-ink)" title="壱岐市国土強靭化地域計画｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grp">生活環境<span>2件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c8)"></span><span class="nm">壱岐市地球温暖化対策実行計画（区域施策編）</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 22;background:var(--c8);color:var(--c8-ink)" title="壱岐市地球温暖化対策実行計画（区域施策編）｜令和7〜令和12年度（2025〜2030年度）">令和7〜令和12</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c8)"></span><span class="nm">壱岐市一般廃棄物処理基本計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:11 / 26;background:var(--c8);color:var(--c8-ink)" title="壱岐市一般廃棄物処理基本計画｜令和2〜令和16年度（2020〜2034年度）">令和2〜令和16</div></div></div>
+<div class="grp">国・長崎県<span>9件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:17 / 22;background:var(--muted);color:#0b0b0b" title="第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」｜令和8〜令和12年度（2026〜2030年度）">令和8〜令和12</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">第二次長崎県再犯防止推進計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:17 / 22;background:var(--muted);color:#0b0b0b" title="第二次長崎県再犯防止推進計画｜令和8〜令和12年度（2026〜2030年度）">令和8〜令和12</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">長崎県障害者基本計画（第5次）</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 20;background:var(--muted);color:#0b0b0b" title="長崎県障害者基本計画（第5次）｜令和6〜令和10年度（2024〜2028年度）">令和6〜令和10</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">第7期長崎県障害福祉計画・第3期長崎県障害児福祉計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 18;background:var(--muted);color:#0b0b0b" title="第7期長崎県障害福祉計画・第3期長崎県障害児福祉計画｜令和6〜令和8年度（2024〜2026年度）">令和6〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">ながさき長寿いきいきプラン（第9期）</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 18;background:var(--muted);color:#0b0b0b" title="ながさき長寿いきいきプラン（第9期）｜令和6〜令和8年度（2024〜2026年度）">令和6〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">長崎県子育て条例行動計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:16 / 21;background:var(--muted);color:#0b0b0b" title="長崎県子育て条例行動計画｜令和7〜令和11年度（2025〜2029年度）">令和7〜令和11</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">健康ながさき21（第3次）</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 27;background:var(--muted);color:#0b0b0b" title="健康ながさき21（第3次）｜令和6〜令和17年度（2024〜2035年度）">令和6〜令和17</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">第4期長崎県自殺総合対策5カ年計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:13 / 18;background:var(--muted);color:#0b0b0b" title="第4期長崎県自殺総合対策5カ年計画｜令和4〜令和8年度（2022〜2026年度）">令和4〜令和8</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--muted)"></span><span class="nm">第五次長崎県子ども読書活動推進計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar" style="grid-column:15 / 20;background:var(--muted);color:#0b0b0b" title="第五次長崎県子ども読書活動推進計画｜令和6〜令和10年度（2024〜2028年度）">令和6〜令和10</div></div></div>
+<div class="grp">随時修正（期間を定めない）<span>7件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c7)"></span><span class="nm">壱岐市地域防災計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">期間を定めず随時修正</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c6)"></span><span class="nm">壱岐市歴史文化基本構想</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">期間を定めず随時修正</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市景観計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">期間を定めず随時修正</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c6)"></span><span class="nm">壱岐市いじめ防止基本方針</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">期間を定めず随時修正</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市新型インフルエンザ等対策行動計画</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">期間を定めず随時修正</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c1)"></span><span class="nm">壱岐市社会福祉協議会 第2期地域福祉活動計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">期間を定めず随時修正</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">地域計画（地域農業経営基盤強化促進計画）</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">期間を定めず随時修正</div></div></div>
+<div class="grp">計画期間を確認できていない<span>18件</span></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c7)"></span><span class="nm">壱岐市国民保護計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c7)"></span><span class="nm">第11次壱岐市交通安全計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c5)"></span><span class="nm">壱岐市特定事業主行動計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">壱岐市生涯活躍のまち推進プロジェクト</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c4)"></span><span class="nm">壱岐市初山開発事業計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c8)"></span><span class="nm">壱岐市地球温暖化対策実行計画（事務事業編）</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">壱岐北部海洋性公園開発計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c6)"></span><span class="nm">壱岐市文化財展示施設再編計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c5)"></span><span class="nm">壱岐市公共施設等総合管理計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c5)"></span><span class="nm">壱岐市公共施設個別施設計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c6)"></span><span class="nm">壱岐市中学校規模適正化〔統廃合〕計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">壱岐市農業振興地域整備計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">壱岐市森林整備計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">壱岐市建築物等木材利用促進基本方針</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市農道施設個別施設計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">導入促進基本計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c3)"></span><span class="nm">創業支援等事業計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="grow"><div class="glabel"><span class="dot" style="background:var(--c2)"></span><span class="nm">壱岐市道路トンネル維持管理計画</span><span class="todo">未</span></div><div class="gtrack" style="grid-template-columns:repeat(26,1fr);--cols:26"><div class="nowline" style="left:63.46%"></div><div class="bar dash">計画期間を確認できていない</div></div></div>
+<div class="gaxis" style="grid-template-columns:repeat(26,1fr)"><div class="">平成22</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">平成27</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">令和2</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">令和7</div><div class="now">令和8</div><div class=""></div><div class=""></div><div class=""></div><div class="">令和12</div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class="">令和17</div></div>
+  </div></div>
+</section>
+<section>
+  <div class="hd"><h2>一覧</h2>
+  <p class="sub">分野ごとに分けています。<strong>「未確認」は、そこに何も無いという意味ではなく、まだ調べていないという意味です。</strong>
+  空欄と区別できるように書き分けています。計画名にリンクがあるものは、その計画を掲載しているページ（策定予定のものは所管機関のページ）に繋がります。</p></div>
+  <div class="lsec">
+    <h3>健康・福祉<b>17件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="chiiki-fukushi-3">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html" target="_blank" rel="noopener">第3次壱岐市地域福祉計画</a></td>
+          <td class="per">令和4〜令和8年度<br><span class="mut">2022〜2026年度</span></td>
+          <td>部門別基本</td>
+          <td>努力義務</td>
+          <td>市民福祉課 地域福祉班</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="seinen-kouken">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span>壱岐市成年後見制度利用促進基本計画</td>
+          <td class="per">令和4〜令和8年度<br><span class="mut">2022〜2026年度</span></td>
+          <td>個別</td>
+          <td>努力義務</td>
+          <td>市民福祉課 地域福祉班</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="saihan-boushi">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span>壱岐市再犯防止推進計画</td>
+          <td class="per">令和4〜令和8年度<br><span class="mut">2022〜2026年度</span></td>
+          <td>個別</td>
+          <td>努力義務</td>
+          <td>市民福祉課 地域福祉班</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="shougai-keikaku-3">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/10383.html" target="_blank" rel="noopener">第3次壱岐市障がい者計画</a></td>
+          <td class="per">令和4〜令和8年度<br><span class="mut">2022〜2026年度</span></td>
+          <td>部門別基本</td>
+          <td>策定義務</td>
+          <td>市民福祉課 地域福祉班</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="shougai-fukushi-7">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/shimin/fukushi/12605.html" target="_blank" rel="noopener">第7期壱岐市障がい福祉計画・第3期障がい児福祉計画</a></td>
+          <td class="per">令和6〜令和8年度<br><span class="mut">2024〜2026年度</span></td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td>市民福祉課 地域福祉班</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="kourei-9">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/hokenka/kaigo_hoken/13262.html" target="_blank" rel="noopener">壱岐市高齢者福祉計画・第9期介護保険事業計画</a></td>
+          <td class="per">令和6〜令和8年度<br><span class="mut">2024〜2026年度</span></td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td>保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="kourei-8">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span>壱岐市高齢者福祉計画・第8期介護保険事業計画</td>
+          <td class="per">令和3〜令和5年度<br><span class="mut">2021〜2023年度</span></td>
+          <td>個別</td>
+          <td><span class="unk">未確認</span></td>
+          <td>保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）</td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="kourei-7">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span>壱岐市高齢者福祉計画・第7期介護保険事業計画</td>
+          <td class="per">平成30〜令和2年度<br><span class="mut">2018〜2020年度</span></td>
+          <td>個別</td>
+          <td><span class="unk">未確認</span></td>
+          <td>保険課 介護保険班（介護保険事業計画）／長寿支援課 長寿福祉班（高齢者福祉計画）</td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="kodomo-1">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/14487.html" target="_blank" rel="noopener">壱岐市こども計画</a></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>部門別基本</td>
+          <td>策定義務</td>
+          <td>子育て支援課</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="kodomo-jigyou-2">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/191.html" target="_blank" rel="noopener">第2期壱岐市子ども・子育て支援事業計画</a></td>
+          <td class="per">令和2〜令和6年度<br><span class="mut">2020〜2024年度</span></td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td>子育て支援課</td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="kodomo-jigyou-1">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kodomo/kosodate_shien/191.html" target="_blank" rel="noopener">第1期壱岐市子ども・子育て支援事業計画</a></td>
+          <td class="per">平成27〜令和1年度<br><span class="mut">2015〜2019年度</span></td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td>子育て支援課</td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="jisedai-koki">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kodomo/machizukuri/shi_keikaku/kenkofukushi/889.html" target="_blank" rel="noopener">壱岐市次世代育成支援行動計画（後期計画）</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">平成22〜平成26年度<br><span class="mut">2010〜2014年度</span></td>
+          <td>個別</td>
+          <td><span class="unk">未確認</span></td>
+          <td>子育て支援課</td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="data-health-3">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/hokenka/kenko_hoken/datahealth3.html" target="_blank" rel="noopener">第3期壱岐市国民健康保険データヘルス計画・第4期特定健康診査等実施計画</a></td>
+          <td class="per">令和6〜令和11年度<br><span class="mut">2024〜2029年度</span></td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td>保険課 国保・後期・年金班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="kenkou-iki21">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/kenkoufukushi/12683.html" target="_blank" rel="noopener">壱岐市健康づくり計画「健康いき21」</a></td>
+          <td class="per">令和6〜令和11年度<br><span class="mut">2024〜2029年度</span></td>
+          <td>部門別基本</td>
+          <td>努力義務</td>
+          <td>健康増進課</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="jisatsu-2">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/kenkou/kenkoujigyou/6001.html" target="_blank" rel="noopener">第2次壱岐市いのち支える自殺対策計画</a></td>
+          <td class="per">令和5〜令和9年度<br><span class="mut">2023〜2027年度</span></td>
+          <td>部門別基本</td>
+          <td><span class="unk">未確認</span></td>
+          <td>健康増進課</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="influenza">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/16148.html" target="_blank" rel="noopener">壱岐市新型インフルエンザ等対策行動計画</a></td>
+          <td class="per">随時修正</td>
+          <td>実施・行動</td>
+          <td>策定義務</td>
+          <td>健康増進課</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="csw-katsudou-2">
+          <td><span class="dot" style="background:var(--c1);display:inline-block;margin-right:6px"></span><a href="https://ikicity-csw.jp/" target="_blank" rel="noopener">壱岐市社会福祉協議会 第2期地域福祉活動計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">随時修正</td>
+          <td>部門別基本</td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>策定予定</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>都市基盤・交通<b>13件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="koutsuu">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/15734.html" target="_blank" rel="noopener">壱岐市地域公共交通計画</a></td>
+          <td class="per">令和8〜令和13年度<br><span class="mut">2026〜2031年度</span></td>
+          <td>部門別基本</td>
+          <td><span class="unk">未確認</span></td>
+          <td>総務課 総務班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="koutsuu-ribenzoushin">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span>壱岐市地域公共交通利便増進計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">令和9〜令和13年度<br><span class="mut">2027〜2031年度</span></td>
+          <td>実施・行動</td>
+          <td>策定義務</td>
+          <td>総務課</td>
+          <td>策定予定</td>
+        </tr>
+        <tr data-id="keikan">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/keikan/3873.html" target="_blank" rel="noopener">壱岐市景観計画</a></td>
+          <td class="per">随時修正</td>
+          <td>部門別基本</td>
+          <td>できる規定</td>
+          <td>建設課 管理土地対策班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="noudou-shisetsu-kobetsu">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/9785.html" target="_blank" rel="noopener">壱岐市農道施設個別施設計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>施設・財産</td>
+          <td><span class="unk">未確認</span></td>
+          <td>農林課 農林整備班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="kyoryo-choju">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/959.html" target="_blank" rel="noopener">壱岐市橋梁長寿命化修繕計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">令和1〜令和10年度<br><span class="mut">2019〜2028年度</span></td>
+          <td>施設・財産</td>
+          <td>要請</td>
+          <td>建設課 土木班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="douro-norimen-iji">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/3498.html" target="_blank" rel="noopener">壱岐市道路法面等維持管理計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">平成28〜令和7年度<br><span class="mut">2016〜2025年度</span></td>
+          <td>施設・財産</td>
+          <td><span class="unk">未確認</span></td>
+          <td>建設課 土木班</td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="douro-tunnel-iji">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/doro_kasen/5457.html" target="_blank" rel="noopener">壱岐市道路トンネル維持管理計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>施設・財産</td>
+          <td>要請</td>
+          <td>建設課 土木班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="koei-jutaku-choju">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kensetsuka/jutaku/1005.html" target="_blank" rel="noopener">壱岐市公営住宅等長寿命化計画</a></td>
+          <td class="per">令和7〜令和16年度<br><span class="mut">2025〜2034年度</span></td>
+          <td>施設・財産</td>
+          <td>要請</td>
+          <td>建設課 住宅班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="suidou-keiei-senryaku">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/suidoka/unnei/3497.html" target="_blank" rel="noopener">壱岐市水道事業経営戦略</a></td>
+          <td class="per">令和8〜令和17年度<br><span class="mut">2026〜2035年度</span></td>
+          <td>部門別基本</td>
+          <td>要請</td>
+          <td>上下水道課 水道班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="gesuidou-keiei-senryaku">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/suidoka/unnei/3497.html" target="_blank" rel="noopener">壱岐市下水道事業経営戦略</a></td>
+          <td class="per">令和6〜令和15年度<br><span class="mut">2024〜2033年度</span></td>
+          <td>部門別基本</td>
+          <td>要請</td>
+          <td>上下水道課 下水道班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="suidou-vision">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span>壱岐市水道ビジョン<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">平成22〜令和2年度<br><span class="mut">2010〜2020年度</span></td>
+          <td>部門別基本</td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="jutaku-master-plan">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span>壱岐市住宅マスタープラン<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">平成23〜令和2年度<br><span class="mut">2011〜2020年度</span></td>
+          <td>部門別基本</td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="akiya-taisaku">
+          <td><span class="dot" style="background:var(--c2);display:inline-block;margin-right:6px"></span>壱岐市空家等対策計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">平成30〜令和4年度<br><span class="mut">2018〜2022年度</span></td>
+          <td>個別</td>
+          <td>できる規定</td>
+          <td><span class="unk">未確認</span></td>
+          <td>満了済み</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>産業・雇用<b>9件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="kanko-senryaku">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kankouka/ikisikannkousennryaku/14530.html" target="_blank" rel="noopener">壱岐市観光戦略2025～2027</a></td>
+          <td class="per">令和7〜令和9年度<br><span class="mut">2025〜2027年度</span></td>
+          <td>部門別基本</td>
+          <td>任意</td>
+          <td>観光課 観光しまづくり班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="hokubu-kaiyousei-kouen">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span>壱岐北部海洋性公園開発計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>個別</td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>不明</td>
+        </tr>
+        <tr data-id="ikitsushima-choju-higai">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/994.html" target="_blank" rel="noopener">壱岐・対馬地域鳥獣被害防止計画</a></td>
+          <td class="per">令和8〜令和10年度<br><span class="mut">2026〜2028年度</span></td>
+          <td>個別</td>
+          <td>できる規定</td>
+          <td>農林課 農業振興班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="chiiki-nougyou-keikaku">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/norinka/norin/14283.html" target="_blank" rel="noopener">地域計画（地域農業経営基盤強化促進計画）</a></td>
+          <td class="per">随時修正</td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td>農林課 農業振興班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="nourin-shinkou-chiiki">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span>壱岐市農業振興地域整備計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td><span class="unk">未確認</span></td>
+          <td>不明</td>
+        </tr>
+        <tr data-id="shinrin-seibi">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/10153.html" target="_blank" rel="noopener">壱岐市森林整備計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>個別</td>
+          <td>策定義務</td>
+          <td>農林課 農林整備班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="mokuzai-riyou-houshin">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/norinka/nogyo/11222.html" target="_blank" rel="noopener">壱岐市建築物等木材利用促進基本方針</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>個別</td>
+          <td>できる規定</td>
+          <td>農林課 農林整備班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="dounyu-sokushin-kihon">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/syoukousinkouka/5129.html" target="_blank" rel="noopener">導入促進基本計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>個別</td>
+          <td>できる規定</td>
+          <td>商工振興課 ふるさと振興班</td>
+          <td>不明</td>
+        </tr>
+        <tr data-id="sougyou-shien-jigyou">
+          <td><span class="dot" style="background:var(--c3);display:inline-block;margin-right:6px"></span>創業支援等事業計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>個別</td>
+          <td>できる規定</td>
+          <td><span class="unk">未確認</span></td>
+          <td>不明</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>市政総論<b>8件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="sougou-4">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/tougoukeikaku/14357.html" target="_blank" rel="noopener">第4次壱岐市総合計画</a></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>総合計画</td>
+          <td><span class="unk">未確認</span></td>
+          <td>一緒に推進課 共創推進班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="sdgs-mirai-toshi">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/eng/kyousou/sdgs/SDGs/7558.html" target="_blank" rel="noopener">第3期壱岐市SDGs未来都市計画</a></td>
+          <td class="per">令和6〜令和8年度<br><span class="mut">2024〜2026年度</span></td>
+          <td>総合計画</td>
+          <td>任意</td>
+          <td>一緒に推進課 共創推進班</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="kaso-r8">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3980.html" target="_blank" rel="noopener">壱岐市過疎地域持続的発展計画</a></td>
+          <td class="per">令和8〜令和12年度<br><span class="mut">2026〜2030年度</span></td>
+          <td>総合計画</td>
+          <td><span class="unk">未確認</span></td>
+          <td>地域共創課 企画市民協働班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="danjo-2">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/3784.html" target="_blank" rel="noopener">第2次壱岐市男女共同参画基本計画</a></td>
+          <td class="per">平成29〜令和8年度<br><span class="mut">2017〜2026年度</span></td>
+          <td>部門別基本</td>
+          <td>努力義務</td>
+          <td>地域共創課 企画市民協働班</td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="danjo-3">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/index.html" target="_blank" rel="noopener">第3次壱岐市男女共同参画計画</a></td>
+          <td class="per">令和9〜令和13年度<br><span class="mut">2027〜2031年度</span></td>
+          <td>部門別基本</td>
+          <td>努力義務</td>
+          <td>地域共創課 企画市民協働班</td>
+          <td>策定予定</td>
+        </tr>
+        <tr data-id="tokutei-kyoju">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/teiju/15486.html" target="_blank" rel="noopener">壱岐市特定居住促進計画</a></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>個別</td>
+          <td>できる規定</td>
+          <td>地域共創課 人口対策班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="ccrc-machi">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/4510.html" target="_blank" rel="noopener">壱岐市生涯活躍のまち推進プロジェクト</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>不明</td>
+        </tr>
+        <tr data-id="hatsuyama-kaihatsu">
+          <td><span class="dot" style="background:var(--c4);display:inline-block;margin-right:6px"></span>壱岐市初山開発事業計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>個別</td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>不明</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>行財政運営<b>7件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="jigyounushi-koudou">
+          <td><span class="dot" style="background:var(--c5);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/jigyonushi/200.html" target="_blank" rel="noopener">壱岐市特定事業主行動計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td>総務課 職員班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="shougaisha-katsuyaku">
+          <td><span class="dot" style="background:var(--c5);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html" target="_blank" rel="noopener">壱岐市障害者活躍推進計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td>総務課 職員班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="shougaisha-katsuyaku-kyouiku">
+          <td><span class="dot" style="background:var(--c5);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/syokuinhan/syougaisyakatuyaku/6934.html" target="_blank" rel="noopener">壱岐市教育委員会障害者活躍推進計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td>教育総務課</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="kokyoshisetsu-sougou">
+          <td><span class="dot" style="background:var(--c5);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html" target="_blank" rel="noopener">壱岐市公共施設等総合管理計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>施設・財産</td>
+          <td>要請</td>
+          <td>財政課 契約管財班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="kokyoshisetsu-kobetsu">
+          <td><span class="dot" style="background:var(--c5);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html" target="_blank" rel="noopener">壱岐市公共施設個別施設計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>施設・財産</td>
+          <td>要請</td>
+          <td>財政課 契約管財班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="zaisei-kiban">
+          <td><span class="dot" style="background:var(--c5);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/zaiseika/zaisei_jokyo/10021.html" target="_blank" rel="noopener">壱岐市財政基盤確立計画</a></td>
+          <td class="per">令和4〜令和6年度<br><span class="mut">2022〜2024年度</span></td>
+          <td>部門別基本</td>
+          <td>任意</td>
+          <td>財政課 財政班</td>
+          <td>満了済み</td>
+        </tr>
+        <tr data-id="gyozaisei-kaikaku">
+          <td><span class="dot" style="background:var(--c5);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/zaiseika/gyosei/taikoujisikeikaku/6920.html" target="_blank" rel="noopener">シン市役所化計画（第4次壱岐市行財政改革大綱）</a></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>部門別基本</td>
+          <td>任意</td>
+          <td>一緒に推進課 共創推進班</td>
+          <td>計画期間中</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>教育・文化<b>6件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="rekishi-bunka-kousou">
+          <td><span class="dot" style="background:var(--c6);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/bunkasportssinkou/bunkazai/5776.html" target="_blank" rel="noopener">壱岐市歴史文化基本構想</a></td>
+          <td class="per">随時修正</td>
+          <td>部門別基本</td>
+          <td>任意</td>
+          <td>文化スポーツ振興課 文化財班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="bunkazai-tenji-saihen">
+          <td><span class="dot" style="background:var(--c6);display:inline-block;margin-right:6px"></span>壱岐市文化財展示施設再編計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>施設・財産</td>
+          <td>任意</td>
+          <td><span class="unk">未確認</span></td>
+          <td>不明</td>
+        </tr>
+        <tr data-id="kyouiku-shinkou">
+          <td><span class="dot" style="background:var(--c6);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kyoiku_somuka/ikisikyouikusinnkoukihonnkeikaku/index.html" target="_blank" rel="noopener">壱岐市教育振興基本計画（令和7～11年度）</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>部門別基本</td>
+          <td>策定義務</td>
+          <td>学校教育課 学校教育班（教育振興基本計画）</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="ijime-boushi">
+          <td><span class="dot" style="background:var(--c6);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/gakko_kyoikuka/kyouikuzyoho/ijime/150.html" target="_blank" rel="noopener">壱岐市いじめ防止基本方針</a></td>
+          <td class="per">随時修正</td>
+          <td>部門別基本</td>
+          <td>努力義務</td>
+          <td>学校教育課 学校教育班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="chugakko-tekiseika">
+          <td><span class="dot" style="background:var(--c6);display:inline-block;margin-right:6px"></span>壱岐市中学校規模適正化〔統廃合〕計画<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>不明</td>
+        </tr>
+        <tr data-id="kodomo-dokusho-2">
+          <td><span class="dot" style="background:var(--c6);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/6869.html" target="_blank" rel="noopener">第2次壱岐市子ども読書活動推進計画</a></td>
+          <td class="per">令和6〜令和10年度<br><span class="mut">2024〜2028年度</span></td>
+          <td>部門別基本</td>
+          <td>努力義務</td>
+          <td>社会教育課 生涯学習班</td>
+          <td>計画期間中</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>防災・安全<b>4件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="bousai">
+          <td><span class="dot" style="background:var(--c7);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/bosai/bousaikaigi/chiiki/13851.html" target="_blank" rel="noopener">壱岐市地域防災計画</a></td>
+          <td class="per">随時修正</td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td>総務課 危機管理班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="kokumin-hogo">
+          <td><span class="dot" style="background:var(--c7);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/hoka_keikaku/1021.html" target="_blank" rel="noopener">壱岐市国民保護計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td>総務課 危機管理班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="kokudo-kyoujinka">
+          <td><span class="dot" style="background:var(--c7);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/hoka_keikaku/14317.html" target="_blank" rel="noopener">壱岐市国土強靭化地域計画</a></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td>部門別基本</td>
+          <td>できる規定</td>
+          <td>総務課 危機管理班</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="koutsuu-anzen-11">
+          <td><span class="dot" style="background:var(--c7);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/kiki_kanrika/kotsu/3151.html" target="_blank" rel="noopener">第11次壱岐市交通安全計画</a><span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td>実施・行動</td>
+          <td><span class="unk">未確認</span></td>
+          <td>総務課 危機管理班</td>
+          <td>不明</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>生活環境<b>3件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="ondanka-kuiki">
+          <td><span class="dot" style="background:var(--c8);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/energy/CN/14448.html" target="_blank" rel="noopener">壱岐市地球温暖化対策実行計画（区域施策編）</a></td>
+          <td class="per">令和7〜令和12年度<br><span class="mut">2025〜2030年度</span></td>
+          <td>実施・行動</td>
+          <td>努力義務</td>
+          <td>地域共創課 企画市民協働班（再エネ部門）／環境衛生課 環境衛生班（家庭部門・廃棄物部門）</td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="ondanka-jimu">
+          <td><span class="dot" style="background:var(--c8);display:inline-block;margin-right:6px"></span>壱岐市地球温暖化対策実行計画（事務事業編）<span class="todo" title="未調査の項目があります">未</span></td>
+          <td class="per"><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>策定義務</td>
+          <td>環境衛生課 環境衛生班</td>
+          <td>不明</td>
+        </tr>
+        <tr data-id="ippan-haiki">
+          <td><span class="dot" style="background:var(--c8);display:inline-block;margin-right:6px"></span><a href="https://www.city.iki.nagasaki.jp/soshiki/kankyo/gomi/14497.html" target="_blank" rel="noopener">壱岐市一般廃棄物処理基本計画</a></td>
+          <td class="per">令和2〜令和16年度<br><span class="mut">2020〜2034年度</span></td>
+          <td>部門別基本</td>
+          <td>策定義務</td>
+          <td>環境衛生課 廃棄物対策班</td>
+          <td>計画期間中</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="lsec">
+    <h3>国・長崎県<b>9件</b></h3>
+    <div class="tblwrap"><table class="list">
+      <thead><tr><th>計画名</th><th>計画期間</th><th>階層</th><th>法定性</th><th>所管</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr data-id="pref-fukushi-hoken-6">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/doc/46393.html" target="_blank" rel="noopener">第6期長崎県福祉保健総合計画「ながさき“ほっと”プラン」</a></td>
+          <td class="per">令和8〜令和12年度<br><span class="mut">2026〜2030年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="pref-saihan-2">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/bunrui/anzen-anshin/anzen-anshinmachidukuri/anshin-anzenmachidukurijigyo/saihan/preventionplan/" target="_blank" rel="noopener">第二次長崎県再犯防止推進計画</a></td>
+          <td class="per">令和8〜令和12年度<br><span class="mut">2026〜2030年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="pref-shougai-kihon-5">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/doc/page-658128.html" target="_blank" rel="noopener">長崎県障害者基本計画（第5次）</a></td>
+          <td class="per">令和6〜令和10年度<br><span class="mut">2024〜2028年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="pref-shougai-fukushi-7">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/doc/page-659919.html" target="_blank" rel="noopener">第7期長崎県障害福祉計画・第3期長崎県障害児福祉計画</a></td>
+          <td class="per">令和6〜令和8年度<br><span class="mut">2024〜2026年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="pref-chouju-9">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/fukushi/korei-kaigohoken/keikaku-koreisha/fukushikeikaku/" target="_blank" rel="noopener">ながさき長寿いきいきプラン（第9期）</a></td>
+          <td class="per">令和6〜令和8年度<br><span class="mut">2024〜2026年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="pref-kosodate-jourei">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/kekkon-nishin-shusan-kosodate/jorei-keikaku-gaiyo/jorei-keikaku/kosodatekeikaku27-31/" target="_blank" rel="noopener">長崎県子育て条例行動計画</a></td>
+          <td class="per">令和7〜令和11年度<br><span class="mut">2025〜2029年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="pref-kenkou-21-3">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/doc/page-661413.html" target="_blank" rel="noopener">健康ながさき21（第3次）</a></td>
+          <td class="per">令和6〜令和17年度<br><span class="mut">2024〜2035年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>計画期間中</td>
+        </tr>
+        <tr data-id="pref-jisatsu-4">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span><a href="https://www.pref.nagasaki.jp/bunrui/hukushi-hoken/jisatsutaisaku/jisatsutaisaku/jisatsu/zisatutaisakukeikaku/" target="_blank" rel="noopener">第4期長崎県自殺総合対策5カ年計画</a></td>
+          <td class="per">令和4〜令和8年度<br><span class="mut">2022〜2026年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>満了が近い</td>
+        </tr>
+        <tr data-id="pref-kodomo-dokusho-5">
+          <td><span class="dot" style="background:var(--muted);display:inline-block;margin-right:6px"></span>第五次長崎県子ども読書活動推進計画</td>
+          <td class="per">令和6〜令和10年度<br><span class="mut">2024〜2028年度</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td><span class="unk">未確認</span></td>
+          <td>計画期間中</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+<footer>
+  このページは <a href="https://github.com/ikilab-org/iki-keikaku/blob/main/data/plans.yml">data/plans.yml</a> から
+  <a href="https://github.com/ikilab-org/iki-keikaku/blob/main/tools/build.mjs">tools/build.mjs</a> で生成しています。
+  調査基準日 2026-08-12／データ更新 2026-08-13。<br>
+  <strong>これは壱岐市の公式資料ではありません。</strong> 市・県・国が公表している資料をもとに IKILAB が独立して整理したものです。
+  誤りにお気づきの場合は <a href="https://github.com/ikilab-org/iki-keikaku/issues">Issue</a> へお知らせください。<br>
+  <a href="../../about/license/">ライセンス</a>　／　運営：<a href="https://ikilab.org">IKILAB</a>　／
+  文章・図表・データは <a href="https://creativecommons.org/licenses/by/4.0/deed.ja">CC BY 4.0</a>、コードは
+  <a href="https://opensource.org/licenses/MIT">MIT</a>。引用元の公表資料の権利は各機関に帰属します。
+</footer>
+</div>
+<script>
+document.getElementById('tg').addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const sysDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const now = cur ? cur : (sysDark?'dark':'light');
+  document.documentElement.setAttribute('data-theme', now==='dark'?'light':'dark');
+});
+</script>
+</body>
+</html>
