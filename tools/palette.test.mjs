@@ -1,6 +1,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { cssBlocks, readPalette } from './palette.mjs'
+import { parseYaml } from './yaml.mjs'
 
 test('入れ子の @media の中の :root も1ブロックとして取れる', () => {
   const css = `
@@ -61,6 +63,10 @@ test('light の slot は CUD の推奨配色の値になっている', () => {
 
 test('分野の数だけ slot がある', () => {
   // domains を9つ目に増やしたら、このテストが先に落ちて配色の再検証を促す。
+  // palette.css の中だけを数えても domains は増えないので、plans.yml と突き合わせる。
   const { slots } = readPalette()
-  assert.ok(Object.keys(slots).length >= 8)
+  const doc = parseYaml(readFileSync(new URL('../data/plans.yml', import.meta.url), 'utf8'))
+  for (const [key, def] of Object.entries(doc.domains)) {
+    assert.ok(slots[def.slot], `domains.${key} の slot ${def.slot} に色がありません`)
+  }
 })
