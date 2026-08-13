@@ -182,7 +182,7 @@ export function timelineSection(m) {
     const track = (inner) => `<div class="gtrack" style="grid-template-columns:repeat(${cols},1fr);--cols:${cols}">`
       + `<div class="nowline" style="left:${nowPct.toFixed(2)}%"></div>${inner}</div>`
     if (kind !== 'range') {
-      const text = kind === 'zuiji' ? '定期的に改定' : '情報確認待ち'
+      const text = kind === 'zuiji' ? '期間を定めず随時修正' : '計画期間を確認できていない'
       return `<div class="grow">${label}${track(`<div class="bar dash">${esc(text)}</div>`)}</div>`
     }
     const a = p.period.start - Y0 + 1
