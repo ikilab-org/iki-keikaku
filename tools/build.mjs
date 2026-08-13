@@ -96,6 +96,24 @@ section > .hd{margin-bottom:16px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 footer{color:var(--muted);font-size:12px;padding:8px 4px 0;line-height:1.9}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.tier{border:1px solid var(--ring);border-radius:12px;padding:12px 14px;background:var(--page)}
+.tier .tl{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:2px;
+  display:flex;justify-content:space-between;gap:10px}
+.tier .tl b{font-weight:600;color:var(--ink2);font-variant-numeric:tabular-nums}
+.tier .tt{font-size:15px;font-weight:600}
+.tier .td{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.arrow{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);
+  font-size:11.5px;padding:7px 0}
+.arrow::before,.arrow::after{content:"";height:1px;width:34px;background:var(--axis)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.chip{font-size:12px;padding:4px 10px;border-radius:8px;border:1px solid var(--ring);background:var(--surface);
+  display:inline-flex;align-items:center;gap:6px}
+.bands{display:flex;flex-direction:column;gap:0}
+table.rel{border-collapse:collapse;width:100%;margin-top:14px;font-size:13px}
+table.rel th,table.rel td{padding:7px 10px;border-bottom:1px solid var(--grid);text-align:left}
+table.rel th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;
+  border-bottom:1px solid var(--axis);white-space:nowrap}
+table.rel td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 `.trim()
 
 const THEME_JS = `
@@ -139,6 +157,7 @@ export function buildPage(doc) {
     '<div class="wrap">',
     headerBlock(),
     statsSection(m),
+    taikeiSection(m),
     // Task 4〜6でここにセクションを足します
     footerBlock(m),
     '</div>',
@@ -180,6 +199,51 @@ function statsSection(m) {
   </div>
   <p class="mut" style="margin-top:12px">調査基準日 ${esc(m.meta.survey_date)}／データ更新 ${esc(m.meta.updated)}。
   収録の範囲と除外の基準は <a href="https://github.com/ikilab-org/iki-keikaku/blob/main/data/schema.md">data/schema.md</a> にあります。</p>
+</section>`
+}
+
+export function taikeiSection(m) {
+  const bands = m.bands.map((b, i) => {
+    const chips = b.plans.map((p) => `<span class="chip"><span class="dot" style="background:${colorOf(p, m.domains)}"></span>`
+      + `${esc(p.name)}${p.todo ? '<span class="todo" title="未調査の項目があります">未</span>' : ''}</span>`).join('\n        ')
+    const arrow = b.arrow && i < m.bands.length - 1 ? `\n    <div class="arrow">${esc(b.arrow)}</div>` : ''
+    return `    <div class="tier" data-band-count="${b.plans.length}">
+      <div class="tl"><span>${esc(b.label)}</span><b>${b.plans.length}件</b></div>
+      <div class="td">${esc(b.note)}</div>
+      <div class="chips">
+        ${chips}
+      </div>
+    </div>${arrow}`
+  }).join('\n')
+
+  const legend = Object.entries(m.domains)
+    .sort((a, b) => a[1].slot - b[1].slot)
+    .map(([, def]) => `<span><i class="dot" style="background:var(--c${def.slot})"></i>${esc(def.label)}</span>`)
+    .join('\n    ')
+
+  const rel = m.relations.map((r) => `      <tr><td>${esc(r.label)}</td><td class="n">${r.plans} / ${r.total}</td><td class="n">${r.edges}</td></tr>`).join('\n')
+
+  return `<section>
+  <div class="hd"><h2>体系</h2>
+  <p class="sub">帯の順序は <code>tier</code>（位置づけの階層）です。<strong>個々の計画のあいだに線は引いていません。</strong>
+  明示的な関係はまだ本数が薄く、線にすると「関係が無い」のか「まだ調べていない」のかが区別できなくなるためです。
+  分かっている関係は下の表に本数で示します。</p></div>
+  <div class="bands">
+${bands}
+  </div>
+  <div class="legend">
+    ${legend}
+    <span><i class="dot" style="background:var(--muted)"></i>分野の割り当てなし（国・長崎県）</span>
+  </div>
+  <p class="mut" style="margin-top:9px">凡例のほか、<span style="font-size:10px;line-height:1.6;padding:0 4px;border-radius:4px;border:1px solid var(--warn);color:var(--ink2);white-space:nowrap">未</span>印は未調査の項目がある計画です。</p>
+  <h3 style="font-size:14px;margin:22px 0 0;color:var(--ink2)">分かっている関係</h3>
+  <p class="mut" style="margin:2px 0 0">分母は収録件数。<strong>本数の少なさは、関係が無いことではなく調査が進んでいないことを表します。</strong></p>
+  <table class="rel">
+    <thead><tr><th>関係</th><th class="n">持つ計画</th><th class="n">延べ本数</th></tr></thead>
+    <tbody>
+${rel}
+    </tbody>
+  </table>
 </section>`
 }
 
