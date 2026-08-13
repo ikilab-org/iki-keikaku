@@ -18,6 +18,7 @@
 <meta property="og:image:alt" content="国・長崎県・第4次総合計画・第3次地域福祉計画・分野別個別計画の階層体系図">
 <meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og-fukushi.png">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../assets/palette.css">
 <style>
 :root{
   color-scheme: light;
@@ -25,8 +26,6 @@
   --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
   --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
   --wash:rgba(11,11,11,0.035);
-  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100;
-  --c5:#e87ba4; --c6:#008300; --c7:#4a3aa7;
   --warn:#fab219; --crit:#d03b3b; --good:#0ca30c;
 }
 :root[data-theme="dark"]{
@@ -35,8 +34,6 @@
   --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
   --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
   --wash:rgba(255,255,255,0.05);
-  --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500;
-  --c5:#d55181; --c6:#008300; --c7:#9085e9;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -45,8 +42,6 @@
     --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
     --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
     --wash:rgba(255,255,255,0.05);
-    --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500;
-    --c5:#d55181; --c6:#008300; --c7:#9085e9;
   }
 }
 *{box-sizing:border-box}
@@ -95,7 +90,7 @@ section > .hd{margin-bottom:16px}
 .tier .tt{font-size:15px;font-weight:600}
 .tier .td{font-size:12.5px;color:var(--ink2);margin-top:3px}
 .tier.hub{border-width:2px;border-color:var(--c1);background:color-mix(in srgb,var(--c1) 7%,var(--page))}
-.tier.top2{border-color:var(--c7);border-left:5px solid var(--c7)}
+.tier.top2{border-color:var(--muted);border-left:5px solid var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
 .chip{font-size:12px;padding:4px 10px;border-radius:8px;border:1px solid var(--ring);background:var(--surface);
   display:inline-flex;align-items:center;gap:6px}
@@ -386,7 +381,7 @@ const CAT={
   kodomo:{c:'var(--c4)',n:'こども・子育て'},
   iryo  :{c:'var(--c5)',n:'医療保険・保健事業'},
   kenko :{c:'var(--c6)',n:'健康づくり・自殺対策'},
-  other :{c:'var(--c7)',n:'上位・関連行政計画'}
+  other :{c:'var(--muted)',n:'上位・関連行政計画'}
 };
 
 const CITY=[

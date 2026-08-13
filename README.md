@@ -17,6 +17,7 @@
 | ページ | 内容 |
 |---|---|
 | [`/`](index.html) | ハブ。分野ごとの入口 |
+| [`/plans/all/`](plans/all/) | **全計画76件の俯瞰**（市66・社協1・県9） — 位置づけの階層・計画期間・分野別の一覧。`data/plans.yml` から生成 |
 | [`/plans/fukushi/`](plans/fukushi/) | **地域福祉計画と関連計画の体系整理** — 国・長崎県・市の階層、計画期間タイムライン、一覧、地域福祉計画と個別計画の対応 |
 | [`/plans/kaigo-7-9/`](plans/kaigo-7-9/) | **介護保険事業計画 第7期・第8期の検証** — 前提 → 計画 → 実施 → 成果。実績は第9期計画・決算・統計から取っている |
 | [`/about/license/`](about/license/) | ライセンスと、その選択理由。クレジットの記載例つき |
@@ -34,13 +35,14 @@
 設置条例の3系統でも交差検証し、洗い出しの漏れを確認しました。巡回・交差検証の記録は
 [`sources/POLICY.md`](sources/POLICY.md) の巡回台帳を参照してください。
 
-`data/plans.yml` には未調査の項目が `todo:`（28件）付きで残っており、`node tools/expiring.mjs` や
+`data/plans.yml` には未調査の項目が `todo:`（29件）付きで残っており、`node tools/expiring.mjs` や
 `node tools/validate.mjs` で一覧できます。
 
 これからの優先順位:
 
 1. **残る `todo:` の解消。** 計画期間・所管課など、巡回時点では確認しきれなかった項目です
-2. **フェーズ2 第2段階（下記）への着手。** `data/plans.yml` から図表を自動生成する仕組みに移行します
+2. **分野別ページの拡充。** 全計画の俯瞰（`plans/all/`）ができたので、次は改定期が近い計画から
+   分野ごとの掘り下げページを増やしていきます（詳細は [`/`](index.html) の「これから増やすもの」）
 
 ---
 
@@ -50,6 +52,7 @@
 .
 ├── index.html              ハブページ
 ├── plans/                  分野ごとのマップ（1ディレクトリ＝1ページ、単一HTML）
+│   ├── all/                ★ 全計画の俯瞰（data/plans.yml から生成）
 │   ├── fukushi/
 │   └── kaigo-7-9/
 ├── about/
@@ -60,7 +63,8 @@
 ├── sources/
 │   ├── POLICY.md           出典URLの寿命管理・スナップショットの方針
 │   └── MANIFEST.md         出典台帳
-├── assets/                 OGP画像（1200×630）
+├── assets/
+│   └── palette.css         配色（CUD 8色）。色の値を持つ唯一の場所
 ├── tools/
 │   ├── linkcheck.mjs       出典URLの死活チェック
 │   ├── expiring.mjs        満了・パブコメが近い計画の検出
@@ -83,19 +87,24 @@
 ### data/plans.yml が中心
 
 計画の名称・期間・根拠法・所管課・出典URLは、すべてここに集約しています。
-現時点では HTML は手書きですが、**フェーズ2としてこの YAML から図表を生成する**設計にしてあります（下記）。
+`plans/all/` はこの YAML から生成しています。分野別ページ（`plans/fukushi/` `plans/kaigo-7-9/`）は
+手書きのままです。生成物は網羅的で常に最新な代わりに記述が薄くなるので、
+**俯瞰は生成、掘り下げは手書き**と役割を分けています。
 
-いま時点で YAML を読んでいるのは次の4つです。週次・月次でCIが回るのは `linkcheck` と `expiring` の2つで、
-`validate` と `manifest` はデータ整備が一段落するまで手動での実行です（背景は下記「フェーズ2」参照）。
+いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次）・`expiring`（月次）・
+`build --check` と `validate`（`data/plans.yml` などへの push 時）です。
+`manifest` は手動での実行です。
 
 ```bash
+node tools/build.mjs                      # plans/all/index.html を生成（生成物はコミットする）
+node tools/build.mjs --check              # 生成し忘れを検出（CIが実行）
 node tools/linkcheck.mjs                  # 出典URLの死活を確認（週次でCIが実行）
 node tools/expiring.mjs                   # 満了・パブコメが近い計画を検出（月次でCIが実行）
 node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格を検査（error 0件が必須）
 node tools/manifest.mjs                   # 出典台帳（sources/MANIFEST.md）の未登録を検出
 ```
 
-ツール本体（上記4つ）は追加の依存なしで動き、**Node 18 以降**で動作します。
+ツール本体（上記5つ）は追加の依存なしで動き、**Node 18 以降**で動作します。
 単体テスト（`node --test`、リポジトリ直下で実行）は Node 標準の `node:test` を使います。
 `node --test` は Node 18.1 以降で動きますが、Node 20 で安定版になりました。18系では experimental の警告が出ます。
 CI（`.github/workflows/`）も `actions/setup-node@v4` で `node-version: '20'` を指定しています。
@@ -173,13 +182,17 @@ DNSが引けるようになる前にカスタムドメインを設定すると�
   `tools/manifest.mjs`（出典台帳の未登録検出）を新設
 - **組織ごとの巡回で市の全機関を巡り終え、収録件数は31件から76件になった。** `domains`（大分類）8つを
   確定し、鉤括弧の中の引用も原本と照合した（詳細は「これから増やすもの」・`CHANGELOG.md` を参照）
-- 残る `todo:`（28件）の解消は継続中
+- 残る `todo:`（29件）の解消は継続中
 
-### 第2段階（未着手）: YAML から図表を生成する
+### 第2段階（完了）: 全計画の俯瞰ページを生成する
 
-1. `tools/build.mjs` を書き、YAML から **階層体系図・タイムライン・一覧表** を生成する
-2. `plans/*/index.html` は「生成された共通パーツ＋そのページ固有の分析」という構成にする
-3. 共通スタイルを `assets/base.css` に切り出す
+`tools/build.mjs` が `data/plans.yml` から `plans/all/index.html` を生成します。
+設計は [`docs/design/2026-08-13-zenkeikaku-zuhyou.md`](docs/design/2026-08-13-zenkeikaku-zuhyou.md)、
+実装計画は [`docs/design/2026-08-13-zenkeikaku-zuhyou-plan.md`](docs/design/2026-08-13-zenkeikaku-zuhyou-plan.md)。
+
+生成物はリポジトリにコミットします。GitHub Pages にビルド工程を入れずに済み、
+計画を1本足したときに図がどう変わるかが差分でレビューできるためです。
+`data/plans.yml` を変えたのに生成し忘れると、CI の `build --check` が落ちます。
 
 こうすると、**計画を1本追加＝YAMLを数行足すだけ**になり、他自治体がフォークして自分の市版を作ることもできます。
 

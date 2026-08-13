@@ -18,6 +18,7 @@
 <meta property="og:image:alt" content="介護保険の給付費が計画をどれだけ上回った・下回ったかを示す棒グラフ（H30〜R4年度）">
 <meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og-kaigo.png">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../assets/palette.css">
 <style>
 :root{
   color-scheme: light;
@@ -25,8 +26,7 @@
   --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
   --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
   --wash:rgba(11,11,11,0.035);
-  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a;
-  --dpos:#2a78d6; --dneg:#e34948; --dmid:#f0efec;
+  --dpos:var(--c1); --dneg:#e34948; --dmid:#f0efec;
   --warn:#fab219; --crit:#d03b3b; --good:#0ca30c; --goodtx:#006300;
 }
 :root[data-theme="dark"]{
@@ -35,8 +35,7 @@
   --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
   --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
   --wash:rgba(255,255,255,0.05);
-  --c1:#3987e5; --c2:#d95926; --c3:#199e70;
-  --dpos:#3987e5; --dneg:#e66767; --dmid:#383835;
+  --dpos:var(--c1); --dneg:#e66767; --dmid:#383835;
   --goodtx:#0ca30c;
 }
 @media (prefers-color-scheme: dark){
@@ -46,8 +45,7 @@
     --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
     --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
     --wash:rgba(255,255,255,0.05);
-    --c1:#3987e5; --c2:#d95926; --c3:#199e70;
-    --dpos:#3987e5; --dneg:#e66767; --dmid:#383835;
+    --dpos:var(--c1); --dneg:#e66767; --dmid:#383835;
     --goodtx:#0ca30c;
   }
 }
