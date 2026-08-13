@@ -7,8 +7,11 @@
  * 年度なので、改元をまたぐ年は年度の始まりで判定します。
  * 2019年度は令和元年度（2019年4月時点で令和）、1989年度は平成元年度です。
  */
-export const fiscalYearLabel = (y) => {
-  if (y >= 2019) return `令和${y - 2018}年度（${y}年度）`
-  if (y >= 1989) return `平成${y - 1988}年度（${y}年度）`
-  return `昭和${y - 1925}年度（${y}年度）`
+export const fiscalYearShort = (y) => {
+  if (y >= 2019) return `令和${y - 2018}`
+  if (y >= 1989) return `平成${y - 1988}`
+  return `昭和${y - 1925}`
 }
+
+/** 図の軸には長すぎるので、軸には fiscalYearShort のほうを使います。 */
+export const fiscalYearLabel = (y) => `${fiscalYearShort(y)}年度（${y}年度）`
