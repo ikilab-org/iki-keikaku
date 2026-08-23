@@ -20,7 +20,7 @@ test('帯は level を tier より先に見る', () => {
 })
 
 test('tier が無い市の計画は専用の帯に入る', () => {
-  // 落とすと「76件すべてが現れる」が崩れ、未調査が見えなくなる。
+  // 落とすと「全件が現れる」が崩れ、未調査が見えなくなる。
   assert.equal(bandOf({ level: 'municipal' }), 'tier-unknown')
 })
 

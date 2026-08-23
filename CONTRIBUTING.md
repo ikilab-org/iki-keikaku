@@ -28,6 +28,8 @@ GitHub アカウントがなくても、ikilab.org の連絡先からご連絡�
 |---|---|
 | 計画のメタデータ（期間・根拠法・所管課・URL） | `data/plans.yml` |
 | ページ本文・図表 | `plans/<分野>/index.html` |
+| ハブの文言・カード | `index.html` |
+| 全計画の俯瞰（`plans/all/`） | 直接編集しない。`data/plans.yml` を直して `node tools/build.mjs` で生成する |
 | 出典の方針 | `sources/POLICY.md` |
 | 出典台帳 | `sources/MANIFEST.md` |
 | ライセンスの適用範囲 | `NOTICE.md`（`LICENSE` / `LICENSE-CODE` は条文そのものなので編集しない） |
@@ -36,6 +38,7 @@ GitHub アカウントがなくても、ikilab.org の連絡先からご連絡�
 
 ```bash
 node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格の検査
+node tools/build.mjs                      # plans/all/index.html を生成し直す（生成物もコミットする）
 node tools/linkcheck.mjs                  # 追加・変更したURLが生きているか
 node tools/expiring.mjs                   # 期間の入力ミスがないか
 node --test                               # ツール自身の単体テスト（リポジトリ直下で実行）
@@ -46,6 +49,17 @@ node --test                               # ツール自身の単体テスト（
 
 `data/plans.yml` に出典（`url` / `pdf` / `sources`）を追加・変更したら、`node tools/manifest.mjs` で
 [`sources/MANIFEST.md`](sources/MANIFEST.md)（出典台帳）に未登録がないか確認してください。
+
+**計画を足す・減らしたら、手書きの件数も直してください。** `plans/all/` は生成物なので自動で追随しますが、
+ハブと README の件数は手書きです。生成物だけが正しくなるとページ間で数が食い違い、`build --check` でも
+気づけません。次の3か所を `node tools/validate.mjs` の出力（総数）と `plans/all/index.html` の
+分野別の見出し（分野ごとの件数）に合わせます。
+
+| 直す場所 | 何の数字か |
+|---|---|
+| `index.html` の `plans/all/` カード | 見出しと本文の総数、機関別の内訳（市・社協・県）、分野タグの件数 |
+| `README.md`「いま公開しているもの」の表 | 総数と機関別の内訳 |
+| `README.md`「これから増やすもの」 | 総数と、残る `todo:` の件数（`node tools/expiring.mjs` の「未調査の項目」の数） |
 
 ### 守ってほしいこと
 

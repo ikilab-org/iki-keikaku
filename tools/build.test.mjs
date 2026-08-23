@@ -100,13 +100,13 @@ test('見出しと説明文の件数がデータから来ている', () => {
     `説明文の内訳の和が総数と合いません: ${desc}`)
 })
 
-test('体系図に76件すべてが現れる', () => {
+test('体系図に全件が現れる', () => {
   for (const p of doc.plans) {
     assert.ok(taikei.includes(esc(p.name)), `体系図に出ていません: ${p.id} ${p.name}`)
   }
 })
 
-test('体系図の帯の件数の合計が76件になる', () => {
+test('体系図の帯の件数の合計が全件と一致する', () => {
   const counts = [...taikei.matchAll(/data-band-count="(\d+)"/g)].map((m) => Number(m[1]))
   assert.equal(counts.length, model.bands.length)
   assert.equal(counts.reduce((a, b) => a + b, 0), doc.plans.length)
@@ -157,7 +157,7 @@ test('分野色の凡例が8分野そろっている', () => {
   }
 })
 
-test('タイムラインに76件すべてが現れる', () => {
+test('タイムラインに全件が現れる', () => {
   for (const p of doc.plans) {
     assert.ok(timeline.includes(esc(p.name)), `タイムラインに出ていません: ${p.id} ${p.name}`)
   }
@@ -204,7 +204,7 @@ test('横に長い図はページ本体ではなく図の中でスクロール�
   assert.ok(timeline.includes('class="tlwrap"'))
 })
 
-test('一覧に76件すべてが行として現れる', () => {
+test('一覧に全件が行として現れる', () => {
   for (const p of doc.plans) {
     assert.ok(list.includes(esc(p.name)), `一覧に出ていません: ${p.id} ${p.name}`)
   }
