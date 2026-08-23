@@ -336,6 +336,11 @@ export function buildPage(doc) {
     '<meta property="og:url" content="https://keikaku.ikilab.org/plans/all/">',
     '<meta property="og:locale" content="ja_JP">',
     '<meta property="og:image" content="https://keikaku.ikilab.org/assets/og.png">',
+    '<meta property="og:image:width" content="1200">',
+    '<meta property="og:image:height" content="630">',
+    // 他の4ページと同じ og.png を使うので、alt も同じ文言にそろえる
+    '<meta property="og:image:alt" content="壱岐市の計画マップ。国・長崎県・市の階層と、地域福祉計画を軸にした分野別計画の関係図">',
+    '<meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og.png">',
     '<meta name="twitter:card" content="summary_large_image">',
     '<link rel="stylesheet" href="../../assets/palette.css">',
     '<style>',

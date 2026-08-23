@@ -41,7 +41,7 @@ node tools/validate.mjs --fail-on-error   # 参照整合・enum・骨格の検�
 node tools/build.mjs                      # plans/all/index.html を生成し直す（生成物もコミットする）
 node tools/linkcheck.mjs                  # 追加・変更したURLが生きているか
 node tools/expiring.mjs                   # 期間の入力ミスがないか
-node --test                               # ツール自身の単体テスト（リポジトリ直下で実行）
+node --test                               # ツールとページの骨格の検査（リポジトリ直下で実行）
 ```
 
 `validate.mjs` の **error は必ず 0件にしてください。** 未調査の項目は、フィールドを空欄にせず書かないことにして
@@ -60,6 +60,47 @@ node --test                               # ツール自身の単体テスト（
 | `index.html` の `plans/all/` カード | 見出しと本文の総数、機関別の内訳（市・社協・県）、分野タグの件数 |
 | `README.md`「いま公開しているもの」の表 | 総数と機関別の内訳 |
 | `README.md`「これから増やすもの」 | 総数と、残る `todo:` の件数（`node tools/expiring.mjs` の「未調査の項目」の数） |
+
+### 新しいページを足す
+
+`plans/<slug>/index.html` の1ファイルで完結させます。ビルド工程は無く、外部から読むのは
+`assets/palette.css` だけです（`plans/all/` だけは例外で、`tools/build.mjs` の生成物です）。
+既存ページをひな形にしてください。[`plans/kaigo-7-9/index.html`](plans/kaigo-7-9/index.html) が
+図表・出典・注記まで一番そろっています。
+
+**ページの中。** 次は `node --test`（`tools/pages.test.mjs`）が検査します。
+
+- `<html lang="ja">`・charset・viewport
+- `<title>` が `… | 壱岐市 計画マップ` で終わる
+- `canonical` と `og:url` が `https://keikaku.ikilab.org/plans/<slug>/`
+  （**末尾スラッシュ形。`index.html` は書かない**）
+- OGP 一式（`og:type` は `article`、`og:site_name`・`og:title`・`og:description`・`og:locale`・
+  `og:image` と width / height / alt・`twitter:image`・`twitter:card`）。`og:image` は絶対URLで、
+  ファイルが実在すること
+- `assets/palette.css` を正しい深さで読み、**ページ側で `--c1`〜`--c8` を定義しない**
+- ハブ（`index.html`）からリンクされていること
+
+検査していませんが、既存ページでそろえているものです。
+
+- ページ冒頭に「← 壱岐市 計画マップ」のバッジ、`h1`、一文の要約、**調査基準日**と単位・定義の断り、
+  表示切替ボタン
+- フッタに「主な出典（YYYY年M月D日確認）」と、ライセンスの1行
+- `@media print` で背景を白にし、表示切替ボタンを隠す
+
+**ページの外。** 6か所あります。
+
+| やること | 場所 |
+|---|---|
+| 扱う計画が入っていること | `data/plans.yml`（掘り下げは手書きでも、計画の真実は YAML 側） |
+| カードを1枚足す | `index.html` |
+| 「いま公開しているもの」の表に1行足す | `README.md` |
+| OGP画像を作る | `tools/og/cards.html` にカードを足し、`tools/og/build.mjs` の `CARDS` に `{ id, out }` を追加して `node tools/og/build.mjs`（`npm i -D playwright sharp` が要る） |
+| 出典を台帳に登録する | `sources/MANIFEST.md`（[`sources/POLICY.md`](sources/POLICY.md)「3. 記録すること」） |
+| 1行足す | `CHANGELOG.md` |
+
+**本文中のリンクは死活チェックの対象外です。** `tools/linkcheck.mjs` が見るのは `data/plans.yml` の
+`url` / `pdf` / `sources` だけで、HTMLは読みません。ページにしか出てこない出典は、消えても自動では
+気づけません。主要なものは `data/plans.yml` 側にも置いてください。
 
 ### 守ってほしいこと
 
