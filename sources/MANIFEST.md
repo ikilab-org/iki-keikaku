@@ -30,6 +30,12 @@
 | 市議会 会議録一覧 | `/soshiki/gikai_jimukyoku/shigikai/kaigiroku/index.html` | 高 | 2026-08-10 | ― | 各年9月会議＝決算説明 |
 | パブリックコメント実施予定 | `/shisei/koho_kocho/comment/15343.html` | 中 | 2026-08-11 | ― | 5計画の実施予定 |
 | 統計データ集 | `/soshiki/seisaku_kikakuka/toukeizyouhou/3207.html` | 中 | 2026-08-10 | ― | 住基人口・世帯数 |
+| 壱岐市地域公共交通計画（掲載ページ・組織別） | `/soshiki/somuka/soumuhan/kotsutaisaku/15733.html` | 中 | 2026-08-23 | ― | 「策定しました」の記載（ページ更新日 2026-04-03） |
+| 同（掲載ページ・分野別。同一記事の二重掲載） | `/shisei/machidukuri/keikaku/15734.html` | 中 | 2026-08-23 | ― | 上と同内容。別ページID |
+| 同 本体PDF | `/material/files/group/3/tiikikoukyoukoutuukeikaku.pdf` | 高 | 2026-08-23 | ○ | 111頁・PDF作成日2026-03-25・SHA-256 `a4823adf7ce863ebaef90612e44bd00d5108a3eac7cbb8e93f365209cf02f910`。p.17-18（輸送人員）、p.20-21（系統別）、p.23、p.25-26、p.36、p.39、p.42-43（評価指標）。**p.36・p.43 に「（案）」付きの見出しが表示されたまま残る。表紙の「素 案」はテキスト層のみで非表示** |
+| 「壱岐市デマンド交通実証運行支援業務」公募型プロポーザルの結果 | `/soshiki/somuka/soumuhan/kotsutaisaku/16144.html` | 中 | 2026-08-23 | ― | 事業者選定の結果（2026-07-28公表） |
+| 交通対策（総務課 総務班・分類トップ） | `/soshiki/somuka/soumuhan/kotsutaisaku/index.html` | 中 | 2026-08-23 | ― | 上記各記事の親カテゴリ |
+| 壱岐市デマンド交通実証運行支援業務 公募型プロポーザル実施要領（令和8年6月） | **URL未記録** | 要判定 | 2026-08-23 | ― | 実証事業の事業費・運行経費・見込利用者数・運賃 |
 | 第3次壱岐市男女共同参画計画策定支援業務仕様書 | `/material/files/group/49/R8-19siyousyo.pdf` | 低 | 2026-08-12 | ― | 計画期間（令和9～13年度）、根拠4法（男女共同参画社会基本法14条3項、DV防止法2条の3第3項、女性活躍推進法6条2項、女性支援新法8条3項） |
 | 第3次壱岐市男女共同参画計画策定支援業務プロポーザル結果 | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/16014.html` | 低 | 2026-08-12 | ― | 正式名称「第３次壱岐市男女共同参画計画」（「基本」を含まない）の確認 |
 | 著作権・免責事項 | `/3313.html` | 中 | 2026-08-11 | ― | 二次利用の記載なし |
@@ -167,4 +173,5 @@
 | 第7期介護保険事業計画（単独PDF） | `/material/files/group/38/ikisi_dai7kizigyoukeikaku.pdf` | 2026-08-10 | 議案書PDF（平成30年3月会議） |
 | 第8期介護保険事業計画（単独PDF） | `/material/files/group/38/5030421-1.pdf` | 2026-08-10 | 議案書PDF（令和3年3月会議） |
 | 健康ながさき21（第3次）個別ページ | `/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/661413.html` | 2026-08-11 | 移設先 `/doc/page-661413.html`（記事IDは同じ） |
+| 事務事業評価結果（所管別）令和6年度 | `/soshiki/eng/kyousou/seisaku/15106.html` | 2026-08-23 | **代替なし。**令和5年度 `/13589.html`・平成30年度 `/6249.html`・令和3年度 `/soshiki/seisaku_kikakuka/seisaku/11069.html` も同時に404。共創推進班の分類一覧に「政策評価」が無く、カテゴリごと外れたとみられる。個別事業評価調書の数値は公開時に取得した版による（`/plans/koutsuu/` Ⅵ章 8） |
 | 健康ながさき21（一覧・旧カテゴリ） | `/bunrui/hukushi-hoken/kenkodukuri/kenkonagasaki21/index.html` | 2026-08-11 | 移設先 `/bunrui/hukushi-hoken/kekodukuri/kekodukuri/kenkonagasaki21/`。旧URLは200を返すが本文が空 |

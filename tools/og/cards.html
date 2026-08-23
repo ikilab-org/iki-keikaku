@@ -64,6 +64,11 @@ body{background:#555;padding:24px;display:flex;flex-direction:column;gap:24px;al
 .sq{width:14px;height:14px;border-radius:4px}
 .yrs{display:flex;gap:16px;margin-top:2px}
 .yrs div{flex:1;text-align:center;font-size:17px;color:var(--ink2);font-weight:600}
+
+/* 公共交通カード用の折れ線 */
+.mini .ln{display:block;width:100%;height:200px;margin-top:16px;overflow:visible}
+.mini .lg b.big{font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.mini .lg b.big.up{color:var(--c2)}
 </style>
 </head>
 <body>
@@ -148,6 +153,34 @@ body{background:#555;padding:24px;display:flex;flex-direction:column;gap:24px;al
       <div class="lg">
         <span><i class="sq" style="background:var(--c1)"></i>計画超過</span>
         <span><i class="sq" style="background:var(--crit)"></i>計画未達</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =============== 地域公共交通 =============== -->
+<div class="card" id="og-koutsuu">
+  <div class="L">
+    <div>
+      <div class="eyebrow">壱岐市 計画マップ ／ 公共交通</div>
+      <div class="ttl sm">地域公共交通計画<br>1乗車あたりの<br>公費で読み直す</div>
+      <div class="lead">補助総額は+24%、輸送人員は▲40%。<br>1乗車あたりの公費は<br>228円 → 468円。</div>
+    </div>
+    <div class="foot"><span class="dom">keikaku.ikilab.org</span><span class="by">CC BY 4.0</span></div>
+  </div>
+  <div class="R">
+    <div class="mini">
+      <div class="cap">路線バスの1乗車あたり公費（円・推計）</div>
+      <svg class="ln" viewBox="0 0 560 200" role="img" aria-label="1乗車あたり公費が2015年度228円から2024年度468円へ上昇">
+        <path d="M0,200 L0.0,108.8 L62.2,108.8 L124.4,105.2 L186.7,97.6 L248.9,90.0 L311.1,41.6 L373.3,34.8 L435.6,46.0 L497.8,48.8 L560.0,12.8 L560,200 Z" fill="var(--c2)" opacity=".14"/>
+        <polyline points="0.0,108.8 62.2,108.8 124.4,105.2 186.7,97.6 248.9,90.0 311.1,41.6 373.3,34.8 435.6,46.0 497.8,48.8 560.0,12.8" fill="none" stroke="var(--c2)" stroke-width="5"
+          stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="0.0" cy="108.8" r="5" fill="var(--c2)"/><circle cx="62.2" cy="108.8" r="5" fill="var(--c2)"/><circle cx="124.4" cy="105.2" r="5" fill="var(--c2)"/><circle cx="186.7" cy="97.6" r="5" fill="var(--c2)"/><circle cx="248.9" cy="90.0" r="5" fill="var(--c2)"/><circle cx="311.1" cy="41.6" r="5" fill="var(--c2)"/><circle cx="373.3" cy="34.8" r="5" fill="var(--c2)"/><circle cx="435.6" cy="46.0" r="5" fill="var(--c2)"/><circle cx="497.8" cy="48.8" r="5" fill="var(--c2)"/><circle cx="560.0" cy="12.8" r="5" fill="var(--c2)"/>
+      </svg>
+      <div class="yrs"><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div></div>
+      <div class="lg">
+        <span><b class="big">228円</b>（2015年度）</span>
+        <span><b class="big up">468円</b>（2024年度）</span>
       </div>
     </div>
   </div>

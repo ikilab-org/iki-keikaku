@@ -8,8 +8,8 @@
 # スキーマは data/schema.md を参照。年度は西暦（2022 = 令和4年度）。
 
 meta:
-  updated: 2026-08-13
-  survey_date: 2026-08-13          # 最後に調査を行った日。個々の記載の確認日は sources/POLICY.md の巡回台帳を参照
+  updated: 2026-08-23
+  survey_date: 2026-08-23          # 最後に調査を行った日。個々の記載の確認日は sources/POLICY.md の巡回台帳を参照
   era_base: 2018                   # 令和元年 = 2019年。令和n年 = era_base + n
 
 # ---------------------------------------------------------------------------
@@ -451,7 +451,24 @@ plans:
     laws: [地域公共交通活性化再生法]
     department: 総務課 総務班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/15734.html
-    notes: 高齢者の通院・買物支援、免許返納、デマンド型交通の検討。
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/3/tiikikoukyoukoutuukeikaku.pdf
+    sources:
+      - label: 同（掲載ページ・組織別。分野別ページと同一記事の二重掲載）
+        url: https://www.city.iki.nagasaki.jp/soshiki/somuka/soumuhan/kotsutaisaku/15733.html
+        note: >-
+          総務課 総務班の「交通対策」配下。`url` の分野別ページ（15734）と同内容で、
+          ページIDだけが異なる。どちらかが落ちても片方から辿れるよう両方記録する。
+      - label: 「壱岐市デマンド交通実証運行支援業務」公募型プロポーザルの結果
+        url: https://www.city.iki.nagasaki.jp/soshiki/somuka/soumuhan/kotsutaisaku/16144.html
+        note: 2026-07-28公表。実証運行の事業者選定の結果（2026-08-23確認）。
+    notes: >-
+      高齢者の通院・買物支援、免許返納、デマンド型交通の検討。掲載ページ本文は
+      「『壱岐市地域公共交通計画（2026年～2031年）』を策定しました」（2026-08-23確認、
+      ページ更新日 2026年04月03日）。ただしリンクされている本体PDFには
+      **「（案）」付きの見出しが表示されたまま残る**（p.36 再編イメージ（案）、
+      p.43 評価指標と達成目標（案））。表紙にも「素 案」の文字がテキストとして残るが、
+      白で描画されるため表示はされない（111頁、PDF作成日2026-03-25、2026-08-23取得）。
+      確定版が別にあるかは未確認。深掘りページは `/plans/koutsuu/`。
 
   - id: koutsuu-ribenzoushin
     name: 壱岐市地域公共交通利便増進計画
