@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>壱岐市 公共施設等総合管理計画 ― 1人あたり面積とライフサイクルコスト | 壱岐市 計画マップ</title>
+<meta name="description" content="長崎県壱岐市の公共施設等総合管理計画について、15%削減目標を長期の2061年ではなく10年後の2036年で切って検算。計画自身の算定式に計画自身が併記する人口3系列を代入すると、面積を計画どおり減らしても1人あたりの床面積は現在より増える。あわせて費用推計に何が入っていないかを確認した。">
+<link rel="canonical" href="https://keikaku.ikilab.org/plans/shisetsu-2036/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="壱岐市 計画マップ">
+<meta property="og:title" content="壱岐市 公共施設等総合管理計画 ― 1人あたり面積とライフサイクルコスト">
+<meta property="og:description" content="面積を計画どおり11.25%減らしても、1人あたりは11.7㎡から13.78㎡へ。目標人口が達成された場合にのみ現状維持になる。">
+<meta property="og:url" content="https://keikaku.ikilab.org/plans/shisetsu-2036/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://keikaku.ikilab.org/assets/og-shisetsu-2036.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="1人あたり公共施設面積が2020年の11.7平方メートルから2036年の13.78平方メートルへ上昇することを示す折れ線グラフ">
+<meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og-shisetsu-2036.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../assets/palette.css">
+<style>
+:root{
+  color-scheme: light;
+  --ground:#f9f9f7; --surface:#fcfcfb; --sunken:#f1f0ec;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --line:#c3c2b7; --line-soft:#e1e0d9;
+  --accent:var(--c1); --accent-soft:rgba(11,11,11,0.05);
+  --flag:#b0561a; --flag-bg:rgba(11,11,11,0.035);
+  --shadow:0 1px 2px rgba(11,11,11,.06), 0 8px 24px -18px rgba(11,11,11,.35);
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#0d0d0d; --surface:#1a1a19; --sunken:#22221f;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --line:#383835; --line-soft:#2c2c2a;
+  --accent:var(--c1); --accent-soft:rgba(255,255,255,0.06);
+  --flag:#f07b22; --flag-bg:rgba(255,255,255,0.05);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --ground:#0d0d0d; --surface:#1a1a19; --sunken:#22221f;
+    --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+    --line:#383835; --line-soft:#2c2c2a;
+    --accent:var(--c1); --accent-soft:rgba(255,255,255,0.06);
+    --flag:#f07b22; --flag-bg:rgba(255,255,255,0.05);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+  }
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--ground); color:var(--ink); margin:0;
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;
+  font-size:16px; line-height:1.9; font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:53rem; margin:0 auto; padding:0 1.5rem 6rem;}
+.col{max-width:40rem;}
+
+/* ── 見出し ── */
+h1,h2,h3{text-wrap:balance; line-height:1.5;}
+h1{font-size:clamp(1.7rem,4.4vw,2.5rem); font-weight:900; letter-spacing:.01em; margin:0 0 1.2rem;}
+h2{
+  font-size:1.35rem; font-weight:700; margin:0; padding-bottom:.5rem;
+  border-bottom:2px solid var(--ink); display:inline-block;
+}
+h3{font-size:1.08rem; font-weight:700; margin:0 0 .1rem; color:var(--ink);}
+.eyebrow{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.7rem; font-weight:600;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin:0 0 .5rem;
+}
+
+/* ── レイアウト ── */
+section{display:flex; flex-direction:column; gap:1.15rem; margin-top:4rem;}
+section > .head{display:flex; flex-direction:column; gap:.2rem;}
+.sub{display:flex; flex-direction:column; gap:.7rem;}
+p{margin:0;}
+ul,ol{margin:0; padding-left:1.3em; display:flex; flex-direction:column; gap:.35rem;}
+strong{font-weight:700;}
+em{font-style:normal; background:linear-gradient(transparent 62%, var(--accent-soft) 62%);}
+
+/* ── ヘッダ ── */
+header{padding:4rem 0 0;}
+.kicker{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.72rem; letter-spacing:.14em;
+  color:var(--accent); font-weight:600; margin:0 0 1.4rem;
+  padding-bottom:1.2rem; border-bottom:1px solid var(--line);
+}
+.lede{font-size:1.02rem; color:var(--ink-2);}
+
+/* ── 免責 ── */
+.notice{
+  border-left:3px solid var(--accent); background:var(--surface);
+  padding:1rem 1.2rem; font-size:.9rem; color:var(--ink-2);
+  display:flex; flex-direction:column; gap:.55rem; border-radius:0 3px 3px 0;
+}
+.notice b{color:var(--ink);}
+
+/* ── 結論カード ── */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1px;
+  background:var(--line-soft); border:1px solid var(--line-soft);}
+.card{background:var(--surface); padding:1.1rem 1.2rem 1.25rem; display:flex; flex-direction:column; gap:.4rem;}
+.card .k{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.68rem; letter-spacing:.1em;
+  color:var(--muted); text-transform:uppercase;}
+.card .v{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:1.65rem; font-weight:600;
+  line-height:1.15; font-variant-numeric:tabular-nums; color:var(--accent);}
+.card .v.warn{color:var(--flag);}
+.card .d{font-size:.85rem; color:var(--ink-2); line-height:1.75;}
+
+/* ── 表 ── */
+.scroller{overflow-x:auto; border:1px solid var(--line-soft); background:var(--surface);}
+table{border-collapse:collapse; width:100%; font-size:.87rem; line-height:1.7;}
+th,td{padding:.55rem .8rem; text-align:left; border-bottom:1px solid var(--line-soft); vertical-align:top;}
+thead th{background:var(--sunken); font-weight:700; font-size:.78rem; color:var(--ink);
+  white-space:nowrap; border-bottom:1px solid var(--line);}
+tbody tr:last-child td{border-bottom:0;}
+td.n,th.n{text-align:right; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-variant-numeric:tabular-nums; white-space:nowrap;}
+tr.total td{background:var(--sunken); font-weight:700;}
+caption{caption-side:bottom; padding:.65rem .8rem; font-size:.78rem; color:var(--muted); text-align:left;}
+
+/* ── 図 ── */
+figure{margin:0; display:flex; flex-direction:column; gap:.7rem;}
+.plot{background:var(--surface); border:1px solid var(--line-soft); padding:.4rem .2rem 0; overflow-x:auto;}
+.plot svg{display:block; min-width:640px; width:100%; height:auto;}
+figcaption{font-size:.8rem; color:var(--muted); line-height:1.75;}
+.legend{display:flex; flex-wrap:wrap; gap:.35rem 1.3rem; font-size:.82rem;}
+.legend span{display:inline-flex; align-items:center; gap:.45rem; color:var(--ink-2);}
+.legend i{width:1.15rem; height:0; border-top-width:2.5px; border-top-style:solid; display:inline-block;}
+
+/* ── タグ ── */
+.tag{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.68rem; font-weight:600; letter-spacing:.05em;
+  padding:.1rem .4rem; border:1px solid var(--line); color:var(--muted); border-radius:2px; white-space:nowrap;}
+.tag.calc{color:var(--accent); border-color:var(--accent);}
+.tag.unk{color:var(--flag); border-color:var(--flag);}
+
+/* ── 引用・強調ブロック ── */
+.pull{
+  background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--flag);
+  padding:1rem 1.2rem; display:flex; flex-direction:column; gap:.6rem; font-size:.94rem;
+}
+.quote{border-left:2px solid var(--line); padding:.15rem 0 .15rem 1.1rem; color:var(--ink-2); font-size:.92rem;}
+
+/* ── 出典 ── */
+.src{font-size:.82rem; line-height:1.8;}
+.src td{vertical-align:top;}
+.src .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.75rem; color:var(--muted); word-break:break-all;}
+footer{margin-top:4.5rem; padding-top:1.5rem; border-top:1px solid var(--line);
+  font-size:.82rem; color:var(--muted); display:flex; flex-direction:column; gap:.4rem;}
+footer b{color:var(--ink-2); font-weight:700;}
+a{color:var(--accent);}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+@media (prefers-reduced-motion:no-preference){ .plot polyline{transition:none;} }
+.badge{display:inline-block;font-size:11.5px;letter-spacing:.06em;padding:3px 9px;
+  border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface);
+  margin:0 6px 14px 0;text-decoration:none}
+.badge.home:hover{border-color:var(--accent);color:var(--accent)}
+button.tg{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--line);
+  border-radius:8px;background:var(--surface);color:var(--ink-2);cursor:pointer}
+button.tg:hover{background:var(--accent-soft)}
+@media print{body{background:#fff}section{break-inside:avoid}button.tg{display:none}}
+header{padding:4rem 0 0;display:flex;justify-content:space-between;align-items:flex-start;
+  gap:16px;flex-wrap:wrap}
+header > div{flex:1 1 460px}
+header > button{flex:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <a href="../../" class="badge home">← 壱岐市 計画マップ</a><span class="badge">長崎県壱岐市 ／ 公共施設等総合管理計画</span>
+    <h1>1人あたり面積の推移と<br>ライフサイクルコスト（LCC）</h1>
+    <p class="lede">総合管理計画の削減目標を、長期目標の2061年ではなく<strong>10年後の2036年</strong>で切って検算した。計画自身の算定式に、計画自身が併記している3つの人口前提を代入すると、<em>面積を計画どおり減らしても1人あたりの床面積は現在より増える</em>という結果になる。あわせて、この計画の費用推計に何が入っていないかを確認した。</p>
+  </div>
+  <button class="tg" id="tg">◐ 表示切替</button>
+</header>
+
+<div class="notice" style="margin-top:2rem">
+  <p><b>本ページは公開資料のみを用いたIKILABの独立分析であり、壱岐市の見解ではありません。</b></p>
+  <p>計画に数値記載のない年次は、計画掲載値からの<b>線形補間</b>で推計しています。仮定と誤差の向きは各章に明記しました。<b>2036年は計画の目標年次ではありません</b>（第Ⅰ章）。</p>
+  <p>基準時点：人口は令和2年国勢調査、決算は令和2年度、施設面積は総合管理計画（令和4年3月改訂）策定時の集計です。<b>2026年8月現在の実態とは一致しません。</b></p>
+</div>
+
+<!-- 先に結論 -->
+<section>
+  <div class="head"><p class="eyebrow">Summary</p><h2>先に結論</h2></div>
+  <div class="cards">
+    <div class="card">
+      <span class="k">2036年の延床面積</span>
+      <span class="v">259,201㎡</span>
+      <span class="d">2041年15%削減の直線上に乗った場合。現在から <b>32,857㎡（11.25%）</b>の削減。</span>
+    </div>
+    <div class="card">
+      <span class="k">1人あたり／目標人口なら</span>
+      <span class="v">11.65㎡</span>
+      <span class="d">目標人口22,245人（補間）で、現在の11.7㎡をほぼ維持。<b>計画の設計どおり。</b></span>
+    </div>
+    <div class="card">
+      <span class="k">1人あたり／社人研準拠なら</span>
+      <span class="v warn">13.78㎡</span>
+      <span class="d">再推計18,815人（補間）だと、面積を減らしても<b>1人あたりは18%増える</b>。</span>
+    </div>
+    <div class="card">
+      <span class="k">2020年の人口実績</span>
+      <span class="v warn">24,974人</span>
+      <span class="d">国勢調査。計画が掲げる<b>3系列いずれの2020年値も下回っている</b>（第Ⅲ章）。</span>
+    </div>
+    <div class="card">
+      <span class="k">2036年の更新費と投資的経費の差</span>
+      <span class="v warn">▲7.3億円</span>
+      <span class="d">現在の▲10.4億円からは縮まるが、残る。<b>30%を達成した2061年でも▲2.1億円。</b></span>
+    </div>
+    <div class="card">
+      <span class="k">更新費推計に入っていないもの</span>
+      <span class="v">運用費・解体費</span>
+      <span class="d">計画の48.5億円/年は<b>大規模改修と建替えのみ</b>。用語集のLCC定義とは範囲が違う（第Ⅵ章）。</span>
+    </div>
+  </div>
+</section>
+
+<!-- Ⅰ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅰ</p><h2>なぜ2036年を見るのか</h2></div>
+  <div class="col sub">
+    <p><strong>まず断っておくべきことがあります。2036年は、この計画の目標年次ではありません。</strong></p>
+    <p>総合管理計画が定める節目は2つだけです。</p>
+  </div>
+  <div class="scroller col">
+    <table>
+      <thead><tr><th>年次</th><th class="n">経過</th><th>位置づけ</th><th class="n">削減目標</th></tr></thead>
+      <tbody>
+        <tr><td>令和3年度（2021年）</td><td class="n">起点</td><td>計画の基準時点</td><td class="n">―</td></tr>
+        <tr><td>令和23年度（2041年）</td><td class="n">20年後</td><td>段階的な縮減目標年</td><td class="n">15%</td></tr>
+        <tr><td>令和43年度（2061年）</td><td class="n">40年後</td><td>長期的な目標年</td><td class="n">30%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col sub">
+    <p>2036年は、この2つのあいだにあります。ではなぜここで切るのか。<strong>40年後の目標は、いま判断する材料にならないからです。</strong></p>
+    <p>2061年という年次は、いま在職している職員のほとんどが退職したあとであり、いま議論している市民の多くが立ち会わない時点でもあります。一方で2036年は<strong>10年後</strong>です。いま検討している施設の多くが、そのときまでに大規模改修か建替えかの判断を一度は通過します。</p>
+    <p>したがってこのページは、2036年を「新しい目標」として提案するものではありません。<strong>計画が引いた直線の途中経過を検算し、その時点で何が見えているかを確認するもの</strong>です。</p>
+    <div class="pull">
+      <p><span class="tag calc">IKILAB計算</span> <strong>2036年の位置づけ</strong></p>
+      <p>計画は「現在（令和3年度）→ 20年後15% → 40年後30%」という段階図を示しています。この2041年15%を<strong>直線で按分</strong>すると、2036年は起点から15年目、20年のうちの4分の3にあたるため <strong>15% × 15/20 = 11.25%</strong> の地点になります。</p>
+      <p style="font-size:.85rem;color:var(--muted)">〔仮定〕計画は年次ごとの削減ペースを定めていないため、直線を仮定しました。<strong>実際の削減は施設の更新時期に左右されるため、直線にはなりません。</strong>誤差の向きは一定ではなく、大規模な統廃合が前半に来れば実績はこれを上回り、後半に寄れば下回ります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ⅱ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅱ</p><h2>2036年の面積 ― 計画どおりなら259,201㎡</h2></div>
+  <div class="col sub">
+    <p>現在の延床面積292,058㎡に、上の11.25%を当てはめます。</p>
+  </div>
+  <div class="scroller col">
+    <table>
+      <tbody>
+        <tr><td>2021年の面積（計画策定時）</td><td class="n">292,058㎡</td></tr>
+        <tr><td>2036年の面積<span class="tag calc" style="margin-left:.5rem">IKILAB計算</span></td><td class="n">259,201㎡</td></tr>
+        <tr class="total"><td>削減すべき面積</td><td class="n">32,857㎡</td></tr>
+      </tbody>
+      <caption>32,857㎡は、市が保有する社会教育系施設の総量（10,795㎡）のおよそ3倍にあたります。</caption>
+    </table>
+  </div>
+  <div class="col sub">
+    <p>この削減には解体費がかかります。計画は解体単価を <strong>28,900円/㎡</strong>（総務省「公共施設等の解体撤去事業に関する調査結果」の全施設平均）としています。</p>
+    <div class="pull">
+      <p><span class="tag calc">IKILAB計算</span> <strong>2036年までの解体費 ＝ 約9.5億円</strong>（32,857㎡ × 28,900円）。15年で割ると年6,330万円です。</p>
+      <p style="font-size:.85rem;color:var(--muted)">〔検算〕計画は8.8万㎡の解体費を40年で約25億4,000万円（年平均6,350万円）としています。同じ単価で計算すると25.43億円となり、<strong>計画の記載値と一致します</strong>。単価の当てはめ方は正しいと考えられます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ⅲ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅲ</p><h2>2036年の人口 ― 3つの前提</h2></div>
+  <div class="col sub">
+    <p>削減目標30%は「<strong>1人あたりの床面積を、現在と同じ11.7㎡に保つ</strong>」という設計から出ています。算定式は次のとおりで、<strong>直接の変数は人口です</strong>。</p>
+    <div class="quote">将来人口 18,151人 × 現在の 11.7㎡/人 ＝ 212,367㎡<br>現在の 292,058㎡ から 79,691㎡ 減（27%）→ 30%に丸めて目標とする</div>
+    <p>ところが、同じ計画の「将来人口の動向」グラフには<strong>性質の異なる3本の系列</strong>が並んでいます。18,151人は、そのうちの<strong>目標人口</strong>――市が政策的に目指す人口であって、推計人口ではありません。</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>系列</th><th>何の数字か</th><th class="n">2035年<br><span style="font-weight:400;font-size:.72rem">（計画掲載値）</span></th><th class="n">2036年<br><span style="font-weight:400;font-size:.72rem">（補間）</span></th><th class="n">2040年</th><th class="n">2060年</th></tr></thead>
+      <tbody>
+        <tr><td><strong>目標人口</strong></td><td>市が政策的に目指す人口（人口ビジョン）</td><td class="n">22,414</td><td class="n">22,245</td><td class="n">21,568</td><td class="n">18,151</td></tr>
+        <tr><td><strong>社人研推計</strong></td><td>国立社会保障・人口問題研究所の推計</td><td class="n">20,223</td><td class="n">19,910</td><td class="n">18,657</td><td class="n">―</td></tr>
+        <tr><td><strong>社人研準拠（再推計）</strong></td><td>社人研の推計に準拠して市が再推計</td><td class="n">19,133</td><td class="n">18,815</td><td class="n">17,542</td><td class="n">12,179</td></tr>
+      </tbody>
+      <caption>2036年の値は、計画掲載の5年刻みの値からの線形補間です<span class="tag calc">IKILAB計算</span>。実際の人口は直線では動かないため、目安として扱ってください。</caption>
+    </table>
+  </div>
+  <div class="col sub">
+    <h3>すでに出ている実績は、3系列のいずれも下回っている</h3>
+    <p>この3系列は将来の話ですが、<strong>起点に近い年についてはすでに答え合わせができます。</strong>計画の県内比較表が採用している令和2年国勢調査の壱岐市人口は <strong>24,974人</strong> です。同じ2020年について、3系列はこう書いています。</p>
+  </div>
+  <div class="scroller col">
+    <table>
+      <thead><tr><th>2020年の値</th><th class="n">計画の系列</th><th class="n">実績との差</th></tr></thead>
+      <tbody>
+        <tr><td>目標人口</td><td class="n">25,939</td><td class="n">▲965（▲3.7%）</td></tr>
+        <tr><td>社人研推計</td><td class="n">25,472</td><td class="n">▲498（▲2.0%）</td></tr>
+        <tr><td>社人研準拠（再推計）</td><td class="n">25,103</td><td class="n">▲129（▲0.5%）</td></tr>
+        <tr class="total"><td>国勢調査（実績）</td><td class="n">24,974</td><td class="n">―</td></tr>
+      </tbody>
+      <caption><span class="tag calc">IKILAB計算</span> 差は実績−系列値。</caption>
+    </table>
+  </div>
+  <div class="col sub">
+    <div class="pull">
+      <p><strong>実績は、最も厳しい系列である社人研準拠（再推計）に最も近く、しかもそれをわずかに下回っています。</strong>総量目標の基礎になっている目標人口とは、この時点ですでに965人の開きがあります。</p>
+      <p style="font-size:.85rem;color:var(--muted)">〔留保〕1時点の一致だけで系列の当否は決まりません。<strong>「社人研準拠が正しい」と言っているのではなく、「目標人口が達成される保証はない」という意味です。</strong>また各系列の2020年値は推計値であり、国勢調査とは調査方法も基準日も異なります。<span class="tag unk">未確認</span> 令和7年国勢調査の結果が出れば、より確かな答え合わせができます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ⅳ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅳ</p><h2>1人あたり面積は、減るのではなく増える</h2></div>
+  <div class="col sub">
+    <p>ここまでの2つ――<strong>面積は計画どおり減る</strong>（第Ⅱ章）と<strong>人口は3通りありうる</strong>（第Ⅲ章）――を重ねます。</p>
+  </div>
+
+  <figure>
+    <div class="plot">
+      <svg viewBox="0 0 760 348" role="img" aria-labelledby="figtitle figdesc">
+        <title id="figtitle">1人あたり公共施設面積の推移（2021〜2036年）</title>
+        <desc id="figdesc">面積が計画どおり減っても、目標人口以外の2つの人口前提では1人あたり面積が現在の11.7平方メートルを上回って増え続ける。2036年時点で社人研推計なら13.02平方メートル、社人研準拠の再推計なら13.78平方メートル。</desc>
+
+        <!-- grid -->
+        <g stroke="var(--line-soft)" stroke-width="1">
+          <line x1="56" y1="300" x2="628" y2="300"/>
+          <line x1="56" y1="220.6" x2="628" y2="220.6"/>
+          <line x1="56" y1="141.1" x2="628" y2="141.1"/>
+          <line x1="56" y1="61.7" x2="628" y2="61.7"/>
+        </g>
+        <!-- y labels -->
+        <g fill="var(--muted)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" text-anchor="end">
+          <text x="48" y="304">11.0</text>
+          <text x="48" y="224.6">12.0</text>
+          <text x="48" y="145.1">13.0</text>
+          <text x="48" y="65.7">14.0</text>
+          <text x="48" y="22" text-anchor="start" fill="var(--muted)">㎡/人</text>
+        </g>
+        <!-- 基準線 11.7 -->
+        <line x1="56" y1="244.4" x2="628" y2="244.4" stroke="var(--ink-2)" stroke-width="1.25" stroke-dasharray="5 4"/>
+        <text x="622" y="238" text-anchor="end" fill="var(--ink-2)" font-size="11.5" font-family="system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', sans-serif">2020年 11.7㎡/人</text>
+        <!-- x axis -->
+        <line x1="56" y1="300" x2="628" y2="300" stroke="var(--line)" stroke-width="1.25"/>
+        <g fill="var(--muted)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" text-anchor="middle">
+          <text x="56" y="320">2021</text><text x="246.7" y="320">2026</text>
+          <text x="437.3" y="320">2031</text><text x="628" y="320">2036</text>
+        </g>
+        <!-- 2036 marker -->
+        <line x1="628" y1="40" x2="628" y2="300" stroke="var(--line)" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <!-- series -->
+        <polyline fill="none" stroke="var(--c3)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+          points="56.0,231.7 94.1,220.4 132.3,208.5 170.4,196.2 208.5,183.4 246.7,174.6 284.8,165.5 322.9,156.0 361.1,146.3 399.2,136.2 437.3,127.3 475.5,118.1 513.6,108.6 551.7,98.8 589.9,88.6 628.0,79.5"/>
+        <polyline fill="none" stroke="var(--c2)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+          points="56.0,249.5 94.1,242.7 132.3,235.7 170.4,228.4 208.5,220.9 246.7,214.1 284.8,207.0 322.9,199.8 361.1,192.3 399.2,184.6 437.3,177.5 475.5,170.3 513.6,162.8 551.7,155.0 589.9,147.1 628.0,139.7"/>
+        <polyline fill="none" stroke="var(--c1)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+          points="56.0,268.7 94.1,264.6 132.3,260.4 170.4,256.1 208.5,251.7 246.7,250.9 284.8,250.0 322.9,249.2 361.1,248.3 399.2,247.4 437.3,247.4 475.5,247.4 513.6,247.4 551.7,247.4 589.9,247.4 628.0,248.2"/>
+
+        <!-- endpoints -->
+        <g stroke="var(--surface)" stroke-width="2">
+          <circle cx="628" cy="79.5" r="4.5" fill="var(--c3)"/>
+          <circle cx="628" cy="139.7" r="4.5" fill="var(--c2)"/>
+          <circle cx="628" cy="248.2" r="4.5" fill="var(--c1)"/>
+        </g>
+        <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600">
+          <text x="640" y="76" fill="var(--c3)">13.78</text>
+          <text x="640" y="136" fill="var(--c2)">13.02</text>
+          <text x="640" y="245" fill="var(--c1)">11.65</text>
+        </g>
+        <g font-family="system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic UI', sans-serif" font-size="10.5" fill="var(--muted)">
+          <text x="640" y="90">社人研準拠</text>
+          <text x="640" y="150">社人研推計</text>
+          <text x="640" y="259">目標人口</text>
+        </g>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i style="border-top-color:var(--c1)"></i>目標人口（総量目標の基礎）</span>
+      <span><i style="border-top-color:var(--c2)"></i>社人研推計</span>
+      <span><i style="border-top-color:var(--c3)"></i>社人研準拠（再推計）</span>
+    </div>
+    <figcaption>
+      <span class="tag calc">IKILAB計算</span>
+      延床面積は2041年15%削減の直線、人口は計画掲載の3系列を線形補間したもの。折れ線が5年ごとに折れているのは、元データが5年刻みだからです。
+      各系列の2021年の出発点がわずかに違う（11.39／11.64／11.86㎡）のは、系列ごとに2021年の人口が異なるためで、計画が示す11.7㎡/人は令和2年国勢調査（24,974人）に基づく2020年の値です。
+    </figcaption>
+  </figure>
+
+  <div class="col sub">
+    <div class="pull">
+      <p><strong>面積を計画どおり11.25%減らしても、目標人口以外の2つの前提では、1人あたりの床面積は現在より増えます。</strong></p>
+      <p>社人研準拠（再推計）なら <strong>13.78㎡/人</strong>――現在の11.7㎡から<strong>約18%の増加</strong>です。社人研推計でも13.02㎡/人。<strong>「1人あたりを現状維持する」という計画の設計思想は、目標人口が達成された場合にのみ成立します。</strong></p>
+    </div>
+    <h3>同じ水準を保つなら、どれだけ減らす必要があるか</h3>
+    <p>逆向きに計算すると、こうなります。2036年時点で11.7㎡/人を維持するために必要な削減率です。</p>
+  </div>
+  <div class="scroller col">
+    <table>
+      <thead><tr><th>2036年の人口前提</th><th class="n">必要面積</th><th class="n">必要な削減率</th></tr></thead>
+      <tbody>
+        <tr><td>目標人口 22,245人</td><td class="n">260,264㎡</td><td class="n">10.9%</td></tr>
+        <tr><td>社人研推計 19,910人</td><td class="n">232,945㎡</td><td class="n">20.2%</td></tr>
+        <tr><td>社人研準拠 18,815人</td><td class="n">220,133㎡</td><td class="n"><strong>24.6%</strong></td></tr>
+      </tbody>
+      <caption><span class="tag calc">IKILAB計算</span> 必要面積＝2036年人口×11.7㎡。削減率＝（292,058−必要面積）÷292,058。</caption>
+    </table>
+  </div>
+  <div class="col sub">
+    <p><strong>社人研準拠の場合、2036年に必要な削減率24.6%は、計画が2041年に置いた15%を大きく超え、2061年の30%に迫ります。</strong>言い換えれば、人口が再推計どおりに動けば、<strong>40年かけて達成する予定の水準を、25年前倒しで求められることになります。</strong></p>
+    <p style="font-size:.9rem;color:var(--muted)">〔留保〕これは「24.6%削減すべきだ」という主張ではありません。<strong>「1人あたり11.7㎡」を維持することが唯一の正解だとは限らない</strong>からです。人口が減った分だけ施設も減らすという考え方は、面積の計算としては筋が通りますが、<strong>面積が同じなら暮らしやすさも同じ、という意味ではありません</strong>。離島で人口密度が下がるとき、1人あたり面積が上がること自体は構造的に避けにくい面があります。ここで示したのは、<strong>計画が採用した基準を機械的に当てはめるとこうなる、ということまで</strong>です。</p>
+  </div>
+</section>
+
+<!-- Ⅴ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅴ</p><h2>財政 ― 2036年に収支は改善するか</h2></div>
+  <div class="col sub">
+    <p>計画は、面積を減らせば維持更新費も減ると見込んでいます。「8.8万㎡（30%）を削減すれば、年間平均8.3億円の削減が見込める」という記述です。この比例関係を使って、2036年時点を計算します。</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <thead><tr><th>時点</th><th class="n">削減率</th><th class="n">公共施設の<br>更新費</th><th class="n">インフラ<br>更新費</th><th class="n">合計</th><th class="n">投資的経費<br>（R2実績）</th><th class="n">差</th></tr></thead>
+      <tbody>
+        <tr><td>2021年（計画記載）</td><td class="n">―</td><td class="n">27.5億円</td><td class="n">21.0億円</td><td class="n">48.5億円</td><td class="n">38.1億円</td><td class="n">▲10.4億円</td></tr>
+        <tr><td><strong>2036年</strong><span class="tag calc" style="margin-left:.4rem">計算</span></td><td class="n">11.25%</td><td class="n">24.4億円</td><td class="n">21.0億円</td><td class="n">45.4億円</td><td class="n">38.1億円</td><td class="n"><strong>▲7.3億円</strong></td></tr>
+        <tr><td>2041年<span class="tag calc" style="margin-left:.4rem">計算</span></td><td class="n">15%</td><td class="n">23.4億円</td><td class="n">21.0億円</td><td class="n">44.4億円</td><td class="n">38.1億円</td><td class="n">▲6.3億円</td></tr>
+        <tr class="total"><td>2061年（計画記載）</td><td class="n">30%</td><td class="n">19.2億円</td><td class="n">21.0億円</td><td class="n">40.2億円</td><td class="n">38.1億円</td><td class="n">▲2.1億円</td></tr>
+      </tbody>
+      <caption>公共施設の更新費は「27.5億円 − 8.3億円 × (削減率÷30%)」で按分<span class="tag calc">IKILAB計算</span>。2061年の19.2億円は計画記載値で、按分結果と一致します。インフラは面積削減の対象外のため据え置き。</caption>
+    </table>
+  </div>
+  <div class="col sub">
+    <div class="pull">
+      <p><strong>目標を40年かけて完全に達成しても、計画自身の数字では年2.1億円足りません。</strong>2036年時点なら▲7.3億円です。</p>
+      <p><strong>そして、この差はまだ楽観的です。</strong>解体費（2036年までに約9.5億円、第Ⅱ章）はこの更新費に含まれておらず、別に投資的経費から支出する必要があります。</p>
+    </div>
+    <p style="font-size:.9rem;color:var(--muted)">〔仮定と誤差の向き〕この試算には3つの前提があります。<strong>①</strong> 投資的経費38.1億円が今後も維持できること――これは令和2年度<strong>単年度の実績</strong>であり、上限でも平均でもありません。計画自身が「投資的経費は今後減少傾向にある」と書いているため、<strong>差は実際にはこれより大きくなる方向</strong>です。<strong>②</strong> 更新単価が策定時のままであること――物価上昇を織り込めば<strong>やはり差は拡大します</strong>。<strong>③</strong> 削減面積と費用削減が比例すること――実際には1㎡あたりの維持費は施設の種類で数倍違うため、<strong>どちらの向きにもぶれます</strong>。</p>
+  </div>
+</section>
+
+<!-- Ⅵ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅵ</p><h2>なぜLCCの視点が要るのか</h2></div>
+  <div class="col sub">
+    <p>ここまで「48.5億円」「27.5億円」という数字を使ってきました。<strong>これらが何を含み、何を含んでいないかを確認します。</strong></p>
+    <p>計画は更新費用の推計条件を明記しています。目標耐用年数65年、建設から33年後に大規模改修、65年で同床面積で建替え。そして<strong>更新費用は「床面積 × 単価」で算出</strong>――単価表は大規模改修と建替えの2列だけです。</p>
+    <div class="pull">
+      <p><strong>つまり48.5億円/年に含まれているのは、大規模改修と建替え、そしてインフラの更新だけです。</strong></p>
+      <p>含まれていないもの ―― <strong>光熱水費、清掃・点検などの委託料、職員の人件費、日常的な修繕費、そして解体費。</strong></p>
+    </div>
+    <p>一方、同じ計画の用語集は、ライフサイクルコストをこう定義しています。</p>
+    <div class="quote">ライフサイクルコスト（LCC）とは公共施設等の設計段階から、建築・建設、維持管理・運営を経て、最終的に廃棄となり、解体されるまでに掛かるトータルコストをいいます。</div>
+    <p>さらに、施設診断の評価項目にも「<strong>ライフサイクルコストの適正性</strong>」が挙げられています。</p>
+    <div class="pull">
+      <p><strong>計画は、用語集でLCCを正しく定義し、診断項目にも挙げながら、費用推計ではその一部だけを扱っています。</strong></p>
+      <p>これは計画の不備を指摘するものではありません。総務省の更新費用試算ソフトを使う以上、この範囲になるのは自然です。<strong>問題は、この48.5億円という数字が、施設を残すか減らすかの判断材料として使われるときに起きます。</strong></p>
+    </div>
+    <h3>範囲が違うと、判断が変わる</h3>
+    <p>更新費だけを見ると、<strong>「まだ改修時期が来ていない施設」は費用がゼロに見えます。</strong>しかし実際には、その施設は今日も光熱水費と委託料を消費しています。逆に、<strong>解体すれば維持費は止まりますが、解体費は更新費の表には現れません。</strong></p>
+    <p>この2つが表に出ないと、次のような判断が起きやすくなります。</p>
+    <ul>
+      <li><strong>使われていない施設を残す。</strong>更新予定を先送りすれば、更新費の表の上では費用が発生しないため</li>
+      <li><strong>建てるほうを選ぶ。</strong>建設は起債と交付税措置の対象になりますが、その後の運用費は<strong>全額が一般財源</strong>で、起債の対象にならないため</li>
+      <li><strong>解体を後回しにする。</strong>単独の解体は交付税措置がなく、市の負担が概算10割になるため</li>
+    </ul>
+    <p><strong>だからこそ、施設ごとの判断のところにLCCが要ります。</strong>総量目標は市全体の面積を管理する道具ですが、実際に決めるのは「この施設をどうするか」という個別の判断です。そこで比べるべきなのは、建設費でも更新費でもなく、<strong>複数の案それぞれの、建てて・使って・直して・壊すまでの費用総額</strong>です。</p>
+    <p><span class="tag unk">未確認</span> 壱岐市が施設ごとに複数案の費用総額を比較しているかどうかは、公開資料からは確認できませんでした。個別施設計画の費用単価は国土交通省『建築物のライフサイクルコスト』を出所としており、<strong>出発点になる資料はすでに市の手元にあります</strong>。</p>
+  </div>
+</section>
+
+<!-- Ⅶ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅶ</p><h2>2036年までに決められること</h2></div>
+  <div class="col sub">
+    <p>2036年という区切りには、もうひとつ意味があります。<strong>計画自身が、老朽化の集中する時期を明示しているからです。</strong></p>
+    <div class="quote">公共施設等の多くを昭和43年（1968年）から平成7年（1995年）に建設しており、平成28年（2016年）から平成42年（2030年）にかけて建設から40年以上経過するため、老朽化や機能の不具合が発生します。</div>
+    <p><strong>2030年までに大半の施設が築40年を超えます。</strong>その直後の2036年は、「改修するか、建て替えるか、やめるか」の判断が一巡し終わる時点にあたります。<strong>2036年に残っている施設は、一度は残す判断を通過した施設だということです。</strong></p>
+    <p>だとすれば、いま整えておく価値があるのは次の3つだと考えられます。</p>
+    <ul>
+      <li><strong>判断のたびに、複数案の費用総額を並べること。</strong>1件ずつの判断が積み上がって2036年の姿になります</li>
+      <li><strong>どの人口前提に立つかを、先に決めること。</strong>総量目標が目標人口に連動するのか、推計人口に連動するのかで、必要な削減率は10.9%から24.6%まで動きます（第Ⅳ章）</li>
+      <li><strong>解体費の財源を先に決めること。</strong>2036年までに約9.5億円、2061年までに約25.4億円が必要です。<span class="tag unk">未確認</span> 財源についての記述を計画本文の中に見つけることはできませんでした</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Ⅷ -->
+<section>
+  <div class="head"><p class="eyebrow">Chapter Ⅷ</p><h2>議論の前に確認すべき点</h2></div>
+  <div class="col sub">
+    <p>公開資料の範囲では判断できず、市に確認しなければ先に進めない点です。<strong>いずれも計画の不備を指摘するものではなく、公開情報だけでは追跡できない箇所です。</strong></p>
+    <ol>
+      <li><strong>総量目標が前提とする人口。</strong>目標人口と社人研準拠の再推計のどちらに立つのか。第4次総合計画の新しい人口目標（2050年以降2万人を維持）を踏まえて再計算する予定はあるか</li>
+      <li><strong>削減の年次配分。</strong>2041年15%に向けた年次ごとの削減ペースは想定されているか。2026年度時点の進捗（実績の延床面積）はどうなっているか</li>
+      <li><strong>投資的経費の直近5年間の平均。</strong>令和2年度38.1億円に代わる目安として</li>
+      <li><strong>年間の運用費。</strong>公共施設の光熱水費・委託料・人件費・日常修繕費の合計は、年いくらか。更新費27.5億円との関係</li>
+      <li><strong>解体費の財源。</strong>2061年までの約25億4,000万円をどこから支出する想定か</li>
+      <li><strong>施設ごとの複数案比較。</strong>施設整備・大規模改修の判断にあたり、案ごとの費用総額を比較した資料はあるか</li>
+      <li><strong>進捗の公表。</strong>総合管理計画の「毎年度、個別施設計画の進捗状況を調査し、計画どおりに実行できているか把握する」は実施されているか。公表の予定はあるか</li>
+      <li><strong>公共施設修繕等基金。</strong>計画に「設置した公共施設修繕等基金を活用する」とあるが、例規集でこの基金を確認できなかった。実在するか</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 出典 -->
+<section>
+  <div class="head"><p class="eyebrow">Sources</p><h2>注記と出典</h2></div>
+  <div class="scroller">
+    <table class="src">
+      <thead><tr><th style="width:2.5rem">#</th><th>資料</th><th>使った箇所</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td>
+          <td>壱岐市公共施設等総合管理計画（令和4年3月改訂）<br><span class="mono">city.iki.nagasaki.jp/material/files/group/5/sougoukannrikeikakukaitei.pdf</span></td>
+          <td>§1-1-3（408施設・292,058㎡・11.7㎡/人・用途別構成比・県内比較表と人口24,974人）／§1-2（将来人口の動向グラフ3系列）／§1-3-1（投資的経費38.1億円・今後減少傾向）／§1-3-2（更新費用推計の条件設定と単価表・27.5億円・インフラ23.6億円）／§2-1（48.5億円・差10.4億円・上下水道を除き21.0億円）／§2-5-1（削減目標の算定式・15%／30%の段階設定・解体費28,900円/㎡・25億4,000万円・削減後19.2億円）／§2-6-1（診断の評価項目「ライフサイクルコストの適正性」）／§2-7-1（進捗調査・公共施設修繕等基金）／用語集（LCCの定義）</td></tr>
+        <tr><td class="n">2</td>
+          <td>壱岐市公共施設個別施設計画（令和3年3月策定・令和4年3月改訂）<br><span class="mono">city.iki.nagasaki.jp/material/files/group/5/kobetusisetukeikakukaitei.pdf</span></td>
+          <td>第4章1（費用単価の出所＝国土交通省『建築物のライフサイクルコスト』）</td></tr>
+        <tr><td class="n">3</td>
+          <td>第4次壱岐市総合計画 本編（令和7〜11年度）<br><span class="mono">city.iki.nagasaki.jp/material/files/group/46/dai4jiikishisougoukeikaku_main.pdf</span></td>
+          <td>「2050年以降2万人を維持するためのまちづくりを進める」</td></tr>
+        <tr><td class="n">4</td>
+          <td>総務省「公共施設等の解体撤去事業に関する調査結果」（平成25年12月）</td>
+          <td>解体単価（全施設平均28,900円/㎡）。計画§2-5-1の脚注より</td></tr>
+        <tr><td class="n">5</td>
+          <td>総務省「公共施設等の適正管理の推進」ほか</td>
+          <td>第Ⅵ章の起債・交付税措置に関する記述（建設・運用・除却の非対称性）</td></tr>
+      </tbody>
+      <caption>◆掲載時：各PDFの取得日とSHA-256を付記する。</caption>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p><b>調査基準日</b>　2026年8月24日</p>
+  <p><b>分析の性格</b>　公開資料のみを用いたIKILABの独立分析です。壱岐市の見解ではありません。</p>
+  <p><b>「IKILAB計算」の範囲</b>　①2041年15%の直線按分による2036年の面積　②計画掲載の人口3系列の線形補間　③その2つを割った1人あたり面積　④計画記載の「8.8万㎡＝8.3億円」を按分した更新費　⑤計画記載の解体単価による解体費。<b>いずれも計画自身の数値と算定式を使っており、独自の将来推計や単価の置き直しは行っていません。</b></p>
+  <p><b>「未確認」の意味</b>　公開資料の範囲で確認できなかったという意味であり、「存在しない」ことの証明ではありません。</p>
+  <p><b>ライセンス</b>　本ページの文章・図表・データは CC BY 4.0、コードは MIT。引用元の公表資料の権利は各機関に帰属します。</p>
+  <p>© 2026 IKILAB</p>
+</footer>
+
+</div>
+<script>
+const tg=document.getElementById('tg');
+tg.addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const sysDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const now = cur ? cur : (sysDark?'dark':'light');
+  document.documentElement.setAttribute('data-theme', now==='dark'?'light':'dark');
+});
+</script>
+</body>
+</html>
