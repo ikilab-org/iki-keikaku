@@ -83,12 +83,10 @@ strong{font-weight:700;}
 em{font-style:normal; background:linear-gradient(transparent 62%, var(--accent-soft) 62%);}
 
 /* ── ヘッダ ── */
-header{padding:4rem 0 0;}
-.kicker{
-  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.72rem; letter-spacing:.14em;
-  color:var(--accent); font-weight:600; margin:0 0 1.4rem;
-  padding-bottom:1.2rem; border-bottom:1px solid var(--line);
-}
+header{padding:4rem 0 0; display:flex; justify-content:space-between; align-items:flex-start;
+  gap:16px; flex-wrap:wrap;}
+header > div{flex:1 1 460px;}
+header > button{flex:none;}
 .lede{font-size:1.02rem; color:var(--ink-2);}
 
 /* ── 免責 ── */
@@ -161,10 +159,6 @@ button.tg{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--
   border-radius:8px;background:var(--surface);color:var(--ink-2);cursor:pointer}
 button.tg:hover{background:var(--accent-soft)}
 @media print{body{background:#fff}section{break-inside:avoid}button.tg{display:none}}
-header{padding:4rem 0 0;display:flex;justify-content:space-between;align-items:flex-start;
-  gap:16px;flex-wrap:wrap}
-header > div{flex:1 1 460px}
-header > button{flex:none}
 </style>
 </head>
 <body>
