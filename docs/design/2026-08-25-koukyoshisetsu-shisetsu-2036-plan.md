@@ -25,7 +25,9 @@ OGP画像とハブのカードを先に置いて `node --test` が通る土台�
 - **slug は `plans/shisetsu-2036/`。** ディレクトリ名を変えない
 - **title は `壱岐市 公共施設等総合管理計画 ― 1人あたり面積とライフサイクルコスト | 壱岐市 計画マップ`**
 - **canonical と `og:url` は `https://keikaku.ikilab.org/plans/shisetsu-2036/`。** 末尾スラッシュ形。`index.html` は書かない
-- **色の値をページ側に書かない。** `assets/palette.css` を `../../assets/palette.css` で読み、系列色は `var(--c1)`〜`var(--c3)`
+- **分野色 `--c1`〜`--c8` をページ側で定義しない。** `assets/palette.css` を `../../assets/palette.css` で読み、
+  系列色は `var(--c1)`〜`var(--c3)` を参照する。**地の色（`--ground` `--ink` `--line` など）は
+  既存4枚と同じくページ内に持ってよい**（`tools/pages.test.mjs` が禁じているのは `--c1`〜`--c8` の再定義だけ）
 - **外部から読むのは `assets/palette.css` だけ。** Google Fonts の `<link>` を残さない
 - **PDFの原本をリポジトリにコミットしない**（`sources/POLICY.md`「4. 保存の方法」）。作業は下記の作業ディレクトリで行う
 - **鉤括弧の中は原文どおり。** 全角・半角、中黒、括弧、送り仮名、句読点まで一字一句
