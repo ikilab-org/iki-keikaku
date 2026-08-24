@@ -278,3 +278,25 @@ node tools/linkcheck.mjs                  # 追加したURLの死活
 - [ ] `node tools/linkcheck.mjs` で追加したURLが生きている
 - [ ] `node tools/manifest.mjs` で未登録がない
 - [ ] ハブ・README・CHANGELOG・todo件数が更新されている
+
+---
+
+## 11. 照合の記録
+
+取得日 2026-08-25。原本はリポジトリに置いていません（`sources/POLICY.md`「4. 保存の方法」）。
+
+| 資料 | URL | ページ数 | SHA-256 |
+|---|---|---|---|
+| 壱岐市公共施設等総合管理計画（令和4年3月改訂） | `/material/files/group/5/sougoukannrikeikakukaitei.pdf` | 57 | `3c5f3efc752cdd6bd76c3fe59af11df6a08aebe626ed49ce26f381c45dbcdb90` |
+| 壱岐市公共施設個別施設計画（令和4年3月改訂） | `/material/files/group/5/kobetusisetukeikakukaitei.pdf` | 77 | `367121e0b8e090d0caae4407eded5ef4e2ca67fe58b327d4fc91b4c90fb59e53` |
+
+`pdfinfo` のPDF作成日（CreationDate）: 総合管理計画 2022-03-23、個別施設計画 2022-03-23（いずれもJST）。
+両PDFとも `pdftotext -layout` でテキスト層を抽出済み（画像化は不要だった）。
+
+### 11.1 数値と引用
+
+（タスク2で埋める）
+
+### 11.2 第Ⅵ章の制度の裏づけ
+
+（タスク3で埋める）
