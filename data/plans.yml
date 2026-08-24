@@ -1042,12 +1042,18 @@ plans:
     category: koukyoshisetsu
     tier: shisetsu
     status: current
+    period: { start: 2022, end: 2061 }
     adopted: 2022-03
     statutory: request
     department: 財政課 契約管財班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html
-    notes: 平成26年4月の総務省要請に基づき策定。令和4年3月に改訂。
-    todo: 計画期間を確認する
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/5/sougoukannrikeikakukaitei.pdf
+    notes: >-
+      平成26年4月の総務省要請に基づき策定。令和4年3月に改訂。延床面積292,058㎡・408施設を対象に、
+      令和23年度（2041年度）までに15%、令和43年度（2061年度）までに30%の縮減を目標とする。
+      目標面積の算定は「将来人口18,151人 × 現在の1人あたり11.7㎡＝212,367㎡」で、直接の変数は人口。
+      この算定式による削減率は27％だが、決定文は「試算結果である30％」を目標としており、原本自身に数値の食い違いがある。
+      掘り下げは plans/shisetsu-2036/ を参照。
 
   - id: kokyoshisetsu-kobetsu
     name: 壱岐市公共施設個別施設計画
@@ -1056,12 +1062,17 @@ plans:
     category: koukyoshisetsu
     tier: shisetsu
     status: current
+    period: { start: 2022, end: 2031 }
     adopted: 2022-03
     statutory: request
     department: 財政課 契約管財班
     url: https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html
-    notes: 平成29年3月策定、令和4年3月に内容を改訂。公共施設等総合管理計画の基本方針に基づき、施設ごとの方向性・実施事項を定める。
-    todo: 計画期間を確認する
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/5/kobetusisetukeikakukaitei.pdf
+    related: [kokyoshisetsu-sougou]
+    notes: >-
+      平成29年3月策定、令和4年3月に内容を改訂。公共施設等総合管理計画の基本方針に基づき、
+      施設ごとの方向性・実施事項を定める。単価表のうち解体単価・維持管理コスト単価の出所は
+      国土交通省『平成31年版 建築物のライフサイクルコスト』（第4章2（２）①）。
 
   - id: zaisei-kiban
     name: 壱岐市財政基盤確立計画
