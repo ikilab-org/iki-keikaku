@@ -133,6 +133,7 @@ figcaption{font-size:.8rem; color:var(--muted); line-height:1.75;}
   padding:.1rem .4rem; border:1px solid var(--line); color:var(--muted); border-radius:2px; white-space:nowrap;}
 .tag.calc{color:var(--accent); border-color:var(--accent);}
 .tag.unk{color:var(--flag); border-color:var(--flag);}
+.tag.kind{color:var(--ink-2); border-color:var(--line); background:var(--surface);}
 
 /* ── 引用・強調ブロック ── */
 .pull{
@@ -495,15 +496,16 @@ button.tg:hover{background:var(--accent-soft)}
   <div class="head"><p class="eyebrow">Chapter Ⅷ</p><h2>議論の前に確認すべき点</h2></div>
   <div class="col sub">
     <p>公開資料の範囲では判断できず、市に確認しなければ先に進めない点です。<strong>いずれも計画の不備を指摘するものではなく、公開情報だけでは追跡できない箇所です。</strong></p>
+    <p style="font-size:.85rem;color:var(--muted)">タグは指摘の性質による分類です。<b>数値</b>＝元データの確認、<b>定義</b>＝指標や範囲の書き換え、<b>記録</b>＝資料が参照できない、<b>未公開</b>＝公開されれば議論が進むもの。確認の強さを表すものではありません。</p>
     <ol>
-      <li><strong>総量目標が前提とする人口。</strong>目標人口と社人研準拠の再推計のどちらに立つのか。第4次総合計画の新しい人口目標（2050年以降2万人を維持）を踏まえて再計算する予定はあるか</li>
-      <li><strong>削減の年次配分。</strong>2041年15%に向けた年次ごとの削減ペースは想定されているか。2026年度時点の進捗（実績の延床面積）はどうなっているか</li>
-      <li><strong>投資的経費の直近5年間の平均。</strong>令和2年度38.1億円に代わる目安として</li>
-      <li><strong>年間の運用費。</strong>公共施設の光熱水費・委託料・人件費・日常修繕費の合計は、年いくらか。更新費27.5億円との関係</li>
-      <li><strong>解体費の財源。</strong>2061年までの約25億4,000万円をどこから支出する想定か</li>
-      <li><strong>施設ごとの複数案比較。</strong>施設整備・大規模改修の判断にあたり、案ごとの費用総額を比較した資料はあるか</li>
-      <li><strong>進捗の公表。</strong>総合管理計画の「毎年度、個別施設計画の進捗状況を調査し、計画どおりに実行できているか把握する」は実施されているか。公表の予定はあるか</li>
-      <li><strong>公共施設修繕等基金。</strong>計画に「設置した公共施設修繕等基金を活用する」とあるが、例規集でこの基金を確認できなかった。実在するか</li>
+      <li><span class="tag kind">定義</span> <strong>総量目標が前提とする人口。</strong>目標人口と社人研準拠の再推計のどちらに立つのか。第4次総合計画の新しい人口目標（2050年以降2万人を維持）を踏まえて再計算する予定はあるか</li>
+      <li><span class="tag kind">数値</span> <strong>削減の年次配分。</strong>2041年15%に向けた年次ごとの削減ペースは想定されているか。2026年度時点の進捗（実績の延床面積）はどうなっているか</li>
+      <li><span class="tag kind">数値</span> <strong>投資的経費の直近5年間の平均。</strong>令和2年度38.1億円に代わる目安として</li>
+      <li><span class="tag kind">数値</span> <strong>年間の運用費。</strong>公共施設の光熱水費・委託料・人件費・日常修繕費の合計は、年いくらか。更新費27.5億円との関係</li>
+      <li><span class="tag kind">未公開</span> <strong>解体費の財源。</strong>2061年までの約25億4,000万円をどこから支出する想定か</li>
+      <li><span class="tag kind">未公開</span> <strong>施設ごとの複数案比較。</strong>施設整備・大規模改修の判断にあたり、案ごとの費用総額を比較した資料はあるか</li>
+      <li><span class="tag kind">未公開</span> <strong>進捗の公表。</strong>総合管理計画の「毎年度、公共施設個別施設計画の進捗状況を調査し、計画どおりに実行できているか把握する…」は実施されているか。公表の予定はあるか</li>
+      <li><span class="tag kind">記録</span> <strong>公共施設修繕等基金。</strong>計画に「設置した公共施設修繕等基金を活用する」とあるが、例規集でこの基金を確認できなかった。実在するか</li>
     </ol>
   </div>
 </section>
