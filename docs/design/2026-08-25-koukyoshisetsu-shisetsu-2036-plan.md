@@ -519,7 +519,7 @@ npx playwright install chromium
   <div class="R">
     <div class="mini">
       <div class="cap">1人あたり公共施設面積（㎡・推計）</div>
-      <svg class="ln" viewBox="0 0 560 200" role="img" aria-label="1人あたり面積が2021年の11.86平方メートルから2036年の13.78平方メートルへ上昇">
+      <svg class="ln" viewBox="0 0 560 200" role="img" aria-label="1人あたり公共施設面積が2020年の11.7平方メートルから2036年の13.78平方メートルへ上昇">
         <polyline points="0,164 140,120 280,78 420,40 560,10" fill="none" stroke="var(--c5)" stroke-width="5"
           stroke-linejoin="round" stroke-linecap="round"/>
         <line x1="0" y1="176" x2="560" y2="176" stroke="var(--axis)" stroke-width="3" stroke-dasharray="10 8"/>
@@ -638,7 +638,7 @@ cp "$W/shisetsu/draft.html" plans/shisetsu-2036/index.html
 <meta property="og:image" content="https://keikaku.ikilab.org/assets/og-shisetsu-2036.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="1人あたり公共施設面積が2021年の11.86平方メートルから2036年の13.78平方メートルへ上昇することを示す折れ線グラフ">
+<meta property="og:image:alt" content="1人あたり公共施設面積が2020年の11.7平方メートルから2036年の13.78平方メートルへ上昇することを示す折れ線グラフ">
 <meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og-shisetsu-2036.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../../assets/palette.css">
