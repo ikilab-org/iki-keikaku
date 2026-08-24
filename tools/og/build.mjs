@@ -28,6 +28,7 @@ const CARDS = [
   { id: 'og-fukushi', out: 'og-fukushi.png' },
   { id: 'og-kaigo', out: 'og-kaigo.png' },
   { id: 'og-koutsuu', out: 'og-koutsuu.png' },
+  { id: 'og-shisetsu-2036', out: 'og-shisetsu-2036.png' },
 ]
 
 const W = 1200, H = 630, SCALE = 2
