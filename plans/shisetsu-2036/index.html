@@ -145,6 +145,9 @@ figcaption{font-size:.8rem; color:var(--muted); line-height:1.75;}
 /* ── 出典 ── */
 .src{font-size:.82rem; line-height:1.8;}
 .src td{vertical-align:top;}
+/* .mono の word-break:break-all は資料列の最小幅を1文字ぶんにする。幅を決めておかないと
+   auto レイアウトが「使った箇所」に幅を渡し切り、資料列が細い帯になって行が縦に伸びる。 */
+.src th:nth-child(2), .src td:nth-child(2){width:38%;}
 .src .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.75rem; color:var(--muted); word-break:break-all;}
 footer{margin-top:4.5rem; padding-top:1.5rem; border-top:1px solid var(--line);
   font-size:.82rem; color:var(--muted); display:flex; flex-direction:column; gap:.4rem;}
@@ -560,15 +563,14 @@ button.tg:hover{background:var(--accent-soft)}
 </section>
 
 <footer>
-  <b>主な出典</b>（2026年8月25日確認）<br>
+  <p><b>主な出典</b>（2026年8月25日確認）<br>
   壱岐市：<a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/3750.html" target="_blank" rel="noopener">公共施設等総合管理計画</a>（<a href="https://www.city.iki.nagasaki.jp/material/files/group/5/sougoukannrikeikakukaitei.pdf" target="_blank" rel="noopener">計画本文PDF</a>）／<a href="https://www.city.iki.nagasaki.jp/shisei/machidukuri/keikaku/8574.html" target="_blank" rel="noopener">公共施設個別施設計画</a>（<a href="https://www.city.iki.nagasaki.jp/material/files/group/5/kobetusisetukeikakukaitei.pdf" target="_blank" rel="noopener">計画本文PDF</a>）／<a href="https://www.city.iki.nagasaki.jp/material/files/group/46/dai4jiikishisougoukeikaku_main.pdf" target="_blank" rel="noopener">第4次壱岐市総合計画 本編</a><br>
-  国：<a href="https://www.soumu.go.jp/main_content/001010337.pdf" target="_blank" rel="noopener">総務省「公共施設等の適正管理について」</a>（令和7年4月1日）／<a href="https://www.soumu.go.jp/main_content/001002597.pdf" target="_blank" rel="noopener">令和8年度地方債充当率</a>（令和8年総務省告示第161号）／<a href="https://www.soumu.go.jp/main_content/001002600.pdf" target="_blank" rel="noopener">令和8年度地方債同意等基準運用要綱</a>／<a href="https://www.soumu.go.jp/main_content/001048685.pdf" target="_blank" rel="noopener">令和8年度地方財政対策の概要</a>／<a href="https://www.soumu.go.jp/main_content/000807168.pdf" target="_blank" rel="noopener">過疎地域市町村等一覧</a>（令和4年4月1日現在）／<a href="https://laws.e-gov.go.jp/law/323AC0000000109" target="_blank" rel="noopener">地方財政法</a>／e-Gov法令検索
-  <br><br>
+  国：<a href="https://www.soumu.go.jp/main_content/001010337.pdf" target="_blank" rel="noopener">総務省「公共施設等の適正管理について」</a>（令和7年4月1日）／<a href="https://www.soumu.go.jp/main_content/001002597.pdf" target="_blank" rel="noopener">令和8年度地方債充当率</a>（令和8年総務省告示第161号）／<a href="https://www.soumu.go.jp/main_content/001002600.pdf" target="_blank" rel="noopener">令和8年度地方債同意等基準運用要綱</a>／<a href="https://www.soumu.go.jp/main_content/001048685.pdf" target="_blank" rel="noopener">令和8年度地方財政対策の概要</a>／<a href="https://www.soumu.go.jp/main_content/000807168.pdf" target="_blank" rel="noopener">過疎地域市町村等一覧</a>（令和4年4月1日現在）／<a href="https://laws.e-gov.go.jp/law/323AC0000000109" target="_blank" rel="noopener">地方財政法</a>／e-Gov法令検索</p>
   <p><b>調査基準日</b>　2026年8月25日</p>
   <p><b>分析の性格</b>　公開資料のみを用いたIKILABの独立分析です。壱岐市の見解ではありません。</p>
   <p><b>「IKILAB計算」の範囲</b>　①2041年15%の直線按分による2036年の面積　②計画掲載の人口3系列の線形補間　③その2つを割った1人あたり面積　④計画記載の数値（約8.8万㎡・年平均8.3億円）を按分した更新費　⑤計画記載の解体単価による解体費。<b>いずれも計画自身の数値と算定式を使っており、独自の将来推計や単価の置き直しは行っていません。</b></p>
   <p><b>「未確認」の意味</b>　公開資料の範囲で確認できなかったという意味であり、「存在しない」ことの証明ではありません。</p>
-  本ページの文章・図表・データは <a href="../../about/license/">CC BY 4.0</a>、コードは MIT。引用元の公表資料の権利は各機関に帰属します。 © 2026 IKILAB
+  <p>本ページの文章・図表・データは <a href="../../about/license/">CC BY 4.0</a>、コードは MIT。引用元の公表資料の権利は各機関に帰属します。 © 2026 IKILAB</p>
 </footer>
 
 </div>
