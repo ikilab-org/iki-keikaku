@@ -238,6 +238,15 @@ test('狭い帯のラベルは帯の中で切り落とさず、帯の外に置�
   const text = `${fiscalYearShort(shortest.period.start)}〜${fiscalYearShort(shortest.period.end)}`
   assert.ok(row.includes(`>${esc(text)}</span>`),
     `${shortest.name}: ${text} が帯の外に出ていません`)
+
+  // いちばん長い計画は、帯の中にラベルを保つ。
+  // これが無いと「全部を帯の外に出す」実装でもこの検査は通ってしまう（片側しか見ないため）。
+  const longest = ranged.reduce((x, p) =>
+    (p.period.end - p.period.start > x.period.end - x.period.start ? p : x))
+  const lrow = rows.find((r) => r.includes(`class="nm">${esc(longest.name)}<`))
+  const ltext = `${fiscalYearShort(longest.period.start)}〜${fiscalYearShort(longest.period.end)}`
+  assert.ok(lrow.includes(`>${esc(ltext)}</div>`),
+    `${longest.name}: 帯が十分に広いのにラベルが帯の中にありません`)
 })
 
 test('横に長い図はページ本体ではなく図の中でスクロールする', () => {
