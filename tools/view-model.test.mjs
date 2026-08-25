@@ -48,12 +48,12 @@ test('計画期間の種類を3つに分ける', () => {
   assert.equal(periodKind({ period: { start: 2024, end: null } }), 'partial')
 })
 
-test('期間を持たない計画が実データで26件ある', () => {
+test('期間を持たない計画が実データで24件ある', () => {
   const kinds = PLANS.map(periodKind)
   const notRange = kinds.filter((k) => k !== 'range').length
-  assert.equal(notRange, 26, `期間を持たない計画の件数が変わりました: ${notRange}`)
+  assert.equal(notRange, 24, `期間を持たない計画の件数が変わりました: ${notRange}`)
   assert.equal(kinds.filter((k) => k === 'zuiji').length, 7)
-  assert.equal(kinds.filter((k) => k === 'unknown').length, 19)
+  assert.equal(kinds.filter((k) => k === 'unknown').length, 17)
 })
 
 test('年度の範囲は range の計画だけから決める', () => {
@@ -62,7 +62,7 @@ test('年度の範囲は range の計画だけから決める', () => {
     { start: 2015, end: 2020 },
   )
   assert.equal(yearRange([{}]), null)
-  assert.deepEqual(yearRange(PLANS), { start: 2010, end: 2035 })
+  assert.deepEqual(yearRange(PLANS), { start: 2010, end: 2061 })
 })
 
 test('slot は domains から引く。domain が無ければ null', () => {
@@ -95,7 +95,7 @@ test('関係の本数は「持つ計画の件数」と「延べ本数」の両�
   assert.equal(parent.total, PLANS.length)
   // related は無向辺を片側だけ書く決まりなので、延べ本数のほうが多くなる
   const related = counts.find((c) => c.key === 'related')
-  assert.equal(related.edges, 27)
+  assert.equal(related.edges, 28)
   assert.ok(related.edges >= related.plans)
 })
 
@@ -120,8 +120,8 @@ test('buildModel が図表に必要なものを一度に返す', () => {
   const m = buildModel(doc)
   assert.equal(m.plans.length, PLANS.length)
   assert.equal(m.bands.length, BANDS.length)
-  assert.deepEqual(m.years, { start: 2010, end: 2035 })
+  assert.deepEqual(m.years, { start: 2010, end: 2061 })
   assert.equal(m.relations.length, RELATIONS.length)
-  assert.equal(m.todoCount, 31)
+  assert.equal(m.todoCount, 29)
   assert.equal(m.meta.updated, doc.meta.updated)
 })

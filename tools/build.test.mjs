@@ -4,8 +4,9 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { parseYaml } from './yaml.mjs'
-import { buildModel } from './view-model.mjs'
-import { esc, buildPage, taikeiSection, timelineSection, listSection, LABELS, PAGE_CSS } from './build.mjs'
+import { buildModel, periodKind } from './view-model.mjs'
+import { esc, buildPage, taikeiSection, timelineSection, listSection, LABELS, PAGE_CSS,
+  TRACK_MIN_PX, labelWidth } from './build.mjs'
 import { fiscalYearShort } from './fiscal-year.mjs'
 import { ENUM } from './validate.mjs'
 import { contrast } from './palette.mjs'
@@ -168,7 +169,7 @@ test('タイムラインに全件が現れる', () => {
 const timelineGroup = (label) =>
   timeline.split('<div class="grp">').find((s) => s.startsWith(esc(label))) ?? ''
 
-test('期間を持たない26件が専用のグループにある', () => {
+test('期間を持たない24件が専用のグループにある', () => {
   // ここを落とすと、俯瞰したつもりで3分の1が見えていないことになる（設計 3.2）。
   const zuiji = timelineGroup('随時修正（期間を定めない）')
   assert.ok(zuiji, '「随時修正」のグループが見つかりません')
@@ -178,7 +179,7 @@ test('期間を持たない26件が専用のグループにある', () => {
   assert.ok(unclear, '「計画期間を確認できていない」のグループが見つかりません')
   for (const p of model.unclear) assert.ok(unclear.includes(esc(p.name)), `未確認のグループに無い: ${p.id}`)
 
-  assert.equal(model.zuiji.length + model.unclear.length, 26)
+  assert.equal(model.zuiji.length + model.unclear.length, 24)
 })
 
 test('軸の範囲がデータの実際の範囲と一致する', () => {
@@ -198,6 +199,54 @@ test('帯の grid-column が軸の範囲に収まる', () => {
     assert.ok(Number(b) <= cols + 1, `右端が範囲外: ${b} > ${cols + 1}`)
     assert.ok(Number(a) < Number(b), `幅が0以下: ${a} / ${b}`)
   }
+})
+
+test('狭い帯のラベルは帯の中で切り落とさず、帯の外に置く', () => {
+  // 公共施設等総合管理計画（令和4〜令和43年度）で軸が52列に伸び、1年あたりの幅が半分に
+  // なった。3年計画の帯は 46px しかないのに「令和6〜令和8」は 67px あり、
+  // .bar{overflow:hidden} が黙って切り落としていた。
+  // 軸は線形（1年＝1列）のまま、入らないぶんだけ帯の外の隣に置く。
+  const cols = model.years.end - model.years.start + 1
+  const colw = TRACK_MIN_PX / cols
+  const rows = timeline.split('<div class="grow">').slice(1)
+    .filter((r) => /class="bar" style="grid-column:\d/.test(r))
+  const ranged = model.plans.filter((p) => periodKind(p) === 'range')
+  assert.equal(rows.length, ranged.length, '期間のある計画の帯の数が合いません')
+
+  let outside = 0
+  for (const r of rows) {
+    const name = r.match(/class="nm">([^<]+)</)[1]
+    const [, a, b, inner] = r.match(/class="bar" style="grid-column:(\d+) \/ (\d+)[^>]*>([^<]*)</)
+    assert.match(r, /class="bar"[^>]* title="/, `${name}: 帯から title が消えています`)
+    const barPx = (Number(b) - Number(a)) * colw
+    const blab = r.match(/class="blab [rl]"[^>]*>([^<]+)</)
+    if (inner) {
+      assert.equal(blab, null, `${name}: 帯の中と外の両方にラベルがあります`)
+      assert.ok(labelWidth(inner) <= barPx,
+        `${name}: 帯 ${barPx.toFixed(1)}px に ${inner}（${labelWidth(inner).toFixed(1)}px）が入りません`)
+    } else {
+      assert.ok(blab, `${name}: 帯にもその外にもラベルがありません`)
+      outside++
+    }
+  }
+  assert.ok(outside > 0, '狭い帯が1本もありません。この検査が意味を失っています')
+
+  // いちばん短い計画のラベルが、切り落とされずに丸ごと出ていること。
+  const shortest = ranged.reduce((x, p) =>
+    (p.period.end - p.period.start < x.period.end - x.period.start ? p : x))
+  const row = rows.find((r) => r.includes(`class="nm">${esc(shortest.name)}<`))
+  const text = `${fiscalYearShort(shortest.period.start)}〜${fiscalYearShort(shortest.period.end)}`
+  assert.ok(row.includes(`>${esc(text)}</span>`),
+    `${shortest.name}: ${text} が帯の外に出ていません`)
+
+  // いちばん長い計画は、帯の中にラベルを保つ。
+  // これが無いと「全部を帯の外に出す」実装でもこの検査は通ってしまう（片側しか見ないため）。
+  const longest = ranged.reduce((x, p) =>
+    (p.period.end - p.period.start > x.period.end - x.period.start ? p : x))
+  const lrow = rows.find((r) => r.includes(`class="nm">${esc(longest.name)}<`))
+  const ltext = `${fiscalYearShort(longest.period.start)}〜${fiscalYearShort(longest.period.end)}`
+  assert.ok(lrow.includes(`>${esc(ltext)}</div>`),
+    `${longest.name}: 帯が十分に広いのにラベルが帯の中にありません`)
 })
 
 test('横に長い図はページ本体ではなく図の中でスクロールする', () => {
