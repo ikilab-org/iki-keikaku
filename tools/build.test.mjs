@@ -247,6 +247,37 @@ test('軸の先まで続く計画は、軸の終端で切って右端を薄く�
   assert.ok(timeline.includes(esc(over.name)), '凡例に、はみ出している計画の名前がありません')
 })
 
+test('どの帯も、期間の文字が帯の中に収まる', () => {
+  // 軸を切るのは「1本の長期計画のせいで帯が潰れる」を防ぐためだが、軸が別の理由で
+  // 伸びれば同じことが起きる。.bar{overflow:hidden} は黙って切り落とすので、
+  // 画面を見るまで気づけない。ここで生成時に測っておく。
+  //
+  // いちばん狭いとき（.gantt{min-width:940px}）で見る。ここで入ればどの幅でも入る。
+  //   940px － ラベル列 290px － gap 10px ＝ トラック 640px（1列 24.6px）
+  //
+  // 文字幅は .bar{font-size:10.5px} での見積もり。ページを実際に開いて
+  // canvas の measureText で全ラベルを測り、全角 10.92px / 半角 5.50px を得た
+  // （いちばん広い「平成22〜平成26」が 78.57px）。ここでは切り上げた値を使う。
+  // 見積もりが実測を下回ると、切れているのに通してしまう。
+  // .bar に左右の padding は無く、文字は帯の幅いっぱいまで使える。
+  const TRACK_MIN_PX = 940 - 290 - 10
+  const PAD = 0
+  const width = (s) => [...s].reduce((w, c) => w + (/[!-~]/.test(c) ? 5.8 : 11.1), 0)
+  const cols = model.years.end - model.years.start + 1
+  const colw = TRACK_MIN_PX / cols
+
+  for (const r of timeline.split('<div class="grow">').slice(1)) {
+    // はみ出す帯は軸の終端まであるので広い。中央寄せもしないので対象外。
+    const m = r.match(/class="bar" style="grid-column:(\d+) \/ (\d+)[^>]*>([^<]*)</)
+    if (!m) continue
+    const [, a, b, text] = m
+    const name = r.match(/class="nm">([^<]+)</)[1]
+    assert.ok(width(text) + PAD <= (Number(b) - Number(a)) * colw,
+      `${name}: 帯 ${((Number(b) - Number(a)) * colw).toFixed(1)}px に `
+      + `${text}（${width(text).toFixed(1)}px）が入りません。軸が伸びすぎています`)
+  }
+})
+
 test('横に長い図はページ本体ではなく図の中でスクロールする', () => {
   assert.ok(timeline.includes('class="tlwrap"'))
 })

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { parseYaml } from './yaml.mjs'
 import {
-  BANDS, RELATIONS, bandOf, bandGroups, periodKind, yearRange, overrunPlans, AXIS_MIN_PLANS,
+  BANDS, RELATIONS, bandOf, bandGroups, periodKind, yearRange, overrunPlans, axisMinPlans,
   slotOf, domainGroups, relationCounts, expiryByYear, buildModel,
 } from './view-model.mjs'
 
@@ -61,23 +61,31 @@ test('年度の範囲は range の計画だけから決める', () => {
   assert.equal(yearRange([{ period: { start: null, end: null } }, {}]), null)
 })
 
-test('軸の終端は、2件以上が及ぶ最後の年度で切る', () => {
-  // 長期の計画が1本あるだけで軸が倍に伸び、他の帯が潰れるのを避ける。
+test('軸の終端は、全体の一定割合が及ぶ最後の年度で切る', () => {
+  // 長期の計画がわずかにあるだけで軸が倍に伸び、他の帯が潰れるのを避ける。
   // 実データ: 2035年度は3件、2036年度以降は公共施設等総合管理計画の1件だけ。
-  assert.equal(AXIS_MIN_PLANS, 2)
+  assert.equal(axisMinPlans(54), 3)
   assert.deepEqual(yearRange(PLANS), { start: 2010, end: 2035 })
 
-  // 重なっているうちは切らない。
+  // 件数ではなく割合。長期の計画が2本に増えても、全体から見て少なければ切る。
+  const many = Array.from({ length: 50 }, () => ({ period: { start: 2020, end: 2030 } }))
   assert.deepEqual(
-    yearRange([{ period: { start: 2015, end: 2020 } }, { period: { start: 2016, end: 2020 } }]),
-    { start: 2015, end: 2020 },
+    yearRange([...many, { period: { start: 2020, end: 2060 } }, { period: { start: 2020, end: 2060 } }]),
+    { start: 2020, end: 2030 },
   )
-  // 1本だけ突き出しているときは、そこで切る。
+
+  // 収録が数件しかないうちは切らない。切る意味が無く、軸が潰れるだけ。
+  assert.equal(axisMinPlans(2), 1)
   assert.deepEqual(
     yearRange([{ period: { start: 2015, end: 2020 } }, { period: { start: 2016, end: 2050 } }]),
-    { start: 2015, end: 2020 },
+    { start: 2015, end: 2050 },
   )
-  // 重なりがどこにも無いデータでは切らない。切ると軸が1列に潰れる。
+  // 重なりが始端にしか無いデータでも、軸を1列に潰さない。
+  assert.deepEqual(
+    yearRange([{ period: { start: 2010, end: 2010 } }, { period: { start: 2010, end: 2015 } }]),
+    { start: 2010, end: 2015 },
+  )
+  // 重なりがどこにも無いデータでも切らない。
   assert.deepEqual(
     yearRange([{ period: { start: 2010, end: 2012 } }, { period: { start: 2050, end: 2052 } }]),
     { start: 2010, end: 2052 },
