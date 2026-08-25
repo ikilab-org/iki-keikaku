@@ -198,16 +198,19 @@ body{background:#555;padding:24px;display:flex;flex-direction:column;gap:24px;al
   </div>
   <div class="R">
     <div class="mini">
-      <div class="cap">1人あたり公共施設面積（㎡・推計）</div>
-      <svg class="ln" viewBox="0 0 560 200" role="img" aria-label="1人あたり公共施設面積が2020年の11.7平方メートルから2036年の13.78平方メートルへ上昇">
-        <polyline points="0,164 140,120 280,78 420,40 560,10" fill="none" stroke="var(--c5)" stroke-width="5"
+      <div class="cap">1人あたり公共施設面積（㎡・社人研準拠の再推計）</div>
+      <!-- 年の目盛りは SVG の中に置く。外の .yrs（等分セルの中央）に出すと、
+           点の位置（等間隔）とずれる。点が4つだとずれが半セル＝56px になって目立つ。 -->
+      <svg class="ln" viewBox="0 0 560 200" role="img" aria-label="1人あたり公共施設面積が2020年の水準11.7平方メートルに対し、2036年に13.78平方メートルへ上昇">
+        <path d="M34,145.9 L34,145.9 L199,103.9 L363,69.5 L528,33.9 L528,155.3 L34,155.3 Z" fill="var(--c5)" opacity=".14"/>
+        <line x1="34" y1="155.3" x2="528" y2="155.3" stroke="var(--axis)" stroke-width="3" stroke-dasharray="10 8"/>
+        <polyline points="34,145.9 199,103.9 363,69.5 528,33.9" fill="none" stroke="var(--c5)" stroke-width="5"
           stroke-linejoin="round" stroke-linecap="round"/>
-        <line x1="0" y1="176" x2="560" y2="176" stroke="var(--axis)" stroke-width="3" stroke-dasharray="10 8"/>
-        <circle cx="0" cy="164" r="5" fill="var(--c5)"/><circle cx="560" cy="10" r="5" fill="var(--c5)"/>
+        <circle cx="34" cy="145.9" r="5" fill="var(--c5)"/><circle cx="199" cy="103.9" r="5" fill="var(--c5)"/><circle cx="363" cy="69.5" r="5" fill="var(--c5)"/><circle cx="528" cy="33.9" r="5" fill="var(--c5)"/>
+        <g font-size="17" font-weight="600" fill="var(--ink2)"><text x="34" y="191" text-anchor="middle">21</text><text x="199" y="191" text-anchor="middle">26</text><text x="363" y="191" text-anchor="middle">31</text><text x="528" y="191" text-anchor="middle">36</text></g>
       </svg>
-      <div class="yrs"><div>21</div><div>25</div><div>29</div><div>33</div><div>36</div></div>
       <div class="lg">
-        <span><b class="big">11.7㎡</b>（2020年）</span>
+        <span><b class="big">11.7㎡</b>（2020年の水準）</span>
         <span><b class="big" style="color:var(--c5)">13.78㎡</b>（2036年）</span>
       </div>
     </div>
