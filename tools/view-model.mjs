@@ -65,14 +65,41 @@ export function periodKind(p) {
   return 'partial'
 }
 
+/**
+ * ガントの軸に取る年度の範囲。
+ *
+ * **終端は「その年度に計画期間が及ぶ計画が AXIS_MIN_PLANS 件以上ある最後の年度」です。**
+ * 長期の計画が1本あるだけで軸が倍に伸び、他の計画の帯が半分の幅に潰れるのを避けます。
+ * 実例: 公共施設等総合管理計画は令和4〜令和43年度で、令和18年度以降はこの1本だけです。
+ * 軸を素直に最大の end まで取ると、右半分がこの1本のためだけに使われ、
+ * 3年計画の帯は文字より狭くなって `.bar{overflow:hidden}` に切り落とされていました。
+ *
+ * **軸の先まで続く計画は落としません。** overrunPlans に入れ、右端を薄くした帯で表します
+ * （`tools/build.mjs`。`plans/fukushi/` の「健康ながさき21（第3次）」と同じ作法）。
+ *
+ * **始端は縮めません。** 古い計画は「いつ終わったか」を見るために置いてあり、
+ * 左を削ると起点が分からなくなるためです。
+ */
+export const AXIS_MIN_PLANS = 2
+
 export function yearRange(plans) {
-  const ys = []
-  for (const p of plans) {
-    if (periodKind(p) !== 'range') continue
-    ys.push(p.period.start, p.period.end)
-  }
-  return ys.length ? { start: Math.min(...ys), end: Math.max(...ys) } : null
+  const ranged = plans.filter((p) => periodKind(p) === 'range')
+  if (!ranged.length) return null
+  const start = Math.min(...ranged.map((p) => p.period.start))
+  const last = Math.max(...ranged.map((p) => p.period.end))
+  const covering = (y) => ranged.filter((p) => p.period.start <= y && y <= p.period.end).length
+
+  let end = last
+  while (end > start && covering(end) < AXIS_MIN_PLANS) end--
+  // どの年度にも重なりが無いデータ（計画が1本だけ等）では切らない。
+  // 切ると軸が1列に潰れ、すべての帯がはみ出す扱いになる。
+  if (covering(end) < AXIS_MIN_PLANS) end = last
+  return { start, end }
 }
+
+/** 軸の終端より先まで続く計画。右端を薄くした帯で表す対象。 */
+export const overrunPlans = (plans, years) =>
+  plans.filter((p) => periodKind(p) === 'range' && years && p.period.end > years.end)
 
 export const slotOf = (p, domains) => domains?.[p.domain]?.slot ?? null
 
@@ -127,13 +154,15 @@ export function expiryByYear(plans) {
 export function buildModel(doc) {
   const plans = doc.plans ?? []
   const domains = doc.domains ?? {}
+  const years = yearRange(plans)
   return {
     plans,
     domains,
     meta: doc.meta ?? {},
     bands: bandGroups(plans),
     relations: relationCounts(plans),
-    years: yearRange(plans),
+    years,
+    overrun: overrunPlans(plans, years),
     expiry: expiryByYear(plans),
     todoCount: plans.filter((p) => p.todo).length,
     zuiji: plans.filter((p) => periodKind(p) === 'zuiji'),

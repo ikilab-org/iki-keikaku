@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { parseYaml } from './yaml.mjs'
 import {
-  BANDS, RELATIONS, bandOf, bandGroups, periodKind, yearRange,
+  BANDS, RELATIONS, bandOf, bandGroups, periodKind, yearRange, overrunPlans, AXIS_MIN_PLANS,
   slotOf, domainGroups, relationCounts, expiryByYear, buildModel,
 } from './view-model.mjs'
 
@@ -57,12 +57,42 @@ test('期間を持たない計画が実データで24件ある', () => {
 })
 
 test('年度の範囲は range の計画だけから決める', () => {
+  assert.equal(yearRange([{}]), null)
+  assert.equal(yearRange([{ period: { start: null, end: null } }, {}]), null)
+})
+
+test('軸の終端は、2件以上が及ぶ最後の年度で切る', () => {
+  // 長期の計画が1本あるだけで軸が倍に伸び、他の帯が潰れるのを避ける。
+  // 実データ: 2035年度は3件、2036年度以降は公共施設等総合管理計画の1件だけ。
+  assert.equal(AXIS_MIN_PLANS, 2)
+  assert.deepEqual(yearRange(PLANS), { start: 2010, end: 2035 })
+
+  // 重なっているうちは切らない。
   assert.deepEqual(
-    yearRange([{ period: { start: 2015, end: 2020 } }, { period: { start: null, end: null } }, {}]),
+    yearRange([{ period: { start: 2015, end: 2020 } }, { period: { start: 2016, end: 2020 } }]),
     { start: 2015, end: 2020 },
   )
-  assert.equal(yearRange([{}]), null)
-  assert.deepEqual(yearRange(PLANS), { start: 2010, end: 2061 })
+  // 1本だけ突き出しているときは、そこで切る。
+  assert.deepEqual(
+    yearRange([{ period: { start: 2015, end: 2020 } }, { period: { start: 2016, end: 2050 } }]),
+    { start: 2015, end: 2020 },
+  )
+  // 重なりがどこにも無いデータでは切らない。切ると軸が1列に潰れる。
+  assert.deepEqual(
+    yearRange([{ period: { start: 2010, end: 2012 } }, { period: { start: 2050, end: 2052 } }]),
+    { start: 2010, end: 2052 },
+  )
+  assert.deepEqual(yearRange([{ period: { start: 2015, end: 2020 } }]), { start: 2015, end: 2020 })
+})
+
+test('軸の先まで続く計画は overrun に拾う。落とさない', () => {
+  const years = yearRange(PLANS)
+  const over = overrunPlans(PLANS, years)
+  assert.equal(over.length, 1)
+  assert.equal(over[0].id, 'kokyoshisetsu-sougou')
+  assert.ok(over[0].period.end > years.end)
+  // 軸に収まる計画は拾わない。
+  assert.equal(overrunPlans([{ period: { start: 2015, end: 2020 } }], years).length, 0)
 })
 
 test('slot は domains から引く。domain が無ければ null', () => {
@@ -120,7 +150,8 @@ test('buildModel が図表に必要なものを一度に返す', () => {
   const m = buildModel(doc)
   assert.equal(m.plans.length, PLANS.length)
   assert.equal(m.bands.length, BANDS.length)
-  assert.deepEqual(m.years, { start: 2010, end: 2061 })
+  assert.deepEqual(m.years, { start: 2010, end: 2035 })
+  assert.equal(m.overrun.length, 1)
   assert.equal(m.relations.length, RELATIONS.length)
   assert.equal(m.todoCount, 29)
   assert.equal(m.meta.updated, doc.meta.updated)

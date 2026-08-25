@@ -5,8 +5,8 @@ import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { parseYaml } from './yaml.mjs'
 import { buildModel, periodKind } from './view-model.mjs'
-import { esc, buildPage, taikeiSection, timelineSection, listSection, LABELS, PAGE_CSS,
-  TRACK_MIN_PX, labelWidth } from './build.mjs'
+import { esc, buildPage, taikeiSection, timelineSection, listSection, LABELS,
+  PAGE_CSS } from './build.mjs'
 import { fiscalYearShort } from './fiscal-year.mjs'
 import { ENUM } from './validate.mjs'
 import { contrast } from './palette.mjs'
@@ -182,8 +182,9 @@ test('期間を持たない24件が専用のグループにある', () => {
   assert.equal(model.zuiji.length + model.unclear.length, 24)
 })
 
-test('軸の範囲がデータの実際の範囲と一致する', () => {
-  // 軸を短く取ると、はみ出した計画の帯が範囲外の grid-column を指す。
+test('軸の範囲が model.years と一致する', () => {
+  // 軸の終端は yearRange が切ったもの（2件以上が及ぶ最後の年度）。
+  // ここが model.years とずれると、帯の grid-column が軸の外を指す。
   assert.ok(timeline.includes(fiscalYearShort(model.years.start)), '左端のラベルがありません')
   assert.ok(timeline.includes(fiscalYearShort(model.years.end)), '右端のラベルがありません')
   const cols = model.years.end - model.years.start + 1
@@ -201,52 +202,49 @@ test('帯の grid-column が軸の範囲に収まる', () => {
   }
 })
 
-test('狭い帯のラベルは帯の中で切り落とさず、帯の外に置く', () => {
-  // 公共施設等総合管理計画（令和4〜令和43年度）で軸が52列に伸び、1年あたりの幅が半分に
-  // なった。3年計画の帯は 46px しかないのに「令和6〜令和8」は 67px あり、
-  // .bar{overflow:hidden} が黙って切り落としていた。
-  // 軸は線形（1年＝1列）のまま、入らないぶんだけ帯の外の隣に置く。
+test('軸の先まで続く計画は、軸の終端で切って右端を薄くする', () => {
+  // 公共施設等総合管理計画（令和4〜令和43年度）で軸を最大の end まで伸ばすと、
+  // 52列になって1年あたりの幅が半分になり、3年計画の帯は文字より狭くなって
+  // .bar{overflow:hidden} が黙って切り落としていた。軸は2件以上が及ぶ
+  // 最後の年度で切り、はみ出す計画は .bar.open（右端を薄くする）で表す。
   const cols = model.years.end - model.years.start + 1
-  const colw = TRACK_MIN_PX / cols
   const rows = timeline.split('<div class="grow">').slice(1)
-    .filter((r) => /class="bar" style="grid-column:\d/.test(r))
+    .filter((r) => /class="bar( open)?" style="grid-column:\d/.test(r))
   const ranged = model.plans.filter((p) => periodKind(p) === 'range')
   assert.equal(rows.length, ranged.length, '期間のある計画の帯の数が合いません')
 
-  let outside = 0
+  const open = rows.filter((r) => r.includes('class="bar open"'))
+  assert.equal(open.length, model.overrun.length, `.bar.open の数が overrun と合いません`)
+  assert.ok(open.length > 0, 'はみ出す計画が1本もありません。この検査が意味を失っています')
+
   for (const r of rows) {
     const name = r.match(/class="nm">([^<]+)</)[1]
-    const [, a, b, inner] = r.match(/class="bar" style="grid-column:(\d+) \/ (\d+)[^>]*>([^<]*)</)
-    assert.match(r, /class="bar"[^>]* title="/, `${name}: 帯から title が消えています`)
-    const barPx = (Number(b) - Number(a)) * colw
-    const blab = r.match(/class="blab [rl]"[^>]*>([^<]+)</)
-    if (inner) {
-      assert.equal(blab, null, `${name}: 帯の中と外の両方にラベルがあります`)
-      assert.ok(labelWidth(inner) <= barPx,
-        `${name}: 帯 ${barPx.toFixed(1)}px に ${inner}（${labelWidth(inner).toFixed(1)}px）が入りません`)
-    } else {
-      assert.ok(blab, `${name}: 帯にもその外にもラベルがありません`)
-      outside++
+    const [, a, b, inner] = r.match(/class="bar(?: open)?" style="grid-column:(\d+) \/ (\d+)[^>]*>([^<]*)</)
+    // どの帯も、期間の文字と title を必ず持つ。切り落としても情報は残す。
+    assert.ok(inner.includes('〜'), `${name}: 帯の中に期間がありません`)
+    assert.match(r, /class="bar(?: open)?"[^>]* title="/, `${name}: 帯から title が消えています`)
+    if (r.includes('class="bar open"')) {
+      assert.equal(Number(b), cols + 1, `${name}: はみ出す帯が軸の終端で切られていません`)
     }
+    assert.ok(Number(a) >= 1 && Number(b) <= cols + 1, `${name}: 帯が軸の外に出ています`)
   }
-  assert.ok(outside > 0, '狭い帯が1本もありません。この検査が意味を失っています')
 
-  // いちばん短い計画のラベルが、切り落とされずに丸ごと出ていること。
-  const shortest = ranged.reduce((x, p) =>
-    (p.period.end - p.period.start < x.period.end - x.period.start ? p : x))
-  const row = rows.find((r) => r.includes(`class="nm">${esc(shortest.name)}<`))
-  const text = `${fiscalYearShort(shortest.period.start)}〜${fiscalYearShort(shortest.period.end)}`
-  assert.ok(row.includes(`>${esc(text)}</span>`),
-    `${shortest.name}: ${text} が帯の外に出ていません`)
+  // はみ出す帯の中の文字は、切ったあとの年度ではなく本当の終期を出す。
+  const over = model.overrun[0]
+  const row = rows.find((r) => r.includes(`class="nm">${esc(over.name)}<`))
+  assert.ok(row.includes(esc(fiscalYearShort(over.period.end))),
+    `${over.name}: 帯の中の期間が、軸で切った年度になっています`)
 
-  // いちばん長い計画は、帯の中にラベルを保つ。
-  // これが無いと「全部を帯の外に出す」実装でもこの検査は通ってしまう（片側しか見ないため）。
-  const longest = ranged.reduce((x, p) =>
-    (p.period.end - p.period.start > x.period.end - x.period.start ? p : x))
-  const lrow = rows.find((r) => r.includes(`class="nm">${esc(longest.name)}<`))
-  const ltext = `${fiscalYearShort(longest.period.start)}〜${fiscalYearShort(longest.period.end)}`
-  assert.ok(lrow.includes(`>${esc(ltext)}</div>`),
-    `${longest.name}: 帯が十分に広いのにラベルが帯の中にありません`)
+  // 薄くするのは CSS 側。クラスだけ付けて指定が無いと、ただ切れた帯に見える。
+  // -webkit- 付きだけでは Firefox で薄くならないので、両方あることを見る。
+  // （`mask-image` の検査を緩く書くと `-webkit-mask-image` が引っかかって素通りする）
+  const openCss = PAGE_CSS.match(/\.bar\.open\{[^}]*\}/)?.[0] ?? ''
+  assert.match(openCss, /-webkit-mask-image:linear-gradient/, '.bar.open に -webkit- 付きの指定がありません')
+  assert.match(openCss, /[;{\s]mask-image:linear-gradient/, '.bar.open に mask-image の指定がありません')
+
+  // 図の中に、薄い帯の意味を書く。凡例が無いと切れたのか続いているのか分からない。
+  assert.ok(timeline.includes('右端が薄い帯'), 'はみ出す帯の凡例がありません')
+  assert.ok(timeline.includes(esc(over.name)), '凡例に、はみ出している計画の名前がありません')
 })
 
 test('横に長い図はページ本体ではなく図の中でスクロールする', () => {

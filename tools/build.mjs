@@ -133,12 +133,12 @@ table.rel td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:no
   font-size:10.5px;color:#0b0b0b;position:relative;z-index:2;white-space:nowrap;overflow:hidden}
 .bar.dash{background:transparent!important;border:1.5px dashed var(--muted);color:var(--ink2);
   grid-column:1 / -1;justify-content:flex-start;padding-left:8px}
-/* 帯に入りきらない年度のラベル。z-index は .nowline（3）より上に置き、
-   「現在」の線が文字の上を横切らないようにする。 */
-.blab{font-size:10.5px;color:var(--ink2);white-space:nowrap;display:flex;align-items:center;
-  position:relative;z-index:4;font-variant-numeric:tabular-nums}
-.blab.r{justify-content:flex-start;padding-left:6px}
-.blab.l{justify-content:flex-end;padding-right:6px}
+/* 軸の先まで続く計画。右端を薄くして「図の先まで続く」ことを示す。
+   plans/fukushi/ の「健康ながさき21（第3次）」と同じ作法。
+   帯は軸の終端で切るので、文字は左に寄せて薄い側に置かない。 */
+.bar.open{border-radius:5px 0 0 5px;justify-content:flex-start;padding-left:8px;
+  -webkit-mask-image:linear-gradient(to right,#000 84%,transparent 100%);
+  mask-image:linear-gradient(to right,#000 84%,transparent 100%)}
 .grp{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;padding-top:10px;
   border-top:1px solid var(--grid);display:flex;align-items:center;gap:7px}
 .tblwrap{overflow-x:auto;margin-top:8px}
@@ -196,30 +196,6 @@ const barInk = (p, domains) => {
   return s == null ? '#0b0b0b' : `var(--c${s}-ink)`
 }
 
-/**
- * 帯の中に文字を置けるかどうかを、ブラウザで測らずに生成時に決めるための定数。
- *
- * 図がいちばん狭くなるとき（.gantt{min-width:940px}）で判定します。ここで入るなら
- * どの幅でも入るからです。逆に、実際の表示幅で判定すると生成が幅に依存して
- * --check が再現しなくなります。
- *
- *   940px － ラベル列 290px － gap 10px ＝ トラック 640px
- */
-export const TRACK_MIN_PX = 940 - 290 - 10
-
-/**
- * .bar{font-size:10.5px} で描いたときの文字幅の見積もり。
- *
- * 全角（漢字・〜）は 1em ＋ letter-spacing、半角の数字はその 2/3 ほど。
- * system-ui 10.5px での実測は 令和6〜令和8 が 67.1px、平成22〜平成26 が 79.9px で、
- * この式では 67.5px / 81.5px。わずかに多めに見るので、切れる側には倒れません。
- * BAR_PAD は帯の中に置いたときに文字の左右へ残す余白です。
- */
-const CH_FULL = 10.7
-const CH_HALF = 7
-const BAR_PAD = 8
-export const labelWidth = (s) => [...s].reduce((w, c) => w + (/[!-~]/.test(c) ? CH_HALF : CH_FULL), 0)
-
 export function timelineSection(m) {
   const { start: Y0, end: Y1 } = m.years
   const cols = Y1 - Y0 + 1
@@ -250,33 +226,30 @@ export function timelineSection(m) {
       return `<div class="grow">${label}${track(`<div class="bar dash">${esc(text)}</div>`)}</div>`
     }
     const a = p.period.start - Y0 + 1
-    const b = p.period.end - Y0 + 2
-    const text = `${fiscalYearShort(p.period.start)}〜${fiscalYearShort(p.period.end)}`
-    const span = esc(text)
-    const bar = (inner) => `<div class="bar" style="grid-column:${a} / ${b};background:${col};color:${barInk(p, m.domains)}"`
-      + ` title="${esc(p.name)}｜${span}年度（${p.period.start}〜${p.period.end}年度）">${inner}</div>`
-
-    // 軸が長くなると、短い計画の帯は文字より狭くなる。以前は overflow:hidden が
-    // 黙って切り落としていた（令和6〜令和8 は 46px の帯に 67px の文字）。
-    // 軸は線形のまま（1年＝1列）にして、入らないぶんは帯の外の隣に置く。
-    const need = labelWidth(text) + BAR_PAD
-    const colw = TRACK_MIN_PX / cols
-    if (need <= (b - a) * colw) return `<div class="grow">${label}${track(bar(span))}</div>`
-
-    // 右に空きがあれば右、無ければ左。どちらも足りなければ広いほうへ逃がす。
-    // 帯は1行に1本なので、外に出しても隣の帯とはぶつからない。
-    // 軸いっぱいの帯なら幅は TRACK_MIN_PX なので、ここには来ない（必ず中に入る）。
-    const putRight = (cols + 1 - b) * colw >= need || cols + 1 - b >= a - 1
-    const out = putRight
-      ? `<span class="blab r" style="grid-column:${b} / ${cols + 1}">${span}</span>`
-      : `<span class="blab l" style="grid-column:1 / ${a}">${span}</span>`
-    return `<div class="grow">${label}${track(bar('') + out)}</div>`
+    // 軸の先まで続く計画は、軸の終端で切って右端を薄くする（.bar.open）。
+    // 期間そのものは帯の中の文字・title・下の一覧表に残る。軸を最大の end まで
+    // 伸ばすと、1本のために全体の幅が潰れる（view-model.mjs の yearRange を参照）。
+    const open = p.period.end > Y1
+    const b = open ? cols + 1 : p.period.end - Y0 + 2
+    const span = esc(`${fiscalYearShort(p.period.start)}〜${fiscalYearShort(p.period.end)}`)
+    const bar = `<div class="bar${open ? ' open' : ''}" style="grid-column:${a} / ${b};`
+      + `background:${col};color:${barInk(p, m.domains)}"`
+      + ` title="${esc(p.name)}｜${span}年度（${p.period.start}〜${p.period.end}年度）">${span}</div>`
+    return `<div class="grow">${label}${track(bar)}</div>`
   }
 
   const ranged = m.plans.filter((p) => periodKind(p) === 'range')
   const groups = domainGroups(ranged, m.domains)
     .filter((g) => g.plans.length)
     .map((g) => `<div class="grp">${esc(g.label)}<span>${g.plans.length}件</span></div>\n${g.plans.map(row).join('\n')}`)
+
+  // 軸の先まで続く計画があれば、右端が薄い帯の意味をその場で書く。
+  // 凡例が無いと、切れているのか続いているのかが読み手に分からない。
+  const openNote = m.overrun.length
+    ? `\n  <strong>右端が薄い帯は、図の先まで続く計画です</strong>（`
+      + m.overrun.map((p) => `${esc(p.name)}は${esc(fiscalYearShort(p.period.end))}年度まで`).join('／')
+      + '）。'
+    : ''
 
   const extra = [
     ['随時修正（期間を定めない）', m.zuiji],
@@ -288,7 +261,7 @@ export function timelineSection(m) {
   <div class="hd"><h2>計画期間</h2>
   <p class="sub">${esc(fiscalYearShort(Y0))}年度から${esc(fiscalYearShort(Y1))}年度まで。分野ごとに並べています。
   <strong>期間を持たない${m.zuiji.length + m.unclear.length}件も落とさず、末尾に別のグループとして置いています。</strong>
-  ここを落とすと、俯瞰したつもりで3分の1が見えていないことになります。</p></div>
+  ここを落とすと、俯瞰したつもりで3分の1が見えていないことになります。${openNote}</p></div>
   <div class="tlwrap"><div class="gantt">
 ${axis()}
 ${groups.join('\n')}
