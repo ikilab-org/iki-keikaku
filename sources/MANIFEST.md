@@ -40,6 +40,8 @@
 | 第3次壱岐市男女共同参画計画策定支援業務プロポーザル結果 | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/16014.html` | 低 | 2026-08-12 | ― | 正式名称「第３次壱岐市男女共同参画計画」（「基本」を含まない）の確認 |
 | 著作権・免責事項 | `/3313.html` | 中 | 2026-08-11 | ― | 二次利用の記載なし |
 | 第4次壱岐市総合計画（掲載ページ） | `/shisei/machidukuri/keikaku/tougoukeikaku/14357.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市まち・ひと・しごと創生人口ビジョン（掲載ページ。同 総合戦略〈令和2〜6年度〉と同一URL） | `/soshiki/seisaku_kikakuka/machizukuri/sogo_senryaku/1044.html` | 中 | 2026-08-13 | ― | ― |
+| 同 本体PDF | `/material/files/group/2/ikisi_mati_hito_sigoto_sosei_vision.pdf` | 高 | 2026-08-13 | ― | ― |
 | 第3期壱岐市SDGs未来都市計画（掲載ページ） | `/soshiki/eng/kyousou/sdgs/SDGs/7558.html` | 中 | 2026-08-13 | ― | ― |
 | 第3期壱岐市SDGs未来都市計画（本体PDF） | `/material/files/group/40/ikicitySDGsplan3rd.pdf` | 高 | 2026-08-13 | ― | ― |
 | 壱岐市高齢者福祉計画・第9期介護保険事業計画（掲載ページ） | `/soshiki/hokenka/kaigo_hoken/13262.html` | 中 | 2026-08-13 | ― | ― |
@@ -83,8 +85,10 @@
 | 壱岐市文化財展示施設再編計画／壱岐市文化財展示施設条例（例規集、平成22年3月23日条例第9号、令和7年6月1日施行の改正を含む） | `/section/reiki/reiki_honbun/r014RG00000923.html` | 高 | 2026-08-13 | ― | ― |
 | 壱岐市景観計画（掲載ページ） | `/soshiki/kensetsuka/keikan/3873.html` | 中 | 2026-08-13 | ― | ― |
 | 壱岐市景観計画（本体PDF） | `/material/files/group/18/keikaku_all.pdf` | 高 | 2026-08-13 | ― | ― |
-| 壱岐市公共施設等総合管理計画（掲載ページ） | `/shisei/machidukuri/keikaku/3750.html` | 中 | 2026-08-13 | ― | ― |
-| 壱岐市公共施設個別施設計画（掲載ページ） | `/shisei/machidukuri/keikaku/8574.html` | 中 | 2026-08-13 | ― | ― |
+| 壱岐市公共施設等総合管理計画（掲載ページ） | `/shisei/machidukuri/keikaku/3750.html` | 中 | 2026-08-25 | ― | ― |
+| 同 本体PDF | `/material/files/group/5/sougoukannrikeikakukaitei.pdf` | 高 | 2026-08-25 | ○ | 57頁・SHA-256 `3c5f3efc752cdd6bd76c3fe59af11df6a08aebe626ed49ce26f381c45dbcdb90`。§1-1-3、§1-2、§1-3-1、§1-3-2、§2-1、§2-5-1、§2-6-1、§2-7-1、p.29（財源確保の取組）、用語集 |
+| 壱岐市公共施設個別施設計画（掲載ページ） | `/shisei/machidukuri/keikaku/8574.html` | 中 | 2026-08-25 | ― | ― |
+| 同 本体PDF | `/material/files/group/5/kobetusisetukeikakukaitei.pdf` | 高 | 2026-08-25 | ○ | 77頁・SHA-256 `367121e0b8e090d0caae4407eded5ef4e2ca67fe58b327d4fc91b4c90fb59e53`。第4章2（２）①（費用単価表の出所）、p.76（印字74。社会教育系施設の床面積10,795㎡） |
 | 壱岐市財政基盤確立計画（掲載ページ） | `/soshiki/zaiseika/zaisei_jokyo/10021.html` | 中 | 2026-08-13 | ― | ― |
 | シン市役所化計画（第4次壱岐市行財政改革大綱）（掲載ページ） | `/soshiki/zaiseika/gyosei/taikoujisikeikaku/6920.html` | 中 | 2026-08-13 | ― | ― |
 | シン市役所化計画（第4次壱岐市行財政改革大綱）（本体PDF） | `/material/files/group/46/sin_siyakusyokakeikaku_taikou7.pdf` | 高 | 2026-08-13 | ― | ― |
@@ -163,6 +167,14 @@
 | 第179回介護給付費分科会 資料（小規模多機能型居宅介護） | `https://www.mhlw.go.jp/content/12300000/000647292.pdf` | 高 | 2026-08-11 |
 | e-Stat 介護保険事業状況報告 | `https://www.e-stat.go.jp/stat-search?iroha=6&toukei=00450351` | 高 | 2026-08-10 |
 | 環境省 令和7年度地域脱炭素の推進に関する状況調査（長崎県別データ、Excel） | `https://policies.env.go.jp/policy/roadmap/local_keikaku/sakutei/files/map/42.xlsx` | 要判定 | 2026-08-12 |
+| 総務省自治財政局財務調査課「公共施設等の適正管理について」（令和7年4月1日） | `https://www.soumu.go.jp/main_content/001010337.pdf` | 高 | 2026-08-25 |
+| 総務省「公共施設等適正管理推進事業」（令和7年度） | `https://www.soumu.go.jp/main_content/001012994.pdf` | 高 | 2026-08-25 |
+| 総務省「令和8年度地方債充当率」（令和8年総務省告示第161号） | `https://www.soumu.go.jp/main_content/001002597.pdf` | 高 | 2026-08-25 |
+| 総務省「令和8年度地方債同意等基準運用要綱について」（令和8年4月1日） | `https://www.soumu.go.jp/main_content/001002600.pdf` | 高 | 2026-08-25 |
+| 総務省地域力創造グループ過疎対策室「令和5年度版 過疎対策の現況」（令和7年3月） | `https://www.soumu.go.jp/main_content/001000618.pdf` | 高 | 2026-08-25 |
+| 総務省「過疎地域市町村等一覧」（令和4年4月1日現在） | `https://www.soumu.go.jp/main_content/000807168.pdf` | 高 | 2026-08-25 |
+| 総務省自治財政局「令和8年度地方財政対策の概要」（令和7年12月26日） | `https://www.soumu.go.jp/main_content/001048685.pdf` | 高 | 2026-08-25 |
+| 地方財政法（昭和23年法律第109号）／e-Gov法令検索 | `https://laws.e-gov.go.jp/law/323AC0000000109` | 高 | 2026-08-25 |
 
 ## 失効した出典（記録として保持）
 
