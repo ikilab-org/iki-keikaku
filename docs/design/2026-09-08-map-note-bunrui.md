@@ -185,6 +185,11 @@ CC BY 4.0 は指定された方法での帰属表示を求めるもので、指�
 なく、`tools/og/build.mjs` の冒頭が `npm i -D playwright` を案内しています。導入できない場合は
 **画像を旧名のまま残さず、作業を止めて報告します**（名前とOGPがずれた状態で公開しない）。
 
+**語だけを grep すると足りない。** 「計画マップ」の grep は、同じ主張を別の言葉で
+書いた箇所（「関連性を図示」「関係を図にし」「分野別の掘り下げページ」）を拾わない。
+実際、この方法で `SETUP.md` のリポジトリ説明文3か所・`README.md` の目標文・
+`data/schema.md` の1文を取りこぼした。10章の 1b を必ず流すこと。
+
 ## 8. やらないこと
 
 - **URL構造の変更。** `/plans/` を `/maps/` と `/notes/` に割るのは、リダイレクトの手当てが要るうえ、
@@ -219,6 +224,13 @@ CC BY 4.0 は指定された方法での帰属表示を求めるもので、指�
 1a. `grep -rn "マップ" . --exclude-dir=.git --exclude-dir=docs --exclude-dir=node_modules` の残りが、
    `tools/yaml*.mjs`（YAMLの用語）・`sources/POLICY.md`・`DISCLAIMER.md`（市の別資料名）・
    `CHANGELOG.md`（記録）だけになる
+1b. 退けた主張が残っていないことを確かめる。語ではなく言い回しを探す。
+
+    grep -rn "関係を図\|関連性を図示\|掘り下げページ\|分野別ページ\|各分野のページ" . \
+      --exclude-dir=.git --exclude-dir=docs --exclude-dir=node_modules
+
+    残ってよいのは、市のウェブサイトのカテゴリを指す「分野別ページ」だけ
+    （`data/plans.yml`・`sources/POLICY.md`）と、記録の `CHANGELOG.md`。
 2. `node --test` が通る（`pages.test.mjs` 更新後）
 3. `node tools/build.mjs --check` が exit 0 を返す
 4. OGP画像4枚が再生成され、新しい名前が入っている
