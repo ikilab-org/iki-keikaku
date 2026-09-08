@@ -79,7 +79,7 @@ GitHub で見つけた人が「何者が作っているのか」を辿れるよ�
 ```bash
 gh auth login          # 初回のみ
 gh repo create ikilab-org/iki-keikaku --public --source=. --remote=origin --push \
-  --description "長崎県壱岐市の行政計画の関係を図にし、個別の計画を深掘りできる資料集。CC BY 4.0 + MIT"
+  --description "長崎県壱岐市の行政計画を全件並べたマップと、分野ごとに掘り下げたノートの資料集。CC BY 4.0 + MIT"
 ```
 
 作成・リモート登録・push までまとめて終わります。Step 3 は飛ばして Step 4 へ。
@@ -89,7 +89,7 @@ gh repo create ikilab-org/iki-keikaku --public --source=. --remote=origin --push
 1. https://github.com/new を開く
 2. **Owner**: `ikilab-org` を選択（**個人アカウントのままにしないよう注意**）
 3. **Repository name**: `iki-keikaku`
-4. **Description**: `長崎県壱岐市の行政計画の関係を図にし、個別の計画を深掘りできる資料集`
+4. **Description**: `長崎県壱岐市の行政計画を全件並べたマップと、分野ごとに掘り下げたノートの資料集`
 5. **Public** を選択
 6. **「Add a README file」「Add .gitignore」「Choose a license」はすべてチェックしない**
    （すでにリポジトリ内にあるため、チェックすると次のpushで衝突します）
@@ -253,7 +253,7 @@ Issue が立ったときに気づけるよう、リポジトリの **Watch** を
 
 リポジトリ画面右上の **About** の歯車から設定します（Organization の Profile は Step 2-1 で設定済み）。
 
-- **Description**: `長崎県壱岐市の行政計画の関係を図にし、個別の計画を深掘りできる資料集`
+- **Description**: `長崎県壱岐市の行政計画を全件並べたマップと、分野ごとに掘り下げたノートの資料集`
 - **Website**: `https://keikaku.ikilab.org`
 - **Topics**: `civic-tech` `open-data` `japan` `nagasaki` `iki` `local-government` `welfare` `long-term-care`
   - トピックは、他自治体の担当者や研究者がGitHub上で見つける導線になります
