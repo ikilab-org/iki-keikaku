@@ -151,9 +151,16 @@ test('ハブはマップとノートの2節に分かれ、各節が定義文と�
 
 test('ハブのカードは、すべてマップかノートの節に入っている', () => {
   // 型のラベルはカードに付けず、節が担う。節の外にカードがあると分類から漏れる。
+  // 「ノートの次の見出し」までを節の範囲とし、そこから外れたカードを検出する。
   const src = html.get('index.html')
   const total = (src.match(/<a class="card"/g) || []).length
-  const inSections = (src.slice(src.indexOf('<h2>マップ</h2>')).match(/<a class="card"/g) || []).length
+  const mapIdx = src.indexOf('<h2>マップ</h2>')
+  const noteIdx = src.indexOf('<h2>ノート</h2>')
+  assert.ok(mapIdx >= 0 && noteIdx > mapIdx, 'マップ・ノートの節が想定の順に見つかりません')
+  const afterNoteHeading = noteIdx + '<h2>ノート</h2>'.length
+  const nextHeading = src.indexOf('<h2>', afterNoteHeading)
+  const sectionsEnd = nextHeading >= 0 ? nextHeading : src.length
+  const inSections = (src.slice(mapIdx, sectionsEnd).match(/<a class="card"/g) || []).length
   assert.ok(total > 0, 'ハブにカードがありません')
-  assert.equal(inSections, total, 'マップの節より前にカードがあります')
+  assert.equal(inSections, total, 'マップ・ノートの節の外にカードがあります')
 })
