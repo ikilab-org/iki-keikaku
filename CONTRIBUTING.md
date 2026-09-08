@@ -79,6 +79,7 @@ node --test                               # ツールとページの骨格の検
   ファイルが実在すること
 - `assets/palette.css` を正しい深さで読み、**ページ側で `--c1`〜`--c8` を定義しない**
 - ハブ（`index.html`）からリンクされていること
+- ハブのカードが `<h2>マップ</h2>` か `<h2>ノート</h2>` のどちらかの節の中にあること
 
 検査していませんが、既存ページでそろえているものです。
 
@@ -92,7 +93,7 @@ node --test                               # ツールとページの骨格の検
 | やること | 場所 |
 |---|---|
 | 扱う計画が入っていること | `data/plans.yml`（掘り下げは手書きでも、計画の真実は YAML 側） |
-| カードを1枚足す | `index.html` |
+| カードを1枚足す | `index.html` の**ノートの節**（全計画を構造だけで並べたページでない限り、新しいページはノート） |
 | 「いま公開しているもの」の表に1行足す | `README.md` |
 | OGP画像を作る | `tools/og/cards.html` にカードを足し、`tools/og/build.mjs` の `CARDS` に `{ id, out }` を追加して `node tools/og/build.mjs`（`npm i -D playwright sharp` が要る） |
 | 出典を台帳に登録する | `sources/MANIFEST.md`（[`sources/POLICY.md`](sources/POLICY.md)「3. 記録すること」） |
