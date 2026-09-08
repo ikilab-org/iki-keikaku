@@ -133,6 +133,12 @@ table.rel td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:no
   font-size:10.5px;color:#0b0b0b;position:relative;z-index:2;white-space:nowrap;overflow:hidden}
 .bar.dash{background:transparent!important;border:1.5px dashed var(--muted);color:var(--ink2);
   grid-column:1 / -1;justify-content:flex-start;padding-left:8px}
+/* 軸の先まで続く計画。右端を薄くして「図の先まで続く」ことを示す。
+   plans/fukushi/ の「健康ながさき21（第3次）」と同じ作法。
+   帯は軸の終端で切るので、文字は左に寄せて薄い側に置かない。 */
+.bar.open{border-radius:5px 0 0 5px;justify-content:flex-start;padding-left:8px;
+  -webkit-mask-image:linear-gradient(to right,#000 84%,transparent 100%);
+  mask-image:linear-gradient(to right,#000 84%,transparent 100%)}
 .grp{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;padding-top:10px;
   border-top:1px solid var(--grid);display:flex;align-items:center;gap:7px}
 .tblwrap{overflow-x:auto;margin-top:8px}
@@ -201,7 +207,7 @@ export function timelineSection(m) {
   const axis = () => {
     const cells = []
     for (let y = Y0; y <= Y1; y++) {
-      // 26年ぶんの目盛りに毎年ラベルを振ると読めないので、5年ごとと両端と現在だけ出す
+      // 目盛りに毎年ラベルを振ると読めないので、5年ごとと両端と現在だけ出す
       const show = (y - Y0) % 5 === 0 || y === Y1 || y === nowFy
       cells.push(`<div class="${y === nowFy ? 'now' : ''}">${show ? esc(fiscalYearShort(y)) : ''}</div>`)
     }
@@ -220,9 +226,14 @@ export function timelineSection(m) {
       return `<div class="grow">${label}${track(`<div class="bar dash">${esc(text)}</div>`)}</div>`
     }
     const a = p.period.start - Y0 + 1
-    const b = p.period.end - Y0 + 2
-    const span = `${esc(fiscalYearShort(p.period.start))}〜${esc(fiscalYearShort(p.period.end))}`
-    const bar = `<div class="bar" style="grid-column:${a} / ${b};background:${col};color:${barInk(p, m.domains)}"`
+    // 軸の先まで続く計画は、軸の終端で切って右端を薄くする（.bar.open）。
+    // 期間そのものは帯の中の文字・title・下の一覧表に残る。軸を最大の end まで
+    // 伸ばすと、1本のために全体の幅が潰れる（view-model.mjs の yearRange を参照）。
+    const open = p.period.end > Y1
+    const b = open ? cols + 1 : p.period.end - Y0 + 2
+    const span = esc(`${fiscalYearShort(p.period.start)}〜${fiscalYearShort(p.period.end)}`)
+    const bar = `<div class="bar${open ? ' open' : ''}" style="grid-column:${a} / ${b};`
+      + `background:${col};color:${barInk(p, m.domains)}"`
       + ` title="${esc(p.name)}｜${span}年度（${p.period.start}〜${p.period.end}年度）">${span}</div>`
     return `<div class="grow">${label}${track(bar)}</div>`
   }
@@ -231,6 +242,14 @@ export function timelineSection(m) {
   const groups = domainGroups(ranged, m.domains)
     .filter((g) => g.plans.length)
     .map((g) => `<div class="grp">${esc(g.label)}<span>${g.plans.length}件</span></div>\n${g.plans.map(row).join('\n')}`)
+
+  // 軸の先まで続く計画があれば、右端が薄い帯の意味をその場で書く。
+  // 凡例が無いと、切れているのか続いているのかが読み手に分からない。
+  const openNote = m.overrun.length
+    ? `\n  <strong>右端が薄い帯は、図の先まで続く計画です</strong>（`
+      + m.overrun.map((p) => `${esc(p.name)}は${esc(fiscalYearShort(p.period.end))}年度まで`).join('／')
+      + '）。'
+    : ''
 
   const extra = [
     ['随時修正（期間を定めない）', m.zuiji],
@@ -242,7 +261,7 @@ export function timelineSection(m) {
   <div class="hd"><h2>計画期間</h2>
   <p class="sub">${esc(fiscalYearShort(Y0))}年度から${esc(fiscalYearShort(Y1))}年度まで。分野ごとに並べています。
   <strong>期間を持たない${m.zuiji.length + m.unclear.length}件も落とさず、末尾に別のグループとして置いています。</strong>
-  ここを落とすと、俯瞰したつもりで3分の1が見えていないことになります。</p></div>
+  ここを落とすと、俯瞰したつもりで3分の1が見えていないことになります。${openNote}</p></div>
   <div class="tlwrap"><div class="gantt">
 ${axis()}
 ${groups.join('\n')}

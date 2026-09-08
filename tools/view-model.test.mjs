@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { parseYaml } from './yaml.mjs'
 import {
-  BANDS, RELATIONS, bandOf, bandGroups, periodKind, yearRange,
+  BANDS, RELATIONS, bandOf, bandGroups, periodKind, yearRange, overrunPlans, axisMinPlans,
   slotOf, domainGroups, relationCounts, expiryByYear, buildModel,
 } from './view-model.mjs'
 
@@ -48,21 +48,59 @@ test('計画期間の種類を3つに分ける', () => {
   assert.equal(periodKind({ period: { start: 2024, end: null } }), 'partial')
 })
 
-test('期間を持たない計画が実データで26件ある', () => {
+test('期間を持たない計画が実データで24件ある', () => {
   const kinds = PLANS.map(periodKind)
   const notRange = kinds.filter((k) => k !== 'range').length
-  assert.equal(notRange, 26, `期間を持たない計画の件数が変わりました: ${notRange}`)
+  assert.equal(notRange, 24, `期間を持たない計画の件数が変わりました: ${notRange}`)
   assert.equal(kinds.filter((k) => k === 'zuiji').length, 7)
-  assert.equal(kinds.filter((k) => k === 'unknown').length, 19)
+  assert.equal(kinds.filter((k) => k === 'unknown').length, 17)
 })
 
 test('年度の範囲は range の計画だけから決める', () => {
-  assert.deepEqual(
-    yearRange([{ period: { start: 2015, end: 2020 } }, { period: { start: null, end: null } }, {}]),
-    { start: 2015, end: 2020 },
-  )
   assert.equal(yearRange([{}]), null)
+  assert.equal(yearRange([{ period: { start: null, end: null } }, {}]), null)
+})
+
+test('軸の終端は、全体の一定割合が及ぶ最後の年度で切る', () => {
+  // 長期の計画がわずかにあるだけで軸が倍に伸び、他の帯が潰れるのを避ける。
+  // 実データ: 2035年度は3件、2036年度以降は公共施設等総合管理計画の1件だけ。
+  assert.equal(axisMinPlans(54), 3)
   assert.deepEqual(yearRange(PLANS), { start: 2010, end: 2035 })
+
+  // 件数ではなく割合。長期の計画が2本に増えても、全体から見て少なければ切る。
+  const many = Array.from({ length: 50 }, () => ({ period: { start: 2020, end: 2030 } }))
+  assert.deepEqual(
+    yearRange([...many, { period: { start: 2020, end: 2060 } }, { period: { start: 2020, end: 2060 } }]),
+    { start: 2020, end: 2030 },
+  )
+
+  // 収録が数件しかないうちは切らない。切る意味が無く、軸が潰れるだけ。
+  assert.equal(axisMinPlans(2), 1)
+  assert.deepEqual(
+    yearRange([{ period: { start: 2015, end: 2020 } }, { period: { start: 2016, end: 2050 } }]),
+    { start: 2015, end: 2050 },
+  )
+  // 重なりが始端にしか無いデータでも、軸を1列に潰さない。
+  assert.deepEqual(
+    yearRange([{ period: { start: 2010, end: 2010 } }, { period: { start: 2010, end: 2015 } }]),
+    { start: 2010, end: 2015 },
+  )
+  // 重なりがどこにも無いデータでも切らない。
+  assert.deepEqual(
+    yearRange([{ period: { start: 2010, end: 2012 } }, { period: { start: 2050, end: 2052 } }]),
+    { start: 2010, end: 2052 },
+  )
+  assert.deepEqual(yearRange([{ period: { start: 2015, end: 2020 } }]), { start: 2015, end: 2020 })
+})
+
+test('軸の先まで続く計画は overrun に拾う。落とさない', () => {
+  const years = yearRange(PLANS)
+  const over = overrunPlans(PLANS, years)
+  assert.equal(over.length, 1)
+  assert.equal(over[0].id, 'kokyoshisetsu-sougou')
+  assert.ok(over[0].period.end > years.end)
+  // 軸に収まる計画は拾わない。
+  assert.equal(overrunPlans([{ period: { start: 2015, end: 2020 } }], years).length, 0)
 })
 
 test('slot は domains から引く。domain が無ければ null', () => {
@@ -95,7 +133,7 @@ test('関係の本数は「持つ計画の件数」と「延べ本数」の両�
   assert.equal(parent.total, PLANS.length)
   // related は無向辺を片側だけ書く決まりなので、延べ本数のほうが多くなる
   const related = counts.find((c) => c.key === 'related')
-  assert.equal(related.edges, 27)
+  assert.equal(related.edges, 28)
   assert.ok(related.edges >= related.plans)
 })
 
@@ -121,7 +159,8 @@ test('buildModel が図表に必要なものを一度に返す', () => {
   assert.equal(m.plans.length, PLANS.length)
   assert.equal(m.bands.length, BANDS.length)
   assert.deepEqual(m.years, { start: 2010, end: 2035 })
+  assert.equal(m.overrun.length, 1)
   assert.equal(m.relations.length, RELATIONS.length)
-  assert.equal(m.todoCount, 31)
+  assert.equal(m.todoCount, 29)
   assert.equal(m.meta.updated, doc.meta.updated)
 })
