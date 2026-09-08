@@ -71,7 +71,7 @@ node --test                               # ツールとページの骨格の検
 **ページの中。** 次は `node --test`（`tools/pages.test.mjs`）が検査します。
 
 - `<html lang="ja">`・charset・viewport
-- `<title>` が `… | 壱岐市 計画マップ` で終わる
+- `<title>` が `… | 壱岐市 計画資料集` で終わる
 - `canonical` と `og:url` が `https://keikaku.ikilab.org/plans/<slug>/`
   （**末尾スラッシュ形。`index.html` は書かない**）
 - OGP 一式（`og:type` は `article`、`og:site_name`・`og:title`・`og:description`・`og:locale`・
@@ -82,7 +82,7 @@ node --test                               # ツールとページの骨格の検
 
 検査していませんが、既存ページでそろえているものです。
 
-- ページ冒頭に「← 壱岐市 計画マップ」のバッジ、`h1`、一文の要約、**調査基準日**と単位・定義の断り、
+- ページ冒頭に「← 壱岐市 計画資料集」のバッジ、`h1`、一文の要約、**調査基準日**と単位・定義の断り、
   表示切替ボタン
 - フッタに「主な出典（YYYY年M月D日確認）」と、ライセンスの1行
 - `@media print` で背景を白にし、表示切替ボタンを隠す

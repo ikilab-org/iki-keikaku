@@ -154,7 +154,7 @@ CI（`.github/workflows/`）も `actions/setup-node@v4` で `node-version: '20'`
 
 ```bash
 unzip iki-keikaku.zip && cd iki-keikaku
-git init -b main && git add -A && git commit -m "壱岐市 計画マップ 初版"
+git init -b main && git add -A && git commit -m "壱岐市 計画資料集 初版"
 gh repo create ikilab-org/iki-keikaku --public --source=. --remote=origin --push
 ```
 

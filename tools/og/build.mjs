@@ -10,8 +10,9 @@
  *
  * 出力:
  *   assets/og.png          ハブページ用
- *   assets/og-fukushi.png  福祉分野マップ用
- *   assets/og-kaigo.png    介護保険の検証用
+ *   assets/og-fukushi.png  福祉のノート用
+ *   assets/og-kaigo.png    介護保険のノート用
+ *   assets/og-koutsuu.png  公共交通のノート用
  */
 import { chromium } from 'playwright'
 import { fileURLToPath } from 'node:url'
