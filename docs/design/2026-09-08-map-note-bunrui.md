@@ -146,9 +146,15 @@ CC BY 4.0 は指定された方法での帰属表示を求めるもので、指�
 ## 7. 成果物
 
 `grep -rn "計画マップ" . --exclude-dir=.git --exclude-dir=docs` は48件／15ファイル。
-うち `CHANGELOG.md` の1件は過去エントリなので触りません。**書き換える対象は47件／14ファイル**です。
-`docs/` 側（この設計メモと [`2026-08-13-zenkeikaku-zuhyou-plan.md`](2026-08-13-zenkeikaku-zuhyou-plan.md)）は
-いずれも記録なので対象外です。
+うち `CHANGELOG.md` の1件は過去エントリなので触りません。`docs/` 側（この設計メモと
+[`2026-08-13-zenkeikaku-zuhyou-plan.md`](2026-08-13-zenkeikaku-zuhyou-plan.md)）も記録なので対象外です。
+
+**加えて、「計画マップ」では引っかからない「マップ」単独の記述が4か所あります。**
+`grep` を1本で済ませられないので、下表に個別に挙げます。YAMLパーサの「マップ」
+（`tools/yaml.mjs`）、市の「大規模盛土造成マップ」（`sources/POLICY.md`）、
+市の「医療介護資源マップ」（`DISCLAIMER.md`）は別語なので触りません。
+
+**書き換える対象は51件／16ファイル**です。
 
 | ファイル | 件数 | 変更 |
 |---|---|---|
@@ -160,17 +166,24 @@ CC BY 4.0 は指定された方法での帰属表示を求めるもので、指�
 | `plans/all/index.html` | 4 | 生成物。`build.mjs` から再生成 |
 | `tools/build.mjs` | 4 | 生成テンプレート内の名前（戻りリンク「← 計画マップ」を含む） |
 | `tools/pages.test.mjs` | 4 | `SUFFIX` 定数・テスト名・`og:site_name` の assertion |
-| `tools/og/cards.html` | 4 | ハブ1枚とノート3枚の文字 |
+| `tools/og/cards.html` | 4+1 | ハブ1枚とノート3枚の文字／103行のコメント「福祉分野マップ」 |
+| `tools/og/build.mjs` | 0+1 | 13行の docstring「福祉分野マップ用」 |
 | `assets/og.png` ほか3枚 | ― | **再生成する** |
 | `README.md` | 2 | H1／冒頭説明（6.1）／構成図の `plans/` 行／「俯瞰は生成、掘り下げは手書き」→「マップは生成、ノートは手書き」／「分野別ページ」「掘り下げページ」→「ノート」 |
 | `CONTRIBUTING.md` | 2 | ページ追加手順の検査項目（`<title>` の接尾辞、戻りバッジの文言） |
-| `SETUP.md` | 2 | 初版コミットの例文／公開前チェックリストの「各マップの左上」 |
+| `SETUP.md` | 2+1 | 初版コミットの例文／公開前チェックリスト194・195行の2か所 |
 | `NOTICE.md` | 1 | クレジット表記例（4.3） |
 | `assets/palette.css` | 1 | 先頭コメント |
+| `.github/workflows/expiring.yml` | 0+1 | 56行。**自動生成される Issue 本文**の「該当分野のマップページ」 |
 | `CHANGELOG.md` | ― | 改名を追記（既存エントリは書き換えない） |
 
-**`CONTRIBUTING.md` と `SETUP.md` を落とさないこと。** どちらもページを増やすときの手順書で、
-旧名のまま残すと次のノートに古い名前が入ります。
+**`CONTRIBUTING.md`・`SETUP.md`・`expiring.yml` を落とさないこと。** 前2つはページを増やすときの
+手順書で、旧名のまま残すと次のノートに古い名前が入ります。`expiring.yml` は毎回の自動 Issue に
+旧語が載り続けます。
+
+**OGP画像の再生成には playwright が要ります。** このリポジトリに `package.json` と `node_modules` は
+なく、`tools/og/build.mjs` の冒頭が `npm i -D playwright` を案内しています。導入できない場合は
+**画像を旧名のまま残さず、作業を止めて報告します**（名前とOGPがずれた状態で公開しない）。
 
 ## 8. やらないこと
 
@@ -203,6 +216,9 @@ CC BY 4.0 は指定された方法での帰属表示を求めるもので、指�
 
 1. `grep -rn "計画マップ" . --exclude-dir=.git --exclude-dir=docs` のヒットが、
    `CHANGELOG.md` の過去エントリ1件だけになる
+1a. `grep -rn "マップ" . --exclude-dir=.git --exclude-dir=docs --exclude-dir=node_modules` の残りが、
+   `tools/yaml*.mjs`（YAMLの用語）・`sources/POLICY.md`・`DISCLAIMER.md`（市の別資料名）・
+   `CHANGELOG.md`（記録）だけになる
 2. `node --test` が通る（`pages.test.mjs` 更新後）
 3. `node tools/build.mjs --check` が exit 0 を返す
 4. OGP画像4枚が再生成され、新しい名前が入っている
