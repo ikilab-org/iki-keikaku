@@ -326,11 +326,11 @@ export function buildPage(doc) {
     '<head>',
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
-    `<title>${esc(titleOf(m))} | 壱岐市 計画マップ</title>`,
+    `<title>${esc(titleOf(m))} | 壱岐市 計画資料集</title>`,
     `<meta name="description" content="${esc(descOf(m))}">`,
     '<link rel="canonical" href="https://keikaku.ikilab.org/plans/all/">',
     '<meta property="og:type" content="article">',
-    '<meta property="og:site_name" content="壱岐市 計画マップ">',
+    '<meta property="og:site_name" content="壱岐市 計画資料集">',
     `<meta property="og:title" content="${esc(titleOf(m))}">`,
     `<meta property="og:description" content="${esc(descOf(m))}">`,
     '<meta property="og:url" content="https://keikaku.ikilab.org/plans/all/">',
@@ -339,7 +339,7 @@ export function buildPage(doc) {
     '<meta property="og:image:width" content="1200">',
     '<meta property="og:image:height" content="630">',
     // 他の4ページと同じ og.png を使うので、alt も同じ文言にそろえる
-    '<meta property="og:image:alt" content="壱岐市の計画マップ。国・長崎県・市の階層と、地域福祉計画を軸にした分野別計画の関係図">',
+    '<meta property="og:image:alt" content="壱岐市 計画資料集。国・長崎県・市の階層と、地域福祉計画を軸にした分野別計画の関係図">',
     '<meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og.png">',
     '<meta name="twitter:card" content="summary_large_image">',
     '<link rel="stylesheet" href="../../assets/palette.css">',
@@ -368,7 +368,7 @@ export function buildPage(doc) {
 function headerBlock(m) {
   return `<header class="top">
   <div>
-    <a class="badge" href="../../">← 計画マップ</a>
+    <a class="badge" href="../../">← 計画資料集</a>
     <span class="badge">IKILAB ／ 長崎県壱岐市</span>
     <h1>${esc(titleOf(m))}</h1>
     <p class="sub">壱岐市に関わる行政計画を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。

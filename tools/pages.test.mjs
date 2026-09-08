@@ -14,7 +14,7 @@ import { join } from 'node:path'
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url))
 const SITE = 'https://keikaku.ikilab.org'
-const SUFFIX = ' | 壱岐市 計画マップ'
+const SUFFIX = ' | 壱岐市 計画資料集'
 
 // 決め打ちのリストにすると、ページを足したときにテストへの追加を忘れる。
 // plans/ と about/ の直下を走査して、公開しているページを取りこぼさずに拾う。
@@ -57,13 +57,13 @@ test('どのページも日本語のHTMLとして宣言されている', () => {
   }
 })
 
-test('title はハブが「壱岐市 計画マップ」、ほかは「… | 壱岐市 計画マップ」', () => {
+test('title はハブが「壱岐市 計画資料集」、ほかは「… | 壱岐市 計画資料集」', () => {
   // 検索結果とタブに出る唯一の手がかり。サイト名を落とすとページ単体で迷子になる。
   for (const { file, path } of PAGES) {
     const t = title(html.get(file))
     assert.ok(t, `${file}: <title> がありません`)
     if (path === '/') {
-      assert.equal(t, '壱岐市 計画マップ')
+      assert.equal(t, '壱岐市 計画資料集')
     } else {
       assert.ok(t.endsWith(SUFFIX), `${file}: title が「${SUFFIX}」で終わっていません: ${t}`)
       assert.ok(t.length > SUFFIX.length, `${file}: title がサイト名だけです`)
@@ -93,7 +93,7 @@ test('説明文とOGPの定型がそろっている', () => {
     for (const key of ['description', 'og:title', 'og:description']) {
       assert.ok(meta(src, key), `${file}: ${key} がありません`)
     }
-    assert.equal(meta(src, 'og:site_name'), '壱岐市 計画マップ', `${file}: og:site_name`)
+    assert.equal(meta(src, 'og:site_name'), '壱岐市 計画資料集', `${file}: og:site_name`)
     assert.equal(meta(src, 'og:locale'), 'ja_JP', `${file}: og:locale`)
     assert.equal(meta(src, 'twitter:card'), 'summary_large_image', `${file}: twitter:card`)
   }
