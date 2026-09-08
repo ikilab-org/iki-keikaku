@@ -338,7 +338,7 @@ export function buildPage(doc) {
     '<meta property="og:image" content="https://keikaku.ikilab.org/assets/og.png">',
     '<meta property="og:image:width" content="1200">',
     '<meta property="og:image:height" content="630">',
-    // 他の4ページと同じ og.png を使うので、alt も同じ文言にそろえる
+    // 他の2ページと同じ og.png を使うので、alt も同じ文言にそろえる
     '<meta property="og:image:alt" content="壱岐市 計画資料集。国・長崎県・市の階層と、地域福祉計画を軸にした分野別計画の関係図">',
     '<meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og.png">',
     '<meta name="twitter:card" content="summary_large_image">',
@@ -368,7 +368,7 @@ export function buildPage(doc) {
 function headerBlock(m) {
   return `<header class="top">
   <div>
-    <a class="badge" href="../../">← 計画資料集</a>
+    <a class="badge" href="../../">← 壱岐市 計画資料集</a>
     <span class="badge">IKILAB ／ 長崎県壱岐市</span>
     <h1>${esc(titleOf(m))}</h1>
     <p class="sub">壱岐市に関わる行政計画を、位置づけの階層・計画期間・分野別の一覧で俯瞰します。
