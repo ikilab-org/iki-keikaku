@@ -135,3 +135,25 @@ test('どのページもハブからリンクされている', () => {
     assert.ok(HUB.includes(`href="${path.slice(1)}"`), `${file}: index.html からリンクされていません`)
   }
 })
+
+test('ハブはマップとノートの2節に分かれ、各節が定義文とカードを持つ', () => {
+  // 「ノート」は器なので、名前だけでは中身が伝わらない。
+  // 節の直後に1行の定義を置くことを、構造として守る。
+  const src = html.get('index.html')
+  for (const kind of ['マップ', 'ノート']) {
+    const i = src.indexOf(`<h2>${kind}</h2>`)
+    assert.ok(i >= 0, `ハブに「${kind}」の節がありません`)
+    const head = src.slice(i, i + 600)
+    assert.match(head, /<p class="sub">/, `${kind}: 節の直後に定義文がありません`)
+    assert.match(head, /<div class="cards">/, `${kind}: 節にカードがありません`)
+  }
+})
+
+test('ハブのカードは、すべてマップかノートの節に入っている', () => {
+  // 型のラベルはカードに付けず、節が担う。節の外にカードがあると分類から漏れる。
+  const src = html.get('index.html')
+  const total = (src.match(/<a class="card"/g) || []).length
+  const inSections = (src.slice(src.indexOf('<h2>マップ</h2>')).match(/<a class="card"/g) || []).length
+  assert.ok(total > 0, 'ハブにカードがありません')
+  assert.equal(inSections, total, 'マップの節より前にカードがあります')
+})
