@@ -143,9 +143,12 @@ test('ハブはマップとノートの2節に分かれ、各節が定義文と�
   for (const kind of ['マップ', 'ノート']) {
     const i = src.indexOf(`<h2>${kind}</h2>`)
     assert.ok(i >= 0, `ハブに「${kind}」の節がありません`)
-    const head = src.slice(i, i + 600)
-    assert.match(head, /<p class="sub">/, `${kind}: 節の直後に定義文がありません`)
-    assert.match(head, /<div class="cards">/, `${kind}: 節にカードがありません`)
+    const end = src.indexOf('<h2>', i + 5)
+    const head = src.slice(i, end < 0 ? src.length : end)
+    assert.ok(head.indexOf('<p class="sub">') >= 0, `${kind}: 節の直後に定義文がありません`)
+    assert.ok(head.indexOf('<div class="cards">') >= 0, `${kind}: 節にカードがありません`)
+    assert.ok(head.indexOf('<p class="sub">') < head.indexOf('<div class="cards">'),
+      `${kind}: 定義文がカードより後にあります`)
   }
 })
 
@@ -163,4 +166,9 @@ test('ハブのカードは、すべてマップかノートの節に入って�
   const inSections = (src.slice(mapIdx, sectionsEnd).match(/<a class="card"/g) || []).length
   assert.ok(total > 0, 'ハブにカードがありません')
   assert.equal(inSections, total, 'マップ・ノートの節の外にカードがあります')
+
+  const mapSection = src.slice(mapIdx, noteIdx)
+  const mapCards = (mapSection.match(/<a class="card"/g) || []).length
+  assert.equal(mapCards, 1, 'マップの節のカードは plans/all/ の1枚だけです')
+  assert.match(mapSection, /href="plans\/all\/"/, 'マップの節のカードが plans/all/ ではありません')
 })
