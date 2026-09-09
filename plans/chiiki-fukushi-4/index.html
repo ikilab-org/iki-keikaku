@@ -100,6 +100,8 @@ section > .hd{margin-bottom:16px}
 .two .card td.k{width:auto;white-space:normal}
 /* 設問・主題の列は折り返す。既定の td.k は nowrap なので、長い文だと列が伸びきる */
 table.q td.k{width:auto;white-space:normal}
+/* 自治体名は最長で「鹿児島県」の4文字。既定の 190px は空きすぎる */
+table.muni td.k{width:76px}
 table{border-collapse:collapse;width:100%;font-size:13px;min-width:720px}
 th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--grid)}
 thead th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--axis);white-space:nowrap}
@@ -305,7 +307,7 @@ footer a{border-bottom-color:var(--grid)}
     <h2>Ⅳ. 他の自治体における参考事例</h2>
     <p class="sub">他自治体の記述は、<b>計画本体に当たって確認できたものだけ</b>を載せる。確認できなかったものは数値ごと落とした。</p>
   </div>
-  <div class="tblwrap"><table>
+  <div class="tblwrap"><table class="muni">
     <thead><tr><th class="nw">自治体</th><th style="min-width:340px">確認できたこと</th><th class="nw">出典の段階</th></tr></thead>
     <tbody>
       <tr><td class="k">石垣市<br><span class="mut">沖縄県</span></td>
