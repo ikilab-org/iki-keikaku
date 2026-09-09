@@ -13,6 +13,8 @@
  *   assets/og-fukushi.png  福祉のノート用
  *   assets/og-kaigo.png    介護保険のノート用
  *   assets/og-koutsuu.png  公共交通のノート用
+ *   assets/og-shisetsu-2036.png  公共施設のノート用
+ *   assets/og-chiiki-fukushi-4.png  地域福祉のノート用
  */
 import { chromium } from 'playwright'
 import { fileURLToPath } from 'node:url'
@@ -30,6 +32,7 @@ const CARDS = [
   { id: 'og-kaigo', out: 'og-kaigo.png' },
   { id: 'og-koutsuu', out: 'og-koutsuu.png' },
   { id: 'og-shisetsu-2036', out: 'og-shisetsu-2036.png' },
+  { id: 'og-chiiki-fukushi-4', out: 'og-chiiki-fukushi-4.png' },
 ]
 
 const W = 1200, H = 630, SCALE = 2
