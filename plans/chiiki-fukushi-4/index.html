@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>壱岐市 第4次地域福祉計画の論点 | 壱岐市 計画資料集</title>
-<meta name="description" content="長崎県壱岐市の第4次地域福祉計画（令和9〜13年度）に向けて、第1次から第3次までの計画本体・厚生労働省の全国調査・離島や小規模自治体5件の計画を一次資料で突き合わせ、論点を並べた。3版とも成果指標を持たず、社協の第2期地域福祉活動計画は未策定のまま。">
+<meta name="description" content="長崎県壱岐市の第4次地域福祉計画（令和9〜13年度）に向けて、第1次から第3次までの計画本体・厚生労働省の全国調査・離島や小規模自治体5件の計画を一次資料で突き合わせ、論点を並べた。3版とも成果指標を持たず、社協の第2期地域福祉活動計画は検討中。">
 <link rel="canonical" href="https://keikaku.ikilab.org/plans/chiiki-fukushi-4/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="壱岐市 計画資料集">
 <meta property="og:title" content="壱岐市 第4次地域福祉計画の論点">
-<meta property="og:description" content="3版とも成果指標なし。市の相談窓口15.4%・中高生0.9%。社協の第2期は未策定。第4次の初年度に法が変わる。">
+<meta property="og:description" content="3版とも成果指標なし。市の相談窓口15.4%・中高生0.9%。社協の第2期は検討中。第4次の初年度に法が変わる。">
 <meta property="og:url" content="https://keikaku.ikilab.org/plans/chiiki-fukushi-4/">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://keikaku.ikilab.org/assets/og-chiiki-fukushi-4.png">
@@ -95,6 +95,11 @@ section > .hd{margin-bottom:16px}
 .card.p8{border-top:3px solid var(--c2)}
 
 .tblwrap{overflow-x:auto;margin-top:6px}
+/* 2枚組の中の表は枠の幅に合わせる。既定の min-width:720px だと枠を割り、ページごと横に伸びる */
+.two .card table{min-width:0}
+.two .card td.k{width:auto;white-space:normal}
+/* 設問・主題の列は折り返す。既定の td.k は nowrap なので、長い文だと列が伸びきる */
+table.q td.k{width:auto;white-space:normal}
 table{border-collapse:collapse;width:100%;font-size:13px;min-width:720px}
 th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--grid)}
 thead th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--axis);white-space:nowrap}
@@ -169,10 +174,9 @@ footer a{border-bottom-color:var(--grid)}
     <div class="tile a"><div class="v">0<small>本</small></div><div class="k">第1〜3次の成果指標<br>全国で評価指標を明記しているのは<b>35.9%</b></div></div>
     <div class="tile"><div class="v">15.4<small>%</small></div><div class="k">困ったとき「市の相談窓口や職員」に相談（第3次）<br>中高生は<b>0.9%</b>、民生委員は<b>5.5%</b></div></div>
     <div class="tile b"><div class="v">16.6<small>%</small></div><div class="k">地域行事に「進んで参加・協力している」（第3次）<br>第2次は<b>26.2%</b>、中高生は12.0→<b>2.9%</b></div></div>
-    <div class="tile"><div class="v">未策定</div><div class="k">社協の第2期地域福祉活動計画<br>令和7年度事業計画では<b>「策定の検討」</b>に後退</div></div>
     <div class="tile a"><div class="v">2027<small>年度</small></div><div class="k">第4次の初年度に改正社会福祉法が施行<br>重層の実施計画には<b>目標と評価が法定必須</b>に</div></div>
   </div>
-  <p class="sub" style="margin-top:16px">3版を通して読むと、<b>①住民に何を聞いたかは詳しく残っているのに、その結果を追える目標が一度も置かれていない</b>、<b>②社協の活動計画が15年空いたまま</b>、<b>③第4次の初年度に制度が変わる</b>の3つが重なる。第4次と第2期は、この3つが同時に来る最初の版になる。</p>
+  <p class="sub" style="margin-top:16px">3版を通して読むと、<b>①住民に何を聞いたかは詳しく残っているのに、その結果を追える目標が一度も置かれていない</b>、<b>②社協の第2期活動計画については検討中</b>、<b>③第4次の初年度に制度が変わる</b>の3つが重なる。第4次と第2期は、この3つが同時に来る最初の版になる。</p>
   <p class="note">本ページは公開資料のみを用いた IKILAB の独立した整理であり、壱岐市および壱岐市社会福祉協議会の見解ではありません。数値は各計画本体から引いています。出所を確認できなかった記述は載せていません（Ⅰ章）。</p>
 </section>
 
@@ -226,8 +230,8 @@ footer a{border-bottom-color:var(--grid)}
 
   <p class="mut" style="margin-bottom:12px"><b>母集団の断り。</b>第1次は中学生以上を含む単一調査（N=2,195）、第2次・第3次は18歳以上の市民調査（n=759／n=803）。第1次の値だけ中高生を含むため、<b>3点を一本の系列として読むことはできない</b>。第2次と第3次の比較は母集団が揃っている。</p>
 
-  <div class="tblwrap"><table>
-    <thead><tr><th style="min-width:250px">設問</th><th class="nw">第1次<br><span class="mut">H23調査・N=2,195</span></th><th class="nw">第2次<br><span class="mut">H28調査・n=759</span></th><th class="nw">第3次<br><span class="mut">n=803</span></th></tr></thead>
+  <div class="tblwrap"><table class="q">
+    <thead><tr><th style="width:38%">設問</th><th class="n" style="width:20%">第1次<br><span class="mut">H23・N=2,195</span></th><th class="n" style="width:20%">第2次<br><span class="mut">H28・n=759</span></th><th class="n" style="width:20%">第3次<br><span class="mut">n=803</span></th></tr></thead>
     <tbody>
       <tr><td class="k">地域行事に「進んで参加・協力している」</td><td class="n">22.6%<span class="mut">※</span></td><td class="n">26.2%</td><td class="n hi">16.6%</td></tr>
       <tr><td class="k">同（中高生）</td><td class="n">―</td><td class="n">12.0%</td><td class="n hi">2.9%</td></tr>
@@ -285,7 +289,7 @@ footer a{border-bottom-color:var(--grid)}
     <thead><tr><th style="min-width:200px">項目</th><th style="min-width:230px">全国</th><th style="min-width:280px">壱岐市</th></tr></thead>
     <tbody>
       <tr><td class="k">地域福祉計画の策定</td><td>全体 88.6%（1,542/1,741）<br>人口1万〜5万人 91.0%／1万人未満 75.7%</td><td>策定済（第3次まで継続）</td></tr>
-      <tr><td class="k">社協の活動計画との関係</td><td>一体的に策定 42.3%<br>連動させて策定 46.0%<br>課題把握・ニーズ調査は一体 14.7%<br><b>社協が未策定 11.6%</b></td><td class="hi">別建て。<b>社協の第2期は未策定</b>。令和5・6年度の事業計画は「地域福祉活動計画第2期の策定」を掲げたが、令和7年度は「調査・研究の取り組み…②第2期『地域福祉活動計画』策定の検討」に後退している</td></tr>
+      <tr><td class="k">社協の活動計画との関係</td><td>一体的に策定 42.3%<br>連動させて策定 46.0%<br>課題把握・ニーズ調査は一体 14.7%<br><b>社協が未策定 11.6%</b></td><td class="hi">別建て。<b>社協の第2期は検討中</b>。令和5・6年度の事業計画は「地域福祉活動計画第2期の策定」を掲げたが、令和7年度でも「調査・研究の取り組み…②第2期『地域福祉活動計画』策定の検討」とされている</td></tr>
       <tr><td class="k">評価指標の明記</td><td><b>35.9%</b>（377／定期的に点検している1,050市町村）<br>定期点検の実施は 68.1%（1,050／1,542）</td><td class="hi">第1〜3次とも設定なし</td></tr>
       <tr><td class="k">圏域の整理</td><td>62.2%（959／1,542）</td><td>第3次は近隣地域（自治公民館）／地区（小学校区）／全市の3層＋旧4町</td></tr>
       <tr><td class="k">成年後見計画との一体策定</td><td>54.8%（845／1,542）</td><td>第3次に包含（成年後見・再犯防止の2計画）</td></tr>
@@ -326,38 +330,7 @@ footer a{border-bottom-color:var(--grid)}
 
 <section>
   <div class="hd">
-    <h2>Ⅴ. 策定委員会という装置</h2>
-    <p class="sub">第4次と第2期で委員会は2つになる。壱岐市の委員会が何でできているかを、要綱と名簿から確認する。</p>
-  </div>
-  <div class="two">
-    <div class="card">
-      <h3>要綱（平成23年9月22日 告示第91号）</h3>
-      <ol class="notes">
-        <li><b>第3条</b>　委員15人以内。委嘱の区分は「福祉関係者」「保健医療関係者」「教育関係者」「住民組織代表者」「その他必要と認められる者」の5つ。<b>公募の区分はない</b></li>
-        <li><b>第4条</b>　委員の任期は<b>5年以内</b>。改正はH31.4.1（告示第24号）とR3.7.1（告示第97号）</li>
-        <li><b>第7条</b>　庶務は市民福祉課</li>
-      </ol>
-      <p class="mut" style="margin-top:10px">任期が5年以内である以上、<b>委員会は策定後も存続できる構造になっている。</b>第3次の期間中にこれが点検・評価に使われた形跡は、公表資料からは確認できない。</p>
-    </div>
-    <div class="card">
-      <h3>第3次の委員名簿（11名）</h3>
-      <ol class="notes">
-        <li>壱岐市民生委員児童委員協議会連合会 副会長（<b>会長</b>）</li>
-        <li>壱岐市社会福祉協議会 事務局長（<b>副会長</b>）</li>
-        <li>壱岐医師会 副会長／壱岐保健所 次長兼企画保健課長</li>
-        <li>壱岐市校長会 会長／壱岐市公民館連絡協議会 会長</li>
-        <li>壱岐市地域婦人会連絡協議会 会長／壱岐市老人クラブ連合会 会長／壱岐市身体障害者福祉協会 会長</li>
-        <li>壱岐市こども家庭課 課長／壱岐市保険課 課長</li>
-      </ol>
-      <p class="mut" style="margin-top:10px">団体の<b>代表または役員</b>と庁内2課長で構成されている。サロンの世話人、福祉委員、当事者、事業所の実務者は入っていない。<b>五島市は8名のうちに市民公募を含めている。</b></p>
-    </div>
-  </div>
-  <p class="sub" style="margin-top:16px">第2期の委員会に市と同じ顔ぶれを呼べば、住民から見て「同じ会議が2回ある」だけになる。<b>市の委員会が団体の代表で構成されているなら、第2期は別の層を呼ぶ場にできる。</b>重ねるのは連結役の数人でよい。もうひとつは<b>事務局の非対称</b>で、第4次には受託事業者がつくが、第2期の実務を誰が書き、誰が伴走するかは決まっていない。</p>
-</section>
-
-<section>
-  <div class="hd">
-    <h2>Ⅵ. 第4次の初年度に、制度が変わる</h2>
+    <h2>Ⅴ. 第4次の初年度に、制度が変わる</h2>
     <p class="sub">改正社会福祉法（<b>令和8年法律第51号</b>、令和8年6月25日公布）は<b>原則として令和9年4月1日施行</b>。第4次の計画期間は令和9年度からなので、初年度に重なる。ただし条項ごとに施行日が違う。</p>
   </div>
   <div class="tblwrap"><table>
@@ -394,25 +367,25 @@ footer a{border-bottom-color:var(--grid)}
 
 <section>
   <div class="hd">
-    <h2>Ⅶ. 決める順番</h2>
+    <h2>Ⅵ. 決める順番</h2>
     <p class="sub">前が決まらないと後ろが決まらないものだけを並べる。</p>
   </div>
   <ol class="notes">
     <li><b>圏域を1つに揃えるか決める。</b>旧4町（民児協・支所の単位）か、小学校区か、自治公民館か。第3次は3層＋旧4町を明文化しているが、アンケート・施策・統計の単位は揃っていない。<b>五島市は4階層を明示し、第3階層に福祉区（地区・公民館）を置いている。</b>揃えないなら、地区ごとの点検は回らない</li>
-    <li><b>包括的支援体制の型を三択から選ぶ。</b>①重層的支援体制整備事業　②2027年4月新設の小規模市町村地域支援連携協働体制整備事業　③既存制度の活用。②は制度がまだ動き出していないため、県への照会が要る。前提として、<b>第3次が書いた「3つの支援を一体的に実施」が実態を伴っているかの確認</b>が要る</li>
+    <li><b>包括的支援体制の型を三択から選ぶ。</b>①重層的支援体制整備事業　②2027年4月新設の小規模市町村地域支援連携協働体制整備事業　③既存制度の活用。②は制度がまだ動き出していないため、県への照会が要る。前提として、<b>第3次が書いた「3つの支援を一体的に実施」が実態を伴っているかの確認</b>が必要</li>
     <li><b>指標を何本置き、誰が毎年測るか決める。</b>重層を選べば指標は法定必須になる。壱岐市はサロン数・老人クラブ会員数・ボランティア登録者数・避難行動要支援者数を既に毎年集計している。<b>新しく測るものを作らず、いま測っているものを目標化する</b>のが確実。石垣市は基本施策ごとに指標を置き、東郷町は意識のアウトカムを基本目標ごとに1つ置いている</li>
     <li><b>第2期の期間・圏域・指標を、第4次に合わせるか決める。</b>合わせるなら、市の受託事業者が組む調査の設問に社協の問いを入れてもらう交渉が先に要る（全国では「課題把握、ニーズ調査は一体的に行っている」が14.7%）。合わせないなら、連携は言葉だけになる</li>
-    <li><b>合同で点検する場を約束する。</b>市の策定委員会は要綱第4条で任期が5年以内になっており、<b>策定後も存続できる構造になっている</b>。ここに年1回の合同点検を載せられれば、3つ目の会議体を作らずに済む</li>
+    <li><b>合同で点検する場を約束する。</b>壱岐市地域福祉計画策定委員会設置要綱（平成23年9月22日告示第91号）第4条は委員の任期を<b>5年以内</b>と定めており、委員会は<b>策定後も存続できる構造になっている</b>。ここに年1回の合同点検を載せられれば、3つ目の会議体を作らずに済む</li>
   </ol>
 </section>
 
 <section>
   <div class="hd">
-    <h2>Ⅷ. 10月10日の問い</h2>
+    <h2>Ⅶ. 10月10日の問い</h2>
     <p class="sub">「地域の課題は何ですか」から始めると、15年分と同じ答えが出る。上の論点を住民に返せる形にしたもの。</p>
   </div>
-  <div class="tblwrap"><table>
-    <thead><tr><th class="nw">主題</th><th style="min-width:300px">問い</th><th style="min-width:260px">なぜこの形で聞くか</th></tr></thead>
+  <div class="tblwrap"><table class="q">
+    <thead><tr><th style="width:80px">主題</th><th style="width:44%">問い</th><th>なぜこの形で聞くか</th></tr></thead>
     <tbody>
       <tr><td class="k">移動</td><td>この1年で、行きたかったのに行けなかった場所はどこですか。何があれば行けましたか。</td><td>「交通が不便」ではなく、行けなかった具体の場所と回数を集める。和泊町が新しい施策を立てた根拠の作り方</td></tr>
       <tr><td class="k">相談</td><td>近所の人から困りごとを打ち明けられたとき、あなたはどこに繋ぎますか。繋ぎ先を知っていますか。</td><td>窓口の認知ではなく、家族・友人（相談相手の88.9%と47.9%）が中継できるかを測る</td></tr>
