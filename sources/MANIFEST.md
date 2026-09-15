@@ -177,6 +177,22 @@
 | 地方財政法（昭和23年法律第109号）／e-Gov法令検索 | `https://laws.e-gov.go.jp/law/323AC0000000109` | 高 | 2026-08-25 |
 | 総務省「公共施設等の解体撤去事業に関する調査結果」（平成25年12月） | **URL未記録** | 要判定 | 2026-08-25 |
 
+## 他自治体
+
+地域福祉計画のノート（`plans/chiiki-fukushi-4/`・`plans/chiiki-fukushi-3shi/`）が参照する他自治体の計画。
+`data/plans.yml` には入れていないので `tools/linkcheck.mjs` の対象外。死活は手で確認する。
+「保存」は手元の複製の有無。原本は公開しない（`POLICY.md` 4）。
+
+| 資料 | URL | 残存性 | 最終確認 | 保存 | 参照箇所 |
+|---|---|---|---|---|---|
+| 第3期（令和4年度〜令和8年度）五島市地域福祉計画（本体PDF、94頁） | `https://www.city.goto.nagasaki.jp/s028/010/030/010/fukusikeikaku2.pdf` | 高 | 2026-09-16 | あり（SHA-256 `c063ca70…`） | 3市ノート全章、姉妹ノートⅣ章 |
+| 第4期対馬市地域福祉計画・地域福祉活動計画【全体版】（本体PDF、96頁） | `https://www.city.tsushima.nagasaki.jp/material/files/group/16/dai4kitiikifukushikeikakukoukaibann.pdf` | 高 | 2026-09-16 | あり（SHA-256 `5a49a7ec…`） | 3市ノート全章、姉妹ノートⅣ章 |
+| 同（掲載ページ、福祉課） | `https://www.city.tsushima.nagasaki.jp/gyousei/soshiki/fukushi/fukushika/keikaku/tiikifukusikeikaku/5004.html` | 中 | 2026-09-16 | ― | 3市ノート フッタ |
+| 第3次石垣市地域福祉計画・地域福祉活動計画（本体PDF） | `https://www.city.ishigaki.okinawa.jp/material/files/group/18/tiikihukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 第2期和泊町地域福祉計画（本体PDF） | `https://www.town.wadomari.lg.jp/documents/7650/fukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 竹富町地域福祉計画・地域福祉活動計画（最終案） | `https://www.town.taketomi.lg.jp/userfiles/files/topics/fukushi_shien/tiikihukusikeikakusaisyuuann.pdf` | **低**（最終案。確定版に差し替わる） | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 東郷町地域福祉計画・地域福祉活動計画 目標値及び評価方法について（策定委員会 会議資料） | `https://www.town.aichi-togo.lg.jp/material/files/group/10/dai4kai_s2.pdf` | **低**（会議資料） | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+
 ## 失効した出典（記録として保持）
 
 | 資料 | 旧URL | 失効を確認した日 | 代替 |
