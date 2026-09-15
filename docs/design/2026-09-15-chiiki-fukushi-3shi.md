@@ -334,3 +334,5 @@ node tools/linkcheck.mjs                  # 台帳に足したURLの死活（HTM
 | 対馬市 | `https://www.city.tsushima.nagasaki.jp/gyousei/soshiki/fukushi/fukushika/keikaku/tiikifukusikeikaku/5004.html`（福祉課、更新日 2023年4月12日。計画一覧側の `/gyousei/shisei/keikaku/fukusikenkou/5006.html` からも同じPDFにリンク） | `https://www.city.tsushima.nagasaki.jp/material/files/group/16/dai4kitiikifukushikeikakukoukaibann.pdf`（【全体版】。別に【概要版】 `…gaiyoubannkoukaibann.pdf` がある） | 200、10,857,685 bytes |
 
 照合の結果は `docs/chiiki-fukushi/2026-09-XX-shougou-3shi.md` に書き、ここには追記しません。
+
+**照合後の注記（2026-09-16）。** 3.1〜3.3 は設計時の見立てのまま残す。照合で原本と違った項目（問16 の3本目は136、五島の相談先の母数「227人」は原本に無い、資料編は p.78 まで、「日常生活圏域13地区」は12地区、社協の認知度は第3次 p.54 の本文にある、ほか）は `docs/chiiki-fukushi/2026-09-15-shougou-3shi.md` の「見つかった相違・記載なし」を参照。B_KEEP の定義は「『継続』のみで数値目標が無い行数」ではなく「令和9年度の目標欄が空の行数」に改めた（付表B 末尾）。
