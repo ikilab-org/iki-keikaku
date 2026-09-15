@@ -12,6 +12,7 @@
 | 第4次壱岐市総合計画 本編 | `/material/files/group/46/dai4jiikishisougoukeikaku_main.pdf` | 高 | 2026-08-11 | ― | 基本目標2・3 |
 | 同 分野別まちづくり計画（詳細版） | `/material/files/group/46/bunyabetsu_syousaiban.pdf` | 高 | 2026-08-10 | ― | 2-1〜2-6、3-1 |
 | 第3次地域福祉計画（掲載ページ） | `/soshiki/shimin/ippan/10381.html` | 中 | 2026-08-11 | ― | 本文PDFへのリンク |
+| 同 本体PDF（令和4年3月、98頁） | `/material/files/group/10/tiikihukusikeikaku.pdf` | 高 | 2026-09-16 | ○ | 全文。SHA-256 `f56748ffbd78c3f06fae56c236d52683fb6a682361248ba24da8181a428e6170` |
 | 第3次障がい者計画 | `/soshiki/shimin/fukushi/10383.html` | 中 | 2026-08-11 | ― | ― |
 | 第7期障がい福祉計画・第3期障がい児福祉計画 | `/soshiki/shimin/fukushi/12605.html` | 中 | 2026-08-11 | ― | ― |
 | 高齢者福祉計画・第9期介護保険事業計画 | `/material/files/group/38/keikakukeikaku.pdf` | 高 | 2026-08-11 | ― | p.8, p.10-11, p.27, p.54, p.57-59, p.63 |
@@ -185,13 +186,13 @@
 
 | 資料 | URL | 残存性 | 最終確認 | 保存 | 参照箇所 |
 |---|---|---|---|---|---|
-| 第3期（令和4年度〜令和8年度）五島市地域福祉計画（本体PDF、94頁） | `https://www.city.goto.nagasaki.jp/s028/010/030/010/fukusikeikaku2.pdf` | 高 | 2026-09-16 | あり（SHA-256 `c063ca70…`） | 3市ノート全章、姉妹ノートⅣ章 |
-| 第4期対馬市地域福祉計画・地域福祉活動計画【全体版】（本体PDF、96頁） | `https://www.city.tsushima.nagasaki.jp/material/files/group/16/dai4kitiikifukushikeikakukoukaibann.pdf` | 高 | 2026-09-16 | あり（SHA-256 `5a49a7ec…`） | 3市ノート全章、姉妹ノートⅣ章 |
+| 第3期（令和4年度〜令和8年度）五島市地域福祉計画（本体PDF） | `https://www.city.goto.nagasaki.jp/s028/010/030/010/fukusikeikaku2.pdf` | 高 | 2026-09-16 | ○ | 全文。94頁・SHA-256 `c063ca70ceb367a82cee68b7f7b2dea65a99e2619a38388925e29124c9fa6abe`。3市ノート全章、姉妹ノートⅣ章 |
+| 第4期対馬市地域福祉計画・地域福祉活動計画【全体版】（本体PDF） | `https://www.city.tsushima.nagasaki.jp/material/files/group/16/dai4kitiikifukushikeikakukoukaibann.pdf` | 高 | 2026-09-16 | ○ | 全文。96頁・SHA-256 `5a49a7ec74fad49d57377cb6199f61c2c7099d838f25fa5c2100d9f62d531530`。3市ノート全章、姉妹ノートⅣ章 |
 | 同（掲載ページ、福祉課） | `https://www.city.tsushima.nagasaki.jp/gyousei/soshiki/fukushi/fukushika/keikaku/tiikifukusikeikaku/5004.html` | 中 | 2026-09-16 | ― | 3市ノート フッタ |
 | 第3次石垣市地域福祉計画・地域福祉活動計画（本体PDF） | `https://www.city.ishigaki.okinawa.jp/material/files/group/18/tiikihukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
 | 第2期和泊町地域福祉計画（本体PDF） | `https://www.town.wadomari.lg.jp/documents/7650/fukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
-| 竹富町地域福祉計画・地域福祉活動計画（最終案） | `https://www.town.taketomi.lg.jp/userfiles/files/topics/fukushi_shien/tiikihukusikeikakusaisyuuann.pdf` | **低**（最終案。確定版に差し替わる） | 2026-09-16 | ― | 姉妹ノートⅣ章 |
-| 東郷町地域福祉計画・地域福祉活動計画 目標値及び評価方法について（策定委員会 会議資料） | `https://www.town.aichi-togo.lg.jp/material/files/group/10/dai4kai_s2.pdf` | **低**（会議資料） | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 竹富町地域福祉計画・地域福祉活動計画（最終案。確定版に差し替わる） | `https://www.town.taketomi.lg.jp/userfiles/files/topics/fukushi_shien/tiikihukusikeikakusaisyuuann.pdf` | 低 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 東郷町地域福祉計画・地域福祉活動計画 目標値及び評価方法について（策定委員会 会議資料） | `https://www.town.aichi-togo.lg.jp/material/files/group/10/dai4kai_s2.pdf` | 低 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
 
 ## 失効した出典（記録として保持）
 
