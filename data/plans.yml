@@ -8,7 +8,7 @@
 # スキーマは data/schema.md を参照。年度は西暦（2022 = 令和4年度）。
 
 meta:
-  updated: 2026-08-25
+  updated: 2026-09-16
   survey_date: 2026-08-25          # 最後に調査を行った日。個々の記載の確認日は sources/POLICY.md の巡回台帳を参照
   era_base: 2018                   # 令和元年 = 2019年。令和n年 = era_base + n
 
@@ -458,9 +458,16 @@ plans:
         note: >-
           総務課 総務班の「交通対策」配下。`url` の分野別ページ（15734）と同内容で、
           ページIDだけが異なる。どちらかが落ちても片方から辿れるよう両方記録する。
-      - label: 「壱岐市デマンド交通実証運行支援業務」公募型プロポーザルの結果
-        url: https://www.city.iki.nagasaki.jp/soshiki/somuka/soumuhan/kotsutaisaku/16144.html
-        note: 2026-07-28公表。実証運行の事業者選定の結果（2026-08-23確認）。
+      - label: 「壱岐市デマンド交通実証運行支援業務」公募型プロポーザルの結果（掲載終了）
+        url: https://www.city.iki.nagasaki.jp/soshiki/somuka/soumuhan/kotsutaisaku/index.html
+        note: >-
+          2026-07-28公表。実証運行の事業者選定の結果（2026-08-23確認）。旧URL
+          /soshiki/somuka/soumuhan/kotsutaisaku/16144.html は 2026-09-16 に 404 を確認し、
+          「プロポーザル実施一覧」（/jigyousha/puropo-zaruitiran/）にも載っていない。
+          `url` は記事が置かれていた親カテゴリ「交通対策」。同カテゴリに後継の
+          「壱岐市デマンド交通実証運行について」（16376、ページ更新日 2026年09月07日）があるが、
+          本文は「現在作成中」で、選定結果は載っていない。`/plans/koutsuu/` の記述は
+          2026-08-23 取得時点の内容による。
     notes: >-
       高齢者の通院・買物支援、免許返納、デマンド型交通の検討。掲載ページ本文は
       「『壱岐市地域公共交通計画（2026年～2031年）』を策定しました」（2026-08-23確認、
@@ -744,7 +751,16 @@ plans:
     statutory: permissive
     department: 地域共創課 人口対策班
     url: https://www.city.iki.nagasaki.jp/soshiki/seisaku_kikakuka/teiju/15486.html
-    pdf: https://www.city.iki.nagasaki.jp/material/files/group/49/sokushinkeikaku_01.pdf
+    pdf: https://www.city.iki.nagasaki.jp/material/files/group/49/sokushinkeikaku_02.pdf
+    sources:
+      - label: 同 本体PDF（掲載ページが2026-08-26に差し替えたファイル）
+        url: https://www.city.iki.nagasaki.jp/material/files/group/49/sokushinkeikaku_02.pdf
+        note: >-
+          2026-09-16 に失効を確認。旧ファイル /material/files/group/49/sokushinkeikaku_01.pdf は 404 で、
+          掲載ページ（15486、ページ更新日 2026年08月26日）のリンク先が sokushinkeikaku_02.pdf に
+          変わっていた。新ファイルは3頁・PDF作成日 2026-08-26、表紙に「令和8年3月3日策定」、
+          計画期間「令和７年度〜令和１１年度」。`notes` の区域・目標・意見聴取の日付は新ファイルでも同じ。
+          旧ファイルは手元に複製が無く、差分は未確認。
     notes: >-
       対象区域（特定居住促進区域）は芦辺町芦辺浦地区・瀬戸地区。二地域居住者の年10名獲得、
       その他移住者の年100名獲得を目標に掲げる。第4次総合計画の人口目標（2050年人口2万人の維持）の
