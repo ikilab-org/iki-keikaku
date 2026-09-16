@@ -191,8 +191,8 @@
 | 同（掲載ページ、福祉課） | `https://www.city.tsushima.nagasaki.jp/gyousei/soshiki/fukushi/fukushika/keikaku/tiikifukusikeikaku/5004.html` | 中 | 2026-09-16 | ― | 3市ノート フッタ |
 | 第3次石垣市地域福祉計画・地域福祉活動計画（本体PDF） | `https://www.city.ishigaki.okinawa.jp/material/files/group/18/tiikihukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
 | 第2期和泊町地域福祉計画（本体PDF） | `https://www.town.wadomari.lg.jp/documents/7650/fukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
-| 竹富町地域福祉計画・地域福祉活動計画（最終案。確定版に差し替わる） | `https://www.town.taketomi.lg.jp/userfiles/files/topics/fukushi_shien/tiikihukusikeikakusaisyuuann.pdf` | 低 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
-| 東郷町地域福祉計画・地域福祉活動計画 目標値及び評価方法について（策定委員会 会議資料） | `https://www.town.aichi-togo.lg.jp/material/files/group/10/dai4kai_s2.pdf` | 低 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 竹富町地域福祉計画・地域福祉活動計画（令和8年3月、本体PDF） | `https://www.town.taketomi.lg.jp/userfiles/files/topics/hukushi/kaigo/taketomicyouchiikihukushikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 第1次東郷町地域福祉グランドデザイン（掲載ページ） | `https://www.town.aichi-togo.lg.jp/soshikikarasagasu/fukushika/gyomuannai/11/1/4078.html` | 中 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
 
 ## 失効した出典（記録として保持）
 
