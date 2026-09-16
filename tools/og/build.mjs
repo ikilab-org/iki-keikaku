@@ -15,6 +15,7 @@
  *   assets/og-koutsuu.png  公共交通のノート用
  *   assets/og-shisetsu-2036.png  公共施設のノート用
  *   assets/og-chiiki-fukushi-4.png  地域福祉のノート用
+ *   assets/og-houkatsu-jusou.png  地域包括ケアと重層のノート用
  */
 import { chromium } from 'playwright'
 import { fileURLToPath } from 'node:url'
@@ -33,6 +34,7 @@ const CARDS = [
   { id: 'og-koutsuu', out: 'og-koutsuu.png' },
   { id: 'og-shisetsu-2036', out: 'og-shisetsu-2036.png' },
   { id: 'og-chiiki-fukushi-4', out: 'og-chiiki-fukushi-4.png' },
+  { id: 'og-houkatsu-jusou', out: 'og-houkatsu-jusou.png' },
 ]
 
 const W = 1200, H = 630, SCALE = 2
