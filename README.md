@@ -19,7 +19,8 @@
 | [`/`](index.html) | ハブ。マップとノートの入口 |
 | [`/plans/all/`](plans/all/) | **全計画78件の俯瞰**（市68・社協1・県9） — 位置づけの階層・計画期間・分野別の一覧。`data/plans.yml` から生成 |
 | [`/plans/fukushi/`](plans/fukushi/) | **地域福祉計画と関連計画の体系整理** — 国・長崎県・市の階層、計画期間タイムライン、一覧、地域福祉計画と個別計画の対応 |
-| [`/plans/chiiki-fukushi-4/`](plans/chiiki-fukushi-4/) | **第4次地域福祉計画の論点** — 令和9〜13年度の第4次に向けて、第1〜3次の計画本体・厚労省の全国調査・離島等5件の計画を一次資料で照合。3版とも成果指標なし、社協の第2期は検討中。照合の全記録は [`docs/chiiki-fukushi/`](docs/chiiki-fukushi/) |
+| [`/plans/chiiki-fukushi-4/`](plans/chiiki-fukushi-4/) | **第4次地域福祉計画の論点** — 令和9〜13年度の第4次に向けて、第1〜3次の計画本体・厚労省の全国調査・離島等6件の計画を一次資料で照合。3版とも成果指標なし、社協の第2期は検討中。照合の全記録は [`docs/chiiki-fukushi/`](docs/chiiki-fukushi/) |
+| [`/plans/chiiki-fukushi-3shi/`](plans/chiiki-fukushi-3shi/) | **長崎県の離島3市の地域福祉計画 ― 壱岐・五島・対馬を並べて読む** — 第4次で決めることになる5つの論点（圏域・重層的支援体制整備事業の取り扱い・指標・社協との関係・点検の場）で、同じ県の離島2市の現行計画を計画本体から並べる。指標は0本／56本／社協のみ21本、点検の約束は4年目に1回／なし／毎年度。照合記録は [`docs/chiiki-fukushi/`](docs/chiiki-fukushi/) |
 | [`/plans/houkatsu-jusou/`](plans/houkatsu-jusou/) | **地域包括ケアと重層的支援体制の関係整理** — 高齢者分野の地域包括ケアシステムと重層的支援体制整備事業を根拠法・対象・機関・計画で並べ、厚労省の位置づけ（「１つの手段」「主に体制整備初期段階で活用」）と壱岐市の4分野の窓口を一次資料で確認。照合記録は [`docs/chiiki-fukushi/`](docs/chiiki-fukushi/) |
 | [`/plans/kaigo-7-9/`](plans/kaigo-7-9/) | **介護保険事業計画 第7期・第8期の検証** — 前提 → 計画 → 実施 → 成果。実績は第9期計画・決算・統計から取っている |
 | [`/plans/koutsuu/`](plans/koutsuu/) | **地域公共交通計画の読み直し** — 路線バスと公共ライドシェアの公費を1乗車あたりに換算。系統別の開き、75歳以上の利用、実証事業との比較。**推計を含む**（仮定と誤差の向きは各章に明記） |
@@ -62,6 +63,7 @@
 │   ├── all/                ★ 全計画の俯瞰（data/plans.yml から生成）
 │   ├── fukushi/
 │   ├── chiiki-fukushi-4/
+│   ├── chiiki-fukushi-3shi/
 │   ├── houkatsu-jusou/
 │   ├── kaigo-7-9/
 │   ├── koutsuu/
@@ -104,7 +106,7 @@
 
 計画の名称・期間・根拠法・所管課・出典URLは、すべてここに集約しています。
 `plans/all/` のマップはこの YAML から生成しています。ノート（`plans/fukushi/` `plans/kaigo-7-9/`
-`plans/koutsuu/` `plans/shisetsu-2036/` `plans/chiiki-fukushi-4/` `plans/houkatsu-jusou/`）は手書きのままです。生成物は全件を載せられる代わりに記述が薄くなるので、
+`plans/koutsuu/` `plans/shisetsu-2036/` `plans/chiiki-fukushi-4/` `plans/chiiki-fukushi-3shi/` `plans/houkatsu-jusou/`）は手書きのままです。生成物は全件を載せられる代わりに記述が薄くなるので、
 **マップは生成、ノートは手書き**と役割を分けています。
 
 いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次と、

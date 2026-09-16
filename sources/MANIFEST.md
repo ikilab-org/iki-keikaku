@@ -3,7 +3,7 @@
 方針は [`POLICY.md`](POLICY.md) を参照。残存性の区分は 高 / 中 / 低。
 「保存」列は、原本をローカル等に保管しているかどうか（原本は公開しません）。
 
-最終一括確認: 2026-08-11（`node tools/linkcheck.mjs`）
+最終一括確認: 2026-09-16（`node tools/linkcheck.mjs`）
 
 ## 壱岐市
 
@@ -12,6 +12,7 @@
 | 第4次壱岐市総合計画 本編 | `/material/files/group/46/dai4jiikishisougoukeikaku_main.pdf` | 高 | 2026-08-11 | ― | 基本目標2・3 |
 | 同 分野別まちづくり計画（詳細版） | `/material/files/group/46/bunyabetsu_syousaiban.pdf` | 高 | 2026-08-10 | ― | 2-1〜2-6、3-1 |
 | 第3次地域福祉計画（掲載ページ） | `/soshiki/shimin/ippan/10381.html` | 中 | 2026-08-11 | ― | 本文PDFへのリンク |
+| 同 本体PDF（令和4年3月） | `/material/files/group/10/tiikihukusikeikaku.pdf` | 高 | 2026-09-16 | ○ | 全文。98頁・SHA-256 `f56748ffbd78c3f06fae56c236d52683fb6a682361248ba24da8181a428e6170`。`plans/chiiki-fukushi-4/`・`plans/chiiki-fukushi-3shi/` の全章 |
 | 第3次障がい者計画 | `/soshiki/shimin/fukushi/10383.html` | 中 | 2026-08-11 | ― | ― |
 | 第7期障がい福祉計画・第3期障がい児福祉計画 | `/soshiki/shimin/fukushi/12605.html` | 中 | 2026-08-11 | ― | ― |
 | 高齢者福祉計画・第9期介護保険事業計画 | `/material/files/group/38/keikakukeikaku.pdf` | 高 | 2026-08-11 | ― | p.8, p.10-11, p.27, p.54, p.57-59, p.63 |
@@ -33,7 +34,7 @@
 | 壱岐市地域公共交通計画（掲載ページ・組織別） | `/soshiki/somuka/soumuhan/kotsutaisaku/15733.html` | 中 | 2026-08-23 | ― | 「策定しました」の記載（ページ更新日 2026-04-03） |
 | 同（掲載ページ・分野別。同一記事の二重掲載） | `/shisei/machidukuri/keikaku/15734.html` | 中 | 2026-08-23 | ― | 上と同内容。別ページID |
 | 同 本体PDF | `/material/files/group/3/tiikikoukyoukoutuukeikaku.pdf` | 高 | 2026-08-23 | ○ | 111頁・PDF作成日2026-03-25・SHA-256 `a4823adf7ce863ebaef90612e44bd00d5108a3eac7cbb8e93f365209cf02f910`。p.17-18（輸送人員）、p.20-21（系統別）、p.23、p.25-26、p.36、p.39、p.42-43（評価指標）。**p.36・p.43 に「（案）」付きの見出しが表示されたまま残る。表紙の「素 案」はテキスト層のみで非表示** |
-| 「壱岐市デマンド交通実証運行支援業務」公募型プロポーザルの結果 | `/soshiki/somuka/soumuhan/kotsutaisaku/16144.html` | 中 | 2026-08-23 | ― | 事業者選定の結果（2026-07-28公表） |
+| 「壱岐市デマンド交通実証運行支援業務」公募型プロポーザルの結果 | `/soshiki/somuka/soumuhan/kotsutaisaku/16144.html` | 低 | 2026-09-16 | ― | 事業者選定の結果（2026-07-28公表）。**2026-09-16 に404（掲載終了）。プロポーザル実施一覧にも未掲載。** `/plans/koutsuu/` の記述は 2026-08-23 取得時点の内容による |
 | 交通対策（総務課 総務班・分類トップ） | `/soshiki/somuka/soumuhan/kotsutaisaku/index.html` | 中 | 2026-08-23 | ― | 上記各記事の親カテゴリ |
 | 壱岐市デマンド交通実証運行支援業務 公募型プロポーザル実施要領（令和8年6月） | **URL未記録** | 要判定 | 2026-08-23 | ― | 実証事業の事業費・運行経費・見込利用者数・運賃 |
 | 第3次壱岐市男女共同参画計画策定支援業務仕様書 | `/material/files/group/49/R8-19siyousyo.pdf` | 低 | 2026-08-12 | ― | 計画期間（令和9～13年度）、根拠4法（男女共同参画社会基本法14条3項、DV防止法2条の3第3項、女性活躍推進法6条2項、女性支援新法8条3項） |
@@ -62,8 +63,8 @@
 | 壱岐市教育委員会障害者活躍推進計画（本体PDF） | `/material/files/group/3/ikishikyouikuiinkai.pdf` | 高 | 2026-08-13 | ― | ― |
 | 第3次壱岐市男女共同参画計画（掲載ページ） | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/index.html` | 中 | 2026-08-13 | ― | ― |
 | 第3次壱岐市男女共同参画計画／第2次壱岐市男女共同参画基本計画の策定について（現行計画） | `/soshiki/seisaku_kikakuka/machizukuri/danjo_kyodo/3784.html` | 中 | 2026-08-13 | ― | ― |
-| 壱岐市特定居住促進計画（掲載ページ） | `/soshiki/seisaku_kikakuka/teiju/15486.html` | 中 | 2026-08-13 | ― | ― |
-| 壱岐市特定居住促進計画（本体PDF） | `/material/files/group/49/sokushinkeikaku_01.pdf` | 高 | 2026-08-13 | ― | ― |
+| 壱岐市特定居住促進計画（掲載ページ） | `/soshiki/seisaku_kikakuka/teiju/15486.html` | 中 | 2026-09-16 | ― | ページ更新日 2026-08-26。本体PDFのリンク先が差し替わっている |
+| 壱岐市特定居住促進計画（本体PDF） | `/material/files/group/49/sokushinkeikaku_02.pdf` | 高 | 2026-09-16 | ― | 3頁・PDF作成日 2026-08-26・SHA-256 `0ad107d8ed64074135e2d2576a4218162ea93628326b3a5097d58c528d5575c2`。旧 `sokushinkeikaku_01.pdf` は 2026-09-16 に404を確認 |
 | 壱岐市生涯活躍のまち推進プロジェクト（掲載ページ） | `/soshiki/seisaku_kikakuka/4510.html` | 中 | 2026-08-13 | ― | ― |
 | 壱岐市生涯活躍のまち推進プロジェクト／壱岐CCRC基本指針 概要版 | `/material/files/group/9/CCRC01.pdf` | 高 | 2026-08-13 | ― | ― |
 | 壱岐市生涯活躍のまち推進プロジェクト／壱岐CCRC基本指針 本編 | `/material/files/group/9/CCRC02.pdf` | 高 | 2026-08-13 | ― | ― |
@@ -191,6 +192,22 @@
 | 同（令和6年度） | `https://www.mhlw.go.jp/content/12000000/001709334.pdf` | 中 | 2026-09-16 |
 | 同（令和7年度） | `https://www.mhlw.go.jp/content/12000000/001709335.pdf` | 中 | 2026-09-16 |
 | 社会福祉法／介護保険法／地域における医療及び介護の総合的な確保の促進に関する法律（e-Gov法令検索） | `https://laws.e-gov.go.jp/law/326AC0000000045` ほか `409AC0000000123`・`401AC0000000064` | 高 | 2026-09-16 |
+
+## 他自治体
+
+地域福祉計画のノート（`plans/chiiki-fukushi-4/`・`plans/chiiki-fukushi-3shi/`）が参照する他自治体の計画。
+`data/plans.yml` には入れていないので `tools/linkcheck.mjs` の対象外。死活は手で確認する。
+「保存」は手元の複製の有無。原本は公開しない（`POLICY.md` 4）。
+
+| 資料 | URL | 残存性 | 最終確認 | 保存 | 参照箇所 |
+|---|---|---|---|---|---|
+| 第3期（令和4年度〜令和8年度）五島市地域福祉計画（本体PDF） | `https://www.city.goto.nagasaki.jp/s028/010/030/010/fukusikeikaku2.pdf` | 高 | 2026-09-16 | ○ | 全文。94頁・SHA-256 `c063ca70ceb367a82cee68b7f7b2dea65a99e2619a38388925e29124c9fa6abe`。3市ノート全章、姉妹ノートⅣ章 |
+| 第4期対馬市地域福祉計画・地域福祉活動計画【全体版】（本体PDF） | `https://www.city.tsushima.nagasaki.jp/material/files/group/16/dai4kitiikifukushikeikakukoukaibann.pdf` | 高 | 2026-09-16 | ○ | 全文。96頁・SHA-256 `5a49a7ec74fad49d57377cb6199f61c2c7099d838f25fa5c2100d9f62d531530`。3市ノート全章、姉妹ノートⅣ章 |
+| 同（掲載ページ、福祉課） | `https://www.city.tsushima.nagasaki.jp/gyousei/soshiki/fukushi/fukushika/keikaku/tiikifukusikeikaku/5004.html` | 中 | 2026-09-16 | ― | 3市ノート フッタ |
+| 第3次石垣市地域福祉計画・地域福祉活動計画（本体PDF） | `https://www.city.ishigaki.okinawa.jp/material/files/group/18/tiikihukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 第2期和泊町地域福祉計画（本体PDF） | `https://www.town.wadomari.lg.jp/documents/7650/fukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 竹富町地域福祉計画・地域福祉活動計画（令和8年3月、本体PDF） | `https://www.town.taketomi.lg.jp/userfiles/files/topics/hukushi/kaigo/taketomicyouchiikihukushikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+| 第1次東郷町地域福祉グランドデザイン（掲載ページ） | `https://www.town.aichi-togo.lg.jp/soshikikarasagasu/fukushika/gyomuannai/11/1/4078.html` | 中 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
 
 ## 失効した出典（記録として保持）
 
