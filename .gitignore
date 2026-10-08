@@ -7,3 +7,6 @@ package-lock.json
 
 .DS_Store
 .superpowers/
+
+# 手元で作ったポスター画像などの成果物。リポジトリでは追跡しない。
+artifacts/
