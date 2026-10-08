@@ -124,6 +124,13 @@ plans:
     includes: [seinen-kouken, saihan-boushi]
     related: [kourei-9, shougai-keikaku-3, shougai-fukushi-7, kodomo-1, csw-katsudou-2, pref-fukushi-hoken-6]
     url: https://www.city.iki.nagasaki.jp/soshiki/shimin/ippan/10381.html
+    sources:
+      - label: 「地域共生社会の在り方検討会議」中間とりまとめ（令和7年5月28日）
+        url: https://www.mhlw.go.jp/content/12000000/001499082.pdf
+        note: 包括的な支援体制の2つのアプローチ（p.13）と重層の位置づけ（p.9・p.15）。plans/houkatsu-jusou/ が引用
+      - label: 重層的支援体制整備事業（社会福祉法第106条の4）令和8年度当初予算案 説明資料
+        url: https://www.mhlw.go.jp/content/001648727.pdf
+        note: 「主に体制整備初期段階で活用」（p.1）と実施市町村数（p.2）。plans/chiiki-fukushi-4/ と plans/houkatsu-jusou/ が引用
     successor:
       name: 第4次壱岐市地域福祉計画
       status: planned
