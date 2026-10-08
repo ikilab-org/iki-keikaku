@@ -147,6 +147,12 @@
 | 個別相談・教室について | `/soshiki/kodomo/boshi_hoken/16107.html` | 中 | 2026-09-16 | ― | こども家庭センター いきいろ（子育て支援課、芦辺庁舎1階） |
 | 壱岐市社会福祉協議会「障がい者への支援」 | `https://ikicity-csw.jp/fukushi3.html` | 中 | 2026-09-16 | ― | 障害者相談支援事業・障害者地域活動支援センター相談窓口 |
 
+| 壱岐市デマンド交通実証運行のお知らせ | `/soshiki/somuka/soumuhan/kotsutaisaku/16376.html` | 中 | 2026-10-08 | ― | ページ更新日 2026-10-06。運行期間・エリアと曜日・予約・運賃・乗車定員9名。`plans/norimono-hikaku/` Ⅷ章 |
+| デマンド交通パンフレット（のるーと壱岐） | `/material/files/group/3/pannhu.pdf` | 中 | 2026-10-08 | ○ | 8頁・PDF作成日 2026-09-16・SHA-256 `9f63ab3696cf952387c838dd3bce5bcf351dd20759e0196b2836fbce99ad32ae`。郷ノ浦市街の乗降ポイント13か所（008 壱岐病院ほか）。同 Ⅷ章 |
+| 壱岐市地域公共交通会議（掲載ページ） | `/soshiki/somuka/soumuhan/kotsutaisaku/9766.html` | 中 | 2026-10-08 | ― | R8.9.3 の会議資料・会議録へのリンク |
+| 同 会議資料（R8.9.3） | `/material/files/group/3/siryou0903.pdf` | 高 | 2026-10-08 | ○ | 16頁・SHA-256 `aaa30df19f0618864ac345c3a7731d23c63757ec92c08a9b12d0938a7a060d71`。外出支援・障害者移動支援の利用回数（p.1）、実証運行の設計（p.1〜7）。同 Ⅷ章 |
+| 同 会議録（R8.9.3） | `/material/files/group/3/tiikikoukyoukoutuukaigi0903.pdf` | 高 | 2026-10-08 | ○ | 2頁・SHA-256 `2e9da27a0a6fded22609210ac4150243273802a804ee2b14ab2dd203dd1a6f5e`。令和7年度の利用は「見込」。同 Ⅷ章 |
+
 ## 長崎県
 
 | 資料 | URL | 残存性 | 最終確認 |
@@ -192,6 +198,14 @@
 | 同（令和6年度） | `https://www.mhlw.go.jp/content/12000000/001709334.pdf` | 中 | 2026-09-16 |
 | 同（令和7年度） | `https://www.mhlw.go.jp/content/12000000/001709335.pdf` | 中 | 2026-09-16 |
 | 社会福祉法／介護保険法／地域における医療及び介護の総合的な確保の促進に関する法律（e-Gov法令検索） | `https://laws.e-gov.go.jp/law/326AC0000000045` ほか `409AC0000000123`・`401AC0000000064` | 高 | 2026-09-16 |
+| 国土交通省「『交通空白』解消に向けた取組方針2025」（令和7年5月30日） | `https://www.mlit.go.jp/sogoseisaku/transport/content/001892380.pdf` | 高 | 2026-10-08 |
+| 国土交通省「『交通空白』解消・官民連携プラットフォームの取組状況」（令和7年8月7日） | `https://www.mlit.go.jp/sogoseisaku/transport/content/001904856.pdf` | 高 | 2026-10-08 |
+| 国土交通省「『交通空白』の解消等に向けた地域交通のリ・デザインの全面展開（令和７年度補正・令和８年度予算）」 | `https://www.mlit.go.jp/sogoseisaku/transport/content/001888115.pdf` | 高 | 2026-10-08 |
+| 令和8年度「交通空白」解消等リ・デザイン全面展開プロジェクト 公募要領（「交通空白」解消タイプ 初版 v3）・交付規程・説明会Q&A | `https://kotsu-kuhaku-r8.jp/assets/documents/kuhaku_r8_outline_v3.pdf` ほか `regulations.pdf`・`faq.pdf` | 中 | 2026-10-08 |
+| 同 採択一覧（報道発表資料、令和8年4月28日） | `https://www.mlit.go.jp/report/press/content/001998530.pdf` | 高 | 2026-10-08 |
+| 地域公共交通確保維持改善事業費補助金交付要綱（令和8年10月5日改正） | `https://www.mlit.go.jp/sogoseisaku/transport/content/001992626.pdf` | 中 | 2026-10-08 |
+| 総務省「『交通空白』解消に向けた取組について」（地方財政審議会、令和8年2月6日） | `https://www.soumu.go.jp/main_content/001065591.pdf` | 高 | 2026-10-08 |
+| 国土交通省中部運輸局「デマンド型交通の手引き」（平成25年3月） | `https://wwwtb.mlit.go.jp/hokushin/content/000104104.pdf` | 高 | 2026-10-08 |
 
 ## 他自治体
 
@@ -208,6 +222,24 @@
 | 第2期和泊町地域福祉計画（本体PDF） | `https://www.town.wadomari.lg.jp/documents/7650/fukusikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
 | 竹富町地域福祉計画・地域福祉活動計画（令和8年3月、本体PDF） | `https://www.town.taketomi.lg.jp/userfiles/files/topics/hukushi/kaigo/taketomicyouchiikihukushikeikaku.pdf` | 高 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
 | 第1次東郷町地域福祉グランドデザイン（掲載ページ） | `https://www.town.aichi-togo.lg.jp/soshikikarasagasu/fukushika/gyomuannai/11/1/4078.html` | 中 | 2026-09-16 | ― | 姉妹ノートⅣ章 |
+
+## 民間・海外・報道
+
+交通のノート（`plans/norimono-hikaku/`）が参照する、行政以外の資料と海外の資料。`data/plans.yml` には入れていないので
+`tools/linkcheck.mjs` の対象外。照合の記録は `docs/koutsuu/2026-10-08-shougou-norimono.md`。
+
+| 資料 | URL | 残存性 | 最終確認 | 参照箇所 |
+|---|---|---|---|---|
+| John Sutton, "The Theoretical and Practical Limits to Demand Responsive Transport Services", TAPAS.network（2024-03-06） | `https://tapas.network/51/sutton.php` | 中 | 2026-10-08 | Ⅵ章（TAS Partnership 2023・French 2023・Harmony 2022 の引用を含む） |
+| busandtrainuser.com「DRT chronology」 | `https://busandtrainuser.com/a-short-history-of-drt/` | 低 | 2026-10-08 | Ⅵ章（英国の個別事業の経過）。随時更新されるページ |
+| Aberdeenshire Council「Ready2Go Around Inverurie bus service to be withdrawn in April」（2023-01-12） | `https://www.aberdeenshire.gov.uk/news/2023/jan/ready2go-around-inverurie-bus-service-to-be-withdrawn-in-april` | 低 | 2026-10-08 | Ⅵ章。Wayback 経由で取得 |
+| Pembrokeshire County Council「fflecsi Bwcabus Service to end」（2023-09-21） | `https://newsroom.pembrokeshire.gov.uk/news/fflecsi-bwcabus-service-to-end` | 中 | 2026-10-08 | Ⅵ章 |
+| Transport for Wales「fflecsi Blaenau Gwent」 | `https://tfw.wales/fflecsi/locations/blaenau-gwent` | 低 | 2026-10-08 | Ⅵ章（現在の運行形態） |
+| MMD研究所「2025年シニアのスマートフォン・フィーチャーフォンに関する調査」（2025-11-19公開） | `https://mmdlabo.jp/investigation/detail_2501.html` | 中 | 2026-10-08 | Ⅷ章2 |
+| 九州郵船「【重要】2026年4月1日以降の配船計画につきまして」（掲載 2026-03-03、本文末尾 2026-03-06） | `https://www.kyu-you.co.jp/whatsnew/detail/0fd347e8-def2-45ce-983e-abab81cd879a` | 低 | 2026-10-08 | Ⅷ章1 |
+| 九州郵船 時刻表（2026年11月1日〜2027年3月31日、認可申請中） | `https://www.kyu-you.co.jp/files/download/PdfFiles/3a5b7f8d-a255-43f8-8b6d-52c6b1f3b207/file2/` | 低 | 2026-10-08 | Ⅷ章1。3月の告知からのリンク先の中身が差し替わっている |
+| 長崎新聞（2026-07-30・2026-09-17、ジェットフォイル減便の継続） | `https://www.nagasaki-np.co.jp/kijis/?kijiid=2e4723676a464e379167e20ed76dfa89` ほか `?kijiid=50b6406a98a949ee8df9ef9685d2eeb5` | 低 | 2026-10-08 | Ⅷ章1 |
+| 長崎県壱岐病院「外来担当医表」 | `https://iki-hospital.jp/raiin/doctor-list/` | 低 | 2026-10-08 | Ⅷ章3。ページに適用月の表示なし（dateModified 2026-08-07）。随時更新される |
 
 ## 失効した出典（記録として保持）
 

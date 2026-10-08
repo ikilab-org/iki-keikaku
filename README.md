@@ -24,6 +24,7 @@
 | [`/plans/houkatsu-jusou/`](plans/houkatsu-jusou/) | **地域包括ケアと重層的支援体制の関係整理** — 高齢者分野の地域包括ケアシステムと重層的支援体制整備事業を根拠法・対象・機関・計画で並べ、厚労省の位置づけ（「１つの手段」「主に体制整備初期段階で活用」）と壱岐市の4分野の窓口を一次資料で確認。照合記録は [`docs/chiiki-fukushi/`](docs/chiiki-fukushi/) |
 | [`/plans/kaigo-7-9/`](plans/kaigo-7-9/) | **介護保険事業計画 第7期・第8期の検証** — 前提 → 計画 → 実施 → 成果。実績は第9期計画・決算・統計から取っている |
 | [`/plans/koutsuu/`](plans/koutsuu/) | **地域公共交通計画の読み直し** — 路線バスと公共ライドシェアの公費を1乗車あたりに換算。系統別の開き、75歳以上の利用、実証事業との比較。**推計を含む**（仮定と誤差の向きは各章に明記） |
+| [`/plans/norimono-hikaku/`](plans/norimono-hikaku/) | **路線バス・デマンド交通・タクシー ― 三つの乗りものを費用の出方で比べる** — 1台に何組が乗るかと費用の出方で3つを整理し、壱岐の1乗車あたり公費・国の支援制度・手引きの類型・英国の撤退例と継続例を突き合わせ、令和8年10月からの実証運行の設計（エリアと曜日、乗降ポイント）と壱岐病院の外来の曜日を並べる。外部の下書きを基にしたため照合記録を [`docs/koutsuu/`](docs/koutsuu/) に置いた |
 | [`/plans/shisetsu-2036/`](plans/shisetsu-2036/) | **公共施設等総合管理計画 ― 1人あたり面積とLCC** — 15%削減目標を10年後の2036年で切って検算。目標人口ならほぼ同水準だが、2つの推計人口では1人あたりが増える。費用推計に運用費・解体費が入っていないことも扱う。**推計を含む** |
 | [`/about/license/`](about/license/) | ライセンスと、その選択理由。クレジットの記載例つき |
 
@@ -67,6 +68,7 @@
 │   ├── houkatsu-jusou/
 │   ├── kaigo-7-9/
 │   ├── koutsuu/
+│   ├── norimono-hikaku/
 │   └── shisetsu-2036/
 ├── about/
 │   └── license/            ライセンスと、その選択理由
@@ -106,7 +108,7 @@
 
 計画の名称・期間・根拠法・所管課・出典URLは、すべてここに集約しています。
 `plans/all/` のマップはこの YAML から生成しています。ノート（`plans/fukushi/` `plans/kaigo-7-9/`
-`plans/koutsuu/` `plans/shisetsu-2036/` `plans/chiiki-fukushi-4/` `plans/chiiki-fukushi-3shi/` `plans/houkatsu-jusou/`）は手書きのままです。生成物は全件を載せられる代わりに記述が薄くなるので、
+`plans/koutsuu/` `plans/norimono-hikaku/` `plans/shisetsu-2036/` `plans/chiiki-fukushi-4/` `plans/chiiki-fukushi-3shi/` `plans/houkatsu-jusou/`）は手書きのままです。生成物は全件を載せられる代わりに記述が薄くなるので、
 **マップは生成、ノートは手書き**と役割を分けています。
 
 いま時点で YAML を読んでいるのは次の5つです。CIで回るのは `linkcheck`（週次と、
