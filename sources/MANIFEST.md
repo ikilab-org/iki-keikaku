@@ -27,7 +27,7 @@
 | 地域公共交通計画 | `/shisei/machidukuri/keikaku/15734.html` | 中 | 2026-08-11 | ― | ― |
 | 地域防災計画 | `/soshiki/somuka/kiki_kanrika/bosai/bousaikaigi/chiiki/13851.html` | 中 | 2026-08-11 | ― | ― |
 | 令和6年度決算審査意見書 | `/material/files/group/3/7nen9gatuikensyo.pdf` | 高 | 2026-08-10 | ― | 介護保険特会、資料〔3〕、基金一覧 |
-| 令和8年3月会議 施政方針 | `/material/files/group/3/8nen3gatusiseihousin.pdf` | 高 | 2026-08-11 | ― | 介護保険の項 |
+| 令和8年3月会議 施政方針 | `/material/files/group/3/8nen3gatusiseihousin.pdf` | 高 | 2026-09-16 | ― | 介護保険の項、地域共生社会の項（p.12。`plans/fukushi/` 論点）。31頁・PDF作成日2026-03-03・SHA-256 `429023308997f50ba22f13bcc2092745512be6da3ff31a97a1febfbbc646489e` |
 | 市議会 会議録一覧 | `/soshiki/gikai_jimukyoku/shigikai/kaigiroku/index.html` | 高 | 2026-08-10 | ― | 各年9月会議＝決算説明 |
 | パブリックコメント実施予定 | `/shisei/koho_kocho/comment/15343.html` | 中 | 2026-08-11 | ― | 5計画の実施予定 |
 | 統計データ集 | `/soshiki/seisaku_kikakuka/toukeizyouhou/3207.html` | 中 | 2026-08-10 | ― | 住基人口・世帯数 |
