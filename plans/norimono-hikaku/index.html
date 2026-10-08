@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>路線バス・デマンド交通・タクシー ― 三つの乗りものを費用の出方で比べる | 壱岐市 計画資料集</title>
+<meta name="description" content="路線バス・デマンド交通・タクシーの違いを、1台に何組が乗るかと費用の出方で整理し、壱岐市の1乗車あたり公費、国の支援制度、国土交通省中部運輸局の手引きの類型、英国の撤退例と継続例、令和8年10月に始まった実証運行（のるーと壱岐）の設計と突き合わせる。実証運行で見る指標を3つ挙げる。">
+<link rel="canonical" href="https://keikaku.ikilab.org/plans/norimono-hikaku/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="壱岐市 計画資料集">
+<meta property="og:title" content="路線バス・デマンド交通・タクシー ― 三つの乗りものを費用の出方で比べる">
+<meta property="og:description" content="路線バスは走らせた分、タクシーは乗った分だけ費用がかかる。デマンド交通が安くなるのは乗合が起きたときだけ。壱岐の1乗車あたり公費、国の支援が手厚い時期、英国の撤退例、実証運行の曜日と病院の外来曜日を並べる。">
+<meta property="og:url" content="https://keikaku.ikilab.org/plans/norimono-hikaku/">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://keikaku.ikilab.org/assets/og-norimono-hikaku.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="壱岐市の1乗車あたり公費を、路線バス全体・公共ライドシェア2地区・転換検討の11系統・最も需要の薄い系統で横棒に並べた図">
+<meta name="twitter:image" content="https://keikaku.ikilab.org/assets/og-norimono-hikaku.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../../assets/palette.css">
+<style>
+:root{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb;
+  --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+  --wash:rgba(11,11,11,0.035);
+  --warn:#fab219; --crit:#d03b3b; --good:#0ca30c; --goodtx:#006300;
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19;
+  --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+  --wash:rgba(255,255,255,0.05);
+  --goodtx:#0ca30c;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19;
+    --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+    --wash:rgba(255,255,255,0.05);
+    --goodtx:#0ca30c;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--page);color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP","Yu Gothic UI",sans-serif;
+  font-size:15px;line-height:1.75;letter-spacing:.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:26px;line-height:1.4;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:19px;margin:0 0 4px;letter-spacing:-.01em}
+h3{font-size:15px;margin:26px 0 8px;padding-left:10px;border-left:3px solid var(--axis)}
+p{margin:.5em 0}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--axis)}
+a:hover{border-bottom-color:currentColor}
+.sub{color:var(--ink2);font-size:13.5px}
+.mut{color:var(--muted);font-size:12.5px}
+b{font-weight:650}
+.prose{max-width:76ch}
+.prose p{color:var(--ink2)}
+.prose p b{color:var(--ink)}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;
+  padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:26px}
+a.badge.home{text-decoration:none;margin-right:8px}
+a.badge.home:hover{background:var(--wash);border-color:var(--axis)}
+.badge{display:inline-block;font-size:11.5px;letter-spacing:.06em;padding:3px 9px;border:1px solid var(--ring);
+  border-radius:999px;color:var(--ink2);background:var(--surface)}
+button.tg{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--ring);border-radius:8px;
+  background:var(--surface);color:var(--ink2);cursor:pointer}
+button.tg:hover{background:var(--wash)}
+section{background:var(--surface);border:1px solid var(--ring);border-radius:14px;padding:22px 22px 24px;margin:0 0 22px}
+section > .hd{margin-bottom:16px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.two.three{grid-template-columns:1fr 1fr 1fr}
+@media (max-width:820px){.two,.two.three{grid-template-columns:1fr}}
+.card{border:1px solid var(--ring);border-radius:11px;padding:14px 16px;background:var(--page)}
+.card .tl{font-size:11.5px;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.card h4{margin:0 0 8px;font-size:15.5px}
+.card p{font-size:13.5px;color:var(--ink2)}
+.card.k1{border-top:3px solid var(--c1)}
+.card.k2{border-top:3px solid var(--c2)}
+.card.k3{border-top:3px solid var(--c5)}
+
+.tblwrap{overflow-x:auto;margin-top:6px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--grid)}
+thead th{font-size:11.5px;letter-spacing:.05em;color:var(--muted);font-weight:600;border-bottom:1px solid var(--axis);white-space:nowrap}
+tbody tr:hover{background:var(--wash)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.k{font-weight:600;width:150px}
+td.c{text-align:center}
+.no{color:var(--crit);font-weight:650}
+.ok{color:var(--goodtx);font-weight:650}
+
+/* 模式図・類型図 */
+.fig{border:1px solid var(--ring);border-radius:11px;background:var(--page);padding:16px 14px;overflow-x:auto}
+.fig svg{display:block;min-width:660px;width:100%;height:auto;color:var(--ink2)}
+.fig svg .bus{stroke:var(--c2)} .fig svg text.bus{fill:var(--c2);stroke:none}
+.fig svg .dem{stroke:var(--c1)} .fig svg text.dem{fill:var(--c1);stroke:none}
+.fig svg .band{fill:var(--wash)}
+.cap{font-size:12px;color:var(--muted);margin-top:10px;max-width:90ch}
+
+/* 横棒 */
+.ach{display:grid;grid-template-columns:250px 1fr 84px;gap:10px;align-items:center;font-size:12.5px;padding:4px 0}
+.ach .lb{color:var(--ink2);line-height:1.35}
+.ach .lb small{display:block;color:var(--muted);font-size:11px}
+.ach .tr{position:relative;height:15px;background:var(--wash);border-radius:4px}
+.ach .fl{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--c2)}
+.ach .fl.alt{background:var(--c1)}
+.ach .tr.unk{background:none;border:1.5px dashed var(--axis)}
+.ach .vv{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.achhd{display:grid;grid-template-columns:250px 1fr 84px;gap:10px;font-size:11px;color:var(--muted);
+  padding-bottom:6px;border-bottom:1px solid var(--grid);margin-bottom:8px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 12px;font-size:12px;color:var(--ink2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+@media (max-width:700px){.ach,.achhd{grid-template-columns:130px 1fr 62px}}
+
+ol.notes{margin:8px 0 0;padding-left:0;list-style:none;counter-reset:n}
+ol.notes li{counter-increment:n;position:relative;padding:12px 0 12px 40px;border-bottom:1px solid var(--grid)}
+ol.notes li:last-child{border-bottom:none}
+ol.notes li::before{content:counter(n);position:absolute;left:0;top:12px;width:24px;height:24px;border-radius:7px;
+  background:var(--wash);border:1px solid var(--ring);display:flex;align-items:center;justify-content:center;
+  font-size:11.5px;color:var(--ink2)}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.04em;padding:1px 7px;border-radius:5px;margin-right:8px;
+  border:1px solid var(--ring);color:var(--ink2)}
+.note{border-left:3px solid var(--axis);padding:2px 0 2px 14px;margin:14px 0 0;color:var(--ink2);font-size:13.5px}
+.note.w{border-left-color:var(--warn)}
+footer{color:var(--muted);font-size:12px;padding:8px 4px 0;line-height:1.9}
+footer a{border-bottom-color:var(--grid)}
+@media print{body{background:#fff}section{break-inside:avoid}button.tg{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <a href="../../" class="badge home">← 壱岐市 計画資料集</a><span class="badge">長崎県壱岐市 ／ 日中の足の選び方</span>
+    <h1>路線バス・デマンド交通・タクシー ― 三つの乗りものを費用の出方で比べる</h1>
+    <p class="sub">3つの乗りものの違いは、つきつめると<b>1台に何組が乗るか</b>に行き着く。そこから費用の出方が分かれる。路線バスは走らせた分、タクシーは乗った分だけ費用がかかる。デマンド交通はその中間にあり、<b>乗合が起きたときにだけ</b>1乗車あたりの費用が下がる。</p>
+    <p class="sub">このノートでは、この整理を壱岐市の1乗車あたり公費、国の支援制度、国の手引きの類型、英国の撤退例と継続例と突き合わせる。そのうえで、令和8年10月に始まった実証運行（のるーと壱岐）の設計に当てはめる。</p>
+    <p class="mut">調査基準日 2026年10月8日。金額は特記なき限り円。路線バスの1乗車あたり公費は、分母の輸送人員が推計（算出方法は <a href="../koutsuu/">地域公共交通計画のノート</a> Ⅰ章）。このページはそのノートの姉妹ページで、壱岐の数値はそちらで照合したものを使う。「デマンド交通」は国の手引きと市の用語に合わせた呼び方で、オンデマンド交通と同じものを指す。</p>
+  </div>
+  <button class="tg" id="tg">◐ 表示切替</button>
+</header>
+
+<section>
+  <div class="hd">
+    <h2>Ⅰ. 三つは、何が違うのか</h2>
+    <p class="sub">法律の上では、3つとも道路運送法にもとづく旅客の運送です。違いは「1台に何組が乗るか」で、運賃の決め方、費用の出方、供給量を誰が決めるかは、すべてそこから派生します。</p>
+  </div>
+  <div class="tblwrap"><table>
+    <thead><tr><th></th><th style="min-width:220px">路線バス</th><th style="min-width:220px">デマンド交通</th><th style="min-width:220px">タクシー</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1台に乗る人</td><td>他人どうしが同乗（乗合）</td><td>他人どうしが同乗（乗合）</td><td>1組で1台を使う（個別輸送）</td></tr>
+      <tr><td class="k">走り方</td><td>決まった時刻・経路を、乗る人がいなくても走る</td><td>予約があったときだけ、予約に応じた経路で走る</td><td>呼ばれたときだけ、目的地へ直行する</td></tr>
+      <tr><td class="k">運賃</td><td>距離に応じた額。安い</td><td>定額やゾーン制が多く、乗る前に分かる</td><td>距離・時間に応じた額が基本で、日常の反復利用には重い</td></tr>
+      <tr><td class="k">予約</td><td>いらない</td><td>必要（前日までか当日までかは設計による）</td><td>電話等で配車</td></tr>
+      <tr><td class="k">費用の出方</td><td><b>走らせた分だけかかる。</b>乗る人が増えても費用はほとんど増えない</td><td>中間。ただし予約受付と配車システムの費用が別にかかる</td><td><b>乗った分だけかかる。</b>乗る人が増えれば、そのぶん増える</td></tr>
+      <tr><td class="k">公費</td><td>赤字を補填する形で入る</td><td>入る前提で設計する</td><td>運行そのものへの補助は原則なし（福祉の外出支援など、利用者側への助成は別）</td></tr>
+      <tr><td class="k">供給量を決めるのは</td><td>市と事業者（計画に位置づける）</td><td>市と事業者（計画に位置づける）</td><td>事業者の経営判断</td></tr>
+      <tr><td class="k">向いている場面</td><td>需要が太く、同じ時間に同じ方向へ動く（通学・通勤）</td><td>需要が薄く散らばっていて、使いたい時間帯が偏っている</td><td>急ぎ、少人数、早朝・夜間、目的地がばらばら</td></tr>
+      <tr><td class="k">苦手な場面</td><td>需要の薄い時間帯・路線。乗る人がいなくても費用は出ていく</td><td>乗合が起きないとき。1乗車あたりの公費が跳ね上がる</td><td>日常の反復利用。料金が障壁になる</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">タクシーも地域の公共交通の担い手です。それでも別の乗りものを検討するのは、料金が日常の反復利用には重いこと、車両も運転者も限られていること、そして事業の規模を決めるのが事業者の経営判断であることによります。3つ目は事業者の姿勢の問題ではなく、制度上の役割の違いです。毎日あてにする足については、市が計画に位置づけて維持できる形もあわせて持っておく。これが、別の乗りものを検討する出発点になります。</p>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅱ. いちばんの違いは「費用の出方」</h2>
+    <p class="sub">運賃や便利さより先に見るべきなのは、費用の構造です。</p>
+  </div>
+  <div class="prose">
+    <p><b>路線バスは、乗る人がいなくても費用がほぼ全額かかります。</b>人件費と車両の維持費が中心で、減便しても思ったほど費用は減りません。壱岐の路線バスはまさにこの構造で、計画によれば総走行キロは10年間で約12%減った一方、経常損益の赤字は約1.4倍に広がりました（▲8,800万円→▲1億2,000万円）。計画自身も、変動費の比率が低い固定費主導型の構造だと書いています（計画 p.19）。</p>
+    <p><b>タクシーは、乗った分しかかかりません。</b>その代わり、乗る人が増えても1人あたりの費用は下がりません。10組を運ぶには10回分の費用がかかります。</p>
+    <p>デマンド交通はこの中間ですが、予約受付と配車システムという、ほかの2つにはない費用を抱えます。<b>デマンド交通にすれば自動的に安くなるわけではありません。</b></p>
+  </div>
+  <div class="fig" style="margin-top:14px">
+    <svg viewBox="0 0 780 390" role="img" aria-label="利用者が少ないうちはタクシー、中くらいならデマンド交通、多ければ路線バスが、1乗車あたり最も安くなることを示す模式図">
+      <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+      <g font-family="system-ui,sans-serif" font-size="12" fill="currentColor">
+        <rect class="band" x="272" y="60" width="123" height="260"/>
+        <line x1="272" y1="60" x2="272" y2="320" stroke="currentColor" stroke-dasharray="4 4" opacity=".5"/>
+        <line x1="395" y1="60" x2="395" y2="320" stroke="currentColor" stroke-dasharray="4 4" opacity=".5"/>
+        <text x="186" y="51" text-anchor="middle" font-size="11.5" font-weight="700">タクシーが安い</text>
+        <text x="333" y="51" text-anchor="middle" font-size="11.5" font-weight="700" class="dem">デマンドが安い</text>
+        <text x="537" y="51" text-anchor="middle" font-size="11.5" font-weight="700" class="bus">路線バスが安い</text>
+        <line x1="100" y1="58" x2="100" y2="320" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="100" y1="320" x2="700" y2="320" stroke="currentColor" stroke-width="1.2" marker-end="url(#a1)"/>
+        <text x="96" y="72" text-anchor="end" font-size="11">高</text>
+        <text x="96" y="318" text-anchor="end" font-size="11">低</text>
+        <text x="100" y="22" font-size="12" font-weight="700">1乗車あたりの費用</text>
+        <text x="700" y="345" text-anchor="end" font-size="12" font-weight="700">利用者の多さ（需要の厚み）</text>
+        <text x="104" y="345" font-size="11">少ない</text>
+        <polyline class="bus" points="100,62 160,128 230,183 310,220 420,250 550,272 680,285" fill="none" stroke-width="2.4"/>
+        <polyline class="dem" points="100,142 160,184 230,213 310,233 420,247 550,254 680,258" fill="none" stroke-width="2.4" stroke-dasharray="7 4"/>
+        <polyline points="100,226 680,222" fill="none" stroke="currentColor" stroke-width="2.4"/>
+        <text x="690" y="289" class="bus" font-size="12.5" font-weight="700">路線バス</text>
+        <text x="690" y="262" class="dem" font-size="12.5" font-weight="700">デマンド</text>
+        <text x="690" y="226" font-size="12.5" font-weight="700">タクシー</text>
+        <text x="106" y="378" font-size="11" opacity=".8">※ 模式図。実際の数値ではない。</text>
+      </g>
+    </svg>
+  </div>
+  <p class="cap">路線バスは、乗る人が少ないうちは1乗車あたりの費用が跳ね上がり、増えると急に下がります。タクシーは何人乗っても1乗車あたりがほとんど変わりません。デマンド交通が3つの中でいちばん安くなるのは、その中間の帯だけです。壱岐の日中がこの図のどこに当たるのかを確かめることが、実証運行の役目の1つになります。</p>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅲ. 壱岐の数字で見ると</h2>
+    <p class="sub">公開資料から「1乗車あたり、いくらの公費が乗っているか」を計算すると次のようになります。値はすべて <a href="../koutsuu/">地域公共交通計画のノート</a> で照合したもので、2024年度（令和6年度）です。</p>
+  </div>
+  <div class="legend"><span><i style="background:var(--c2)"></i>路線バス（分母は推計）</span><span><i style="background:var(--c1)"></i>公共ライドシェア（初山・箱崎。分母は利用者数の実績）</span></div>
+  <div class="achhd"><div>対象</div><div>0 ── 1,500 ── 3,000 ── 4,500円</div><div style="text-align:right">1乗車</div></div>
+  <div class="ach"><div class="lb">路線バス全体<small>2015年度は228円</small></div><div class="tr"><div class="fl" style="width:10.4%"></div></div><div class="vv">468円</div></div>
+  <div class="ach"><div class="lb">公共ライドシェア・初山<small>令和3年度は1,130円</small></div><div class="tr"><div class="fl alt" style="width:18.4%"></div></div><div class="vv">829円</div></div>
+  <div class="ach"><div class="lb">公共ライドシェア・箱崎<small>令和5年度は1,256円</small></div><div class="tr"><div class="fl alt" style="width:29.6%"></div></div><div class="vv">1,330円</div></div>
+  <div class="ach"><div class="lb">転換検討の対象のうち、日中のみ運行の11系統<small>系統別の推計</small></div><div class="tr"><div class="fl" style="width:40.9%"></div></div><div class="vv">1,841円</div></div>
+  <div class="ach"><div class="lb">路線バスで最も需要の薄い系統（D区分）<small>系統別の推計。D区分は3,963〜4,278円</small></div><div class="tr"><div class="fl" style="width:95.1%"></div></div><div class="vv">4,278円</div></div>
+  <div class="ach"><div class="lb">デマンド交通を本格導入したときの想定<small>本来ここで比べたい数字</small></div><div class="tr unk"></div><div class="vv mut">公開資料に<br>見当たらない</div></div>
+  <p class="cap">路線バス＝市補助金÷輸送人員（推計）。系統別は平均運賃で人員を逆算し、市の補助カバー率を掛けた推計。公共ライドシェア＝（費用−運賃収入）÷利用者数。幹線のA区分は226〜316円。実証運行の積算から出る単価（運行経費ベース3,058円）は、3か月・小規模という条件の数字なのでこの図には置いていない（Ⅳ章）。</p>
+
+  <div class="two" style="margin-top:18px">
+    <div class="card">
+      <h4>いちばん高いのも、いちばん安いのも路線バス</h4>
+      <p>幹線は226〜316円、最も需要の薄い系統は4,278円で、同じ路線バスの中に約15倍の開きがあります。「バスだから安い、デマンドだから高い」という比べ方は成り立ちません。同じ公共ライドシェアでも、初山は利用者が5.6倍になって1,130円から829円へ、箱崎は1,256円から1,330円へと動きが分かれました。<b>制度より、設計と利用の厚みが単価を決めています。</b></p>
+    </div>
+    <div class="card">
+      <h4>比べる相手は、転換の検討対象の系統</h4>
+      <p>計画は、日中のみ運行の11系統を含む計18系統を転換の検討対象に挙げています（計画 p.36）。デマンド交通の単価を路線バス全体の468円と並べると、どう設計しても高く見えます。並べるべきなのは、デマンド交通が受け持つことになる系統の単価で、日中のみ運行の11系統なら1,841円（推計）です。どの系統が置き換わるかは、まだ決まっていません。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅳ. 比べたい数字と、国の支援が手厚い時期</h2>
+    <p class="sub">前の図の最後の行は、デマンド交通を本格導入したときの1乗車あたり公費です。路線バスと並べて比べられるのは、本来この数字だけです。</p>
+  </div>
+  <div class="prose">
+    <p>実証運行の積算からは、運行経費ベースで約3,058円という単価が出ます（<a href="../koutsuu/">地域公共交通計画のノート</a> Ⅴ章）。ただし3か月・小規模という条件の数字で、定常運行の姿ではありません。比較に耐えるのは、本格導入するときの稼働台数・運行時間・想定乗車人数から計算した単価です。2026年10月8日時点で、この前提は公開資料に見当たりません。</p>
+  </div>
+  <h3>公開されると比較ができるようになる数字</h3>
+  <ol class="notes">
+    <li><b>本格導入時の運行の前提。</b>稼働台数、運行する曜日と時間帯、エリアの分け方と1エリアあたりの台数</li>
+    <li><b>想定乗車人数。</b>年間と1運行あたり。あわせて、転換検討の系統並みの単価に届く損益分岐の人数</li>
+    <li><b>システム費用の内訳。</b>初期費用と、毎年かかる固定費（月額）・1件ごとの変動費を分けた額。実証の構築費ではなく、続けるあいだ毎年かかる額</li>
+    <li><b>以上から計算した1乗車あたり公費</b>と、転換検討の11系統（1,841円・推計）、路線バス全体（468円・推計）との比較</li>
+  </ol>
+
+  <h3>立ち上げの支援と、続けるときの支援</h3>
+  <p class="sub">壱岐市の実証運行は、国の令和8年度「交通空白」解消等リ・デザイン全面展開プロジェクトの「交通空白」解消タイプに採択されています（令和8年4月28日公表の採択一覧）。国は令和7〜9年度の3か年を「交通空白解消・集中対策期間」としています（取組方針2025）。</p>
+  <div class="tblwrap"><table>
+    <thead><tr><th></th><th style="min-width:330px">全面展開プロジェクト「交通空白」解消タイプ（令和8年度）</th><th style="min-width:300px">続けるときに使える主な制度</th></tr></thead>
+    <tbody>
+      <tr><td class="k">制度</td><td>令和7年度補正予算の地域公共交通確保維持改善事業費補助金。確保維持改善事業等（令和7年度補正352億円・令和8年度206億円）の内数</td><td>地域公共交通確保維持事業（地域内フィーダー系統補助）</td></tr>
+      <tr><td class="k">補助率</td><td>500万円まで定額、超える部分の2/3。他分野の関係者が実質的に運行に関わる場合は定額の上限が750万円。補助の上限は1億円。購入する車両は定額補助の対象外</td><td>補助対象経費の1/2と、市区町村ごとの国庫補助上限額の、少ない方以内</td></tr>
+      <tr><td class="k">対象</td><td>基礎データの収集・分析や協議会の開催、施設・システム、広報・運転者募集、運行経費など。交付決定から令和9年2月26日までに発生し支払いまで終えた経費。精算払い。説明会Q&Aは、次年度の運行は原則として自己負担と答えている</td><td>補助対象の系統の経常費用と経常収益の差額</td></tr>
+      <tr><td class="k">地方負担への特別交付税</td><td>0.8×財政力補正。対象はシステム構築費・車両費など運行に直接関連する費用で、基礎データの収集・分析や協議会の開催費は対象外（国庫補助の対象ではある）。上限は国庫補助の上限に合わせる</td><td>補助対象系統の欠損に対する地方負担は0.8、市の単独補助は0.8×財政力補正（令和7年度の総務省の整理）</td></tr>
+      <tr><td class="k">主な要件</td><td>「交通空白」解消・官民連携プラットフォームの会員であること（公募要領）</td><td>地域公共交通計画への掲載。地域間幹線系統に接続するか、離島振興対策実施地域などの交通不便地域で航路・航空路を含む地域間交通ネットワークに接続すること。経常赤字であること。路線定期運行には1回あたり2人以上の輸送量の要件があるが、<b>区域運行はこの要件から除かれている</b>（交付要綱 別表７）</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">特別交付税の措置率は、「観光の足」のみを対象とする取組などでは0.5×財政力補正。出典は、公募要領（初版 令和8年2月）・交付規程・説明会Q&A・採択一覧・総務省「『交通空白』解消に向けた取組について」（令和8年2月6日）・交付要綱（令和8年10月5日改正）。</p>
+  <div class="prose" style="margin-top:12px">
+    <p>並べると、<b>国の支援が手厚いのは「始めるとき」</b>だと分かります。システムの導入費は、定額補助・2/3補助と特別交付税で多くが埋まります。一方、毎年のシステム利用料と運行の赤字を支えるのは、市の負担と、使える場合のフィーダー補助（1/2と上限額の少ない方）です。集中対策期間が終わる令和10年度以降に毎年いくらかかるのかは、本格導入の判断の前に見ておきたい数字です。</p>
+  </div>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅴ. デマンド交通にも種類がある</h2>
+    <p class="sub">国土交通省中部運輸局の「デマンド型交通の手引き」（平成25年3月）は、運行方式で4つに分けています。左ほど路線バスに近く、右ほどタクシーに近くなります。</p>
+  </div>
+  <div class="fig">
+    <svg viewBox="0 0 820 250" role="img" aria-label="デマンド型交通の4つの運行方式を、路線バスに近いものからタクシーに近いものへ並べ、利用者にとっての便利さと乗合の起こりやすさが逆向きにはたらくことを示す図">
+      <defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+      <g font-family="system-ui,sans-serif" font-size="12" fill="currentColor">
+        <text x="16" y="20" font-size="11.5" opacity=".85">← 路線バスに近い</text>
+        <text x="804" y="20" text-anchor="end" font-size="11.5" opacity=".85">タクシーに近い →</text>
+        <rect x="16" y="40" width="180" height="96" rx="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <text x="106" y="70" text-anchor="middle" font-weight="700">定路線型</text>
+        <text x="106" y="94" text-anchor="middle" font-size="11.5">決まった経路を、</text>
+        <text x="106" y="112" text-anchor="middle" font-size="11.5">予約があったときだけ</text>
+        <rect x="208" y="40" width="190" height="96" rx="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <text x="303" y="64" text-anchor="middle" font-weight="700">迂回ルート・</text>
+        <text x="303" y="82" text-anchor="middle" font-weight="700">エリアデマンド型</text>
+        <text x="303" y="104" text-anchor="middle" font-size="11.5">予め定めた迂回ルートや</text>
+        <text x="303" y="122" text-anchor="middle" font-size="11.5">エリアへ、需要に応じて</text>
+        <rect x="410" y="40" width="190" height="96" rx="6" fill="none" class="dem" stroke-width="1.8"/>
+        <text x="505" y="64" text-anchor="middle" font-weight="700" class="dem">自由経路</text>
+        <text x="505" y="82" text-anchor="middle" font-weight="700" class="dem">ミーティングポイント型</text>
+        <text x="505" y="104" text-anchor="middle" font-size="11.5">定めたバス停等の間を、</text>
+        <text x="505" y="122" text-anchor="middle" font-size="11.5">ルートを定めず結ぶ</text>
+        <rect x="612" y="40" width="192" height="96" rx="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <text x="708" y="70" text-anchor="middle" font-weight="700">自由経路ドアツードア型</text>
+        <text x="708" y="94" text-anchor="middle" font-size="11.5">区域内を、玄関から</text>
+        <text x="708" y="112" text-anchor="middle" font-size="11.5">玄関まで</text>
+        <line x1="16" y1="172" x2="804" y2="172" stroke="currentColor" stroke-width="1.2" marker-end="url(#a2)"/>
+        <text x="804" y="164" text-anchor="end" font-weight="700">利用者にとっての便利さ</text>
+        <line x1="804" y1="206" x2="16" y2="206" stroke="currentColor" stroke-width="1.2" marker-end="url(#a2)"/>
+        <text x="16" y="198" font-weight="700">乗合の起こりやすさ（＝公費の効率）</text>
+        <text x="16" y="238" font-size="11" opacity=".8">4類型の名称は手引き p.5 による。便利さと乗合の起こりやすさの矢印は、このノートの整理。</text>
+      </g>
+    </svg>
+  </div>
+  <p class="cap">手引きは、このほかに運行ダイヤを3つ（固定ダイヤ型／運行の頻度とおおよその発着時刻だけを決める基本ダイヤ型／運行時間内なら随時の非固定ダイヤ型）、乗降場所を6つ（全バス停等の間／発地は全バス停等・着地は特定の施設に限る／発地自宅・着地は特定の施設に限る、など）に分けています（p.6 表3・表4）。これらの組み合わせで性格が決まるので、「デマンド交通を入れる」と言っただけでは、まだ何も決めたことになりません。</p>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅵ. 便利にするほど、公費は増える ― 英国の撤退例と継続例</h2>
+    <p class="sub">玄関から玄関まで、好きな時間に、という設計にすると、他人と行き先が重ならず乗合が起きません。制度の上では乗合でも、実態は補助のついたタクシーに近づきます。英国の記録がこれを裏づけています。</p>
+  </div>
+  <div class="two">
+    <div class="card k1">
+      <div class="tl">生産性</div>
+      <h4>1台の運行1時間あたり 平均2.38回</h4>
+      <p>イングランドの州議会向けにTAS Partnershipが行った42事業の調査（2023年）では、1台の運行1時間あたりの乗車回数が平均2.38回でした。農村部30事業は2.15回、都市部12事業は2.96回で、4回を超えたのは都市部の4事業だけでした（Sutton 2024 が引用）。</p>
+    </div>
+    <div class="card k2">
+      <div class="tl">撤退</div>
+      <h4>2016〜2023年に50を超える導入</h4>
+      <p>Roger Frenchは、2016〜2023年に英国で導入された50を超えるデマンド交通を調べ、公民あわせて1億ポンドを超える可能性のある資金が充てられたこと、失敗または撤退した例が多いことを示しました（Sutton 2024 が French 2023 を引用）。</p>
+    </div>
+  </div>
+  <p class="note">米国の研究（Harmony 2022）は、配車サービス（UberX・UberPool）が路線バスより費用効率的になりやすいのは、バスの運行1時間あたりの平均乗客がおおむね6人未満のときだとしています。平均10人では、バスがUberXより安いケースが90%、乗合型のUberPoolより安いケースが60%でした。デマンド交通そのものではなく配車サービスとの比較ですが、需要の薄い領域でしか個別・小型の輸送が勝たない、という向きは同じです。</p>
+
+  <h3>何が消え、何が残ったか</h3>
+  <div class="prose">
+    <p><b>消えた例。</b>ブリストルのSlide（2016〜2018年）、リーズのFlexiBus（2021〜2023年。3年の試行が2年で終了）、ノース・ヨークシャーのYorBus（2021〜2023年）などです。記録に残る理由は1つではありません。サフォークのKatchは利用者が足りずに2022年12月に終わり（2023年に別の試行で再開）、ワトフォードのArrivaClickは利用者数が期待を大きく下回りました。12か月の試行で終わったもの（GoSutton）や、住宅開発業者の負担金が2022年に切れて終わったもの（New Lubbesthorpe）もあります。アバディーンシャーのReady2Goについて、議会は運行コストの高さ、1台に同時に乗る乗客が比較的少ないこと、予約が取れないことを挙げました。需要が増えて信頼性が落ちたとも書いています。オックスフォードのPickMeUp（2018〜2020年）は、利用者数は成功と見なされたものの、持続可能な水準には届かずに撤退しました。</p>
+    <p><b>技術の費用が原因とは言い切れません。</b>Sutton（2024）は、かつての配車システムは導入が高価で専門の職員と訓練を要したが、いまはクラウドでより安く提供できると書き、不振の理由を待ち時間と迂回時間のトレードオフに求めています。多くの事例で、12〜20人乗りのミニバスに1〜2人しか乗っていなかったとも書いています。予約受付の費用はアプリで下げられても、<b>運行の費用は乗合でしか下がらない</b>、というのがこのノートの読みです。一方、Frenchの年表は、長く続いた例が電話予約で高価な技術を使っていなかったことに触れています。技術の役割については、見方が分かれています。</p>
+    <p><b>残っている例。</b>ウィルトシャーの101系統は1999年から運行しています（2023年にアプリ化し、2025年に運行形態を変えた）。ウェストサセックスの99系統、リンカンシャーのCallConnectも長く続いています。ノッティンガムシャーのNottsBus On Demandは2022年8月に始まり、2024年7月までに7つのスキーム（うち2つは町の夜間便）になりました。</p>
+    <p><b>戻した例と、財源で終わった例。</b>ウェールズのfflecsiは、カーディフで定時運行に戻り、ニューポートでは2022年9月に撤退して定時定路線のバスに戻りました。ブレナウ・グウェントでは2023年6月に閑散時間帯だけ定時運行に置き換え、早朝・夜間と別のゾーンでは、いまもデマンドで走っています。14年続いたBwcabusは2023年10月31日に終わりました。それまで支えていた補助（RDP）が終わったあと、ウェールズ政府が拠出できないと確認したためです。長く続いた事業でも、財源の裏づけがなくなれば止まります。Ⅳ章で本格導入時の年額を挙げたのは、このためです。</p>
+  </div>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅶ. 壱岐で「戻す」ことはできるか</h2>
+    <p class="sub">fflecsiで定時運行に戻せたのは、事業者も車両も運転者も地域に残っていたからです。壱岐で同じことができるかは、実証の結果を判断する前に確かめておきたい点です。</p>
+  </div>
+  <div class="two three">
+    <div class="card">
+      <h4>車両</h4>
+      <p>計画によれば路線バスの車両は18台で、うち8台が10年未満、8台が20年以上と二極化しています（計画 p.18）。日中の支線系統をやめれば余る車両が出ます。戻すときに再調達するなら、国の車両の補助（計画に掲載した車両の減価償却費等の1/2）を使うにも、地域公共交通計画への掲載と手続きが要ります。</p>
+    </div>
+    <div class="card">
+      <h4>運転者</h4>
+      <p>路線バスの運転者20人のうち、50代が11人（55%）、60代が5人（25%）です（計画 p.18）。この内訳のままなら、10年のうちに16人が60代以上か引退の時期を迎えます。日中の運行が減って人員を縮めれば、戻すときに同じ人数をそろえられるとは限りません。<b>車両は買い直せても、運転者は買い直せません。</b></p>
+    </div>
+    <div class="card">
+      <h4>財源と事業の収支</h4>
+      <p>補助をいったん外せば、戻すにはあらためて予算措置が要ります。計画は、路線バスの経営を固定費主導型で、減便しても赤字が縮まりにくいと書いています（計画 p.19）。日中の支線系統がなくなったあとの路線バス事業全体の収支がどうなるかも、戻せるかどうかに関わります。</p>
+    </div>
+  </div>
+  <p class="note w">確かめた結果「戻せない」のであれば、実証の評価の基準を始める前に決めておくこと（Ⅸ章）の重みは、さらに増します。</p>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅷ. 実証運行（のるーと壱岐）の設計に当てはめる</h2>
+    <p class="sub">令和8年9月3日の地域公共交通会議で承認された実証運行は、10月1日から12月28日まで、渡良・初山を除く島内で走っています。</p>
+  </div>
+  <div class="tblwrap"><table>
+    <thead><tr><th></th><th style="min-width:420px">実証運行の設計</th><th style="min-width:260px">Ⅴ章の類型でいえば</th></tr></thead>
+    <tbody>
+      <tr><td class="k">エリアと曜日</td><td>月・水・金＝エリアA（湯本・沼津）とエリアB（勝本・那賀）。火・木・土＝エリアC（芦辺〈那賀除く〉）とエリアD（石田）。各曜日2台。日曜と指定日は運休</td><td>エリアを分け、曜日で交互に回す</td></tr>
+      <tr><td class="k">時刻</td><td>8:00〜13:00。朝8〜9時台に郷ノ浦市街行き、10〜12時台に郷ノ浦市街発。会議資料はこれを「便的な運行」と呼び、フルデマンドと区別している</td><td>基本ダイヤ型に近い</td></tr>
+      <tr><td class="k">乗降場所</td><td>往路は自宅前、復路は乗降ポイント。郷ノ浦市街では13か所の乗降ポイント（壱岐病院・品川病院・山内眼科医院・郷ノ浦庁舎・郷ノ浦港ターミナルビル・商業施設など）だけで乗り降りできる</td><td>発地は自宅、着地は特定の施設に限る型に近い</td></tr>
+      <tr><td class="k">予約</td><td>乗車の7日前から前日17時まで。電話（月〜土12:00〜17:00）・アプリ・市公式LINE（24時間）</td><td>前日までの事前予約</td></tr>
+      <tr><td class="k">運賃・車両</td><td>500円（未就学児は無料）、現金のみ。乗車定員9名。運行は壱岐地区タクシー協会、制度は事業者協力型の自家用有償旅客運送（交通空白地有償運送）</td><td>―</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">出典：壱岐市地域公共交通会議 会議資料・会議録（R8.9.3）、デマンド交通パンフレット、市サイト「壱岐市デマンド交通実証運行のお知らせ」（2026年10月6日更新）。類型への当てはめはこのノートによる。</p>
+
+  <div class="prose" style="margin-top:12px">
+    <p>乗降場所を限り、時刻の目安を決め、エリアと曜日を絞る。この組み合わせは、Ⅵ章で見た「乗合が起きる設計」の側にあります。乗降場所が有限なので同じ方向へ行く人の経路が重なりやすく、玄関から玄関まで随時受け付ける設計にくらべて、予約受付の負担も小さくなります。そのうえで、確かめておきたい点が4つあります。</p>
+  </div>
+
+  <h3>1. 運転者ひとりで運べる人数が、供給の上限を決める</h3>
+  <div class="prose">
+    <p>車両は予算があれば確保できますが、第二種免許を持つ運転者は予算では増やせません。人手が足りずに便が減ることは、壱岐ではすでに起きています。九州郵船は船員の人員不足を理由に、2026年4月1日から6月30日まで、博多〜壱岐〜対馬航路のジェットフォイルを2隻体制から1隻体制にしました。フェリーの繁忙期の臨時便とジェットフォイルの季節増便も見送っています。1隻体制は7〜10月も続き、11月から翌年3月までの時刻表も1隻体制を前提にしています（九州郵船の告知・時刻表、長崎新聞 2026年7月30日・9月17日）。</p>
+    <p>陸上の交通も構造は同じです。島内の運転者が過去10年どう推移し、今後どうなるのかは、公開資料からは路線バスの20人の年齢構成（単年）しか分かりません。実証運行はタクシー協会の運転者が担うので、<b>供給を増やすのではなく、配分を変える</b>面があります。日中にデマンド交通へ人を回せば、その時間帯のタクシーは手薄になりえます。</p>
+  </div>
+
+  <h3>2. 予約の手段 ― 電話を残したまま、アプリとLINEを並べる</h3>
+  <div class="prose">
+    <p>MMD研究所が2025年10月に60〜79歳の10,000人に行った調査（予備調査）では、モバイル端末の所有率が94.7%、端末を持つ人のうちメインの端末がスマートフォンの人が96.5%でした（60〜79歳全体に対しては約91%）。よく引かれる「予約の約96%が電話」は、中部運輸局の手引き（平成25年）にある中部運輸局管内の数字で、全国の値でも最近の値でもありません。</p>
+    <p>ただし、端末を持っていることと予約に使えることは別です。実証運行は電話・アプリ・LINEを並べています。<b>予約手段ごとの利用割合を記録しておけば</b>、何年後にどちらが主になるかを、推測ではなく実績で見通せます。</p>
+  </div>
+
+  <h3>3. 曜日の絞り方を、病院の外来の曜日と突き合わせる</h3>
+  <div class="prose">
+    <p>エリアを分けて曜日で交互に走らせれば、乗合は起きやすくなります。一方、壱岐病院の外来担当医表を見ると、受診できる曜日が限られている科があります。実証運行の郷ノ浦市街の乗降ポイントには壱岐病院が入っているので、エリアの運行曜日と外来の曜日が合わない科には、この乗りものでは行けません。</p>
+  </div>
+  <div class="tblwrap"><table>
+    <thead><tr><th>科・外来</th><th>外来の曜日</th><th class="c">エリアA・B<br>（月・水・金）</th><th class="c">エリアC・D<br>（火・木・土）</th></tr></thead>
+    <tbody>
+      <tr><td>呼吸器内科</td><td>水</td><td class="c ok">○</td><td class="c no">×</td></tr>
+      <tr><td>消化器内科・リウマチ内科</td><td>金</td><td class="c ok">○</td><td class="c no">×</td></tr>
+      <tr><td>肝臓内科・皮膚科</td><td>月</td><td class="c ok">○</td><td class="c no">×</td></tr>
+      <tr><td>血液内科・もの忘れ外来</td><td>水</td><td class="c ok">○</td><td class="c no">×</td></tr>
+      <tr><td>耳鼻咽喉科</td><td>月・金</td><td class="c ok">○</td><td class="c no">×</td></tr>
+      <tr><td>脳外科</td><td>水（第2週）・金（第4週）</td><td class="c ok">○</td><td class="c no">×</td></tr>
+      <tr><td>形成外科</td><td>金（第1週）</td><td class="c ok">○</td><td class="c no">×</td></tr>
+      <tr><td>骨粗鬆症内科・フットケア外来</td><td>火</td><td class="c no">×</td><td class="c ok">○</td></tr>
+      <tr><td>腎臓内科</td><td>火・金</td><td class="c ok">○</td><td class="c ok">○</td></tr>
+      <tr><td>泌尿器科</td><td>火・木・金</td><td class="c ok">○</td><td class="c ok">○</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">長崎県壱岐病院「外来担当医表」（2026年10月8日取得。表に適用月の表示はない）。○＝その科の外来の曜日に、そのエリアの便が走る。総合内科・外科・小児科・眼科など、月〜金のすべてに担当医がいる科は省いた。時刻（往路は8〜9時台着、復路は10〜12時台発）が診療に合うかは、この表では見ていない。</p>
+  <div class="prose" style="margin-top:12px">
+    <p>見方を変えれば、科ごとに曜日が決まっているということは、<b>需要がすでに曜日ごとに集まっている</b>ということでもあります。乗合にとっては追い風です。時間や曜日を絞ること自体は乗合のために理にかなっていて、問題は絞り方です。たとえば、病院へ向かう便は毎日通し、エリア内の集配を曜日で回す、という組み方なら両立しえます。3か月の実証なら今の割り当てで走らせられますが、本格運用の前提にすると、特定の地区の人が特定の科にかかれない状態が固定されます。</p>
+  </div>
+
+  <h3>4. 玄関から玄関までは「歩くのが難しい人」に重ねる</h3>
+  <div class="prose">
+    <p>壱岐市には、リフト車や車椅子でないと移動が難しい人を対象にした外出支援サービス事業と障害者移動支援事業があり、1回5,000円の費用で社会福祉協議会とタクシー協会が運んでいます。令和7年度の利用は、見込みで外出支援1,510回、障害者移動支援4,715回です（地域公共交通会議 R8.9.3）。全員に玄関から玄関までを提供する設計は、いちばん困っている人のためのコストを、困っていない人の分まで払うことになります。<b>福祉輸送と乗合のデマンド交通の役割分担</b>を、本格導入の前に整理しておくことが要ります。</p>
+  </div>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅸ. 実証運行で見る、三つの指標</h2>
+    <p class="sub">利用者数と収支だけでは、ここまでの判断ができません。次の3つを、始める前に決めた基準と比べられる形で記録しておくことが考えられます。</p>
+  </div>
+  <div class="two three">
+    <div class="card k1">
+      <div class="tl">指標①</div>
+      <h4>1運行あたりの乗車人数</h4>
+      <p>1回の運行に何人が乗ったか。1.0に近ければ、補助のついたタクシーに近い運行です。乗合が起きているかを直接表します。</p>
+    </div>
+    <div class="card k2">
+      <div class="tl">指標②</div>
+      <h4>運転者1人・1時間あたりの輸送人員</h4>
+      <p>島の供給の制約そのものです。英国の42事業の調査では、1台の運行1時間あたり平均2.38回、農村部で2.15回でした。条件が違うので目安にとどまりますが、桁を確かめる参考にはなります。</p>
+    </div>
+    <div class="card k3">
+      <div class="tl">指標③</div>
+      <h4>1乗車あたり公費</h4>
+      <p>比べる相手は路線バス全体の468円ではなく、受け持つことになる系統の単価（日中のみ運行の11系統なら1,841円・推計）です。システム費は、実証の構築費ではなく毎年かかる額で見ます。</p>
+    </div>
+  </div>
+  <p class="note">あわせて、予約手段ごとの利用割合（Ⅷ章2）と、乗車の目的地（とくに壱岐病院）の記録があると、本格導入時のエリアと曜日の割り当てを外来の曜日と突き合わせられます（Ⅷ章3）。</p>
+</section>
+
+<section>
+  <div class="hd">
+    <h2>Ⅹ. 気をつけること・前提</h2>
+  </div>
+  <ol class="notes">
+    <li><span class="tag">注意</span><b>「デマンド交通にすれば安くなる」とは、まだ言えません。</b>言えるだけの数字が公開されていないためです。安くなるのは乗合が起きる設計にしたときだけで、初山と箱崎で単価の動きが分かれたことがそれを示しています。本格導入時の前提（Ⅳ章）が示されれば、この判断ができるようになります</li>
+    <li><span class="tag">注意</span><b>システムの費用は、実証より本格導入のときに効いてきます。</b>実証では初期の構築費が目立ちますが、長く効くのは毎年の固定費と1件ごとの変動費です</li>
+    <li><span class="tag">注意</span><b>実証運行は、タクシーと同じ運転者が担います。</b>供給を増やすのではなく、配分を変える面があります（Ⅷ章1）</li>
+    <li><span class="tag">注意</span><b>エリアと曜日の割り当ては、本格運用の前提にするなら外来の曜日と突き合わせる必要があります</b>（Ⅷ章3）</li>
+    <li><span class="tag">注意</span><b>「やめてみて、だめなら戻す」が成り立つとは限りません</b>（Ⅶ章）</li>
+    <li><span class="tag">前提</span>路線バスの1乗車あたり公費は分母の輸送人員が推計で、系統別の値と転換検討の11系統の値は、さらに平均運賃から人員を逆算した推計です。系統別の実数が公開されれば、仮定を外して検証できます</li>
+    <li><span class="tag">前提</span>英国の数字は、Sutton（2024）が他の調査を引用したものを含みます（TAS Partnership 2023・French 2023・Harmony 2022）。原典に当たれたのは議会の発表と年表の一部です</li>
+  </ol>
+</section>
+
+<footer>
+  <b>主な出典</b>（2026年10月8日確認）<br>
+  壱岐市：<a href="https://www.city.iki.nagasaki.jp/material/files/group/3/tiikikoukyoukoutuukeikaku.pdf" target="_blank" rel="noopener">壱岐市地域公共交通計画（2026〜2031年）</a>（111頁）／<a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/soumuhan/kotsutaisaku/9766.html" target="_blank" rel="noopener">壱岐市地域公共交通会議</a>（会議資料・会議録 R8.9.3）／<a href="https://www.city.iki.nagasaki.jp/soshiki/somuka/soumuhan/kotsutaisaku/16376.html" target="_blank" rel="noopener">壱岐市デマンド交通実証運行のお知らせ</a>（デマンド交通パンフレットを含む）<br>
+  国：国土交通省「<a href="https://www.mlit.go.jp/sogoseisaku/transport/content/001892380.pdf" target="_blank" rel="noopener">『交通空白』解消に向けた取組方針2025</a>」（令和7年5月30日）／「<a href="https://www.mlit.go.jp/sogoseisaku/transport/content/001888115.pdf" target="_blank" rel="noopener">地域交通のリ・デザインの全面展開（令和7年度補正・令和8年度予算）</a>」／<a href="https://kotsu-kuhaku-r8.jp/" target="_blank" rel="noopener">令和8年度「交通空白」解消等リ・デザイン全面展開プロジェクト</a>（公募要領 初版・交付規程・説明会Q&A）／<a href="https://www.mlit.go.jp/report/press/content/001998530.pdf" target="_blank" rel="noopener">同 採択一覧</a>（令和8年4月28日）／<a href="https://www.mlit.go.jp/sogoseisaku/transport/content/001992626.pdf" target="_blank" rel="noopener">地域公共交通確保維持改善事業費補助金交付要綱</a>（令和8年10月5日改正）／総務省「<a href="https://www.soumu.go.jp/main_content/001065591.pdf" target="_blank" rel="noopener">『交通空白』解消に向けた取組について</a>」（令和8年2月6日）／国土交通省中部運輸局「<a href="https://wwwtb.mlit.go.jp/hokushin/content/000104104.pdf" target="_blank" rel="noopener">デマンド型交通の手引き</a>」（平成25年3月）<br>
+  英国・米国：John Sutton, “<a href="https://tapas.network/51/sutton.php" target="_blank" rel="noopener">The Theoretical and Practical Limits to Demand Responsive Transport Services</a>”, TAPAS.network, 2024／busandtrainuser.com「<a href="https://busandtrainuser.com/a-short-history-of-drt/" target="_blank" rel="noopener">DRT chronology</a>」／Aberdeenshire Council（Ready2Go、2023年1月12日）／<a href="https://newsroom.pembrokeshire.gov.uk/news/fflecsi-bwcabus-service-to-end" target="_blank" rel="noopener">Pembrokeshire County Council</a>（fflecsi Bwcabus、2023年9月21日）／<a href="https://tfw.wales/fflecsi/locations/blaenau-gwent" target="_blank" rel="noopener">Transport for Wales（fflecsi Blaenau Gwent）</a><br>
+  その他：<a href="https://mmdlabo.jp/investigation/detail_2501.html" target="_blank" rel="noopener">MMD研究所「2025年シニアのスマートフォン・フィーチャーフォンに関する調査」</a>／<a href="https://www.kyu-you.co.jp/whatsnew/detail/0fd347e8-def2-45ce-983e-abab81cd879a" target="_blank" rel="noopener">九州郵船「2026年4月1日以降の配船計画につきまして」</a>・同 時刻表（2026年11月〜2027年3月）・長崎新聞（2026年7月30日・9月17日）／<a href="https://iki-hospital.jp/raiin/doctor-list/" target="_blank" rel="noopener">長崎県壱岐病院「外来担当医表」</a><br>
+  姉妹ページ：<a href="../koutsuu/">地域公共交通計画 ― 1乗車あたりの公費</a>／照合の全記録：<a href="https://github.com/ikilab-org/iki-keikaku/blob/main/docs/koutsuu/2026-10-08-shougou-norimono.md" target="_blank" rel="noopener">docs/koutsuu/2026-10-08-shougou-norimono.md</a>
+  <br><br>本ページは公開資料のみを用いたIKILABの独立分析であり、壱岐市の見解ではありません。実証運行の日程・エリア・運賃は市の公表時点のものです。<br>
+  本ページの文章・図表・データは <a href="../../about/license/">CC BY 4.0</a>、コードは MIT。引用元の公表資料の権利は各機関に帰属します。 © 2026 IKILAB
+</footer>
+
+</div>
+<script>
+const tg=document.getElementById('tg');
+tg.addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme');
+  const sysDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const now = cur ? cur : (sysDark?'dark':'light');
+  document.documentElement.setAttribute('data-theme', now==='dark'?'light':'dark');
+});
+</script>
+</body>
+</html>

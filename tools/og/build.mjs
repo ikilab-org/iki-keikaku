@@ -17,6 +17,7 @@
  *   assets/og-chiiki-fukushi-4.png  地域福祉のノート用
  *   assets/og-chiiki-fukushi-3shi.png  離島3市の地域福祉計画のノート用
  *   assets/og-houkatsu-jusou.png  地域包括ケアと重層のノート用
+ *   assets/og-norimono-hikaku.png  三つの乗りもののノート用
  */
 import { chromium } from 'playwright'
 import { fileURLToPath } from 'node:url'
@@ -37,6 +38,7 @@ const CARDS = [
   { id: 'og-chiiki-fukushi-4', out: 'og-chiiki-fukushi-4.png' },
   { id: 'og-chiiki-fukushi-3shi', out: 'og-chiiki-fukushi-3shi.png' },
   { id: 'og-houkatsu-jusou', out: 'og-houkatsu-jusou.png' },
+  { id: 'og-norimono-hikaku', out: 'og-norimono-hikaku.png' },
 ]
 
 const W = 1200, H = 630, SCALE = 2
